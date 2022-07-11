@@ -1,0 +1,323 @@
+@import "/src/styles/_variables.scss";
+
+.LNB_wrap {
+  // display: flex;
+  // width: 267px;
+  // height: 100%;
+}
+
+/* LNB depth */
+.LNB_depth {
+  height: 100%;
+  // height: fit-content;
+  background-color: $grey000;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: flex-start;
+  
+  &.first_depth {
+    width: 260px;
+  }
+
+  &.second_depth {
+    width: 92px;
+  }
+}
+
+/* 2depth */
+.second_depth {
+  width: 92px;
+
+  .LNB_channel_information_container {
+    border: none;
+  }
+  .LNB_channel_title_link {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .LNB_menu_container {
+    padding: 0 26px;
+  }
+  .LNB_site_link_container {
+    padding: 30px 26px;
+  }
+  .LNB_menu_link,
+  .LNB_site_link {
+    @include flexCenter();
+    width: 40px;
+    padding: 0;
+  }
+
+  [data-menu-text] {
+    position: relative;
+    &:hover {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 150%;
+        transform: translate(-50%, -50%);
+        // width: fit-content;
+        width: max-content;
+        height: 22px;
+        padding: 4px 6px;
+        font-size: 12px;
+        line-height: 15px;
+        color: $white;
+        background-color: $grey100;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  [data-menu-text='홈'] {
+    &:hover {
+      &::after {
+        content: '홈';
+      }
+    }
+  }
+  [data-menu-text='대시보드'] {
+    &:hover {
+      &::after {
+        content: '대시보드';
+      }
+    }
+  }
+  [data-menu-text='채팅 상담'] {
+    &:hover {
+      &::after {
+        content: '채팅 상담';
+      }
+    }
+  }
+  [data-menu-text='챗봇 상담'] {
+    &:hover {
+      &::after {
+        content: '챗봇 상담';
+      }
+    }
+  }
+  [data-menu-text='챗봇 만들기'] {
+    &:hover {
+      &::after {
+        content: '챗봇 만들기';
+      }
+    }
+  }
+  [data-menu-text='상담 키워드'] {
+    &:hover {
+      &::after {
+        content: '상담 키워드';
+      }
+    }
+  }
+  [data-menu-text='KMS'] {
+    &:hover {
+      &::after {
+        content: 'KMS';
+      }
+    }
+  }
+  [data-menu-text='고객'] {
+    &:hover {
+      &::after {
+        content: '고객';
+      }
+    }
+  }
+  [data-menu-text='설정'] {
+    &:hover {
+      &::after {
+        content: '설정';
+      }
+    }
+  }
+  [data-menu-text='구독'] {
+    &:hover {
+      &::after {
+        content: '구독';
+      }
+    }
+  }
+  [data-menu-text='홈'] {
+    &:hover {
+      &::after {
+        content: '홈';
+      }
+    }
+  }
+  [data-menu-text='홈'] {
+    &:hover {
+      &::after {
+        content: '홈';
+      }
+    }
+  }
+}
+
+/* 토글 버튼 */
+[data-onoff-toggle] {
+  display: none;
+
+  &:checked {
+    + [data-onoff-toggle-label] {
+      background-color: $green100;
+
+      &::before {
+        border: 1px solid $green100;
+        top: 1px;
+        left: 23px;
+      }
+    }
+  }
+}
+
+
+/* 1. LNB_channel_information_container */
+.LNB_channel_information_container {
+  @include flexCenter();
+  flex: 0 0 auto; 
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border-bottom: $grey020-border; 
+}
+
+.LNB_channel_title_link {
+  @include flexStart();
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.LNB_channel_avatar_img_box {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #D6E6FF;
+  
+  .LNB_channel_avatar_img {
+    object-fit: cover;
+  }
+}
+
+.LNB_channel_title {
+  @include fontHeadingChannel();
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+
+/* 2. LNB_menu_container */
+.LNB_menu_container {
+  @include flexStart();
+  flex-direction: column;
+  flex: 1 1 auto; 
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.LNB_menu_group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: $grey020-border;
+  
+  &.first_group {
+    flex: 0 0 auto;
+  }
+  &.second_group {
+    flex-grow: 2;
+  }
+}
+
+.LNB_menu_lists {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.LNB_menu_link {
+  @include flexStart();
+  gap: 13px;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding: 11px 16px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.LNB_link_icon {
+  @include flexCenter();
+  width: 22px;
+  height: 22px;
+}
+
+.LNB_link_text {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: $semi-bold;
+  color: $grey040;
+}
+
+.LNB_notification_badge_box {
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+
+.LNB_current_subscribe_plan_box {
+  padding: 0 16px;
+}
+
+/* 3. LNB_site_link_container */
+.LNB_site_link_container {
+  @include flexStart();
+  flex-direction: column;
+  flex: 0 0 auto; 
+  width: 100%;
+  // height: 144px;
+  padding: 30px 24px;
+}
+
+.LNB_site_link_lists {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.LNB_site_link {
+  @include flexStart();
+  gap: 13px;
+  padding: 11px 16px;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $grey005;
+  }
+}

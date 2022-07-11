@@ -1,0 +1,136 @@
+/* color */
+$white: #FFFFFF;
+
+/* color - main */
+$grey000: #FBFBFB;
+$grey005: #F5F6F7;
+$grey010: #ECEDEF;
+$grey020: #E7E9EC;
+$grey030: #C3C6CC;
+$grey040: #8B949F;
+$grey050: #646F7C;
+$grey060: #556372;
+$grey070: #374553;
+$grey080: #28323C;
+$grey090: #242A30;
+$grey100: #161D24;
+
+$brickblue100: #071A3B;
+$brickblue090: #1F71F9;
+
+/* color - sub */
+$brickPurple : #7F68F6;
+$brickCoral100: #F2483A; 
+$brickCoral000: #F8F4F3;
+
+$red100: #D32F2F;
+$red050: transparent linear-gradient(125deg, #FD8E86 0%, #FE5E4F 100%) 0% 0% no-repeat padding-box;;
+$red010: #F2483A;
+$green100: #4CAF50;
+
+/* color - opacity */
+$dim-basic: #646F7C99;
+$dim-thick: #161D2499;
+$toast-message-background: #161D24E6;
+
+/* color - tag */
+$tag000: #ECEDEF;
+$tag010: #FCEBDB;
+$tag020: #D9E7FF;
+$tag030: #F4EFFA;
+$tag040: #E0E5EE;
+$tag050: #E1F5EA;
+$tag060: #D8F0F8;
+$tag070: #FEECEB;
+$tag080: #EDF2FF;
+$tag090: #EFF8DC;
+$tag100: #FFECC9;
+$tag110: #FFE4C9;
+$tag120: #FFECC9;
+$tag130: #6A3A2D;
+
+/* font */
+/* font - weight */
+$regular: 400;
+$medium: 500;
+$semi-bold: 600;
+$bold: 700;
+
+/* font - heading */
+@mixin fontHeadingMenu {
+  font-size: 26px;
+  font-weight: 700;  
+}
+@mixin fontHeadingChannel {
+  font-size: 16px;
+  font-weight: 700;  
+}
+
+
+/* gap */
+$small-gap: 8px;
+$mobile-gap: 16px;
+$pc-gap: 24px;
+
+/* border */
+$divider-border: 1px solid #E7E9EC;
+$grey005-border: 1px solid #F5F6F7;
+$grey010-border: 1px solid #ECEDEF;
+$grey020-border: 1px solid #E7E9EC;
+$grey100-border: 1px solid #161D24;
+
+/* shadow */
+$shadow-thin: 0px 10px 10px #646F7C0F;
+$shadow-basic: 0px 0px 30px #646F7C33;
+$shadow-thick: 10px 24px 54px #646F7C33;
+$shadow-unread: 0px 3px 6px #FF96A066;
+
+
+/* mixin */
+/* mixin - flex */
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flexSpace {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@mixin flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* mixin - text */
+/* wordBreak - width || hight 지정 필수 */
+@mixin wordBreak {
+  word-break: keep-all;
+}
+
+@mixin ellipsisOneLine {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+/* 아래 mixin을 include -> -webkit-line-clamp만 재지정하여 사용 */
+@mixin ellipsisMultiLine {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+/* animation */

@@ -1,0 +1,58 @@
+@import "/src/styles/_variables.scss";
+
+.main_header {
+  @include flexSpace();
+  width: 100%;
+  height: 80px;
+  padding: 0 32px 0 40px;
+  flex: 0 0 auto;
+  background-color: $white;
+  border-bottom: $grey005-border;
+}
+
+.header_menu_title {
+  @include fontHeadingMenu();
+  color: $grey100;
+}
+
+.header_right_area {
+  @include flexEnd();
+  gap: 26px
+}
+
+.header_user_information_container {
+  @include flexEnd();
+  gap: 8px;
+}
+
+.header_avatar_img_box {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  
+  .header_avatar_img {
+    object-fit: cover;
+  }
+}
+
+.header_user_name_box {
+  @include flexEnd();
+
+  .header_user_greetings,
+  .header_user_name,
+  .header_user_name_sir {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: $medium;
+    color: $grey100;
+  }
+
+  .header_user_name_sir {
+    display: inline-block;
+    font-weight: $bold;
+    margin-left: 2px;
+  }
+}
+
+

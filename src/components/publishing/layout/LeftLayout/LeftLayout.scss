@@ -1,0 +1,10 @@
+
+@import "/src/styles/_variables.scss";
+
+.left_layout_wrap {
+  flex: 0 1 auto;
+  background-color: palevioletred;
+  display: flex;
+  // align-items: stretch;
+  // justify-content: center;
+}
