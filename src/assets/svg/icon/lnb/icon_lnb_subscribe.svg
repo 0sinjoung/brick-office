@@ -1,26 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22" className="icon_lnb_subscribe">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #646f7c;
-      }
-
-      .cls-2 {
-        clip-path: url(#clip-path);
-      }
-
-      .cls-3 {
-        fill: #8b949f;
-        stroke: #8b949f;
-        stroke-width: 0.3px;
-      }
-    </style>
-    <clipPath id="clip-path">
-      <rect id="사각형_3866" data-name="사각형 3866" class="cls-1" width="22" height="22"/>
-    </clipPath>
-  </defs>
-  <g id="마스크_그룹_2" data-name="마스크 그룹 2" class="cls-2">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22" className="icon_lnb_subscribe" fill="#8b949f" stroke="#8b949f">
+  <g id="마스크_그룹_2" data-name="마스크 그룹 2" class="cls-2" stroke-width="0.3px">
     <g id="그룹_8222" data-name="그룹 8222" transform="translate(2.001 4.201)">
       <path id="Fill_82" data-name="Fill 82" class="cls-3" d="M15.822,14.036H2.34A2.342,2.342,0,0,1,0,11.7V2.34A2.342,2.342,0,0,1,2.34,0H15.822a2.342,2.342,0,0,1,2.34,2.34V11.7A2.342,2.342,0,0,1,15.822,14.036ZM2.34,1.278A1.063,1.063,0,0,0,1.278,2.34V11.7A1.063,1.063,0,0,0,2.34,12.758H15.822A1.063,1.063,0,0,0,16.884,11.7V2.34a1.063,1.063,0,0,0-1.062-1.061Z"/>
       <path id="Fill_83" data-name="Fill 83" class="cls-3" d="M0,1.278H16.884V0H0Z" transform="translate(0.639 4.503)"/>

@@ -1,0 +1,38 @@
+@import "/src/styles/_variables.scss";
+
+.chat_advise_information_section_wrap {
+  flex: 0 0 auto;
+  width: 372px;
+  height: 100%;
+  background-color: $grey005;
+}
+
+.chat_advise_information_container_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 16px 0;
+}
+
+.customer_profile_information_container,
+.chat_advise_information_container,
+.customer_chat_information_container {
+  width: 100%;
+  border-radius: 8px;
+  border: $grey005-border;
+  background-color: $white;
+  box-shadow: $shadow-thin;
+}
+
+.customer_profile_information_container {
+  flex: 0 0 auto;
+  height: 140px;
+}
+
+.chat_advise_information_container {
+  height: 196px;
+}
+
+.customer_chat_information_container {
+  height: 315px;
+}

@@ -1,0 +1,382 @@
+@import "/src/styles/_variables.scss";
+
+.LNB_wrap {
+  display: flex;
+  border-right: $grey010-border;
+  // width: 267px;
+  // height: 100%;
+}
+
+/* LNB style */
+.LNB_style {
+  height: 100%;
+  // height: fit-content;
+  background-color: $grey000;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: flex-start;
+  
+  &.large_style {
+    width: 260px;
+  }
+
+  &.small_style {
+    width: 92px;
+  }
+}
+
+/* small-style */
+.small_style {
+  width: 92px;
+
+  .LNB_channel_information_container {
+    border: none;
+  }
+  .LNB_channel_title_link {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .LNB_menu_container {
+    padding: 0 27px;
+  }
+  .LNB_site_link_container {
+    padding: 30px 26px;
+  }
+  .LNB_menu_link,
+  .LNB_site_link {
+    // @include flexCenter();
+    width: 40px;
+    padding: 0;
+
+    .LNB_link_icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .LNB_menu_link {
+    .number_notification_badge {
+      display: none;
+    }
+  }
+
+  /* small style mouse over tooltip show */
+  [data-menu-text] {
+    position: relative;
+    &:hover {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 45px;
+        transform: translate(0, -50%);
+        // width: fit-content;
+        width: max-content;
+        height: 22px;
+        padding: 4px 6px;
+        font-size: 12px;
+        line-height: 15px;
+        color: $white;
+        background-color: $grey100;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  [data-menu-text='홈'] {
+    &:hover {
+      &::after {
+        content: '홈';
+      }
+    }
+  }
+  [data-menu-text='대시보드'] {
+    &:hover {
+      &::after {
+        content: '대시보드';
+      }
+    }
+  }
+  [data-menu-text='채팅 상담'] {
+    position: relative;
+    .new_notification_badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(4px, -4px)
+    }
+    
+    &:hover {
+      &::after {
+        content: '채팅 상담';
+      }
+    }
+  }
+  [data-menu-text='챗봇 상담'] {
+    &:hover {
+      &::after {
+        content: '챗봇 상담';
+      }
+    }
+  }
+  [data-menu-text='챗봇 만들기'] {
+    &:hover {
+      &::after {
+        content: '챗봇 만들기';
+      }
+    }
+  }
+  [data-menu-text='상담 키워드'] {
+    &:hover {
+      &::after {
+        content: '상담 키워드';
+      }
+    }
+  }
+  [data-menu-text='KMS'] {
+    &:hover {
+      &::after {
+        content: 'KMS';
+      }
+    }
+  }
+  [data-menu-text='고객'] {
+    &:hover {
+      &::after {
+        content: '고객';
+      }
+    }
+  }
+  [data-menu-text='설정'] {
+    &:hover {
+      &::after {
+        content: '설정';
+      }
+    }
+  }
+  [data-menu-text='구독'] {
+    &:hover {
+      &::after {
+        content: '구독';
+      }
+    }
+  }
+  [data-menu-text='브릭 채널'] {
+    &:hover {
+      &::after {
+        content: '브릭 채널';
+      }
+    }
+  }
+  [data-menu-text='브릭 홈페이지'] {
+    &:hover {
+      &::after {
+        content: '브릭 홈페이지';
+      }
+    }
+  }
+}
+
+
+/* 2_depth */
+.second_depth {
+  width: 228px;
+  background-color: $grey005; 
+  
+  .first_depth_menu_title_container {
+    padding: 25px 24px;
+  }
+  .first_depth_menu_title {
+    font-size: 26px;
+    // line-height: 1;
+    font-weight: $bold;
+    color: $grey100;
+  }
+
+  .LNB_menu_group {
+    padding: 0;
+    border: none;
+
+    .LNB_menu_link {
+      &:hover {
+        background-color: $grey010;
+      }
+    }
+  }
+}
+
+/* 1. LNB_channel_information_container */
+.LNB_channel_information_container {
+  @include flexCenter();
+  flex: 0 0 auto; 
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border-bottom: $grey010-border;
+}
+
+.LNB_channel_title_link {
+  @include flexStart();
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.LNB_channel_avatar_img_box {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #D6E6FF;
+  
+  .LNB_channel_avatar_img {
+    object-fit: cover;
+  }
+}
+
+.LNB_channel_title {
+  @include fontHeadingChannel();
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+
+/* 2. LNB_menu_container */
+.LNB_menu_container {
+  @include flexStart();
+  flex-direction: column;
+  flex: 1 1 auto; 
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.LNB_menu_group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: $grey010-border;
+  
+  &.first_group {
+    flex: 0 0 auto;
+  }
+  &.second_group {
+    flex-grow: 2;
+  }
+}
+
+.LNB_menu_lists {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.LNB_menu_link {
+  @include flexStart();
+  gap: 16px;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding: 9px 12px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $grey005;
+
+    .LNB_link_icon {
+      svg {
+        fill: #161D24;
+        stroke: #161D24;
+      }
+    }
+
+    .LNB_link_text {
+      color: $grey100;
+    }
+  }
+
+  /* notification badge - 채팅 상담 메뉴만 해당*/
+  .number_notification_badge {
+    position: absolute;
+    right: 20px
+  }
+}
+
+.LNB_link_icon {
+  @include flexCenter();
+  width: 22px;
+  height: 22px;
+}
+
+.LNB_link_text {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: $semi-bold;
+  color: $grey040;
+}
+
+.LNB_notification_badge_box {
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+
+.LNB_current_subscribe_plan_box {
+  padding: 0 16px;
+}
+
+/* 3. LNB_site_link_container */
+.LNB_site_link_container {
+  @include flexStart();
+  flex-direction: column;
+  flex: 0 0 auto; 
+  width: 100%;
+  // height: 144px;
+  padding: 30px 24px;
+}
+
+.LNB_site_link_lists {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.LNB_site_link {
+  @include flexStart();
+  gap: 13px;
+  padding: 11px 16px;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $grey005;
+
+    .LNB_link_icon {
+      svg {
+        fill: #161D24;
+        stroke: #161D24;
+      }
+    }
+
+    .LNB_link_text {
+      color: $grey100;
+    }
+  }
+}

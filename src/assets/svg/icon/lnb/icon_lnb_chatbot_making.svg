@@ -1,26 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22" className="icon_lnb_chatbot_making">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #646f7c;
-      }
-
-      .cls-2 {
-        clip-path: url(#clip-path);
-      }
-
-      .cls-3 {
-        fill: #8b949f;
-        stroke: #8b949f;
-        stroke-width: 0.3px;
-      }
-    </style>
-    <clipPath id="clip-path">
-      <rect id="사각형_4124" data-name="사각형 4124" class="cls-1" width="22" height="22"/>
-    </clipPath>
-  </defs>
-  <g id="마스크_그룹_8388" data-name="마스크 그룹 8388" class="cls-2">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22" className="icon_lnb_chatbot_making" fill="#8b949f" stroke="#8b949f">
+  <g id="마스크_그룹_8388" data-name="마스크 그룹 8388" class="cls-2" stroke-width="0.3px">
     <path id="info-squared" class="cls-3" d="M8.733,6A2.744,2.744,0,0,0,6,8.733V21.154a2.744,2.744,0,0,0,2.733,2.733H21.154a2.744,2.744,0,0,0,2.733-2.733V8.733A2.744,2.744,0,0,0,21.154,6Zm0,1.491H21.154A1.231,1.231,0,0,1,22.4,8.733V21.154A1.231,1.231,0,0,1,21.154,22.4H8.733a1.231,1.231,0,0,1-1.242-1.242V8.733A1.231,1.231,0,0,1,8.733,7.491Zm6.211,2.484a.994.994,0,1,0,.994.994A.994.994,0,0,0,14.943,9.975Zm-.012,3.467a.745.745,0,0,0-.734.756v5.465a.745.745,0,1,0,1.491,0V14.2a.745.745,0,0,0-.757-.756Z" transform="translate(-4 -3.943)"/>
   </g>
 </svg>

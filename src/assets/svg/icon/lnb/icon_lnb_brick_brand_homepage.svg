@@ -1,14 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="15.455" height="15.465" viewBox="0 0 15.455 15.465" className="icon_lnb_brick_brand_homepage">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #8b949f;
-        stroke: #8b949f;
-        stroke-width: 0.4px;
-      }
-    </style>
-  </defs>
-  <g id="Layer_13" data-name="Layer 13" transform="translate(0.244 0.199)">
+<svg xmlns="http://www.w3.org/2000/svg" width="15.455" height="15.465" viewBox="0 0 15.455 15.465" className="icon_lnb_brick_brand_homepage" fill="#8b949f" stroke="#8b949f">
+  <g id="Layer_13" data-name="Layer 13" transform="translate(0.244 0.199)" stroke-width="0.4px">
     <path id="패스_6927" data-name="패스 6927" class="cls-1" d="M13.083,15.01H5.893a.526.526,0,1,1,0-1.051h7.19a.883.883,0,0,0,.876-.876V1.927a.883.883,0,0,0-.876-.876H1.927a.876.876,0,0,0-.876.876V9.173A.526.526,0,1,1,0,9.173V1.927A1.927,1.927,0,0,1,1.927,0H13.083A1.927,1.927,0,0,1,15.01,1.927V13.083a1.934,1.934,0,0,1-1.927,1.927Z"/>
     <path id="패스_6928" data-name="패스 6928" class="cls-1" d="M.526,18.064a.519.519,0,0,1-.371-.154.526.526,0,0,1,0-.743L7.162,10.16A.526.526,0,0,1,7.9,10.9L.9,17.91A.519.519,0,0,1,.526,18.064Z" transform="translate(0 -2.998)"/>
     <path id="패스_6929" data-name="패스 6929" class="cls-1" d="M9.169,14.366a.533.533,0,0,1-.526-.526v-2.8H5.812a.526.526,0,0,1,0-1.037H9.155a.519.519,0,0,1,.526.526v3.343a.526.526,0,0,1-.512.5Z" transform="translate(-1.608 -2.992)"/>

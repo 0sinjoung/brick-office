@@ -1,0 +1,51 @@
+@import "/src/styles/_variables.scss";
+
+.solid_button {
+  @include flexCenter();
+  width: fit-content;
+  height: 36px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: $medium;
+  color: $white;
+  background-color: $grey100;
+  cursor: pointer;
+  
+  &:active{
+    background-color: $grey080;
+  }
+  
+  &.inactive {
+    cursor: default;
+    background-color: $grey030;
+
+    &:active {
+      background-color: inherit;
+    }
+  }
+  
+  &.big {
+    height: 50px;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 15px 15px;
+  }
+  &.large {
+    height: 42px;
+    font-size: 15px;
+    line-height: 21px;
+    padding: 12px 12px;
+  }
+  &.small {
+    height: 32px;
+    padding: 8px 10px;
+  }
+  &.tiny {
+    height: 28px;
+    border-radius: 5px;
+    padding: 6px 10px;
+  }
+}
+

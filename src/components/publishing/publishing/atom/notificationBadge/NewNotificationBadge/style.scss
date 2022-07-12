@@ -1,0 +1,19 @@
+@import "/src/styles/_variables.scss";
+
+.new_notification_badge {
+  @include flexCenter();
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid $white;
+  background-color: $brickCoral100;
+}
+
+/* 참고: font-size 10px 미만은 브라우저 렌더링 안되므로 scale 이용 */
+.new_notification_badge_text {
+  font-size: 10px;
+  line-height: 1;
+  font-weight: $bold;
+  color: $white;
+  transform: scale(0.8);
+}

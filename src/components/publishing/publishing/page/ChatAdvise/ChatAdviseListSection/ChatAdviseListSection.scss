@@ -1,0 +1,47 @@
+@import "/src/styles/_variables.scss";
+
+.chat_advise_list_section_wrap {
+  flex: 0 0 auto;
+  width: 410px;
+  height: 100%;
+  background-color: $white;
+}
+
+.chat_advise_list_container_wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: $grey010-border;
+}
+
+.chat_adviser_information_container {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 90px;
+  border: $grey005-border;
+}
+.chat_advise_category_container {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 124px;
+  border: $grey005-border;
+}
+.chat_advise_search_container {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 65px;
+  border: $grey005-border;
+}
+.chat_advise_list_container {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  border: $grey005-border;
+}
+.previous_chat_advise_container {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 94px;
+  border: $grey005-border;
+}
