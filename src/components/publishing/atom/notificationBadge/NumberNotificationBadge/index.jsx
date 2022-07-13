@@ -18,11 +18,11 @@ const NumberNotificationBadge = ({ children, tagStyle }) => {
     } else if (currentNotificationNumber >= 10 && currentNotificationNumber < 100) {
       setPlaceValueStyle('tens');
       setPlaceValueText(currentNotificationNumber);
-    } else if (currentNotificationNumber >= 100 ) {
+    } else if (currentNotificationNumber >= 100) {
       setPlaceValueStyle('hundereds');
       setPlaceValueText('99+');
     }
-  }, [currentNotificationNumber])
+  }, [currentNotificationNumber]);
 
   return (
     <div className={`number_notification_badge ${placeValueStyle}`} style={tagStyle}>

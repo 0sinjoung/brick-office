@@ -9,12 +9,12 @@
   flex-direction: column;
 }
 
-.LNB_3dep {
+.third_depth_area {
   width: 100%;
   height: 60px;
   padding: 0 40px;
   flex: 0 0 auto;
-  background-color: paleturquoise;
+  background-color: $white;
 }
 
 .contents_wrap {
@@ -22,12 +22,16 @@
   height: 100%;
   flex: 1 1 auto;
   background-color: $white;
-  padding: 0 40px 45px;
+  border-top: $grey010-border;
 }
 
 .page_wrap {
   width: 100%;
   height: 100%;
   background-color: $grey005;
-
+  padding: 0 40px 45px;
+  
+  &.full {
+    padding: 0;
+  }
 }

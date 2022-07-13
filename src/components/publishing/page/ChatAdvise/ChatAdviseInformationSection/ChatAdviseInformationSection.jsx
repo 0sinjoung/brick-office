@@ -10,7 +10,7 @@ const ChatAdviseInformationSection = () => {
         <div className="chat_advise_information_container_wrap">
           <div className="customer_profile_information_container">고객정보</div>
           <div className="chat_advise_information_container">상담정보</div>
-          <div className="customer_chat_information_container">고객 상담 정보</div>
+          <div className="customer_chat_information_container">상담요약/주문내역</div>
         </div>
       </section>
     </>

@@ -1,13 +1,14 @@
 @import "/src/styles/_variables.scss";
 
 .LNB_wrap {
-  // display: flex;
+  display: flex;
+  border-right: $grey010-border;
   // width: 267px;
   // height: 100%;
 }
 
-/* LNB depth */
-.LNB_depth {
+/* LNB style */
+.LNB_style {
   height: 100%;
   // height: fit-content;
   background-color: $grey000;
@@ -16,17 +17,17 @@
   justify-content: stretch;
   align-items: flex-start;
   
-  &.first_depth {
+  &.large_style {
     width: 260px;
   }
 
-  &.second_depth {
+  &.small_style {
     width: 92px;
   }
 }
 
-/* 2depth */
-.second_depth {
+/* small-style */
+.small_style {
   width: 92px;
 
   .LNB_channel_information_container {
@@ -39,18 +40,30 @@
   }
 
   .LNB_menu_container {
-    padding: 0 26px;
+    padding: 0 27px;
   }
   .LNB_site_link_container {
     padding: 30px 26px;
   }
   .LNB_menu_link,
   .LNB_site_link {
-    @include flexCenter();
+    // @include flexCenter();
     width: 40px;
     padding: 0;
+
+    .LNB_link_icon {
+      width: 100%;
+      height: 100%;
+    }
   }
 
+  .LNB_menu_link {
+    .number_notification_badge {
+      display: none;
+    }
+  }
+
+  /* small style mouse over tooltip show */
   [data-menu-text] {
     position: relative;
     &:hover {
@@ -58,8 +71,8 @@
         content: '';
         position: absolute;
         top: 50%;
-        left: 150%;
-        transform: translate(-50%, -50%);
+        left: 45px;
+        transform: translate(0, -50%);
         // width: fit-content;
         width: max-content;
         height: 22px;
@@ -88,6 +101,14 @@
     }
   }
   [data-menu-text='채팅 상담'] {
+    position: relative;
+    .new_notification_badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(4px, -4px)
+    }
+    
     &:hover {
       &::after {
         content: '채팅 상담';
@@ -143,39 +164,49 @@
       }
     }
   }
-  [data-menu-text='홈'] {
+  [data-menu-text='브릭 채널'] {
     &:hover {
       &::after {
-        content: '홈';
+        content: '브릭 채널';
       }
     }
   }
-  [data-menu-text='홈'] {
+  [data-menu-text='브릭 사이트 가기'] {
     &:hover {
       &::after {
-        content: '홈';
+        content: '브릭 사이트 가기';
       }
     }
   }
 }
 
-/* 토글 버튼 */
-[data-onoff-toggle] {
-  display: none;
 
-  &:checked {
-    + [data-onoff-toggle-label] {
-      background-color: $green100;
+/* 2_depth */
+.second_depth {
+  width: 228px;
+  background-color: $grey005; 
+  
+  .first_depth_menu_title_container {
+    padding: 25px 24px;
+  }
+  .first_depth_menu_title {
+    font-size: 26px;
+    // line-height: 1;
+    font-weight: $bold;
+    color: $grey100;
+  }
 
-      &::before {
-        border: 1px solid $green100;
-        top: 1px;
-        left: 23px;
+  .LNB_menu_group {
+    padding: 0;
+    border: none;
+
+    .LNB_menu_link {
+      &:hover {
+        background-color: $grey010;
       }
     }
   }
 }
-
 
 /* 1. LNB_channel_information_container */
 .LNB_channel_information_container {
@@ -184,7 +215,7 @@
   width: 100%;
   height: 80px;
   padding: 12px;
-  border-bottom: $grey020-border; 
+  border-bottom: $grey010-border;
 }
 
 .LNB_channel_title_link {
@@ -238,7 +269,7 @@
   justify-content: space-between;
   width: 100%;
   padding: 30px 0;
-  border-bottom: $grey020-border;
+  border-bottom: $grey010-border;
   
   &.first_group {
     flex: 0 0 auto;
@@ -257,15 +288,32 @@
 
 .LNB_menu_link {
   @include flexStart();
-  gap: 13px;
+  gap: 16px;
   position: relative;
   width: 100%;
   height: 40px;
-  padding: 11px 16px;
+  padding: 9px 12px;
   border-radius: 10px;
 
   &:hover {
     background-color: $grey005;
+
+    .LNB_link_icon {
+      svg {
+        fill: #161D24;
+        stroke: #161D24;
+      }
+    }
+
+    .LNB_link_text {
+      color: $grey100;
+    }
+  }
+
+  /* notification badge - 채팅 상담 메뉴만 해당*/
+  .number_notification_badge {
+    position: absolute;
+    right: 20px
   }
 }
 
@@ -319,5 +367,16 @@
 
   &:hover {
     background-color: $grey005;
+
+    .LNB_link_icon {
+      svg {
+        fill: #161D24;
+        stroke: #161D24;
+      }
+    }
+
+    .LNB_link_text {
+      color: $grey100;
+    }
   }
 }
