@@ -3,7 +3,7 @@
 .chat_advise_list_section_wrap {
   flex: 0 0 auto;
   width: 410px;
-  height: 100%;
+  // height: 100%;
   background-color: $white;
 }
 
@@ -16,32 +16,263 @@
 }
 
 .chat_adviser_information_container {
-  flex: 0 0 auto;
+  flex: 0 0 90px;
   width: 100%;
-  height: 90px;
+  // height: 90px;
   border: $grey005-border;
 }
 .chat_advise_category_container {
-  flex: 0 0 auto;
+  flex: 0 0 124px;
   width: 100%;
-  height: 124px;
+  // height: 124px;
   border: $grey005-border;
 }
 .chat_advise_search_container {
-  flex: 0 0 auto;
+  flex: 0 0 65px;
   width: 100%;
-  height: 65px;
-  border: $grey005-border;
-}
-.chat_advise_list_container {
-  flex: 1 1 auto;
-  width: 100%;
-  height: 100%;
+  // height: 65px;
   border: $grey005-border;
 }
 .previous_chat_advise_container {
-  flex: 0 0 auto;
+  flex: 0 0 94px;
   width: 100%;
-  height: 94px;
-  border: $grey005-border;
+  // height: 94px;
+  border-top: $grey005-border;
+}
+
+
+/* 1. 상담사 정보 영역 */
+/* 2. 상담 카테고리 영역 */
+/* 3. 채팅 상담 검색 영역 */
+
+
+/* 4. 채팅 상담 리스트 영역 */
+.chat_advise_list_container {
+  flex-grow: 1;
+  width: 100%;
+  // border: $grey005-border;
+  padding: 0 14px;
+  overflow: hidden;
+  background-color: $white;
+  background-color: palegreen;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-y: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: $grey030;
+  background-color: $white;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey030;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 3px;
+  }
+}
+
+.chat_advise_list_box {
+  width: 100%;
+}
+
+/* chat advise article */
+.chat_advise_article {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  height: 90px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: $white;
+  // background-color: palegoldenrod;
+
+  &:hover {
+    background-color: $grey000;
+  }
+  
+  &.active {
+    background-color: $grey005;
+  }
+}
+
+.chat_advise_article_information_container,
+.chat_advise_article_contents_container,
+.chat_advise_article_fields_container {
+  @include flexSpace();
+  width: 100%;
+}
+
+/* article - (1)information */
+.chat_advise_article_information_box {
+  @include flexStart();
+}
+
+.chat_advise_channel_delimiter_img_box {
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: $brickPurple;
+}
+
+.chat_advise_article_customer_name {
+  @include ellipsisOneLine();
+  max-width: 102px;
+  font-size: 15px;
+  font-weight: $semi-bold;
+  line-height: 1;
+  color: $grey080;
+  margin-left: 4px; 
+}
+
+.chat_advise_article_adviser_name {
+  font-size: 11px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey040;
+  margin-left: 8px;
+  position: relative;
+
+  .chat_adviser_information_tooltip_box {
+    display: none;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    transform: translateY(-100%);
+    z-index: 10;
+    width: 180px;
+    height: 120px;
+    padding: 12px;
+    border: $grey020-border;
+    border-radius: 10px;
+    background-color: $white;
+    box-shadow: $shadow-basic;
+
+    &.show {
+      display: block;
+    }
+
+    .tooltip_chat_adviser_avatar_box {
+      margin-bottom: 10px;
+    }
+
+    .chat_adviser_avatar_icon_box {
+      width: 50px;
+      height: 50px;
+      border-radius: 20px;
+      background-color: $brickPurple;
+      
+      .chat_adviser_avatar_icon {
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      &.on {
+        position: relative;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 10px;
+          height: 10px;
+          background-color: $green100;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          border: 1px solid $white;
+          border-radius: 50%;
+        }
+      }
+    }
+    .tooltip_chat_adviser_name {
+      font-size: 15px;
+      font-weight: $semi-bold;
+      line-height: 21px;
+      color: $grey080;
+      margin-bottom: 4px;
+    }
+    .tooltip_chat_adviser_email {
+      @include ellipsisOneLine();
+      width: 100%;
+      font-size: 11px;
+      font-weight: $medium;
+      line-height: 1;
+      color: $grey040;
+    }
+  }
+}
+
+
+.chat_advise_last_message_time_stamp_box {
+  font-size: 11px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey030;
+}
+
+/* article - (2)contents */
+.chat_advise_latest_message_box {
+  @include ellipsisOneLine();
+  width: 82%;
+  font-size: 14px;
+  font-weight: $regular;
+  line-height: 20px;
+  color: $grey050;
+}
+
+/* article - (3)fields */
+.chat_advise_fields_box {
+  @include flexStart();
+  gap: 4px;
+}
+
+.chat_advise_fields_more_number_box {
+  font-size: 11px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey030;
+}
+
+
+/* 5. 이전 상담 보기 영역 */
+.previous_chat_advise_show_button {
+  @include flexSpace();
+  width: 100%;
+  padding: 24px 28px 30px 34px;
+  // height: 100;
+
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.previous_chat_advise_button_text_box {
+  @include flexStart();
+  gap: 16px;
+}
+
+.previous_chat_advise_time_icon_box {
+  @include flexCenter();
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #D3DBE6;
+}
+
+.previous_chat_advise_button_text {
+  font-size: 16px;
+  font-weight: $bold;
+  line-height: 21px;
+  color: $grey100;
+}
+
+.previous_chat_advise_arrow_icon_box {
+  @include flexCenter();
+  width: 26px;
+  height: 26px;
 }
