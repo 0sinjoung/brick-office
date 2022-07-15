@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 /** 심플 드롭다운
- * @dropdownData : dropdown list data
+ * @dropdownData : dropdown list data -> text, handleClick
  */
 const SimpleDropdown = ({ dropdownData }) => {
   return (

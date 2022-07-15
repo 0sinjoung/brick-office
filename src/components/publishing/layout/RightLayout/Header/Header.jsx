@@ -13,11 +13,11 @@ const Header = () => {
   const MY_PROFILE_NICNAME = '꾸꾸';
   const IS_ADMIN = false;
 
+  /* about dropdown */
   const [showSettingDropdown, setShowSettingDropdown] = useState(false);
   const clickSettingDropdown = () => {
     setShowSettingDropdown(!showSettingDropdown);
   };
-
   const handleGoToMyPage = () => {
     console.log('GO TO MYPAGE!');
   };

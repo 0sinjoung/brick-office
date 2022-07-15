@@ -3,7 +3,7 @@ import Publishing from 'components/publishing'
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
       <Publishing />
     </div>
   );
