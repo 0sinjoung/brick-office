@@ -1,0 +1,47 @@
+@import "/src/styles/_variables.scss";
+
+.basic_text_field_box {
+  @include flexSpace();
+  gap: 6px;
+  width: 100%;
+  height: max-content;
+}
+
+.basic_text_field {
+  flex-grow: 1;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: $medium;
+  color: $grey080;
+  
+  &::placeholder {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: $medium;
+    color: $grey030;
+  }
+}
+
+.text_field_delete_button {
+  @include flexCenter();
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $grey020;
+  opacity: 0;
+  cursor: default;
+
+  &:hover {
+    cursor: default;
+  }
+  
+  &.show {
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $grey030;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "/src/styles/_variables.scss";
+
+.avatar_icon_image_box {
+  width: 50px;
+  height: 50px;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: $grey030;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 1px solid $white;
+    border-radius: 50%;
+  }
+  &.onair {
+    &::after {
+      background-color: $green100;
+    }
+  }
+}
+
+.avatar_icon_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  overflow: hidden;
+}

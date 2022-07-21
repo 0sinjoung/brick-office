@@ -6,7 +6,7 @@ import './style.scss';
  * @children : tag text
  * @tagStyle : inline style로 스타일 변경
  */
-const ColorChip = ({ children, tagStyle }) => {
+const AdviseFieldChip = ({ children, tagStyle }) => {
   if (children === 'A/S') tagStyle = { backgroundColor: '#ECEDEF' };
   if (children === '결제') tagStyle = { backgroundColor: '#FCEBDB' };
   if (children === '고객 관리') tagStyle = { backgroundColor: '#D9E7FF' };
@@ -26,14 +26,14 @@ const ColorChip = ({ children, tagStyle }) => {
   );
 };
 
-ColorChip.propTypes = {
+AdviseFieldChip.propTypes = {
   children: PropTypes.any,
   tagStyle: PropTypes.object,
 };
 
-ColorChip.defaultProps = {
+AdviseFieldChip.defaultProps = {
   children: '',
   tagStyle: {},
 };
 
-export default ColorChip;
+export default AdviseFieldChip;

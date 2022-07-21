@@ -11,24 +11,358 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-.chat_advise_main_header {
+
+
+/* 1. 채팅 상담 헤더 */
+.chat_advise_main_header_container {
   flex: 0 0 70px;
-  width: 100%;
   // height: 70px;
-  border: $grey005-border;
+  padding: 0 20px;
+  border-bottom: $grey020-border;
+  background-color: $white;
+  position: relative;
 }
+
+/* 1-1. 메인 헤더 */
+.chat_advise_main_header {
+  @include flexSpace();
+  width: 100%;
+  height: 70px;
+}
+
+.chat_advise_main_header_information_box {
+  @include flexStart();
+
+  .chat_advise_header_channel_delimiter_img_box {
+    @include flexCenter();
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-right: 8px;
+    
+    .chat_advise_header_channel_delimiter_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  
+  .chat_advise_header_customer_name {
+    font-size: 16px;
+    font-weight: $bold;
+    line-height: 1;
+    color: $grey080;
+    margin-right: 6px;
+  }
+  
+  .chat_advise_header_bookmark_button {
+    @include flexCenter();
+    width: 10px;
+    height: 20px;
+    position: relative;
+    margin-right: 6px;
+
+    &.active {
+      .icon_bookmark {
+        fill: $grey050;
+      }
+    }
+    
+    &:hover {
+      &::after {
+        content: '상단고정';
+        width: max-content;
+        height: fit-content;
+        padding: 4px 6px;
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        display: block;
+        border-radius: 5px;
+        background-color: $grey100;
+        font-size: 12px;
+        color: $white;
+        z-index: 10;
+      }
+    }
+  }
+
+  .chat_advise_header_current_chat_state_tag {
+    @include flexCenter();
+    width: fit-content;
+    height: fit-content;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 17px;
+    font-weight: $medium;
+    color: $grey040;
+    background-color: $grey010;
+  }
+}
+
+.chat_advise_main_header_buttons_box {
+  @include flexEnd();
+  gap: 6px;
+
+  /* (1) 채팅 검색 버튼 */
+  .chat_advise_main_header_search_button_box {
+    display: none;
+    
+    &.show {
+      display: block;
+    }
+    .chat_advise_main_header_search_button {
+      border: none;
+    }
+  }
+  
+  /* (2) 상담사 변경 버튼 */
+  .chat_advise_main_header_change_adviser_button_box {
+    position: relative;
+
+    &.dimed {
+      .outline_button {
+        cursor: default;
+        background-color: $grey005;
+        color: $grey030;
+      }
+    }
+  }
+  
+  /* (3) 상담 상태 변경 버튼 */
+  .chat_advise_main_header_change_chat_state_select_button_box {
+    width: 113px;
+    position: relative;
+
+    .change_chat_state_select_toggle_button {
+      @include flexSpace();
+      width: 112px;
+      height: 32px;
+      padding: 8px 10px;
+      border: $grey020-border;
+      border-radius: 8px;
+      background-color: $white;
+      
+      .change_chat_state_select_toggle_button_text {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: $medium;
+        line-height: 1;
+      }
+      .change_chat_state_select_toggle_button_arrow {
+        @include flexCenter();
+      }
+      
+      &:hover {
+        background-color: $grey005;
+      }
+    } 
+
+    /*임시*/
+    .change_chat_state_select_box {
+      display: none;
+    }
+  }
+}
+
+
+/* 1-2. 헤더 검색 영역 */
+.chat_advise_search_header_container {
+  display: none;
+  gap: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  background-color: $white;
+  border-top: $grey020-border;
+  border-bottom: $grey020-border;
+  
+  &.show {
+    @include flexSpace();
+  }
+  
+  &.active {
+    background-color: $grey005;
+  }
+}
+
+.chat_advise_search_header_basic_search_text_field_box {
+  flex-grow: 1;
+
+  .text_field_search_action_button {
+    width: 40px;
+    padding: 6px 8px;
+    font-size: 14px;
+    line-height: 1;
+  }
+}
+
+.chat_advise_search_header_buttons_box {
+  flex-shrink: 0;
+  @include flexEnd();
+
+  .chat_advise_search_header_calendar_button_box {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+    
+    .icon_button {
+      background-color: transparent;
+
+      &:hover {
+        .icon_calendar {
+          fill: $grey040;
+          stroke: $grey040;
+        }
+      }
+    }
+  }
+
+  .chat_advise_main_header_search_cancle_button_box {
+    .outline_button {
+      border: none;
+      background-color: transparent;
+      color: $grey050;
+
+      &:hover {
+        background-color: $grey020;
+      }
+    }
+  }
+}
+
+
+/* 1-3. 헤더 알림바 영역  */
+.chat_advise_header_alert_bar_container {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  padding: 12px 20px 0;
+  z-index: 600;
+  
+  &.show {
+    display: block;
+  }
+}
+.chat_advise_header_alert_bar_box {
+  width: 100%;
+  // height: 78px;
+  padding: 16px;
+  background-color: $white;
+  border-radius: 10px;
+  border: $grey020-border;
+  box-shadow: $shadow-basic;
+}
+.chat_advise_header_alert_bar_title {
+  font-size: 16px;
+  font-weight: $bold;
+  line-height: 1;
+  color: $grey100;
+  margin-bottom: 8px;
+}
+.chat_advise_header_alert_bar_description {
+  font-size: 16px;
+  font-weight: $regular;
+  color: $grey080;
+}
+
+/* 2. 채팅 상담 컨텐츠  */
 .chat_advise_main_content_container {
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
-  border: $grey005-border;
+  padding: 0 20px calc(36px + 8px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-y: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: $grey030;
+  background-color: $white;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey030;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 3px;
+  }
 }
-.chat_advise_main_footer {
+
+
+
+/* 3. 채팅 상담 푸터 */
+.chat_advise_footer_container {
   flex: 0 0 auto;
   width: 100%;
-  height: 188px;
-  border: $grey005-border;
   padding: 0 20px 30px;
+  margin-top: -8px;
+  background-color: transparent;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 8px;
+    position: absolute;
+    z-index: 10;
+    background-color: $white;
+    top: 0;
+    right: 0;
+  }
+}
+
+.chat_advise_main_footer {
+  height: 188px;
+  border-radius: 10px;
+  border: $grey020-border;
+  background-color: $white;
+}
+
+.chat_advise_main_footer_box {
+
+}
+
+.dummy {
+  width: 50px;
+  height: 100px;
+  background-color: yellowgreen;
+  margin-bottom: 10px;
+}
+
+
+
+@media only screen and (max-device-width: 1540px) {
+  .chat_advise_main_header_container {
+    padding: 0 14px;
+  }
+  .chat_advise_main_contents_container {
+    padding: 0 14px 44px;
+  }
+  .chat_advise_footer_container {
+    padding: 0 14px 30px;
+  }
+  .chat_advise_main_header_buttons_box {
+    gap: 4px;
+  }
 }

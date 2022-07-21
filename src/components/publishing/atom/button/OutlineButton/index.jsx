@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 /** 디폴트 사이즈 medium : height 36px
- * @children : svg icon component
+ * @children : 버튼 내용
  * @handleClick : 버튼 클릭 이벤트
  * @buttonClassName : 'big' 50 || 'large' 42 || 'small' 32 || 'tiny' 28
  * @buttonStyle : inline style로 버튼 스타일 변경

@@ -1,56 +1,27 @@
 @import "/src/styles/_variables.scss";
 
-@mixin chatAdviseNameStyle {
-  font-size: 15px;
-  font-weight: $semi-bold;
-  line-height: 1;
-  color: $grey080;
-}
-
 .chat_advise_list_section_wrap {
   flex: 0 0 auto;
   width: 410px;
   // height: 100%;
   background-color: $white;
 }
-
 .chat_advise_list_container_wrap {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   border-right: $grey010-border;
-}
-
-.chat_adviser_information_container {
-  flex: 0 0 90px;
-  width: 100%;
-  // height: 90px;
-}
-.chat_advise_category_container {
-  flex: 0 0 124px;
-  width: 100%;
-  // height: 124px;
-  border-bottom: $grey020-border;
-}
-.chat_advise_search_container {
-  flex: 0 0 auto;
-  width: 100%;
-  min-height: 64px;
-  max-height: 84px;
-  // border: $grey005-border;
-}
-.previous_chat_advise_container {
-  flex: 0 0 94px;
-  width: 100%;
-  // height: 94px;
-  border-top: $grey005-border;
+  position: relative;
+  overflow: hidden;
 }
 
 
 /* 1. 상담사 정보 영역 */
 .chat_adviser_information_container {
   @include flexSpace();
+  flex: 0 0 90px;
+  width: 100%;
   padding: 20px 18px 18px;
 }
 .chat_adviser_information_box {
@@ -70,36 +41,119 @@
   color: $grey100;
 }
 
-.chat_advise_working_state_dropdown_button {
+/* 0. 상담 분야 스타일 반복 사용 */
+.chat_advise_fields_box {
+  @include flexStart();
+  gap: 4px;
+}
+.chat_advise_fields_more_number_box {
+  font-size: 11px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey030;
+}
+
+/* 1-1. 업무 상태 변경 - 셀렉트 박스 */
+.chat_adviser_working_state_dropdown {
+  position: relative;
+}
+
+.chat_adviser_working_state_dropdown_button {
   @include flexSpace();
   width: 130px;
   padding: 6px 10px;
   border-radius: 8px;
   border: $grey020-border;
   background-color: $white;
-
+  position: relative;
+  z-index: 10;
+  
   &:hover {
     background-color: $grey005;
   }
-}
-.current_working_state_box {
-  @include flexStart();
-  gap: 4px;
-}
-.current_working_state_text {
-  font-size: 14px;
-  font-weight: $medium;
-  line-height: 1;
-  color: $grey080;
+  .current_working_state_box {
+    @include flexStart();
+    gap: 4px;
+
+    .color_tag {
+      font-size: 10px;
+      font-weight: $medium;
+      padding: 3px 4px;
+      height: 18px;
+    }
+  }
+  .current_working_state_text {
+    font-size: 14px;
+    font-weight: $medium;
+    line-height: 1;
+    color: $grey080;
+  }
+  
+  .dropdown_arrow_box {
+    @include flexCenter();
+  }
 }
 
-.dropdown_arrow_box {
-  @include flexCenter();
+.chat_adviser_working_state_dropdown_box {
+  display: none;
+  position: absolute;
+  top: 4px;
+  transform: translateY(32px);
+  width: 100%;
+  padding: 4px;
+  border-radius: 8px;
+  border: $grey020-border;
+  background-color: $white;
+  box-shadow: $shadow-basic;
+  overflow: hidden;
+  // z-index: 10;
+
+  &.show {
+    display: block;
+  }
+  
+  .chat_adviser_working_state_dropdown_lists {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .chat_adviser_working_state_dropdown_list_item_button {
+    @include flexStart();
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: $medium;
+    color: $grey080;
+
+    &:hover {
+      background-color: $grey005;
+    }
+
+    &.active {
+      cursor: default;
+      color: $grey030;
+      background-color: $white;
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
 }
 
 
 
 /* 2. 상담 카테고리 영역 */
+.chat_advise_category_container {
+  flex: 0 0 124px;
+  width: 100%;
+  border-bottom: $grey020-border;
+}
+
+/* 2-1. first tabs : 내 상담 | 전체 상담 */
 .chat_advise_category_first_tabs {
   @include flexSpace();
   width: 100%;
@@ -110,9 +164,16 @@
   height: 54px;
   padding: 16px 25px;
   background-color: $grey010;
-  border: $grey010-border;
+  border-top: $grey010-border;
   border-bottom: none;
   border-radius: 5px 5px 0 0;
+  
+  &.my_advise {
+    border-right: $grey010-border;
+  }
+  &.all_advise {
+    border-left: $grey010-border;
+  }
   
   .chat_advise_category_first_tab_text {
     font-size: 18px;
@@ -151,6 +212,7 @@
   }
 }
 
+/* 2-1. second tabs : 대기 | 진행 | 보류 | 종료 */
 .chat_advise_category_second_tabs {
   @include flexSpace();
   gap: 9px;
@@ -171,6 +233,7 @@
     color: $grey040;
   }
   .chat_advise_category_second_tab_alert_count {
+    height: 23px;
     padding: 4px 6px;
     font-size: 12px;
     font-weight: $medium;
@@ -200,7 +263,7 @@
     }
   }
 
-  /* 예외: 진행중 카테고리에만 new badge 표시 */
+  /* new badge 표시 - 현재 표시 보류됨 */
   &.proceeding {
     .chat_advise_category_second_tab_alert_count {
       position: relative;
@@ -217,11 +280,12 @@
 
 
 
-
-
-
 /* 3. 채팅 상담 검색 영역 */
 .chat_advise_search_container {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 64px;
+  max-height: 84px;
   position: relative;
 }
 
@@ -241,7 +305,7 @@
   gap: 4px;
 }
 
-/* 상세 검색 패널 */
+/* 3-1. 상세 검색 패널 */
 .chat_advise_search_detail_pannel {
   display: none;
   position: absolute;
@@ -259,8 +323,9 @@
 /* 4. 채팅 상담 리스트 영역 */
 .chat_advise_list_container {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  // border: $grey005-border;
   padding: 0 14px;
   overflow: hidden;
   background-color: $white;
@@ -283,29 +348,86 @@
   }
 }
 
-.chat_advise_list_box {
+/* 4-1. 채팅 상담 리스트 없는 경우 */
+.chat_advise_lists_no_data {
+  flex: 1 1 auto;
+  @include flexCenter();
+  flex-direction: column;
   width: 100%;
+  gap: 15px;
 }
 
+.chat_advise_lists_no_data_img_box {
+  @include flexCenter();
+  width: 100px;
+  height: 100px;
+}
 
+.chat_advise_lists_no_data_img {
+  object-fit: contain;
+}
 
-/* chat advise article */
+.chat_advise_lists_no_data_text {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey030;
+}
+
+/* 4-2. 채팅 상담 리스트 */
 .chat_advise_article {
   width: 100%;
-  // height: 90px;
+  position: relative;
 
   .chat_advise_article_adviser_name_box {
     &:hover {
-      // background-color: $grey000;
+      background-color: $grey010;
       
-      .chat_adviser_information_tooltip_box {
+      .chat_adviser_name_card {
         @include flexStart();
         gap: 16px;
       }
-    }
-    
+    }    
   }
-  
+}
+
+/* 4-3. chat advise dimed */
+.chat_advise_dimed {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  border-radius: 10px;
+  background-color: #F5F6F7CC;
+
+  &.active {
+    @include flexCenter();
+  }
+
+  .chat_advise_dimed_text_box {
+    @include flexCenter();
+    gap: 8px;
+  }
+
+  .chat_advise_dimed_icon_box {
+    @include flexCenter();
+    width: 22px;
+    height: 22px;
+
+    .icon_lnb_chat_advise {
+      fill: $grey080;
+      stroke: $grey080;
+    }
+  }
+
+  .chat_advise_dimed_text {
+    font-size: 15px;
+    font-weight: $semi-bold;
+    line-height: 1;
+    color: $grey080;
+  }
 }
 
 .chat_advise_article_clickable_container {
@@ -313,6 +435,7 @@
   flex-direction: column;
   gap: 5px;
   width: 100%;
+  height: 94px;
   padding: 11px 16px;
   border-radius: 10px;
   cursor: pointer;
@@ -327,15 +450,15 @@
   }
 }
 
-/* hover event: 첫번째 리스트 tooltip만 위치 조정 */
+/* 예외! 첫번째 리스트 hover event - tooltip 위치 조정 */
 .chat_advise_list {
   &:first-child {
     .chat_advise_article_adviser_name_box {
       &:hover {
-        .chat_adviser_information_tooltip_box {
+        .chat_adviser_name_card {
           bottom: 0;
           left: 0;
-          transform: translateY(30px);
+          transform: translateY(36px);
         }
       }
     }
@@ -349,7 +472,7 @@
   width: 100%;
 }
 
-/* article - (1)information */
+
 .chat_advise_article_information_box {
   @include flexStart();
 }
@@ -375,28 +498,45 @@
   margin-left: 4px; 
 }
 
-
+.chat_advise_article_bookmark_icon_box {
+  display: none;
+  margin-left: 6px;
+  width: 10px;
+  height: 18px;
+  
+  &.show {
+    @include flexCenter();
+  }
+}
 
 .chat_advise_article_adviser_name_box {
-  margin-left: 8px;
+  display: none;
+  margin-left: 2px;
+  height: 21px;
+  padding: 3px 6px;
+  border-radius: 5px;
   position: relative;
+  
+  &.show {
+    display: block;
+  }
 
   .chat_adviser_name {
     display: block;
-    margin-top: 1px;
     font-size: 11px;
     font-weight: $medium;
-    line-height: 17px;
+    // line-height: 17px;
     color: $grey040;
   }
 
-  .chat_adviser_information_tooltip_box {
+  /* 마우스오버 - 상담사 네임카드 */
+  .chat_adviser_name_card {
     display: none;
     position: absolute;
     top: -8px;
     left: 0;
     transform: translateY(-100%);
-    z-index: 10;
+    z-index: 100;
     width: 238px;
     height: 74px;
     padding: 12px;
@@ -405,23 +545,40 @@
     background-color: $white;
     box-shadow: $shadow-basic;
 
-    .tooltip_chat_adviser_information_box {
+    .chat_adviser_name_card_avatar_box {
+      flex-shrink: 0;
+    }
+
+    .chat_adviser_name_card_information_box {
+      flex-grow: 1;
+      width: 60%;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .tooltip_chat_adviser_name {
+    .chat_adviser_name_card_name_text {
       @include chatAdviseNameStyle();
+      @include ellipsisOneLine();
+      width: 100%;
       margin-bottom: 4px;
     }
-    .tooltip_chat_adviser_email {
+    .chat_adviser_name_card_email_text {
       @include ellipsisOneLine();
       width: 100%;
       font-size: 11px;
       font-weight: $medium;
       line-height: 1;
       color: $grey040;
+    }
+    /* 상담사 미배정 상태 */
+    &.no_adviser {
+      width: max-content;
+      height: max-content;
+      padding: 10px 12px;
+      font-size: 15px;
+      color: $grey040;
+      font-weight: $semi-bold;
     }
   }
 }
@@ -433,7 +590,6 @@
   color: $grey030;
 }
 
-/* article - (2)contents */
 .chat_advise_latest_message_box {
   @include ellipsisOneLine();
   width: 82%;
@@ -443,10 +599,16 @@
   color: $grey050;
 }
 
-/* article - (3)fields */
 
 
 /* 5. 이전 상담 보기 영역 */
+.previous_chat_advise_container {
+  flex: 0 0 94px;
+  width: 100%;
+  // height: 94px;
+  border-top: $grey005-border;
+  position: relative;
+}
 .previous_chat_advise_show_button {
   @include flexSpace();
   width: 100%;
@@ -484,54 +646,84 @@
   height: 26px;
 }
 
+/* 5-1. 이전 상담 보기 패널 */
+.previous_chat_list_pannel {
+  // display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 98%;
+  padding: 0 0 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  border-radius: 20px 20px 0 0;
+  background-color: $white;
+  box-shadow: $shadow-basic;
+  transform: translateY(200%);
+  transition: all .4s;
+  
+  &.show {
+    transform: translateY(0);
+  }
+}
+
+.previous_chat_list_pannel_title_box {
+  flex-shrink: 0;
+  @include flexSpace();
+  padding: 24px;
+}
+
+.previous_chat_list_pannel_title {
+  font-size: 18px;
+  font-weight: $bold;
+  // line-height: 1;
+  color: $grey080;
+}
+
+.previous_chat_list_pannel_close_button_box {
+  @include flexCenter();
+}
+
+.previous_chat_list_search_box {
+  flex-shrink: 0;
+  padding: 0 24px 16px;
+  
+  .chat_advise_search_box {
+    padding: 0;
+  }
+}
+.previous_chat_advise_list_box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 14px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-y: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: $grey030;
+  background-color: $white;
+  // background-color: papayawhip;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey030;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 3px;
+  }
+}
+
 
 
 /*atom*/
-.chat_adviser_avatar_img_box {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  
-  .chat_adviser_avatar_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  &::after {
-    content: '';
-    display: block;
-    width: 10px;
-    height: 10px;
-    background-color: $red100;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border: 1px solid $white;
-    border-radius: 50%;
-  }
-  &.on {
-    &::after {
-      background-color: $green100;
-    }
-  }
-}
-
-
-.chat_advise_fields_box {
-  @include flexStart();
-  gap: 4px;
-}
-
-.chat_advise_fields_more_number_box {
-  font-size: 11px;
-  font-weight: $medium;
-  line-height: 1;
-  color: $grey030;
-}
-
-
 /* basic search input */
 .basic_search_input_box {
   @include flexSpace();

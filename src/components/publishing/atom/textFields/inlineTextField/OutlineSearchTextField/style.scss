@@ -1,0 +1,75 @@
+@import "/src/styles/_variables.scss";
+
+.outline_search_text_field_box {
+  @include flexSpace();
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: $grey020-border;
+
+  &.focus {
+    border: 1px solid $grey080;
+  }
+}
+
+.outline_search_text_field {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: $medium;
+  color: $grey080;
+  
+  &::placeholder {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: $medium;
+    color: $grey030;
+  }
+}
+
+.text_field_delete_button {
+  @include flexCenter();
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $grey020;
+  opacity: 0;
+  cursor: default;
+
+  &:hover {
+    cursor: default;
+  }
+  
+  &.show {
+    opacity: 1;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: $grey030;
+    }
+  }
+}
+
+.text_field_search_action_button {
+  flex-shrink: 0;
+  @include flexCenter();
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: $medium;
+  line-height: 18px;
+  color: transparent;
+  
+  &.focus {
+    color: $grey030;
+  }
+  &.active {
+    color: $grey050;
+    background-color: $grey020;
+  }
+}
