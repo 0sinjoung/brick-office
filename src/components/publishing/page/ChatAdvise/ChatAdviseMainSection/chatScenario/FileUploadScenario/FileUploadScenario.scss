@@ -1,0 +1,279 @@
+@import "/src/styles/_variables.scss";
+
+
+/* 파일 업로드 시나리오 */
+.fileupload_container {
+  @include flexEnd();
+  width: 100%;
+
+  &.file {
+    .fileupload_contents_box {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      cursor: pointer;
+
+      &:hover {
+        .file_download_button_box {
+          order: 1;
+          display: block;
+        }
+        .fileupload_file_template {
+          order: 2;
+        }
+      }
+    }
+  }
+}
+
+.fileupload_contents_box {
+  position: relative;
+  margin-bottom: 4px;
+
+  &:hover {
+    .image_download_button_box {
+      @include flexCenter();
+    }
+  }
+}
+
+/* 1. 사진 업로드 */
+/* 이미지 다운로드 버튼 */
+.image_download_button_box {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+
+  .icon_button {
+    background-color: $grey005;
+    &:hover {
+      .icon_file_download {
+        fill: $grey050;
+        stroke: $grey050;
+      }
+    }
+  }
+}
+
+/* 이미지 박스 */
+.fileupload_image_box {
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.fileupload_image_contents {
+  display: flex;
+  justify-content: flex-start;
+
+  /* 1-1. 이미지 1장 업로드 */
+  &.single_image {
+    .fileupload_image {
+      width: 100%;
+      height: 100%;
+      max-width: 282px;
+      max-height: 445px;
+      min-width: 138px;
+      min-height: 138px;
+      border-radius: 10px;
+      overflow: hidden;
+      object-fit: cover;
+    }
+
+    &.error {
+      .fileupload_image_box {
+        width: 138px;
+        height: 138px;
+      }
+    }
+  }
+  
+  /* 1-2. 이미지 2장 업로드 */
+  &.double_image {
+    gap: 6px;
+
+    .fileupload_image_box {
+      width: 138px;
+      height: 138px;
+    }
+    
+    .fileupload_image {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      object-fit: cover;
+    }
+  }
+
+  /* 1-3. 이미지 3장 업로드 */
+  &.triple_image {
+    gap: 4px;
+
+    .fileupload_image_box {
+      width: 91px;
+      height: 91px;
+    }
+    
+    .fileupload_image {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      object-fit: cover;
+    }
+  }
+
+  /* 1-4. 이미지 4장 업로드 */
+  &.quadruple_image {
+    width: 282px;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    .fileupload_image_box {
+      width: 138px;
+      height: 138px;
+    }
+    
+    .fileupload_image {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      object-fit: cover;
+    }
+  }
+
+  /* 1-4. 이미지 4장 업로드 */
+  &.quadruple_image {
+    width: 282px;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    .fileupload_image_box {
+      width: 138px;
+      height: 138px;
+    }
+    
+    .fileupload_image {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      object-fit: cover;
+    }
+  }
+
+  /* 1-5. 이미지 업로드 에러 */
+  &.error {
+    position: relative;
+
+    &::after {
+      @include brickRedBadgeStyle();
+      bottom: 0;
+      left: -8px;
+      transform: translateX(-100%);
+    }
+
+    .fileupload_image_box {
+      @include flexCenter();
+      background-color: $grey005;
+      cursor: default;
+    }
+
+    +.image_download_button_box {
+      display: none;
+    }
+  }
+}
+
+
+/* 2. 파일 업로드 */
+/* 파일 다운로드 버튼 */
+.file_download_button_box {
+  display: none;
+
+  .icon_file_download {
+    transform: scale(0.8);
+  }
+}
+
+/* 파일 템플릿 */
+.fileupload_file_template {
+  width: 260px;
+  height: 80px;
+  background-color: $grey005;
+  border-radius: 10px;
+  padding: 10px;
+
+  &.error {
+    position: relative;
+
+    &::after {
+      @include brickRedBadgeStyle();
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.fileupload_file_contents {
+  @include flexSpace();
+  gap: 6px;
+}
+
+.file_thumnail_box {
+  flex-shrink: 0;
+  @include flexCenter();
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: $white;
+
+  svg {
+    transform: scale(1.3);
+  }
+}
+
+.file_description_box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .filename_title {
+    @include flexStart();
+    max-width: 142px;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    color: $grey080;
+
+    .filename_title_text {
+      flex-grow: 1;
+      display: inline-block;
+      @include ellipsisOneLine();
+    }
+    
+    .filename_extension {
+      flex-shrink: 0;
+      display: inline-block;
+    }
+  }
+  
+  .file_expiration_period,
+  .fileupload_size {
+    font-size: 12px;
+    font-weight: $regular;
+    color: $grey100;
+  }
+}
+
+@keyframes animationLoading {
+  0% {background-color: $grey020;}
+  50% {background-color: $grey030;}
+  100% {background-color: $grey020;} 
+}
+@keyframes animationSpinner {
+  0% {transform: rotate(45deg);}
+  100% {transform: rotate(405deg);}
+}

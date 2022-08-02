@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" className="icon_file_extension_txt">
+  <g id="Layer_x0020_1" transform="translate(-0.102 -0.101)">
+    <g id="_187846080" transform="translate(0.478 0.478)">
+      <rect id="_297979984" width="33" height="33" transform="translate(-0.378 -0.378)" fill="none"/>
+      <rect id="_297979864" width="23" height="23" transform="translate(4.622 4.622)" fill="none"/>
+      <path id="_297979696" class="cls-2" d="M1303.19,256l5.241,5.248h-4.3a.94.94,0,0,1-.937-.937V256Z" transform="translate(-1282.617 -252.12)" fill="#78909c" fill-rule="evenodd"/>
+      <path id="_297979528" class="cls-3" d="M415.491,256h13.526v4.285a.966.966,0,0,0,.963.963h4.278v12.991a.64.64,0,0,1-.638.638H415.491a.64.64,0,0,1-.638-.638v-17.6a.64.64,0,0,1,.638-.638Z" transform="translate(-408.442 -252.121)" fill-rule="evenodd" fill="#cfd8dc"/>
+      <path id="_297979216" class="cls-4" d="M257.3,1218.19h21.893a1.306,1.306,0,0,1,1.3,1.3v6.287a1.306,1.306,0,0,1-1.3,1.3H257.3a1.306,1.306,0,0,1-1.3-1.3v-6.287a1.306,1.306,0,0,1,1.3-1.3Z" transform="translate(-252.121 -1198.972)" fill-rule="evenodd" fill="#546e7a"/>
+      <path id="패스_7244" data-name="패스 7244" class="cls-5" d="M569.435,1331.954v-4.836h-1.727v-.985h4.626v.985h-1.723v4.836Zm3.066,0,1.99-3.038-1.8-2.784h1.373l1.168,1.87,1.143-1.87h1.362l-1.811,2.827,1.99,2.994H576.5l-1.29-2.013-1.294,2.013Zm7.326,0v-4.836H578.1v-.985h4.626v.985H581v4.836Z" transform="translate(-559.205 -1305.336)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

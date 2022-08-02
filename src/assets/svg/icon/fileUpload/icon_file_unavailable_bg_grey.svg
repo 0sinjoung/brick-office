@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="66" viewBox="0 0 66 66" className="icon_file_unavailable_bg_grey" fill="#e7e9ec" stroke="#e7e9ec">
+  <g id="마스크_그룹_7912" data-name="마스크 그룹 7912" class="cls-2" transform="translate(-885.673 -482.673)">
+    <g id="그룹_8819" data-name="그룹 8819" transform="translate(894.409 490.527)">
+      <g id="Layer_2" data-name="Layer 2" transform="translate(0)">
+        <g id="Layer_42" data-name="Layer 42" transform="translate(0)">
+          <path id="패스_7085" data-name="패스 7085" d="M41.893,48.087H6.118A6.123,6.123,0,0,1,0,41.959V6.128A6.123,6.123,0,0,1,6.118,0H41.893a6.123,6.123,0,0,1,6.118,6.128V41.959A6.123,6.123,0,0,1,41.893,48.087ZM6.118,3.342A2.783,2.783,0,0,0,3.337,6.128V41.959a2.783,2.783,0,0,0,2.781,2.785H41.893a2.783,2.783,0,0,0,2.781-2.785V6.128a2.783,2.783,0,0,0-2.781-2.785Z" transform="translate(0 0)" stroke-width="0.3px"/>
+          <path id="패스_7086" data-name="패스 7086" d="M46.36,26.728a1.641,1.641,0,0,1-1.179-.493L35.058,16.02c-.289-.269-.512-.291-.779,0l-4.027,4.055a2.856,2.856,0,0,1-3.938,0L16.191,9.882a.531.531,0,0,0-.779,0L2.887,22.472a1.638,1.638,0,0,1-2.358,0,1.688,1.688,0,0,1,0-2.375L13.054,7.508a3.853,3.853,0,0,1,5.5,0l9.745,9.812,3.626-3.651A3.77,3.77,0,0,1,34.657,12.5h0a3.858,3.858,0,0,1,2.759,1.142L47.539,23.861a1.666,1.666,0,0,1,0,2.375,1.574,1.574,0,0,1-1.179.493Z" transform="translate(0.05 7.752)" stroke-width="0.3px"/>
+          <circle id="타원_272" data-name="타원 272" cx="2.621" cy="2.621" r="2.621" transform="translate(29.188 9.13)" />
+        </g>
+      </g>
+      <g id="사각형_4013" data-name="사각형 4013" transform="translate(1.636 49.663) rotate(-45)" stroke-width="1.5px" stroke="#F5F6F7" >
+        <rect width="68.63" height="6.176" rx="3.088" />
+        <rect x="0.75" y="0.75" width="67.13" height="4.676" rx="2.338" />
+      </g>
+    </g>
+  </g>
+</svg>

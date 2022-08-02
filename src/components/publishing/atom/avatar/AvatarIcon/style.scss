@@ -1,0 +1,15 @@
+@import "/src/styles/_variables.scss";
+
+.avatar_icon_image_box {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.avatar_icon_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  overflow: hidden;
+}

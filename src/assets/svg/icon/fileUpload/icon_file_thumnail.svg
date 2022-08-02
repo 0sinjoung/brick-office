@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.73" height="26.494" viewBox="0 0 21.73 26.494" className="icon_file_thumnail" stroke="#c3c6cc" fill="#c3c6cc">
+  <g id="Layer_2" data-name="Layer 2" transform="translate(0.15 0.167)">
+    <g id="Layer_3" data-name="Layer 3" transform="translate(0 -0.001)">
+      <path id="패스_6941" data-name="패스 6941" d="M18.677,26.178H2.74A2.74,2.74,0,0,1,0,23.438V2.74A2.74,2.74,0,0,1,2.74,0H13.393a.925.925,0,0,1,.913.913.925.925,0,0,1-.913.913H2.74a.925.925,0,0,0-.913.913v20.7a.925.925,0,0,0,.913.913H18.677a.925.925,0,0,0,.913-.913V7.987a.913.913,0,1,1,1.826,0V23.438A2.74,2.74,0,0,1,18.677,26.178Z" transform="translate(0 0.001)" stroke-width="0.3px"/>
+      <path id="패스_6942" data-name="패스 6942" d="M18.274,8.9H12.381A2.131,2.131,0,0,1,10.25,6.77V.913A.914.914,0,0,1,11.808.268l7.111,7.037a.913.913,0,0,1,.195,1,.9.9,0,0,1-.84.6ZM12.113,3.117V6.77a.3.3,0,0,0,.3.3H16.07Z" transform="translate(2.23 0.001)" stroke-width="0.3px"/>
+      <path id="패스_6943" data-name="패스 6943" d="M14.056,12.776H5.533a.913.913,0,1,1,0-1.826h8.523a.913.913,0,1,1,0,1.826Z" transform="translate(1.005 2.383)" stroke-width="0.3px"/>
+      <path id="패스_6944" data-name="패스 6944" d="M14,16.8H5.473a.913.913,0,1,1,0-1.826H14A.913.913,0,0,1,14,16.8Z" transform="translate(0.992 3.257)" stroke-width="0.3px"/>
+    </g>
+  </g>
+</svg>
