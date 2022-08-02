@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="14.646" height="14.94" viewBox="0 0 14.646 14.94" fill="#28323c" stroke="#28323c" className="icon_refresh_action">
   <g id="Refresh" transform="translate(-5.517 -5.75)">
-    <path id="패스_7123" data-name="패스 7123" class="cls-1" d="M19.913,13.373a6.986,6.986,0,1,1-2.391-5.251V6.4a.4.4,0,0,1,.8,0v2.79a.4.4,0,0,1-.4.4h-2.79a.4.4,0,0,1,0-.8h1.948a6.176,6.176,0,1,0,2.037,4.583.4.4,0,1,1,.8,0Z" transform="translate(0 0)" stroke-width="0.5px" />
+    <path id="패스_7123" data-name="패스 7123"   d="M19.913,13.373a6.986,6.986,0,1,1-2.391-5.251V6.4a.4.4,0,0,1,.8,0v2.79a.4.4,0,0,1-.4.4h-2.79a.4.4,0,0,1,0-.8h1.948a6.176,6.176,0,1,0,2.037,4.583.4.4,0,1,1,.8,0Z" transform="translate(0 0)" stroke-width="0.5px" />
   </g>
 </svg>

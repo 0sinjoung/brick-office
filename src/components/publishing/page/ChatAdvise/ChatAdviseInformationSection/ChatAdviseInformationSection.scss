@@ -1,9 +1,30 @@
 @import "/src/styles/_variables.scss";
 
+@mixin chatAdviseInformationSectionTitle {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: $semi-bold;
+  color: $grey080;
+}
+@mixin chatAdviseInformationSectionLabel {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: $regular;
+  color: $grey040;
+}
+@mixin chatAdviseInformationSectionText {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: $semi-bold;
+  color: $grey050;
+}
+
 .chat_advise_information_section_wrap {
+  @include scrollStyle();
   flex: 0 0 auto;
   width: 372px;
   // height: 100%;
+  position: relative;
   background-color: $grey005;
 }
 
@@ -24,15 +45,867 @@
   box-shadow: $shadow-thin;
 }
 
+/* 1. 고객 정보 */
 .customer_profile_information_container {
-  flex: 0 0 auto;
+  flex-shrink: 0;
   height: 140px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 14px;
 }
 
+.customer_profile_title_head {
+  @include flexSpace();
+}
+.customer_profile_title_box {
+  @include flexStart();
+  gap: 8px;
+
+  .customer_profile_title {
+    @include chatAdviseInformationSectionTitle();
+  }
+}
+.customer_profile_contents_lists {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.customer_profile_contents_list {
+  @include flexStart();
+
+  .customer_profile_label {
+    flex-shrink: 0;
+    width: 86px;
+    @include chatAdviseInformationSectionLabel();
+  }
+  .customer_profile_information {
+    flex-grow: 1;
+    @include ellipsisOneLine();
+    @include chatAdviseInformationSectionText();
+  }
+}
+
+
+/* 2. 상담정보 */
 .chat_advise_information_container {
-  height: 196px;
+  flex: 0 0 auto;
+  height: fit-content;
+  position: relative;
+  
+  &.open {
+    .chat_advise_information_list {
+      &.advise_field {
+        align-items: flex-start;
+      }
+      &.memo {
+        align-items: flex-start;
+      }
+
+      .chat_advise_information_content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        white-space: initial;
+        text-overflow: initial;
+      }
+    }
+  }
 }
 
+/* 2-1. 상담 정보 - 기본 보기 */
+.chat_advise_information_contents_box {
+  width: 100%;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.chat_advise_information_title_head {
+  @include flexSpace();
+}
+.chat_advise_information_title {
+  @include chatAdviseInformationSectionTitle();
+}
+.chat_advise_information_lists {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.chat_advise_information_list {
+  @include flexStart();
+
+  .chat_advise_information_label {
+    flex-shrink: 0;
+    width: 86px;
+    @include chatAdviseInformationSectionLabel();
+  }
+  .chat_advise_information_content {
+    flex-grow: 1;
+    @include ellipsisOneLine();
+    @include chatAdviseInformationSectionText();
+  }
+
+  &.advise_field {
+    .chat_advise_information_content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+  }
+}
+
+.chat_advise_information_view_more_button_box {
+  width: 100%;
+  @include flexEnd();
+
+  .solid_button {
+    color: $grey050;
+    background-color: $grey005;
+    
+    &:hover {
+      background-color: $grey010;
+    }
+  }
+}
+
+/* 2-2. 상담정보 - 편집 패널 */
+.edit_chat_advise_information_pannel {
+  display: none;
+  position: absolute;
+  top: 23%;
+  z-index: 300;
+  width: 104%;
+  transform: translateX(-2%);
+  height: fit-content;
+  padding: 18px 16px 24px;
+  background-color: $white;
+  border-radius: 8px;
+  border: $grey020-border;
+  box-shadow: $shadow-basic;
+  gap: 16px;
+  
+  &.show {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.edit_chat_advise_information_title {
+  font-size: 18px;
+  font-weight: $bold;
+  line-height: 1;
+  color: $grey080;
+  margin-bottom: 3px;
+}
+.edit_chat_advise_information_lists {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  gap: 15px;
+}
+
+.edit_chat_advise_information_label {
+  font-size: 14px;
+  font-weight: $semi-bold;
+  color: $grey080;
+  margin-bottom: 6px;
+}
+
+.edit_chat_advise_information_content {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey050;
+}
+
+/* 2-2-1. 상담 분야 토글 셀렉트 박스 */
+.edit_advise_field_toggle_button_box {
+  background-color: $white;
+  border-radius: 8px;
+  border: $grey020-border;
+  width: 100%;
+  height: auto;
+  min-height: 32px;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.advise_field_chips_area {
+  @include flexStart();
+  gap: 5px;
+}
+
+.dropdown_arrow_box {
+  @include flexCenter();
+  width: 20px;
+  height: 20px;
+}
+
+/* 2-2-2. 상담 분야 메모 박스 */
+.edit_chat_advise_memo_box {
+  background-color: $white;
+  border-radius: 8px;
+  border: $grey020-border;
+  padding: 10px;
+}
+.edit_chat_advise_memo_text_field {
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: $medium;
+  color: $grey080;
+
+  &::placeholder {
+    font-size: 14px;
+    font-weight: $medium;
+    color: $grey030;
+  }
+}
+.edit_chat_advise_memo_text_field_character_count_box {
+  @include flexEnd();
+  font-size: 12px;
+  font-weight: $regular;
+  color: $grey030;
+}
+.edit_chat_advise_information_buttons_box {
+  @include flexEnd();
+  gap: 6px;
+}
+
+/* 3. 상담요약 | 주문내역 탭 */
 .customer_chat_information_container {
-  height: 315px;
+  height: auto;
+  min-height: 408px;
+}
+
+.customer_chat_information_title_tabs_head {
+  @include flexSpace();
+  padding: 8px;
+  border-bottom: $grey020-border;
+}
+
+.customer_chat_information_title_tabs {
+  @include flexStart();
+  gap: 8px;
+  width: 100%;
+  height: fit-content;
+}
+.customer_chat_information_title_tab_button {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: $white;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+  }
+  
+  &.active {
+    &:hover {
+      background-color: $white;
+    }
+    .customer_chat_information_title {
+      color: $grey080;
+      
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $grey080;
+      }
+    }
+  }
+}
+
+.show_detail_customer_order_lists_button_box {
+  flex-shrink: 0;
+  display: none;
+  margin-right: 8px;
+
+  &.show {
+    display: block;
+  }
+  .solid_button {
+    color: $grey050;
+    background-color: $grey005;
+    
+    &:hover {
+      background-color: $grey010;
+    }
+  }
+}
+.customer_chat_information_title {
+  font-size: 16px;
+  font-weight: $semi-bold;
+  color: $grey040;
+  position: relative;
+}
+
+/* 3-1. 상담요약 */
+.chat_advise_summary_container {
+  padding: 16px;
+}
+
+.chat_advise_summary_lists {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+}
+
+.chat_advise_summary_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.chat_advise_summary_time {
+  width: 50px;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: $regular;
+  color: $grey040;
+  line-height: 32px;
+}
+
+.chat_advise_summary_contents {
+  flex-grow: 1;
+  display: flex;
+  padding: 6px;
+  border-radius: 8px;
+  background-color: $grey000;
+  gap: 6px;
+}
+
+.chat_advise_delimiter_image_box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  .chat_advise_delimiter_image {
+    object-fit: cover;
+  }
+}
+
+.chat_advise_summary_description {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey050;
+}
+
+/* 3-2. 주문내역 */
+.customer_order_lists_container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.customer_order_lists_search_text_field_box {
+  flex-shrink: 0;
+  width: 100%;
+  height: 32px;
+  @include flexSpace();
+  gap: 12px;
+}
+.customer_order_lists_contents {
+  flex-grow: 1;
+}
+
+.customer_order_lists_label {
+  flex-shrink: 0;
+  width: 48px;
+  font-size: 14px;
+  font-weight: $regular;
+  color: $grey040;
+}
+
+/* 3-2-1. 주문내역 없음 */
+.no_search_data_box {
+  width: 100%;
+  padding-top: 68px;
+  @include flexCenter();
+  flex-direction: column;
+  gap: 15px;
+} 
+
+.no_search_data_image {
+  width: 100px;
+  height: 100px;
+}
+.no_search_data_text {
+  font-size: 14px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey030;
+  text-align: center;
+}
+
+/* 3-2-2. 주문내역 테이블 */
+.customer_order_list_item {
+  width: 100%;
+  padding: 7px 10px 10px;
+  border: $grey020-border;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.customer_order_number {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey080;
+  margin-bottom: 8px;
+}
+.customer_order_list_table {
+  width: 100%;
+  table-layout: fixed;
+  border: $grey020-border;
+  border-collapse: collapse;
+  text-align: center;
+  border-style: hidden;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px $grey020;
+}
+
+.customer_order_list_table_heading {
+  background-color: $grey005;
+  
+  .customer_order_table_heading {
+    height: 26px;
+    font-size: 12px;
+    vertical-align: middle;
+    font-weight: $regular;
+    color: $grey040;
+    border-right: $grey020-border;
+    border-collapse: collapse;
+  }
+}
+
+.customer_order_list_table_body {
+  .customer_order_table_data {
+    font-size: 14px;
+    font-weight: $regular;
+    height: 64px;
+    padding: 6px;
+    color: $grey080;
+    word-break: keep-all;
+    vertical-align: middle;
+    border-right: $grey020-border;
+    border-collapse: collapse;
+    overflow: hidden;		
+    text-overflow: ellipsis;
+    // white-space : nowrap;
+    
+    &.payment {
+      padding: 2px;
+    }
+  }
+}
+
+/* 3-2-3. 상세 주문내역 모달 */
+.detail_customer_order_list_modal_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 840px;
+  height: 615px;
+  border-radius: 8px;
+  border: $grey020-border;
+  box-shadow: $shadow-basic;
+  background-color: $white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .no_search_data_container {
+    width: 100%;
+    flex-grow: 1;
+    @include flexCenter();
+    padding: 0 24px 24px;
+  }
+  .no_search_data_box {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: $grey020-border;
+  }
+}
+
+.detail_customer_order_list_modal_head {
+  flex-shrink: 0;
+  @include flexSpace();
+  align-items: flex-start;
+  padding: 24px 24px 8px;
+}
+.detail_customer_order_list_modal_title {
+  font-size: 18px;
+  font-weight: $bold;
+  color: $grey080;
+  margin-bottom: 8px;
+}
+.detail_customer_order_list_modal_description {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey040;
+}
+
+.detail_customer_order_list_modal_selectbox_toggle_container {
+  flex-shrink: 0;
+  @include flexEnd();
+  padding: 0 24px;
+  margin-bottom: 2px;
+}
+
+.detail_customer_order_lists_box {
+  flex-grow: 1;
+  @include scrollStyle();
+  width: 100%;
+}
+.detail_customer_order_lists {
+  padding: 0 24px;
+}
+
+.detail_customer_order_list {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: $grey020-border;
+  background-color: $white;
+}
+
+.detail_customer_order_list_title {
+  font-size: 14px;
+  font-weight: $bold;
+  color: $grey080;
+  margin-bottom: 16px;
+}
+
+.detail_customer_order_list_contents_box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.detail_customer_order_list_contents_item {
+  @include flexSpace();
+  align-items: flex-start;
+  gap: 18px;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $grey020;
+  }
+
+  &:last-child {
+    &::after {
+      height: 0;
+    }
+  }
+}
+
+.detail_customer_order_image_box {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .detail_customer_order_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.detail_customer_order_description {
+  flex-grow: 1;
+}
+
+.customer_order_product_title {
+  font-size: 14px;
+  font-weight: $bold;
+  color: $grey100;
+  margin: 7px 0 18px;
+}
+
+.customer_order_product_information_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
+
+.customer_order_product_information {
+  width: calc(50% - 10px);
+  height: 22px;
+  @include flexStart();
+  gap: 28px;
+}
+
+.customer_order_product_information_label {
+  flex-shrink: 0;
+  width: 50px;
+  font-size: 14px;
+  font-weight: $regular;
+  color: $grey040;
+  line-height: 1;
+}
+
+.customer_order_product_information_contents {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey100;
+  line-height: 1;
+
+  .outline_tag {
+    color: $green100;
+  }
+}
+
+
+/* 4. 상담 지식 사전 패널 섹션 */
+.KMS_pannel_section {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 500;
+  width: 352px;
+  height: 97%;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: $shadow-basic;
+  &.show {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.KMS_pannel_main_title_head {
+  flex-shrink: 0;
+  @include flexSpace();
+  align-items: flex-start;
+  width: 100%;
+  padding: 18px 16px 20px;
+}
+
+.KMS_pannel_main_title {
+  font-size: 18px;
+  font-weight: $bold;
+  color: $grey080;
+}
+
+.KMS_pannel_sub_title_tabs {
+  flex-shrink: 0;
+  @include flexStart();
+  padding: 0 8px 8px;
+  gap: 8px;
+  width: 100%;
+  height: fit-content;
+  border-bottom: $grey020-border;
+}
+
+.KMS_pannel_sub_title_tab_button {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: $white;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+  }
+  
+  &.active {
+    &:hover {
+      background-color: $white;
+    }
+    .KMS_pannel_sub_title {
+      color: $grey080;
+      
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $grey080;
+      }
+    }
+  }
+}
+
+.KMS_pannel_sub_title {
+  font-size: 16px;
+  font-weight: $semi-bold;
+  color: $grey040;
+  position: relative;
+}
+
+/* 4-1. KMS 지식 추천 탭 */
+.KMS_knowledge_recommand_container {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.KMS_knowledge_recommand_search_text_field_box {
+  flex-shrink: 0;
+  width: 100%;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.KMS_knowledge_recommand_pagination_box {
+  flex-shrink: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.KMS_knowledge_recommand_lists {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.KMS_knowledge_recommand_list {
+  width: 100%;
+  height: 23%;
+  max-height: 146px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: $grey020-border;
+}
+
+.KMS_knowledge_recommand_contents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.KMS_knowledge_recommand_title {
+  // flex-shrink: 0;
+  width: 100%;
+  @include ellipsisOneLine();
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey080;
+  
+  .highlight {
+    // display: inline-block;
+    color: $grey080;
+    background-color: $tag110;
+  }
+}
+
+.KMS_knowledge_recommand_sentence_scroll_area {
+  flex-grow: 1;
+  height: 46px;
+  max-height: 80px;
+  @include scrollStyle();
+  border-radius: 5px;
+  background-color: $grey000;
+}
+
+.KMS_knowledge_recommand_sentence {
+  padding: 6px;
+  font-size: 14px;
+  font-weight: $regular;
+  color: $grey050;
+}
+
+.copy_recommand_sentence_button_box {
+  // flex-shrink: 0;
+  @include flexEnd();
+
+  .solid_button {
+    height: 22px;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 1;
+  }
+}
+
+
+
+
+/* 4-2. 챗봇 지식 추천  */
+.chatbot_knowledge_recommand_container {
+
+}
+
+
+/* atom - 이 파일에선 삭제될 예정 */
+.fullpage_modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: $dim-thick;
+  overflow: hidden;
+}
+
+
+.detail_customer_order_list_modal_selectbox_toggle_button {
+  @include flexSpace();
+  width: 140px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: $grey020-border;
+  background-color: $white;
+}
+
+.detail_customer_order_list_modal_selectbox_toggle_button_icon {
+  @include flexCenter();
+}
+
+.pagination {
+  @include flexCenter();
 }

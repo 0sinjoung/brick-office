@@ -241,7 +241,7 @@ const LNB = () => {
               })}
             </ul>
             <div className="LNB_current_subscribe_plan_box">
-              <ColorTag tagStyle={subscribePlanTagStyle}>FREE 플랜 이용중</ColorTag>
+              <ColorTag tagStyle={subscribePlanTagStyle}>v0.1.0-beta</ColorTag>
             </div>
           </div>
         </div>

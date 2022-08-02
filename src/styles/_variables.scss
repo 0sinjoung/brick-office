@@ -24,7 +24,6 @@ $brickCoral100: #F2483A;
 $brickCoral000: #F8F4F3;
 
 $red100: #D32F2F;
-$red050: transparent linear-gradient(125deg, #FD8E86 0%, #FE5E4F 100%) 0% 0% no-repeat padding-box;;
 $red010: #F2483A;
 $green100: #4CAF50;
 
@@ -66,7 +65,6 @@ $bold: 700;
   font-weight: 700;  
 }
 
-
 /* gap */
 $small-gap: 8px;
 $mobile-gap: 16px;
@@ -84,6 +82,7 @@ $shadow-thin: 0px 10px 10px #646F7C0F;
 $shadow-basic: 0px 0px 30px #646F7C33;
 $shadow-thick: 10px 24px 54px #646F7C33;
 $shadow-unread: 0px 3px 6px #FF96A066;
+$template-button-shadow: 0px 0px 10px #646F7C0F;
 
 
 /* mixin */
@@ -125,12 +124,75 @@ $shadow-unread: 0px 3px 6px #FF96A066;
 /* 아래 mixin을 include -> -webkit-line-clamp만 재지정하여 사용 */
 @mixin ellipsisMultiLine {
   display: -webkit-box;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}
+
+@mixin chatAdviseNameStyle {
+  font-size: 15px;
+  font-weight: $semi-bold;
+  line-height: 1;
+  color: $grey080;
+}
+
+/* scroll style : 주의 - height 고정값 필요 */
+@mixin scrollStyle {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-y: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: $grey030;
+  background-color: $white;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey030;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 3px;
+  }
 }
 
 /* animation */
+@mixin hoverTransition {
+  transition: all .3s;
+}
+
+/* tooltip style - content만 따로 지정해서 사용 */
+@mixin tooltipStyle {
+  content: '';
+  width: max-content;
+  height: fit-content;
+  padding: 4px 6px;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  display: block;
+  border-radius: 5px;
+  background-color: $grey100;
+  font-size: 12px;
+  color: $white;
+  z-index: 10;
+}
+
+/* brick red exclamation badge style - 위치만 따로 지정해서 사용 */
+@mixin brickRedBadgeStyle {
+  content: '\e900';
+  font-family: 'icomoon';
+  color: $white;
+  font-size: 8px;
+  @include flexCenter();
+  width: 17px;
+  height: 17px;
+  background: transparent linear-gradient(125deg, #FD8E86 0%, #FE5E4F 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #FF96A040;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+}

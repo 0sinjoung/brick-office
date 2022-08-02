@@ -36,7 +36,7 @@ const Header = () => {
       </div>
       <div className="header_right_area">
         <div className="header_user_information_container">
-          <div className="header_avatar_img_box">{/* <img className="header_avatar_img" src={MY_PROFILE_AVATAR_IMG_URL} alt="header_avatar_image" /> */}</div>
+          <div className="header_avatar_img_box">{/* <img className="header_avatar_img" src={MY_PROFILE_AVATAR_IMG_URL} alt="header_avatar" /> */}</div>
           <div className="header_user_name_box">
             <p className="header_user_greetings">안녕하세요. </p>
             <div className="header_user_name">{MY_PROFILE_NICNAME !== '' ? MY_PROFILE_NICNAME : MY_PROFILE_NAME}</div>

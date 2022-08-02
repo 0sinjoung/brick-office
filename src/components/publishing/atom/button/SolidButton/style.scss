@@ -13,6 +13,11 @@
   background-color: $grey100;
   cursor: pointer;
   
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey080;
+  }
+  
   &:active{
     background-color: $grey080;
   }
@@ -46,6 +51,7 @@
     height: 28px;
     border-radius: 6px;
     padding: 6px 8px;
+    font-size: 12px;
   }
 }
 

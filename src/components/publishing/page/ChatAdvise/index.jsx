@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ChatAdviseListSection from 'components/publishing/page/ChatAdvise/ChatAdviseListSection/ChatAdviseListSection';
 import ChatAdviseMainSection from 'components/publishing/page/ChatAdvise/ChatAdviseMainSection/ChatAdviseMainSection';
@@ -9,6 +9,7 @@ import './style.scss';
  * @children : children
  */
 const ChatAdvise = ({ children }) => {
+  const [isAdviserWorkingStart, setIsAdviserWorkingStart] = useState(true);
   return (
     <>
       <div className="contents_wrap">

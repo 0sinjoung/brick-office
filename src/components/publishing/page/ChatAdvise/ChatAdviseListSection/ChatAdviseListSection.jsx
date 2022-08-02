@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
-import { ReactComponent as IconPreviousChatAdviseTime } from 'assets/svg/icon/chat_advise/icon_previous_chat_advise_time.svg';
+import { ReactComponent as IconPreviousChatAdviseTime } from 'assets/svg/icon/chatAdvise/icon_previous_chat_advise_time.svg';
 import { ReactComponent as IconArrowUpLarge } from 'assets/svg/icon/icon_arrow_up_large.svg';
 import { ReactComponent as IconCrossSmall } from 'assets/svg/icon/icon_cross_small.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
@@ -13,11 +13,9 @@ import NumberNotificationBadge from 'components/publishing/atom/notificationBadg
 import NewNotificationBadge from 'components/publishing/atom/notificationBadge/NewNotificationBadge';
 import OnairAvatarIcon from 'components/publishing/atom/avatar/OnairAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
-import SolidButton from 'components/publishing/atom/button/SolidButton';
-import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
-import SimpleDropdown from 'components/publishing/atom/dropdown/SimpleDropdown';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import ColorTag from 'components/publishing/atom/tag/ColorTag';
+import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import './ChatAdviseListSection.scss';
 
 /** 채팅 상담 리스트 영역
@@ -43,7 +41,7 @@ const ChatAdviseListSection = () => {
   const START_WORKING_CASE2 = false;
   const ADVISER_NAME_CASE2 = '안재이';
   const ADVISER_NICKNAME_CASE2 = '안재이'; // 마이페이지 - 닉네임 설정 안했을 경우 이름과 동일한 값이 닉네임 디폴트로 표시됨
-  const ADVISER_PROFILE_IMAGE_CASE2 = 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile2.png';
+  const ADVISER_PROFILE_IMAGE_CASE2 = 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile3.png';
   const ADVISER_EMAIL_CASE2 = 'rillarillarillarillari77777777@rilla.com';
 
   /* 상담 케이스 */
@@ -84,6 +82,8 @@ const ChatAdviseListSection = () => {
   };
 
   /* 상세 검색 영역 - 작업중 */
+  const refDetailSearchCustomerTextField = React.createRef();
+  const refPreviousSearchCustomerTextField = React.createRef();
   const handleShowDetailSearchPannel = () => {
     console.log('안녕 난 상세 검색 패널이야👋');
   };
@@ -186,25 +186,21 @@ const ChatAdviseListSection = () => {
           {/* 3. 채팅 상담 검색 영역 */}
           <div className="chat_advise_search_container">
             <div className="chat_advise_search_box">
-              <div className="chat_advise_customer_information_search_box">
-                <div className="basic_search_input_box">
-                  <input type="text" className="basic_search_input" placeholder="고객 이름, 이메일" />
-                  <button type="button" className="text_delete_button">
-                    <IconCrossSmall />
-                  </button>
-                  <button type="button" className="search_action_button active">
-                    검색
-                  </button>
-                </div>
+              <div className="chat_advise_customer_information_search_text_field_box">
+                <OutlineSearchTextField
+                  ref={refDetailSearchCustomerTextField}
+                  placeholderText="고객 이름, 이메일"
+                  handleClickSearchButton={handleSearchCustomerInformation}
+                />
               </div>
               <div className="chat_advise_detail_search_box">
-                <IconButton buttonClassName="chat_advise_search_style" handleClick={handleShowDetailSearchPannel}>
+                <IconButton buttonClassName="small outline" handleClick={handleShowDetailSearchPannel}>
                   <IconDetailSearch />
                 </IconButton>
-                <IconButton buttonClassName="chat_advise_search_style" handleClick={handleRefreshSearch}>
+                <IconButton buttonClassName="small outline" handleClick={handleRefreshSearch}>
                   <IconRefreshAction />
                 </IconButton>
-                <IconButton buttonClassName="chat_advise_search_style" handleClick={handleSortingChatList}>
+                <IconButton buttonClassName="small outline" handleClick={handleSortingChatList}>
                   <IconSorting />
                 </IconButton>
               </div>
@@ -219,7 +215,7 @@ const ChatAdviseListSection = () => {
                 <img
                   className="chat_advise_lists_no_data_img"
                   src="https://cdn.brickchat.dev/assets/img/icon_brick_error.png"
-                  alt="chat list no data image"
+                  alt="chat list no data"
                 />
               </div>
               <p className="chat_advise_lists_no_data_text">상담 목록이 없습니다.</p>
@@ -240,7 +236,7 @@ const ChatAdviseListSection = () => {
                     <div className="chat_advise_article_information_container">
                       <div className="chat_advise_article_information_box">
                         <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter image" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                         </div>
                         <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
                         <div className="chat_advise_article_bookmark_icon_box show">
@@ -299,7 +295,7 @@ const ChatAdviseListSection = () => {
                     <div className="chat_advise_article_information_container">
                       <div className="chat_advise_article_information_box">
                         <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter image" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                         </div>
                         <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
                         <div className="chat_advise_article_bookmark_icon_box">
@@ -356,7 +352,7 @@ const ChatAdviseListSection = () => {
                     <div className="chat_advise_article_information_container">
                       <div className="chat_advise_article_information_box">
                         <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter image" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                         </div>
                         <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
                         <div className="chat_advise_article_bookmark_icon_box">
@@ -415,7 +411,7 @@ const ChatAdviseListSection = () => {
                     <div className="chat_advise_article_information_container">
                       <div className="chat_advise_article_information_box">
                         <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter image" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                         </div>
                         <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_LONG}</div>
                         <div className="chat_advise_article_bookmark_icon_box">
@@ -472,7 +468,7 @@ const ChatAdviseListSection = () => {
                     <div className="chat_advise_article_information_container">
                       <div className="chat_advise_article_information_box">
                         <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter image" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                         </div>
                         <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
                         <div className="chat_advise_article_bookmark_icon_box">
@@ -529,7 +525,7 @@ const ChatAdviseListSection = () => {
                     <div className="chat_advise_article_information_container">
                       <div className="chat_advise_article_information_box">
                         <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter image" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                         </div>
                         <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
                         <div className="chat_advise_article_bookmark_icon_box">
@@ -600,22 +596,18 @@ const ChatAdviseListSection = () => {
             </div>
             <div className="previous_chat_list_search_box">
               <div className="chat_advise_search_box">
-                <div className="chat_advise_customer_information_search_box">
-                  <div className="basic_search_input_box">
-                    <input type="text" className="basic_search_input" placeholder="대화 내용을 입력해 주세요." />
-                    <button type="button" className="text_delete_button">
-                      <IconCrossSmall />
-                    </button>
-                    <button type="button" className="search_action_button active">
-                      검색
-                    </button>
-                  </div>
+                <div className="chat_advise_customer_information_search_text_field_box">
+                  <OutlineSearchTextField
+                    ref={refPreviousSearchCustomerTextField}
+                    placeholderText="고객 이름, 이메일"
+                    handleClickSearchButton={handleSearchCustomerInformation}
+                  />
                 </div>
                 <div className="chat_advise_detail_search_box">
-                  <IconButton buttonClassName="chat_advise_search_style" handleClick={handleShowDetailSearchPannel}>
+                  <IconButton buttonClassName="small outline" handleClick={handleShowDetailSearchPannel}>
                     <IconDetailSearch />
                   </IconButton>
-                  <IconButton buttonClassName="chat_advise_search_style" handleClick={handleRefreshSearch}>
+                  <IconButton buttonClassName="small outline" handleClick={handleRefreshSearch}>
                     <IconRefreshAction />
                   </IconButton>
                 </div>
@@ -628,7 +620,7 @@ const ChatAdviseListSection = () => {
                   <img
                     className="chat_advise_lists_no_data_img"
                     src="https://cdn.brickchat.dev/assets/img/icon_brick_error.png"
-                    alt="chat list no data image"
+                    alt="chat list no data"
                   />
                 </div>
                 <p className="chat_advise_lists_no_data_text">상담 목록이 없습니다.</p>

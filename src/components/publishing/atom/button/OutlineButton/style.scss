@@ -14,6 +14,7 @@
   border: $grey020-border;
   cursor: pointer;
   
+  @include hoverTransition();
   &:hover, &:active {
     background-color: $grey005;
   }

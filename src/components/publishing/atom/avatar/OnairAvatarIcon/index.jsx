@@ -9,8 +9,8 @@ import './style.scss';
  */
 const OnairAvatarIcon = ({ avatarImage, onair, avatarStyle }) => {
   return (
-    <div className={`avatar_icon_image_box ${onair}`} style={avatarStyle}>
-      <img className="avatar_icon_image" src={avatarImage} alt="avatar image" />
+    <div className={`onair_avatar_icon_image_box ${onair}`} style={avatarStyle}>
+      <img className="onair_avatar_icon_image" src={avatarImage} alt="avatar icon" />
     </div>
   );
 };

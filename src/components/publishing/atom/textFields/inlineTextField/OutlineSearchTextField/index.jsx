@@ -12,8 +12,9 @@ const OutlineSearchTextField = React.forwardRef(({ placeholderText, handleClickS
   const [showTextFieldDeleteButton, setShowTextFieldDeleteButton] = useState('');
   const [searchButtonStyle, setSearchButtonStyle] = useState('');
 
-  const handleChangeTextField = e => {
+  const handleKeyUpTextField = e => {
     const { value } = e.target;
+    setOutlineStyle('focus');
 
     if (value) {
       setShowTextFieldDeleteButton('show');
@@ -22,22 +23,22 @@ const OutlineSearchTextField = React.forwardRef(({ placeholderText, handleClickS
       setShowTextFieldDeleteButton('');
       setSearchButtonStyle('focus');
     }
-    setOutlineStyle('focus');
   };
 
   const handleClickDeleteTextField = () => {
-    ref.current.focus();
     ref.current.value = '';
+    ref.current.focus();
     setShowTextFieldDeleteButton('');
     setOutlineStyle('focus');
     setSearchButtonStyle('focus');
   };
 
-  const handleFocusTextField = () => {
+  const handleFocusTextField = e => {
+    const { value } = e.target;
     setOutlineStyle('focus');
     setSearchButtonStyle('focus');
 
-    if (ref.current.value) {
+    if (value) {
       setShowTextFieldDeleteButton('show');
       setSearchButtonStyle('active');
     }
@@ -57,7 +58,7 @@ const OutlineSearchTextField = React.forwardRef(({ placeholderText, handleClickS
         className="outline_search_text_field"
         ref={ref}
         placeholder={placeholderText}
-        onKeyUp={handleChangeTextField}
+        onKeyUp={handleKeyUpTextField}
         onFocus={handleFocusTextField}
         onBlur={handleBlurTextField}
         spellCheck="false"
