@@ -130,7 +130,7 @@ const ChatAdviseMainSection = () => {
     console.log('💌 메시지 전송');
   };
   /* 푸터 dimed */
-  const DIMED_SHOW = 'show';
+  const DIMED_SHOW = '';
   const FOOTER_DIMED_BUTTON_TEXT = '상담 시작하기';
   const FOOTER_DIMED_INFORMATION_TEXT_CASE1 = '김제니 상담사가 상담보류 중 입니다.';
   const FOOTER_DIMED_INFORMATION_TEXT_CASE2 = '지금은 업무 종료 상태입니다. \n 업무 시작으로 변경 후, 채팅상담을 진행 할 수 있습니다.';
@@ -198,7 +198,7 @@ const ChatAdviseMainSection = () => {
               <div className="chat_advise_search_header_basic_search_text_field_box">
                 <BasicSearchTextField
                   ref={refSearchHeaderTextField}
-                  placeholderText="찾고 싶은 대화 내용을 입력해 주세요"
+                  placeholderText="찾고 싶은 대화 내용을 입력해 주세요."
                   handleClickSearchButton={handleSearchChatContents}
                 />
               </div>
@@ -362,17 +362,17 @@ const ChatAdviseMainSection = () => {
                   />
                 </div>
                 <div className="keyword_pannel_keyword_list_box">
-                  {/* 등록된 상담 키워드가 없거나 검색 결과가 없을 경우 아래 div 출력 */}
-                  {/* <div className="keyword_pannel_keyword_list_no_data">{CHAT_ADVISER_KEYWORD_NO_LIST}</div> */}
+                  {/* 등록된 상담 키워드가 없거나 | 검색 결과가 없을 경우 출력 - 각 상황 문구 다름 주의 */}
+                  {/* <div className="keyword_pannel_keyword_list_no_data_found">{CHAT_ADVISER_KEYWORD_NO_LIST}</div> */}
                   <div className="keyword_pannel_scroll_box">
                     <ul className="keyword_pannel_keyword_lists">
                       <li className="keyword_pannel_keyword_list">
                         <div
                           role="button"
-                          aria-pressed="false"
                           tabIndex={0}
                           className="keyword_pannel_keyword_item_button"
                           onClick={handleClickChatAdviseKeywordItem}
+                          onKeyUp={handleClickChatAdviseKeywordItem}
                         >
                           <div className="chat_advise_keyword_shortcut_text">
                             /<span className="chat_advise_keyword_highlight">고객</span>상담
@@ -386,10 +386,10 @@ const ChatAdviseMainSection = () => {
                       <li className="keyword_pannel_keyword_list">
                         <div
                           role="button"
-                          aria-pressed="false"
                           tabIndex={0}
                           className="keyword_pannel_keyword_item_button"
                           onClick={handleClickChatAdviseKeywordItem}
+                          onKeyUp={handleClickChatAdviseKeywordItem}
                         >
                           <div className="chat_advise_keyword_shortcut_text">/환불문의</div>
                           <div className="chat_advise_keyword_contents">
@@ -405,10 +405,10 @@ const ChatAdviseMainSection = () => {
                       <li className="keyword_pannel_keyword_list">
                         <div
                           role="button"
-                          aria-pressed="false"
                           tabIndex={0}
                           className="keyword_pannel_keyword_item_button"
                           onClick={handleClickChatAdviseKeywordItem}
+                          onKeyUp={handleClickChatAdviseKeywordItem}
                         >
                           <div className="chat_advise_keyword_shortcut_text">/고객문의</div>
                           <div className="chat_advise_keyword_contents">
@@ -424,10 +424,10 @@ const ChatAdviseMainSection = () => {
                       <li className="keyword_pannel_keyword_list">
                         <div
                           role="button"
-                          aria-pressed="false"
                           tabIndex={0}
                           className="keyword_pannel_keyword_item_button"
                           onClick={handleClickChatAdviseKeywordItem}
+                          onKeyUp={handleClickChatAdviseKeywordItem}
                         >
                           <div className="chat_advise_keyword_shortcut_text">/환불고객문의문의문의문의</div>
                           <div className="chat_advise_keyword_contents">길지않은 텍스트도 올 수 있음</div>
@@ -441,10 +441,10 @@ const ChatAdviseMainSection = () => {
                       <li className="keyword_pannel_keyword_list">
                         <div
                           role="button"
-                          aria-pressed="false"
                           tabIndex={0}
                           className="keyword_pannel_keyword_item_button"
                           onClick={handleClickChatAdviseKeywordItem}
+                          onKeyUp={handleClickChatAdviseKeywordItem}
                         >
                           <div className="chat_advise_keyword_shortcut_text">/환불고객문의문의문의문의</div>
                           <div className="chat_advise_keyword_contents">

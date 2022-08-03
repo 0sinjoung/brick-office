@@ -3,12 +3,15 @@ import { ReactComponent as IconEdit } from 'assets/svg/icon/icon_edit.svg';
 import { ReactComponent as IconEllipsis } from 'assets/svg/icon/icon_ellipsis.svg';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
+import { ReactComponent as IconPainationFirst } from 'assets/svg/icon/icon_pagination_first.svg';
+import { ReactComponent as IconPainationPrev } from 'assets/svg/icon/icon_pagination_prev.svg';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import NoDataFound from 'components/publishing/atom/NoDataFound';
 import './ChatAdviseInformationSection.scss';
 
 /** 채팅 상담 정보 영역
@@ -27,6 +30,14 @@ const ChatAdviseInformationSection = () => {
     memo: '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
     advise_fields: ['교환 반품 환불', '고객 관리', 'A/S', '결제', '회원', '상품', '시스템', '주문', '기타', '프로모션', '배송'],
     // advise_fields: ['교환 반품 환불', '고객 관리'],
+  };
+
+  /* pagination */
+  const handleGoToPaginationIndex = () => {
+    console.log("go to pagination's index");
+  };
+  const handleClickMovePaginationArrowButton = () => {
+    console.log("click pagination's arrow button");
   };
 
   const [adviseFieldsCount, setAdviseFieldCount] = useState(ADVISE_INFO.advise_fields.length >= 3 ? 'over' : '');
@@ -114,8 +125,7 @@ const ChatAdviseInformationSection = () => {
             <div className="chat_advise_summary_time">{SUMMARY_TIME}</div>
             <div className="chat_advise_summary_contents">
               <div className="chat_advise_delimiter_image_box">
-                <img className="chat_advise_delimiter_image" alt="chatbot" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_blue.png" />
-                {/* <img className="chat_advise_delimiter_image" alt="adviser" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png" /> */}
+                <img className="chat_advise_delimiter_image chatbot" alt="chatbot" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_blue.png" />
               </div>
               <p className="chat_advise_summary_description">챗봇 상담 시작</p>
             </div>
@@ -124,8 +134,7 @@ const ChatAdviseInformationSection = () => {
             <div className="chat_advise_summary_time">{SUMMARY_TIME}</div>
             <div className="chat_advise_summary_contents">
               <div className="chat_advise_delimiter_image_box">
-                <img className="chat_advise_delimiter_image" alt="chatbot" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_blue.png" />
-                {/* <img className="chat_advise_delimiter_image" alt="adviser" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png" /> */}
+                <img className="chat_advise_delimiter_image chatbot" alt="chatbot" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_blue.png" />
               </div>
               <p className="chat_advise_summary_description">상담사 연결 요청</p>
             </div>
@@ -134,8 +143,7 @@ const ChatAdviseInformationSection = () => {
             <div className="chat_advise_summary_time">{SUMMARY_TIME}</div>
             <div className="chat_advise_summary_contents">
               <div className="chat_advise_delimiter_image_box">
-                {/* <img className="chat_advise_delimiter_image" alt="chatbot" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_blue.png" /> */}
-                <img className="chat_advise_delimiter_image" alt="adviser" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png" />
+                <img className="chat_advise_delimiter_image adviser" alt="adviser" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png" />
               </div>
               <p className="chat_advise_summary_description">상담사 상담 시작</p>
             </div>
@@ -144,8 +152,7 @@ const ChatAdviseInformationSection = () => {
             <div className="chat_advise_summary_time">{SUMMARY_TIME}</div>
             <div className="chat_advise_summary_contents">
               <div className="chat_advise_delimiter_image_box">
-                {/* <img className="chat_advise_delimiter_image" alt="chatbot" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_blue.png" /> */}
-                <img className="chat_advise_delimiter_image" alt="adviser" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png" />
+                <img className="chat_advise_delimiter_image adviser" alt="adviser" src="https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png" />
               </div>
               <p className="chat_advise_summary_description">상담사 변경 수락(상담분야상담분야상담분야상담분야)길게오는경우</p>
             </div>
@@ -168,16 +175,15 @@ const ChatAdviseInformationSection = () => {
         <div className="customer_order_lists_search_text_field_box">
           <label className="customer_order_lists_label">주문번호</label>
           <OutlineSearchTextField
-            placeholderText="주문번호를 입력해 주세요"
+            placeholderText="주문번호를 입력해 주세요."
             ref={refSearchOrderNumberTextField}
             handleClickSearchButton={handleSearchCustomerOrderList}
           />
         </div>
         <div className="customer_order_lists_contents">
           {/* 3-2-1. 주문내역 없는 경우 (검색 결과 없는 경우 포함) */}
-          {/* <div className="no_search_data_box">
-            <img alt="no search data" className="no_search_data_image" src="https://cdn.brickchat.dev/assets/img/icon_brick_error.png" />
-            <p className="no_search_data_text">주문내역이 없습니다.</p>
+          {/* <div className="customer_order_lists_contents_no_data_found_box">
+            <NoDataFound>주문내역이 없습니다.</NoDataFound>
           </div> */}
           {/* 3-2-2. 주문내역 테이블 */}
           <ul className="customer_order_lists">
@@ -316,7 +322,11 @@ const ChatAdviseInformationSection = () => {
               </button>
             </div>
           </div>
-          {/* 3-2-3-1. 주문내역 리스트 */}
+          {/* 3-2-3-1. 상세 주문내역 리스트 - 없음 */}
+          {/* <div className="detail_customer_order_no_data_found_box">
+            <NoDataFound>주문내역이 없습니다.</NoDataFound>
+          </div> */}
+          {/* 3-2-3-2. 상세 주문내역 리스트 */}
           <div className="detail_customer_order_lists_box">
             <ul className="detail_customer_order_lists">
               <li className="detail_customer_order_list">
@@ -493,13 +503,6 @@ const ChatAdviseInformationSection = () => {
               </li>
             </ul>
           </div>
-          {/* 3-2-3-2. 주문내역 리스트 - 없음 */}
-          {/* <div className="no_search_data_container">
-            <div className="no_search_data_box">
-              <img alt="no search data" className="no_search_data_image" src="https://cdn.brickchat.dev/assets/img/icon_brick_error.png" />
-              <p className="no_search_data_text">주문내역이 없습니다.</p>
-            </div>
-          </div> */}
         </div>
       </div>
     );
@@ -537,22 +540,54 @@ const ChatAdviseInformationSection = () => {
   /* 4-1. KMS 지식 추천 탭 */
   const showKMSKnowledgeRecommandTab = () => {
     return (
-      <div className="KMS_knowledge_recommand_container">
-        <div className="KMS_knowledge_recommand_search_text_field_box">
+      <div className="knowledge_recommand_container KMS">
+        <div className="knowledge_recommand_search_text_field_box KMS">
           <OutlineSearchTextField
             placeholderText="KMS 지식 검색하기"
             ref={refSearchKMSKnowledgeRecommandTextField}
             handleClickSearchButton={handleSearchKMSKnowledgeRecommand}
           />
         </div>
-        <ul className="KMS_knowledge_recommand_lists">
-          <li className="KMS_knowledge_recommand_list">
-            <div className="KMS_knowledge_recommand_contents">
-              <div className="KMS_knowledge_recommand_title">
+        {/* 상담 지식 사전 버튼 클릭으로 접근했을 경우 | 검색 결과 없을 경우 문구 달라짐 */}
+        <div className="knowledge_recommand_search_no_data_found_box">
+          <NoDataFound>KMS 지식을 검색해주세요.</NoDataFound>
+          {/* <NoDataFound>검색 결과가 없습니다.</NoDataFound> */}
+        </div>
+        {/* KMS 지식 리스트 */}
+        {/* <ul className="knowledge_recommand_lists KMS">
+          <li className="knowledge_recommand_list KMS">
+            <div className="knowledge_recommand_contents KMS">
+              <div className="knowledge_recommand_title KMS">
                 포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
               </div>
-              <div className="KMS_knowledge_recommand_sentence_scroll_area">
-                <div className="KMS_knowledge_recommand_sentence">
+              <div className="knowledge_recommand_sentence_scroll_area KMS">
+                <div className="knowledge_recommand_sentence KMS">주문배송란에 선물포장 기입</div>
+              </div>
+              <div className="copy_recommand_sentence_button_box">
+                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+              </div>
+            </div>
+          </li>
+          <li className="knowledge_recommand_list KMS">
+            <div className="knowledge_recommand_contents KMS">
+              <div className="knowledge_recommand_title KMS">
+                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+              </div>
+              <div className="knowledge_recommand_sentence_scroll_area KMS">
+                <div className="knowledge_recommand_sentence KMS">주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이</div>
+              </div>
+              <div className="copy_recommand_sentence_button_box">
+                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+              </div>
+            </div>
+          </li>
+          <li className="knowledge_recommand_list KMS">
+            <div className="knowledge_recommand_contents KMS">
+              <div className="knowledge_recommand_title KMS">
+                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+              </div>
+              <div className="knowledge_recommand_sentence_scroll_area KMS">
+                <div className="knowledge_recommand_sentence KMS">
                   주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
                 </div>
               </div>
@@ -561,13 +596,13 @@ const ChatAdviseInformationSection = () => {
               </div>
             </div>
           </li>
-          <li className="KMS_knowledge_recommand_list">
-            <div className="KMS_knowledge_recommand_contents">
-              <div className="KMS_knowledge_recommand_title">
+          <li className="knowledge_recommand_list KMS">
+            <div className="knowledge_recommand_contents KMS">
+              <div className="knowledge_recommand_title KMS">
                 포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
               </div>
-              <div className="KMS_knowledge_recommand_sentence_scroll_area">
-                <div className="KMS_knowledge_recommand_sentence">
+              <div className="knowledge_recommand_sentence_scroll_area KMS">
+                <div className="knowledge_recommand_sentence KMS">
                   주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에
                   선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에 선물포장
                   기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
@@ -578,39 +613,31 @@ const ChatAdviseInformationSection = () => {
               </div>
             </div>
           </li>
-          <li className="KMS_knowledge_recommand_list">
-            <div className="KMS_knowledge_recommand_contents">
-              <div className="KMS_knowledge_recommand_title">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="KMS_knowledge_recommand_sentence_scroll_area">
-                <div className="KMS_knowledge_recommand_sentence">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
+        </ul> */}
+        <div className="knowledge_recommand_pagination_box KMS">
+          <div className="pagination">
+            <button type="button" className="page_move_arrow_button go_to_first hide" onClick={handleClickMovePaginationArrowButton}>
+              <IconPainationFirst />
+            </button>
+            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_prev">
+              <IconPainationPrev />
+            </button>
+            <div className="pagination_buttons_box">
+              <ol className="pagination_button_lists">
+                <li className="pagination_button_list">
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button breadscrumb">
+                    1
+                  </button>
+                </li>
+              </ol>
             </div>
-          </li>
-          <li className="KMS_knowledge_recommand_list">
-            <div className="KMS_knowledge_recommand_contents">
-              <div className="KMS_knowledge_recommand_title">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="KMS_knowledge_recommand_sentence_scroll_area">
-                <div className="KMS_knowledge_recommand_sentence">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div className="KMS_knowledge_recommand_pagination_box">
-          <div className="pagination">페이지네이션</div>
+            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_next">
+              <IconPainationPrev />
+            </button>
+            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_last hide">
+              <IconPainationFirst />
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -619,10 +646,146 @@ const ChatAdviseInformationSection = () => {
   /* 4-2. 챗봇 지식 추천 탭 */
   const showChatbotKnowledgeRecommandTab = () => {
     return (
-      <div className="chatbot_knowledge_recommand_container">
-        <ul className="chatbot_knowledge_recommand_lists">
-          <li>hi</li>
+      <div className="knowledge_recommand_container chatbot">
+        <div className="knowledge_recommand_search_text_field_box chatbot">
+          <OutlineSearchTextField
+            placeholderText="챗봇 지식 검색하기"
+            ref={refSearchChatbotKnowledgeRecommandTextField}
+            handleClickSearchButton={handleSearchChatbotKnowledgeRecommand}
+          />
+        </div>
+        <ul className="knowledge_recommand_lists chatbot">
+          <li className="knowledge_recommand_list chatbot">
+            <div className="knowledge_recommand_contents chatbot">
+              <div className="knowledge_recommand_title chatbot">
+                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+              </div>
+              <div className="knowledge_recommand_sentence_scroll_area chatbot">
+                <div className="knowledge_recommand_sentence chatbot">주문배송란에 선물포장 기입</div>
+              </div>
+              <div className="copy_recommand_sentence_button_box">
+                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+              </div>
+            </div>
+          </li>
+          <li className="knowledge_recommand_list chatbot">
+            <div className="knowledge_recommand_contents chatbot">
+              <div className="knowledge_recommand_title chatbot">
+                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+              </div>
+              <div className="knowledge_recommand_sentence_scroll_area chatbot">
+                <div className="knowledge_recommand_sentence chatbot">
+                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이
+                </div>
+              </div>
+              <div className="copy_recommand_sentence_button_box">
+                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+              </div>
+            </div>
+          </li>
+          <li className="knowledge_recommand_list chatbot">
+            <div className="knowledge_recommand_contents chatbot">
+              <div className="knowledge_recommand_title chatbot">
+                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+              </div>
+              <div className="knowledge_recommand_sentence_scroll_area chatbot">
+                <div className="knowledge_recommand_sentence chatbot">
+                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
+                </div>
+              </div>
+              <div className="copy_recommand_sentence_button_box">
+                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+              </div>
+            </div>
+          </li>
+          <li className="knowledge_recommand_list chatbot">
+            <div className="knowledge_recommand_contents chatbot">
+              <div className="knowledge_recommand_title chatbot">
+                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+              </div>
+              <div className="knowledge_recommand_sentence_scroll_area chatbot">
+                <div className="knowledge_recommand_sentence chatbot">
+                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에
+                  선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에 선물포장
+                  기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
+                </div>
+              </div>
+              <div className="copy_recommand_sentence_button_box">
+                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+              </div>
+            </div>
+          </li>
         </ul>
+        <div className="knowledge_recommand_pagination_box chatbot">
+          <div className="pagination">
+            <button type="button" className="page_move_arrow_button go_to_first" onClick={handleClickMovePaginationArrowButton}>
+              <IconPainationFirst />
+            </button>
+            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_prev">
+              <IconPainationPrev />
+            </button>
+            <div className="pagination_buttons_box">
+              <ol className="pagination_button_lists">
+                <li className="pagination_button_list">
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button breadscrumb">
+                    1
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    2
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    3
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    4
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    5
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    6
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    7
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    8
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    9
+                  </button>
+                </li>
+                <li>
+                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
+                    10
+                  </button>
+                </li>
+              </ol>
+            </div>
+            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_next">
+              <IconPainationPrev />
+            </button>
+            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_last">
+              <IconPainationFirst />
+            </button>
+          </div>
+        </div>
       </div>
     );
   };
@@ -740,6 +903,8 @@ const ChatAdviseInformationSection = () => {
                         maxLength="100"
                         ref={refAdviseMemoTextField}
                         onKeyUp={countTextFieldCharacter}
+                        spellCheck="false"
+                        autoComplete="off"
                       />
                     </div>
                     <div className="edit_chat_advise_memo_text_field_character_count_box">
@@ -798,7 +963,7 @@ const ChatAdviseInformationSection = () => {
         </div>
       </section>
       {/* 4. 상담 지식사전 패널 섹션 */}
-      <section className={`KMS_pannel_section ${isShowKMSPannel ? 'show' : ''}`}>
+      <section className={`KMS_pannel_section_wrap ${isShowKMSPannel ? 'show' : ''}`}>
         <div className="KMS_pannel_main_title_head">
           <h2 className="KMS_pannel_main_title">상담 지식 사전</h2>
           <div className="KMS_pannel_section_close_button_box">

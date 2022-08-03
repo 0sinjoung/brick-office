@@ -227,7 +227,7 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents single_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -244,10 +244,10 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents double_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -264,13 +264,13 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents triple_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -287,16 +287,16 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents quadruple_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -376,7 +376,7 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents single_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -393,10 +393,10 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents double_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -413,13 +413,13 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents triple_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>
@@ -436,16 +436,16 @@ const FileUploadScenario = () => {
           <div className="fileupload_contents_box">
             <div className="fileupload_image_template">
               <div className="fileupload_image_contents quadruple_image">
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
-                <div className="fileupload_image_box" role="button" aria-pressed="false" onClick={handleShowLightbox} tabIndex={0}>
+                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
                   <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
                 </div>
               </div>

@@ -8,7 +8,7 @@ import './Header.scss';
 
 const Header = () => {
   const MENU_TITLE = '채팅상담';
-  const MY_PROFILE_AVATAR_IMG_URL = '';
+  const MY_PROFILE_AVATAR_IMG_URL = 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile2.png';
   const MY_PROFILE_NAME = '김다이';
   const MY_PROFILE_NICNAME = '꾸꾸';
   const IS_ADMIN = false;
@@ -36,7 +36,9 @@ const Header = () => {
       </div>
       <div className="header_right_area">
         <div className="header_user_information_container">
-          <div className="header_avatar_img_box">{/* <img className="header_avatar_img" src={MY_PROFILE_AVATAR_IMG_URL} alt="header_avatar" /> */}</div>
+          <div className="header_avatar_image_box">
+            <img className="header_avatar_image" src={MY_PROFILE_AVATAR_IMG_URL} alt="header avatar" />
+          </div>
           <div className="header_user_name_box">
             <p className="header_user_greetings">안녕하세요. </p>
             <div className="header_user_name">{MY_PROFILE_NICNAME !== '' ? MY_PROFILE_NICNAME : MY_PROFILE_NAME}</div>

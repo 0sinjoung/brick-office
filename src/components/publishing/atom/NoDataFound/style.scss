@@ -1,0 +1,21 @@
+@import "/src/styles/_variables.scss";
+
+.no_data_found_box {
+  width: 100%;
+  @include flexCenter();
+  flex-direction: column;
+  gap: 15px;
+} 
+
+.no_data_found_image {
+  width: 100px;
+  height: 100px;
+}
+
+.no_data_found_description {
+  font-size: 14px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey030;
+  text-align: center;
+}

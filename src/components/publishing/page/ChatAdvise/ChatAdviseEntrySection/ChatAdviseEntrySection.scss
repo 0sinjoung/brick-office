@@ -1,0 +1,121 @@
+@import "/src/styles/_variables.scss";
+
+.chat_advise_entry_section_wrap {
+  flex-grow: 1;
+  @include flexCenter();
+  background-color: $white;
+}
+
+.chat_advise_entry_contents_container {
+  
+}
+/* 1. 채팅상담 진입 */
+.entry_operating_time_adviser_icon_box {
+  @include flexCenter();
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+
+  .icon_lnb_chat_advise {
+    fill: $grey100;
+    stroke: $grey100;
+  }
+}
+.chat_advise_entry_operating_time_box {
+  @include flexCenter();
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.operating_time_notice_box {
+  font-size: 15px;
+  font-weight: $semi-bold;
+  color: $grey100;
+  line-height: 1;
+}
+.current_operation_color_tag_box{
+  display: bloex;
+
+  .color_tag {
+    border-radius: 14px;
+    height: 25px;
+    padding: 6px;
+    color: $brickCoral100;
+    background-color: #F2483A1A;
+  }
+}
+
+
+
+/* 2. 채팅상담 진입 메인 박스*/
+.chat_advise_entry_main_contents_box {
+  width: 556px;
+  height: 644px;
+  padding: 40px;
+  background-color: $white;
+  border-radius: 20px;
+  border: $grey020-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.chat_advise_entry_main_title {
+  font-size: 26px;
+  padding: 0 28px;
+  font-weight: $bold;
+  color: $grey100;
+  margin-bottom: 8px;
+}
+.chat_advise_entry_description {
+  font-size: 16px;
+  padding: 0 28px;
+  font-weight: $medium;
+  color: $grey100;
+  margin-bottom: 14px;
+}
+.chat_advise_introduce_page_title {
+  font-size: 16px;
+  font-weight: $bold;
+  color: $grey080;
+  margin-bottom: 6px;
+}
+.chat_advise_introduce_description {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey050;
+}
+
+
+
+
+.chat_advise_introduce_page_move_button {
+  @include flexStart();
+  gap: 18px;
+  padding: 22px 26px;
+  width: 100%;
+  background-color: $white;
+  border-radius: 20px;
+
+  @include hoverTransition();
+  &.customer_manage {
+    &:hover {
+      background-color: #F1FDF9;
+    }
+  }
+  &:hover {
+    background-color: #FFF5F4;
+  }
+}
+
+.chat_advise_entry_page_move_image_box {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.chat_advise_entry_page_image {
+  width: 100%;
+  object-fit: fill;
+}

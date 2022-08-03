@@ -24,14 +24,15 @@
   gap: 8px;
 }
 
-.header_avatar_img_box {
+.header_avatar_image_box {
   width: 30px;
   height: 30px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #DBD2FD;
   
-  .header_avatar_img {
+  .header_avatar_image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 }

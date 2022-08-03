@@ -62,6 +62,7 @@ const OutlineSearchTextField = React.forwardRef(({ placeholderText, handleClickS
         onFocus={handleFocusTextField}
         onBlur={handleBlurTextField}
         spellCheck="false"
+        autoComplete="off"
       />
       <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
         <IconCrossSmall />

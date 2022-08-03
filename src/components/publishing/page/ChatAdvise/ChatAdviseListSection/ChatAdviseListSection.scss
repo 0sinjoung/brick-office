@@ -332,28 +332,12 @@
 }
 
 /* 4-1. 채팅 상담 리스트 없는 경우 */
-.chat_advise_lists_no_data {
+.chat_advise_lists_no_data_found_box {
   flex: 1 1 auto;
   @include flexCenter();
   flex-direction: column;
   width: 100%;
   gap: 15px;
-}
-
-.chat_advise_lists_no_data_img_box {
-  @include flexCenter();
-  width: 100px;
-  height: 100px;
-}
-
-.chat_advise_lists_no_data_img {
-  object-fit: contain;
-}
-
-.chat_advise_lists_no_data_text {
-  font-size: 14px;
-  font-weight: $medium;
-  color: $grey030;
 }
 
 /* 4-2. 채팅 상담 리스트 */
@@ -681,6 +665,14 @@
     padding: 0;
   }
 }
+
+/* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */
+.previous_chat_advise_lists_no_data_found_box {
+  @include flexCenter();
+  height: 100%;
+}
+
+/* 5-1-2. 이전 상담 보기 패널 - 상담 리스트 영역*/
 .previous_chat_advise_list_box {
   @include scrollStyle();
   flex-grow: 1;
@@ -689,3 +681,4 @@
   width: 100%;
   padding: 0 14px;
 }
+

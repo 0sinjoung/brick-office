@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ChatAdviseListSection from 'components/publishing/page/ChatAdvise/ChatAdviseListSection/ChatAdviseListSection';
 import ChatAdviseMainSection from 'components/publishing/page/ChatAdvise/ChatAdviseMainSection/ChatAdviseMainSection';
 import ChatAdviseInformationSection from 'components/publishing/page/ChatAdvise/ChatAdviseInformationSection/ChatAdviseInformationSection';
+import ChatAdviseEntrySection from 'components/publishing/page/ChatAdvise/ChatAdviseEntrySection/ChatAdviseEntrySection';
 import './style.scss';
 
 /** 채팅 상담 페이지
@@ -10,6 +11,9 @@ import './style.scss';
  */
 const ChatAdvise = ({ children }) => {
   const [isAdviserWorkingStart, setIsAdviserWorkingStart] = useState(true);
+  // const showAdviseEntrySection = () => {
+  //   return ();
+  // };
   return (
     <>
       <div className="contents_wrap">
@@ -18,6 +22,7 @@ const ChatAdvise = ({ children }) => {
             <ChatAdviseListSection />
             <ChatAdviseMainSection />
             <ChatAdviseInformationSection />
+            {/* <ChatAdviseEntrySection /> */}
           </div>
         </main>
       </div>
