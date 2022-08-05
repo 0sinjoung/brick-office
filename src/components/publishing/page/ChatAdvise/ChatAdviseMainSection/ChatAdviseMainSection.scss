@@ -488,6 +488,8 @@
   margin-bottom: 6px;
 }
 .chat_name_box {
+  @include ellipsisOneLine();
+  max-width: 102px;
   order: 2;  
   font-size: 15px;
   font-weight: $semi-bold;
@@ -755,6 +757,69 @@
 .chat_advise_main_footer_top_button {
   @include flexCenter();
 }
+
+/* 3-1-1-1. 푸터 탑 버튼 툴팁 */
+[data-chat-advise-footer-tooltip] {
+  position: relative;
+  @include hoverTransition();
+  &:hover {
+    &::after {
+      @include tooltipStyle();
+    }
+  }
+}
+
+[data-chat-advise-footer-tooltip='chat_advise_keyword_pannel'] {
+  &:hover {
+    &::after {
+      content: '상담 키워드';
+    }
+  }
+}
+[data-chat-advise-footer-tooltip='button_action_pannel'] {
+  &:hover {
+    &::after {
+      content: '버튼 액션 추가';
+    }
+  }
+}
+[data-chat-advise-footer-tooltip='text_bold'] {
+  &:hover {
+    &::after {
+      content: '굵게';
+      left: calc(50% + 6px);
+    }
+  }
+}
+[data-chat-advise-footer-tooltip='text_italic'] {
+  &:hover {
+    &::after {
+      content: '기울기';
+    }
+  }
+}
+[data-chat-advise-footer-tooltip='text_underline'] {
+  &:hover {
+    &::after {
+      content: '밑줄';
+    }
+  }
+}
+[data-chat-advise-footer-tooltip='text_color'] {
+  &:hover {
+    &::after {
+      content: '텍스트 색';
+    }
+  }
+}
+[data-chat-advise-footer-tooltip='text_background'] {
+  &:hover {
+    &::after {
+      content: '텍스트 배경색';
+    }
+  }
+}
+
 
 .chat_advise_main_footer_top_left_buttons_box {
   @include flexStart();
@@ -1091,7 +1156,7 @@
 
 
 /* 1510 지원을 위한 미디어쿼리 */
-@media only screen and (max-device-width: 1540px) {
+@media only screen and (max-width: 1540px) {
   .chat_advise_main_header_container {
     padding: 0 14px;
   }

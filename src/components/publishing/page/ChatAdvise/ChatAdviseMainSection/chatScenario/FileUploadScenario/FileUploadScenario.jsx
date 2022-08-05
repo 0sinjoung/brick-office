@@ -4,7 +4,7 @@ import { ReactComponent as IconFileDownload } from 'assets/svg/icon/fileUpload/i
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg';
 import { ReactComponent as IconFileUnvailavleBgGrey } from 'assets/svg/icon/fileUpload/icon_file_unavailable_bg_grey.svg';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
-import AvatarIcon from 'components/publishing/atom/avatar/AvatarIcon';
+import BasicAvatarIcon from 'components/publishing/atom/avatarIcon/BasicAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import './FileUploadScenario.scss';
 
@@ -73,7 +73,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_CHATBOT}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage={BOT_PROFILE_IMAGE} />
+            <BasicAvatarIcon avatarImage={BOT_PROFILE_IMAGE} />
           </div>
         </div>
         <div className="message_container">
@@ -107,7 +107,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_CUSTOMER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage="" />
+            <BasicAvatarIcon avatarImage="" />
           </div>
         </div>
         <div className="message_container">
@@ -141,7 +141,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_CUSTOMER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage="" />
+            <BasicAvatarIcon avatarImage="" />
           </div>
         </div>
         <div className="message_container">
@@ -170,7 +170,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_ADVISER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} />
+            <BasicAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} />
           </div>
         </div>
         <div className="message_container">
@@ -203,7 +203,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_ADVISER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} />
+            <BasicAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} />
           </div>
         </div>
         <div className="message_container">
@@ -352,7 +352,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_CUSTOMER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage="" />
+            <BasicAvatarIcon avatarImage="" />
           </div>
         </div>
         <div className="message_container">
@@ -614,7 +614,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_ADVISER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} />
+            <BasicAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} />
           </div>
         </div>
         <div className="message_container">
@@ -647,7 +647,7 @@ const FileUploadScenario = () => {
             <OutlineTag>{NAME_TAG_ADVISER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} />
+            <BasicAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} />
           </div>
         </div>
         <div className="message_container">

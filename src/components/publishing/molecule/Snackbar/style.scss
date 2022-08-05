@@ -1,0 +1,83 @@
+@import "/src/styles/_variables.scss";
+
+.snackbar_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  width: 364px;
+  min-height: 90px;
+  padding: 16px 16px 18px;
+  background-color: $toast-message-background;
+  border-radius: 10px;
+  overflow: hidden;
+  
+  &.hide {
+    display: none;
+  }
+}
+
+.snackbar_head {
+  @include flexSpace();
+}
+
+.snackbar_title_box {
+  @include flexStart();
+  gap: 8px;
+}
+
+.snackbar_icon {
+  display: none;
+  width: 24px;
+  height: 24px;
+
+  &.show {
+    display: block;
+  }
+
+  .snackbar_icon_image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.snackbar_title {
+  font-size: 18px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $white;
+}
+
+.snackbar_contents {
+  font-size: 16px;
+  font-weight: $regular;
+  color: $grey020;
+}
+
+.snackbar_close_button_box {
+  @include flexCenter();
+
+  .icon_button {
+    background-color: transparent;
+    
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  
+  .icon_cross {
+    stroke: $grey020;
+  }
+}
+.toast_message_icon {
+  @include flexCenter();
+  width: 17px;
+  height: 17px;
+}
+
+.toast_message_text {
+  font-size: 16px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $white;
+}

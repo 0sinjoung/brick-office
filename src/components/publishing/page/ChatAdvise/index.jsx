@@ -11,18 +11,24 @@ import './style.scss';
  */
 const ChatAdvise = ({ children }) => {
   const [isAdviserWorkingStart, setIsAdviserWorkingStart] = useState(true);
-  // const showAdviseEntrySection = () => {
-  //   return ();
-  // };
+  const displayAdviseEntrySection = () => {
+    if (!isAdviserWorkingStart) {
+      return <ChatAdviseEntrySection />;
+    }
+    return (
+      <>
+        <ChatAdviseMainSection />
+        <ChatAdviseInformationSection />
+      </>
+    );
+  };
   return (
     <>
       <div className="contents_wrap">
         <main className="page_wrap full">
           <div className="chat_advise_section_wrap">
             <ChatAdviseListSection />
-            <ChatAdviseMainSection />
-            <ChatAdviseInformationSection />
-            {/* <ChatAdviseEntrySection /> */}
+            {displayAdviseEntrySection()}
           </div>
         </main>
       </div>

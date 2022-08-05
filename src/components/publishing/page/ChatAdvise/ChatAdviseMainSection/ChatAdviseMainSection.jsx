@@ -45,7 +45,7 @@ const ChatAdviseMainSection = () => {
   const [isShowButtonActionPannel, setIsShowButtonActionPannel] = useState(false);
   const CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE = 'https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png';
   const CUSTOMER_NAME_SHORT = '김다영';
-  const CURRENT_ADVISE_CHAT_STATE = '김제니 상담 진행 중';
+  const CURRENT_ADVISE_CHAT_STATE = '꾸꾸 상담 진행 중';
   const HEADER_ALERT_BAR_TITLE = '상담사 변경 요청 이유';
   const HEADER_ALERT_BAR_DESCRIPTION = '상담분야 변경: 배송문의 - 결제문의';
   const CURRENT_CHAT_STATE = '상담진행중';
@@ -54,6 +54,7 @@ const ChatAdviseMainSection = () => {
   const DISABLE = 'disable';
 
   /* header */
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const [showHeaderSearchArea, setShowHeaderSearchArea] = useState('');
   const [showHeaderSearchIcon, setShowHeaderSearchIcon] = useState('show');
   const handleShowHeaderSearchArea = () => {
@@ -81,6 +82,10 @@ const ChatAdviseMainSection = () => {
   const [showSearchFocusMoveButton, setShowSearchFocusMoveButton] = useState('show');
   const handleMoveSearchFocus = () => {
     console.log('하이라이팅 포커스 이동');
+  };
+
+  const handleToggleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
   };
 
   /* footer */
@@ -156,7 +161,7 @@ const ChatAdviseMainSection = () => {
                   <img className="chat_advise_header_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
                 </div>
                 <div className="chat_advise_header_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                <button type="button" className="chat_advise_header_bookmark_button active">
+                <button type="button" className={`chat_advise_header_bookmark_button ${isBookmarked ? 'active' : ''}`} onClick={handleToggleBookmark}>
                   <IconBookmark />
                 </button>
                 <div className="chat_advise_header_current_chat_state_tag">{CURRENT_ADVISE_CHAT_STATE}</div>
@@ -272,37 +277,40 @@ const ChatAdviseMainSection = () => {
                   {/* 3-1-1. 푸터 탑 버튼 영역 */}
                   <div className="chat_advise_main_footer_top_buttons_box">
                     <div className="chat_advise_main_footer_top_left_buttons_box">
-                      <div className="chat_advise_main_footer_button chat_advise_keyword_pannel">
+                      <div
+                        className="chat_advise_main_footer_top_button_box chat_advise_keyword_pannel"
+                        data-chat-advise-footer-tooltip="chat_advise_keyword_pannel"
+                      >
                         <IconButton buttonClassName="tiny" handleClick={handleToggleChatAdviseKeywordPannel}>
                           <IconChatAdviseKeywordPannelButton />
                         </IconButton>
                       </div>
-                      <div className="chat_advise_main_footer_top_button button_action_pannel">
+                      <div className="chat_advise_main_footer_top_button_box button_action_pannel" data-chat-advise-footer-tooltip="button_action_pannel">
                         <IconButton buttonClassName="tiny" handleClick={handleToggleButtonActionPannel}>
                           <IconButtonActionPannelButton />
                         </IconButton>
                       </div>
-                      <div className="chat_advise_main_footer_top_button text_bold">
+                      <div className="chat_advise_main_footer_top_button_box text_bold" data-chat-advise-footer-tooltip="text_bold">
                         <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
                           <IconTextBold />
                         </IconButton>
                       </div>
-                      <div className="chat_advise_main_footer_top_button text_italic">
+                      <div className="chat_advise_main_footer_top_button_box text_italic" data-chat-advise-footer-tooltip="text_italic">
                         <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
                           <IconTextItalic />
                         </IconButton>
                       </div>
-                      <div className="chat_advise_main_footer_top_button text_underline">
+                      <div className="chat_advise_main_footer_top_button_box text_underline" data-chat-advise-footer-tooltip="text_underline">
                         <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
                           <IconTextUnderline />
                         </IconButton>
                       </div>
-                      <div className="chat_advise_main_footer_top_button text_color">
+                      <div className="chat_advise_main_footer_top_button_box text_color" data-chat-advise-footer-tooltip="text_color">
                         <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
                           <IconTextColor />
                         </IconButton>
                       </div>
-                      <div className="chat_advise_main_footer_top_button text_background">
+                      <div className="chat_advise_main_footer_top_button_box text_background" data-chat-advise-footer-tooltip="text_background">
                         <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
                           <IconTextBackground />
                         </IconButton>

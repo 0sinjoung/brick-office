@@ -1,0 +1,14 @@
+@import "/src/styles/_variables.scss";
+
+.snackbars {
+  position: fixed;
+  bottom: 30px;
+  right: 34px;
+  z-index: 999;
+}
+
+.snackbar_lists {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

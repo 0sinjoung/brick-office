@@ -309,7 +309,7 @@
     background-color: $grey005;
   }
   
-  &.active {
+  &.breadscrumb {
     &:hover {
       background-color: $white;
     }
@@ -505,10 +505,6 @@
 
 /* 3-2-3. 상세 주문내역 모달 */
 .detail_customer_order_list_modal_container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 840px;
   height: 615px;
   border-radius: 8px;
@@ -726,7 +722,7 @@
     background-color: $grey005;
   }
   
-  &.active {
+  &.breadscrumb {
     &:hover {
       background-color: $white;
     }
@@ -856,20 +852,6 @@
 
 
 /* atom - 이 파일에선 삭제될 예정 */
-.fullpage_modal {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  background-color: $dim-thick;
-  overflow: hidden;
-}
-
-
 .detail_customer_order_list_modal_selectbox_toggle_button {
   @include flexSpace();
   width: 140px;

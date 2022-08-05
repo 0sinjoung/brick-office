@@ -295,6 +295,7 @@
   padding: 9px 12px;
   border-radius: 10px;
 
+  @include hoverTransition();
   &:hover {
     background-color: $grey005;
 

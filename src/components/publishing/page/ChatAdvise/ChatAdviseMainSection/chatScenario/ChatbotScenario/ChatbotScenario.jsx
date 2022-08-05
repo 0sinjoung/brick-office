@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ReactComponent as IconTrashCan } from 'assets/svg/icon/icon_trash_can.svg';
 import { ReactComponent as IconArrowUpSmall } from 'assets/svg/icon/icon_arrow_up_small.svg';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
-import AvatarIcon from 'components/publishing/atom/avatar/AvatarIcon';
+import BasicAvatarIcon from 'components/publishing/atom/avatarIcon/BasicAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import './ChatbotScenario.scss';
 
@@ -63,7 +63,7 @@ const ChatbotScenario = () => {
             <OutlineTag>{NAME_TAG_CHATBOT}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage={BOT_PROFILE_IMAGE} />
+            <BasicAvatarIcon avatarImage={BOT_PROFILE_IMAGE} />
           </div>
         </div>
         <div className="message_container">
@@ -503,7 +503,7 @@ const ChatbotScenario = () => {
             <OutlineTag>{NAME_TAG_CUSTOMER}</OutlineTag>
           </div>
           <div className="avatar_box">
-            <AvatarIcon avatarImage="" />
+            <BasicAvatarIcon avatarImage="" />
           </div>
         </div>
         <div className="message_container">

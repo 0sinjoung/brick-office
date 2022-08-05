@@ -11,12 +11,14 @@ import { ReactComponent as IconBookmark } from 'assets/svg/icon/icon_bookmark.sv
 import { ReactComponent as IconLnbChatAdvise } from 'assets/svg/icon/lnb/icon_lnb_chat_advise.svg';
 import NumberNotificationBadge from 'components/publishing/atom/notificationBadge/NumberNotificationBadge';
 import NewNotificationBadge from 'components/publishing/atom/notificationBadge/NewNotificationBadge';
-import OnairAvatarIcon from 'components/publishing/atom/avatar/OnairAvatarIcon';
+import OnairAvatarIcon from 'components/publishing/atom/avatarIcon/OnairAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import ColorTag from 'components/publishing/atom/tag/ColorTag';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
+import BasicConfirmModal from 'components/publishing/molecule/modal/BasicConfirmModal';
+import ToastMessage from 'components/publishing/atom/ToastMessage';
 import './ChatAdviseListSection.scss';
 
 /** 채팅 상담 리스트 영역
@@ -62,13 +64,79 @@ const ChatAdviseListSection = () => {
   const CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 = 2;
   const CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 = 0;
 
-  /* 셀렉트 박스 - 업무 상태 */
-  const handleClickWorkingState = () => {
-    console.log('업무상태 변경');
+  /* 0. 토스트 메시지 */
+  const [toastMessageData, setToastMessageData] = useState({
+    isShow: true,
+    icon: '',
+    message: '토스트 메시지 SAMPLE',
+  });
+
+  /* 1. 상담사 정보 영역 */
+  /* 1-1. 셀렉트 박스 - 업무 상태 */
+  const [showAdviserWorkingStateModal, setShowClickAdviseWorkingStateModal] = useState('');
+  const [versionAdviserWorkingStateModal, setVersionAdviserWorkingStateModal] = useState('');
+  const handleClickSelectboxAdviserWorkingStateStart = () => {
+    console.log('셀렉트박스 - 시작하기');
+    setShowClickAdviseWorkingStateModal('show');
+    setVersionAdviserWorkingStateModal('start');
+  };
+  const handleClickSelectboxAdviserWorkingStateEnd = () => {
+    console.log('셀렉트박스 - 종료하기');
+    setShowClickAdviseWorkingStateModal('show');
+    setVersionAdviserWorkingStateModal('end');
+  };
+  const handleCloseAdviserWorkingStateModal = () => {
+    console.log('모달 종료');
+    setShowClickAdviseWorkingStateModal('');
+  };
+  const handleActionAdviserWorkingStateStartModal = () => {
+    console.log('업무상태 = 시작');
+    setShowClickAdviseWorkingStateModal('');
+    setToastMessageData({ ...toastMessageData, isShow: true, message: '업무 시작으로 상태를 변경했어요.' });
+    setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
+  };
+  const handleActionAdviserWorkingStateEndModal = () => {
+    console.log('업무상태 = 종료');
+    setShowClickAdviseWorkingStateModal('');
+    setToastMessageData({ ...toastMessageData, isShow: true, message: '업무 종료로 상태를 변경했어요.' });
+    setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
+  };
+  const displayAdviserWorkingStateModal = () => {
+    if (showAdviserWorkingStateModal === 'show') {
+      if (versionAdviserWorkingStateModal === 'start') {
+        return (
+          <BasicConfirmModal
+            showModal={showAdviserWorkingStateModal}
+            titleText="상담 업무를 시작하시겠습니까?"
+            actionButtonText="시작하기"
+            handleAction={handleActionAdviserWorkingStateStartModal}
+            handleClose={handleCloseAdviserWorkingStateModal}
+          />
+        );
+      }
+
+      return (
+        <BasicConfirmModal
+          showModal={showAdviserWorkingStateModal}
+          titleText="상담 업무를 종료하시겠습니까?"
+          actionButtonText="종료하기"
+          handleAction={handleActionAdviserWorkingStateEndModal}
+          handleClose={handleCloseAdviserWorkingStateModal}
+        >
+          상담 업무 종료상태에서 채팅 상담을 진행 할 수 없습니다.
+        </BasicConfirmModal>
+      );
+    }
   };
   const workingStateDropdownData = {
-    start: { text: '업무시작', handleClick: handleClickWorkingState, tagText: '근무중', tagTextColor: '#219652', tagBackgroundColor: '#2196521A' },
-    end: { text: '업무종료', handleClick: handleClickWorkingState, tagText: '종료', tagTextColor: '#28323C', tagBackgroundColor: '#ECEDEF' },
+    start: {
+      text: '업무시작',
+      handleClick: handleClickSelectboxAdviserWorkingStateStart,
+      tagText: '근무중',
+      tagTextColor: '#219652',
+      tagBackgroundColor: '#2196521A',
+    },
+    end: { text: '업무종료', handleClick: handleClickSelectboxAdviserWorkingStateEnd, tagText: '종료', tagTextColor: '#28323C', tagBackgroundColor: '#ECEDEF' },
   };
   const [showWorkingStateDropdown, setShowSettingDropdown] = useState(false);
   const clickWorkingStateDropdownToggle = () => {
@@ -76,13 +144,12 @@ const ChatAdviseListSection = () => {
     setShowSettingDropdown(!showWorkingStateDropdown);
   };
 
-  /* 이전 상담 보기 패널 */
-  const [showPreviousChatListPannel, setShowPreviousChatListPannel] = useState(false);
-  const handleShowPreviousChatListPannel = () => {
-    setShowPreviousChatListPannel(!showPreviousChatListPannel);
+  /* 2. 상담 카테고리 영역 */
+  const handleTabChatAdviseCategory = () => {
+    console.log('카테고리 탭 클릭');
   };
 
-  /* 상세 검색 영역 - 작업중 */
+  /* 3. 채팅 상담 검색 영역 */
   const refDetailSearchCustomerTextField = React.createRef();
   const refPreviousSearchCustomerTextField = React.createRef();
   const handleShowDetailSearchPannel = () => {
@@ -97,8 +164,567 @@ const ChatAdviseListSection = () => {
   const handleSortingChatList = () => {
     console.log('상담 리스트 정렬🥕');
   };
+
+  /* 4. 채팅 상담 리스트 영역 */
+  const CURRENT_CHAT_ADIVSE_LIST_COUNT = 10;
   const handleClickChatAdviseListItem = () => {
     console.log('상담 리스트 클릭');
+  };
+  const displayChatAdviseLists = () => {
+    /* 4-1. 채팅 상담 리스트 없는 경우 */
+    if (CURRENT_CHAT_ADIVSE_LIST_COUNT === 0) {
+      return (
+        /* 진입시 리스트 없는 경우 | 검색 결과 없을 경우 문구 달라짐 */
+        <div className="chat_advise_lists_no_data_found_box">
+          <NoDataFound>상담 목록이 없어요.</NoDataFound>
+          {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
+        </div>
+      );
+    }
+
+    /* 4-2. 채팅 상담 리스트 */
+    return (
+      <ul className="chat_advise_lists">
+        <li className="chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container active"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} onair={START_WORKING_CASE1 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE1}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li className="chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_LONG}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE2}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li className="chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed active">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE1 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE3}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li className="chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_LONG}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE4}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li className="chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE4}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li className="chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE4}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ul>
+    );
+  };
+
+  /* 5. 이전 상담 보기 영역 */
+  const [showPreviousChatListPannel, setShowPreviousChatListPannel] = useState(false);
+  const handleShowPreviousChatListPannel = () => {
+    setShowPreviousChatListPannel(!showPreviousChatListPannel);
+  };
+
+  /* 5-1. 이전 상담 보기 패널 */
+  const PREVISOUS_CHAT_ADIVSE_LIST_COUNT = 0;
+  const showPreviousChatAdviseLists = () => {
+    /* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */
+    if (PREVISOUS_CHAT_ADIVSE_LIST_COUNT === 0) {
+      return (
+        <div className="previous_chat_advise_lists_no_data_found_box">
+          <NoDataFound>이전 상담 목록이 없어요.</NoDataFound>
+          {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
+        </div>
+      );
+    }
+
+    /* 5-1-2. 이전 상담 보기 패널 - 상담 리스트 영역 */
+    return (
+      <ul className="previous_chat_advise_lists">
+        <li className="previous_chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container active"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} onair={START_WORKING_CASE1 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE1}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li className="previous_chat_advise_list">
+          <article className="chat_advise_article">
+            <div className="chat_advise_dimed">
+              <div className="chat_advise_dimed_text_box">
+                <div className="chat_advise_dimed_icon_box">
+                  <IconLnbChatAdvise />
+                </div>
+                <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
+              </div>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleClickChatAdviseListItem}
+              onKeyUp={handleClickChatAdviseListItem}
+              className="chat_advise_article_clickable_container"
+            >
+              <div className="chat_advise_article_information_container">
+                <div className="chat_advise_article_information_box">
+                  <div className="chat_advise_channel_delimiter_img_box">
+                    <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
+                  </div>
+                  <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
+                  <div className="chat_advise_article_bookmark_icon_box">
+                    <IconBookmark />
+                  </div>
+                  <div className="chat_advise_article_adviser_name_box show">
+                    {/* (1) 상담사 미배정 상태 */}
+                    {/* <span className="chat_adviser_name">상담사 배정 필요</span>
+                    <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
+                    {/* (2) 상담사 정보  */}
+                    <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
+                    <div className="chat_adviser_name_card">
+                      <div className="chat_adviser_name_card_avatar_box">
+                        <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} onair={START_WORKING_CASE1 ? 'onair' : ''} />
+                      </div>
+                      <div className="chat_adviser_name_card_information_box">
+                        <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
+                        <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
+              </div>
+              <div className="chat_advise_article_contents_container">
+                <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
+                <div className="chat_advise_new_message_alert_count">
+                  <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE1}</NumberNotificationBadge>
+                </div>
+              </div>
+              {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
+              <div className="chat_advise_article_fields_container">
+                <div className="chat_advise_fields_box">
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
+                  <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
+                  <div className="chat_advise_fields_more_number_box">
+                    {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ul>
+    );
   };
 
   return (
@@ -134,12 +760,16 @@ const ChatAdviseListSection = () => {
               <div className={`chat_adviser_working_state_dropdown_box ${showWorkingStateDropdown ? 'show' : ''}`}>
                 <ul className="chat_adviser_working_state_dropdown_lists">
                   <li className="chat_adviser_working_state_dropdown_list">
-                    <button type="button" onClick={handleClickWorkingState} className="chat_adviser_working_state_dropdown_list_item_button">
+                    <button type="button" onClick={workingStateDropdownData.start.handleClick} className="chat_adviser_working_state_dropdown_list_item_button">
                       {workingStateDropdownData.start.text}
                     </button>
                   </li>
                   <li className="chat_adviser_working_state_dropdown_list">
-                    <button type="button" onClick={handleClickWorkingState} className="chat_adviser_working_state_dropdown_list_item_button active">
+                    <button
+                      type="button"
+                      onClick={workingStateDropdownData.end.handleClick}
+                      className="chat_adviser_working_state_dropdown_list_item_button active"
+                    >
                       {workingStateDropdownData.end.text}
                     </button>
                   </li>
@@ -147,44 +777,81 @@ const ChatAdviseListSection = () => {
               </div>
             </div>
           </div>
+          {displayAdviserWorkingStateModal()}
           {/* 2. 상담 카테고리 영역 */}
           <div className="chat_advise_category_container">
             <div className="chat_advise_category_first_tabs">
-              <button type="button" className="chat_advise_category_first_tab_button my_advise active">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleTabChatAdviseCategory}
+                onKeyUp={handleTabChatAdviseCategory}
+                className="chat_advise_category_first_tab_button my_advise breadscrumb"
+              >
                 <div className="chat_advise_category_first_tab_text">내 상담</div>
                 <div className="chat_advise_category_first_tab_alert_count">
                   <span className="tab_alert_count_number">80</span>
                   <span className="tab_alert_count_text">건</span>
                 </div>
-              </button>
-              <button type="button" className="chat_advise_category_first_tab_button all_advise">
+              </div>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleTabChatAdviseCategory}
+                onKeyUp={handleTabChatAdviseCategory}
+                className="chat_advise_category_first_tab_button all_advise"
+              >
                 <div className="chat_advise_category_first_tab_text">전체상담</div>
                 <div className="chat_advise_category_first_tab_alert_count">
                   <span className="tab_alert_count_number">100</span>
                   <span className="tab_alert_count_text">건</span>
                 </div>
-              </button>
+              </div>
             </div>
             <div className="chat_advise_category_second_tabs">
-              <button type="button" className="chat_advise_category_second_tab_button wating active">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleTabChatAdviseCategory}
+                onKeyUp={handleTabChatAdviseCategory}
+                className="chat_advise_category_second_tab_button wating breadscrumb"
+              >
                 <div className="chat_advise_category_second_tab_text">대기</div>
                 <div className="chat_advise_category_second_tab_alert_count">20</div>
-              </button>
-              <button type="button" className="chat_advise_category_second_tab_button proceeding">
+              </div>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleTabChatAdviseCategory}
+                onKeyUp={handleTabChatAdviseCategory}
+                className="chat_advise_category_second_tab_button proceeding"
+              >
                 <div className="chat_advise_category_second_tab_text">진행</div>
                 <div className="chat_advise_category_second_tab_alert_count">
                   06
                   {/* <NewNotificationBadge /> */}
                 </div>
-              </button>
-              <button type="button" className="chat_advise_category_second_tab_button holding">
+              </div>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleTabChatAdviseCategory}
+                onKeyUp={handleTabChatAdviseCategory}
+                className="chat_advise_category_second_tab_button holding"
+              >
                 <div className="chat_advise_category_second_tab_text">보류</div>
                 <div className="chat_advise_category_second_tab_alert_count">00</div>
-              </button>
-              <button type="button" className="chat_advise_category_second_tab_button end">
+              </div>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleTabChatAdviseCategory}
+                onKeyUp={handleTabChatAdviseCategory}
+                className="chat_advise_category_second_tab_button end"
+              >
                 <div className="chat_advise_category_second_tab_text">종료</div>
                 <div className="chat_advise_category_second_tab_alert_count">00</div>
-              </button>
+              </div>
             </div>
           </div>
           {/* 3. 채팅 상담 검색 영역 */}
@@ -212,405 +879,15 @@ const ChatAdviseListSection = () => {
             <div className="chat_advise_search_detail_pannel">검색 패널 영역</div>
           </div>
           {/* 4. 채팅 상담 리스트 영역 */}
-          <div className="chat_advise_list_container">
-            {/* 4-1. 채팅 상담 리스트 없는 경우 */}
-            {/* <div className="chat_advise_lists_no_data_found_box">
-              <NoDataFound>상담 목록이 없습니다.</NoDataFound>
-            </div> */}
-            {/* 4-2. 채팅 상담 리스트 */}
-            <ul className="chat_advise_lists">
-              <li className="chat_advise_list">
-                <article className="chat_advise_article">
-                  <div className="chat_advise_dimed">
-                    <div className="chat_advise_dimed_text_box">
-                      <div className="chat_advise_dimed_icon_box">
-                        <IconLnbChatAdvise />
-                      </div>
-                      <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                    </div>
-                  </div>
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={handleClickChatAdviseListItem}
-                    onKeyUp={handleClickChatAdviseListItem}
-                    className="chat_advise_article_clickable_container active"
-                  >
-                    <div className="chat_advise_article_information_container">
-                      <div className="chat_advise_article_information_box">
-                        <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                        </div>
-                        <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                        <div className="chat_advise_article_bookmark_icon_box show">
-                          <IconBookmark />
-                        </div>
-                        <div className="chat_advise_article_adviser_name_box show">
-                          {/* (1) 상담사 미배정 상태 */}
-                          {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                          <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                          {/* (2) 상담사 정보  */}
-                          <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
-                          <div className="chat_adviser_name_card">
-                            <div className="chat_adviser_name_card_avatar_box">
-                              <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} onair={START_WORKING_CASE1 ? 'onair' : ''} />
-                            </div>
-                            <div className="chat_adviser_name_card_information_box">
-                              <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
-                              <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                    </div>
-                    <div className="chat_advise_article_contents_container">
-                      <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                      <div className="chat_advise_new_message_alert_count">
-                        <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE1}</NumberNotificationBadge>
-                      </div>
-                    </div>
-                    {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                    <div className="chat_advise_article_fields_container">
-                      <div className="chat_advise_fields_box">
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                        <div className="chat_advise_fields_more_number_box">
-                          {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li className="chat_advise_list">
-                <article className="chat_advise_article">
-                  <div className="chat_advise_dimed">
-                    <div className="chat_advise_dimed_text_box">
-                      <div className="chat_advise_dimed_icon_box">
-                        <IconLnbChatAdvise />
-                      </div>
-                      <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                    </div>
-                  </div>
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={handleClickChatAdviseListItem}
-                    onKeyUp={handleClickChatAdviseListItem}
-                    className="chat_advise_article_clickable_container"
-                  >
-                    <div className="chat_advise_article_information_container">
-                      <div className="chat_advise_article_information_box">
-                        <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                        </div>
-                        <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                        <div className="chat_advise_article_bookmark_icon_box">
-                          <IconBookmark />
-                        </div>
-                        <div className="chat_advise_article_adviser_name_box show">
-                          {/* (1) 상담사 미배정 상태 */}
-                          {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                          <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                          {/* (2) 상담사 정보  */}
-                          <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
-                          <div className="chat_adviser_name_card">
-                            <div className="chat_adviser_name_card_avatar_box">
-                              <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
-                            </div>
-                            <div className="chat_adviser_name_card_information_box">
-                              <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
-                              <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                    </div>
-                    <div className="chat_advise_article_contents_container">
-                      <div className="chat_advise_latest_message_box">{MESSAGE_LONG}</div>
-                      <div className="chat_advise_new_message_alert_count">
-                        <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE2}</NumberNotificationBadge>
-                      </div>
-                    </div>
-                    {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                    <div className="chat_advise_article_fields_container">
-                      <div className="chat_advise_fields_box">
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
-                        <div className="chat_advise_fields_more_number_box">
-                          {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li className="chat_advise_list">
-                <article className="chat_advise_article">
-                  <div className="chat_advise_dimed active">
-                    <div className="chat_advise_dimed_text_box">
-                      <div className="chat_advise_dimed_icon_box">
-                        <IconLnbChatAdvise />
-                      </div>
-                      <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                    </div>
-                  </div>
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={handleClickChatAdviseListItem}
-                    onKeyUp={handleClickChatAdviseListItem}
-                    className="chat_advise_article_clickable_container"
-                  >
-                    <div className="chat_advise_article_information_container">
-                      <div className="chat_advise_article_information_box">
-                        <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                        </div>
-                        <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                        <div className="chat_advise_article_bookmark_icon_box">
-                          <IconBookmark />
-                        </div>
-                        <div className="chat_advise_article_adviser_name_box show">
-                          {/* (1) 상담사 미배정 상태 */}
-                          {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                          <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                          {/* (2) 상담사 정보  */}
-                          <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
-                          <div className="chat_adviser_name_card">
-                            <div className="chat_adviser_name_card_avatar_box">
-                              <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE1 ? 'onair' : ''} />
-                            </div>
-                            <div className="chat_adviser_name_card_information_box">
-                              <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
-                              <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                    </div>
-                    <div className="chat_advise_article_contents_container">
-                      <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                      <div className="chat_advise_new_message_alert_count">
-                        <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE3}</NumberNotificationBadge>
-                      </div>
-                    </div>
-                    {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                    <div className="chat_advise_article_fields_container">
-                      <div className="chat_advise_fields_box">
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                        <div className="chat_advise_fields_more_number_box">
-                          {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li className="chat_advise_list">
-                <article className="chat_advise_article">
-                  <div className="chat_advise_dimed">
-                    <div className="chat_advise_dimed_text_box">
-                      <div className="chat_advise_dimed_icon_box">
-                        <IconLnbChatAdvise />
-                      </div>
-                      <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                    </div>
-                  </div>
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={handleClickChatAdviseListItem}
-                    onKeyUp={handleClickChatAdviseListItem}
-                    className="chat_advise_article_clickable_container"
-                  >
-                    <div className="chat_advise_article_information_container">
-                      <div className="chat_advise_article_information_box">
-                        <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                        </div>
-                        <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_LONG}</div>
-                        <div className="chat_advise_article_bookmark_icon_box">
-                          <IconBookmark />
-                        </div>
-                        <div className="chat_advise_article_adviser_name_box show">
-                          {/* (1) 상담사 미배정 상태 */}
-                          {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                          <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                          {/* (2) 상담사 정보  */}
-                          <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
-                          <div className="chat_adviser_name_card">
-                            <div className="chat_adviser_name_card_avatar_box">
-                              <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
-                            </div>
-                            <div className="chat_adviser_name_card_information_box">
-                              <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
-                              <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                    </div>
-                    <div className="chat_advise_article_contents_container">
-                      <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                      <div className="chat_advise_new_message_alert_count">
-                        <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE4}</NumberNotificationBadge>
-                      </div>
-                    </div>
-                    {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                    <div className="chat_advise_article_fields_container">
-                      <div className="chat_advise_fields_box">
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                        <div className="chat_advise_fields_more_number_box">
-                          {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li className="chat_advise_list">
-                <article className="chat_advise_article">
-                  <div className="chat_advise_dimed">
-                    <div className="chat_advise_dimed_text_box">
-                      <div className="chat_advise_dimed_icon_box">
-                        <IconLnbChatAdvise />
-                      </div>
-                      <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                    </div>
-                  </div>
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={handleClickChatAdviseListItem}
-                    onKeyUp={handleClickChatAdviseListItem}
-                    className="chat_advise_article_clickable_container"
-                  >
-                    <div className="chat_advise_article_information_container">
-                      <div className="chat_advise_article_information_box">
-                        <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                        </div>
-                        <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                        <div className="chat_advise_article_bookmark_icon_box">
-                          <IconBookmark />
-                        </div>
-                        <div className="chat_advise_article_adviser_name_box show">
-                          {/* (1) 상담사 미배정 상태 */}
-                          {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                          <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                          {/* (2) 상담사 정보  */}
-                          <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
-                          <div className="chat_adviser_name_card">
-                            <div className="chat_adviser_name_card_avatar_box">
-                              <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
-                            </div>
-                            <div className="chat_adviser_name_card_information_box">
-                              <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
-                              <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                    </div>
-                    <div className="chat_advise_article_contents_container">
-                      <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                      <div className="chat_advise_new_message_alert_count">
-                        <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE4}</NumberNotificationBadge>
-                      </div>
-                    </div>
-                    {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                    <div className="chat_advise_article_fields_container">
-                      <div className="chat_advise_fields_box">
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                        <div className="chat_advise_fields_more_number_box">
-                          {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li className="chat_advise_list">
-                <article className="chat_advise_article">
-                  <div className="chat_advise_dimed">
-                    <div className="chat_advise_dimed_text_box">
-                      <div className="chat_advise_dimed_icon_box">
-                        <IconLnbChatAdvise />
-                      </div>
-                      <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                    </div>
-                  </div>
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={handleClickChatAdviseListItem}
-                    onKeyUp={handleClickChatAdviseListItem}
-                    className="chat_advise_article_clickable_container"
-                  >
-                    <div className="chat_advise_article_information_container">
-                      <div className="chat_advise_article_information_box">
-                        <div className="chat_advise_channel_delimiter_img_box">
-                          <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                        </div>
-                        <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                        <div className="chat_advise_article_bookmark_icon_box">
-                          <IconBookmark />
-                        </div>
-                        <div className="chat_advise_article_adviser_name_box show">
-                          {/* (1) 상담사 미배정 상태 */}
-                          {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                          <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                          {/* (2) 상담사 정보  */}
-                          <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE2} 상담사</span>
-                          <div className="chat_adviser_name_card">
-                            <div className="chat_adviser_name_card_avatar_box">
-                              <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE2} onair={START_WORKING_CASE2 ? 'onair' : ''} />
-                            </div>
-                            <div className="chat_adviser_name_card_information_box">
-                              <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE2}(${ADVISER_NICKNAME_CASE2})`}</div>
-                              <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE2}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                    </div>
-                    <div className="chat_advise_article_contents_container">
-                      <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                      <div className="chat_advise_new_message_alert_count">
-                        <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE4}</NumberNotificationBadge>
-                      </div>
-                    </div>
-                    {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                    <div className="chat_advise_article_fields_container">
-                      <div className="chat_advise_fields_box">
-                        <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                        <div className="chat_advise_fields_more_number_box">
-                          {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE2}` : ''}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            </ul>
-          </div>
-          {/* 5. 이전 상담 보기 영역 */}
+          <div className="chat_advise_list_container">{displayChatAdviseLists()}</div>
+          {/* 5. 이전 상담 보기 패널 영역 */}
           <div className="previous_chat_advise_container">
-            <button
-              type="button"
+            <div
+              role="button"
               tabIndex={0}
-              className="previous_chat_advise_show_button"
               onClick={handleShowPreviousChatListPannel}
               onKeyUp={handleShowPreviousChatListPannel}
+              className="previous_chat_advise_show_button"
             >
               <div className="previous_chat_advise_button_text_box">
                 <div className="previous_chat_advise_time_icon_box">
@@ -621,7 +898,7 @@ const ChatAdviseListSection = () => {
               <div className="previous_chat_advise_arrow_icon_box">
                 <IconArrowUpLarge />
               </div>
-            </button>
+            </div>
           </div>
           {/* 5-1. 이전 상담 보기 패널 */}
           <div className={`previous_chat_list_pannel ${showPreviousChatListPannel ? 'show' : ''}`}>
@@ -652,148 +929,13 @@ const ChatAdviseListSection = () => {
                 </div>
               </div>
             </div>
-            <div className="previous_chat_advise_list_box">
-              {/* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */}
-              {/* <div className="previous_chat_advise_lists_no_data_found_box">
-                <NoDataFound>상담 목록이 없습니다.</NoDataFound>
-              </div> */}
-              {/* 5-1-2. 이전 상담 보기 패널 - 상담 리스트 영역 */}
-              <ul className="previous_chat_advise_lists">
-                <li className="previous_chat_advise_list">
-                  <article className="chat_advise_article">
-                    <div className="chat_advise_dimed">
-                      <div className="chat_advise_dimed_text_box">
-                        <div className="chat_advise_dimed_icon_box">
-                          <IconLnbChatAdvise />
-                        </div>
-                        <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                      </div>
-                    </div>
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={handleClickChatAdviseListItem}
-                      onKeyUp={handleClickChatAdviseListItem}
-                      className="chat_advise_article_clickable_container active"
-                    >
-                      <div className="chat_advise_article_information_container">
-                        <div className="chat_advise_article_information_box">
-                          <div className="chat_advise_channel_delimiter_img_box">
-                            <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                          </div>
-                          <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                          <div className="chat_advise_article_bookmark_icon_box show">
-                            <IconBookmark />
-                          </div>
-                          <div className="chat_advise_article_adviser_name_box show">
-                            {/* (1) 상담사 미배정 상태 */}
-                            {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                            <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                            {/* (2) 상담사 정보  */}
-                            <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
-                            <div className="chat_adviser_name_card">
-                              <div className="chat_adviser_name_card_avatar_box">
-                                <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} onair={START_WORKING_CASE1 ? 'onair' : ''} />
-                              </div>
-                              <div className="chat_adviser_name_card_information_box">
-                                <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
-                                <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                      </div>
-                      <div className="chat_advise_article_contents_container">
-                        <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                        <div className="chat_advise_new_message_alert_count">
-                          <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE1}</NumberNotificationBadge>
-                        </div>
-                      </div>
-                      {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                      <div className="chat_advise_article_fields_container">
-                        <div className="chat_advise_fields_box">
-                          <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
-                          <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
-                          <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                          <div className="chat_advise_fields_more_number_box">
-                            {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-                <li className="previous_chat_advise_list">
-                  <article className="chat_advise_article">
-                    <div className="chat_advise_dimed">
-                      <div className="chat_advise_dimed_text_box">
-                        <div className="chat_advise_dimed_icon_box">
-                          <IconLnbChatAdvise />
-                        </div>
-                        <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
-                      </div>
-                    </div>
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={handleClickChatAdviseListItem}
-                      onKeyUp={handleClickChatAdviseListItem}
-                      className="chat_advise_article_clickable_container"
-                    >
-                      <div className="chat_advise_article_information_container">
-                        <div className="chat_advise_article_information_box">
-                          <div className="chat_advise_channel_delimiter_img_box">
-                            <img className="chat_advise_channel_delimiter_img" alt="channel delimiter" src={CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE} />
-                          </div>
-                          <div className="chat_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                          <div className="chat_advise_article_bookmark_icon_box show">
-                            <IconBookmark />
-                          </div>
-                          <div className="chat_advise_article_adviser_name_box show">
-                            {/* (1) 상담사 미배정 상태 */}
-                            {/* <span className="chat_adviser_name">상담사 배정 필요</span>
-                            <div className="chat_adviser_name_card no_adviser">상담사 미배정 상태</div> */}
-                            {/* (2) 상담사 정보  */}
-                            <span className="chat_adviser_name">{ADVISER_NICKNAME_CASE1} 상담사</span>
-                            <div className="chat_adviser_name_card">
-                              <div className="chat_adviser_name_card_avatar_box">
-                                <OnairAvatarIcon avatarImage={ADVISER_PROFILE_IMAGE_CASE1} onair={START_WORKING_CASE1 ? 'onair' : ''} />
-                              </div>
-                              <div className="chat_adviser_name_card_information_box">
-                                <div className="chat_adviser_name_card_name_text">{`${ADVISER_NAME_CASE1}(${ADVISER_NICKNAME_CASE1})`}</div>
-                                <div className="chat_adviser_name_card_email_text">{ADVISER_EMAIL_CASE1}</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="chat_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
-                      </div>
-                      <div className="chat_advise_article_contents_container">
-                        <div className="chat_advise_latest_message_box">{MESSAGE_SHORT}</div>
-                        <div className="chat_advise_new_message_alert_count">
-                          <NumberNotificationBadge>{NEW_MESSAGE_ALERT_COUNT_CASE1}</NumberNotificationBadge>
-                        </div>
-                      </div>
-                      {/* 상담 분야 최대 3개까지 표시, 그 이상일 경우 +number */}
-                      <div className="chat_advise_article_fields_container">
-                        <div className="chat_advise_fields_box">
-                          <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE1}</AdviseFieldChip>
-                          <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE2}</AdviseFieldChip>
-                          <AdviseFieldChip>{CHAT_ADVISE_FIELD_CASE3}</AdviseFieldChip>
-                          <div className="chat_advise_fields_more_number_box">
-                            {CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1 !== 0 ? `+${CHAT_ADVISE_FIELDS_MORE_NUMBER_CASE1}` : ''}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-              </ul>
-            </div>
+            <div className="previous_chat_advise_list_box">{showPreviousChatAdviseLists()}</div>
           </div>
         </div>
       </section>
+      <ToastMessage showToast={toastMessageData.isShow ? 'show' : ''} iconStyle={toastMessageData.icon}>
+        {toastMessageData.message}
+      </ToastMessage>
     </>
   );
 };

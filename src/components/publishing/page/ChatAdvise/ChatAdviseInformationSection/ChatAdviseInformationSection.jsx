@@ -12,6 +12,7 @@ import SolidButton from 'components/publishing/atom/button/SolidButton';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
+import FullScreenDim from 'components/publishing/atom/FullScreenDim';
 import './ChatAdviseInformationSection.scss';
 
 /** 채팅 상담 정보 영역
@@ -116,7 +117,7 @@ const ChatAdviseInformationSection = () => {
 
   /* 3-1. 상담요약 - 기획: 상담행동정보 p.121 참조 */
   const SUMMARY_TIME = '오후 12:55';
-  const showChatAdviseSummaryTab = () => {
+  const displayChatAdviseSummaryTab = () => {
     return (
       <div className="chat_advise_summary_container">
         <ul className="chat_advise_summary_lists">
@@ -163,13 +164,123 @@ const ChatAdviseInformationSection = () => {
   };
 
   /* 3-2. 주문내역 */
+  const CUSTOMER_ORDER_COUNT = 5; // 0 지정해서 결과 없는 화면 확인 가능
   const refSearchOrderNumberTextField = React.createRef();
   const ORDER_NUMBER = '20220620-0000016';
   const handleSearchCustomerOrderList = () => {
     console.log('주문번호 검색');
   };
+  const displayCustomerOrderLists = () => {
+    /*  3-2-1. 주문내역 없는 경우 (검색 결과 없는 경우 포함) */
+    if (CUSTOMER_ORDER_COUNT === 0) {
+      return (
+        <div className="customer_order_lists_contents_no_data_found_box">
+          <NoDataFound>주문내역이 없어요.</NoDataFound>
+          {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
+        </div>
+      );
+    }
 
-  const showCustomerOrderListsTab = () => {
+    /* 3-2-2. 주문내역 테이블 */
+    return (
+      <ul className="customer_order_lists">
+        <li className="customer_order_list_item">
+          <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
+          <div className="customer_order_list_table_box">
+            <table className="customer_order_list_table">
+              <thead className="customer_order_list_table_heading">
+                <tr>
+                  <th className="customer_order_table_heading">결제방법</th>
+                  <th className="customer_order_table_heading">결제상태</th>
+                  <th className="customer_order_table_heading">총 결제금액</th>
+                  <th className="customer_order_table_heading">주문상태</th>
+                </tr>
+              </thead>
+              <tbody className="customer_order_list_table_body">
+                <tr>
+                  <td className="customer_order_table_data">무통장 입금</td>
+                  <td className="customer_order_table_data">결제완료</td>
+                  <td className="customer_order_table_data payment">55,000</td>
+                  <td className="customer_order_table_data">배송 대기</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li className="customer_order_list_item">
+          <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
+          <div className="customer_order_list_table_box">
+            <table className="customer_order_list_table">
+              <thead className="customer_order_list_table_heading">
+                <tr>
+                  <th className="customer_order_table_heading">결제방법</th>
+                  <th className="customer_order_table_heading">결제상태</th>
+                  <th className="customer_order_table_heading">총 결제금액</th>
+                  <th className="customer_order_table_heading">주문상태</th>
+                </tr>
+              </thead>
+              <tbody className="customer_order_list_table_body">
+                <tr>
+                  <td className="customer_order_table_data">무통장 입금</td>
+                  <td className="customer_order_table_data">결제완료</td>
+                  <td className="customer_order_table_data payment">150,000</td>
+                  <td className="customer_order_table_data">배송 대기</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li className="customer_order_list_item">
+          <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
+          <div className="customer_order_list_table_box">
+            <table className="customer_order_list_table">
+              <thead className="customer_order_list_table_heading">
+                <tr>
+                  <th className="customer_order_table_heading">결제방법</th>
+                  <th className="customer_order_table_heading">결제상태</th>
+                  <th className="customer_order_table_heading">총 결제금액</th>
+                  <th className="customer_order_table_heading">주문상태</th>
+                </tr>
+              </thead>
+              <tbody className="customer_order_list_table_body">
+                <tr>
+                  <td className="customer_order_table_data">무통장 입금</td>
+                  <td className="customer_order_table_data">결제완료</td>
+                  <td className="customer_order_table_data payment">9,999,999</td>
+                  <td className="customer_order_table_data">배송 대기</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li className="customer_order_list_item">
+          <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
+          <div className="customer_order_list_table_box">
+            <table className="customer_order_list_table">
+              <thead className="customer_order_list_table_heading">
+                <tr>
+                  <th className="customer_order_table_heading">결제방법</th>
+                  <th className="customer_order_table_heading">결제상태</th>
+                  <th className="customer_order_table_heading">총 결제금액</th>
+                  <th className="customer_order_table_heading">주문상태</th>
+                </tr>
+              </thead>
+              <tbody className="customer_order_list_table_body">
+                <tr>
+                  <td className="customer_order_table_data">무통장 입금</td>
+                  <td className="customer_order_table_data">결제완료</td>
+                  <td className="customer_order_table_data payment">12,000,000</td>
+                  <td className="customer_order_table_data">배송 대기</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+    );
+  };
+
+  const displayCustomerOrderListsTab = () => {
     return (
       <div className="customer_order_lists_container">
         <div className="customer_order_lists_search_text_field_box">
@@ -180,107 +291,7 @@ const ChatAdviseInformationSection = () => {
             handleClickSearchButton={handleSearchCustomerOrderList}
           />
         </div>
-        <div className="customer_order_lists_contents">
-          {/* 3-2-1. 주문내역 없는 경우 (검색 결과 없는 경우 포함) */}
-          {/* <div className="customer_order_lists_contents_no_data_found_box">
-            <NoDataFound>주문내역이 없습니다.</NoDataFound>
-          </div> */}
-          {/* 3-2-2. 주문내역 테이블 */}
-          <ul className="customer_order_lists">
-            <li className="customer_order_list_item">
-              <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
-              <div className="customer_order_list_table_box">
-                <table className="customer_order_list_table">
-                  <thead className="customer_order_list_table_heading">
-                    <tr>
-                      <th className="customer_order_table_heading">결제방법</th>
-                      <th className="customer_order_table_heading">결제상태</th>
-                      <th className="customer_order_table_heading">총 결제금액</th>
-                      <th className="customer_order_table_heading">주문상태</th>
-                    </tr>
-                  </thead>
-                  <tbody className="customer_order_list_table_body">
-                    <tr>
-                      <td className="customer_order_table_data">무통장 입금</td>
-                      <td className="customer_order_table_data">결제완료</td>
-                      <td className="customer_order_table_data payment">55,000</td>
-                      <td className="customer_order_table_data">배송 대기</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </li>
-            <li className="customer_order_list_item">
-              <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
-              <div className="customer_order_list_table_box">
-                <table className="customer_order_list_table">
-                  <thead className="customer_order_list_table_heading">
-                    <tr>
-                      <th className="customer_order_table_heading">결제방법</th>
-                      <th className="customer_order_table_heading">결제상태</th>
-                      <th className="customer_order_table_heading">총 결제금액</th>
-                      <th className="customer_order_table_heading">주문상태</th>
-                    </tr>
-                  </thead>
-                  <tbody className="customer_order_list_table_body">
-                    <tr>
-                      <td className="customer_order_table_data">무통장 입금</td>
-                      <td className="customer_order_table_data">결제완료</td>
-                      <td className="customer_order_table_data payment">150,000</td>
-                      <td className="customer_order_table_data">배송 대기</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </li>
-            <li className="customer_order_list_item">
-              <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
-              <div className="customer_order_list_table_box">
-                <table className="customer_order_list_table">
-                  <thead className="customer_order_list_table_heading">
-                    <tr>
-                      <th className="customer_order_table_heading">결제방법</th>
-                      <th className="customer_order_table_heading">결제상태</th>
-                      <th className="customer_order_table_heading">총 결제금액</th>
-                      <th className="customer_order_table_heading">주문상태</th>
-                    </tr>
-                  </thead>
-                  <tbody className="customer_order_list_table_body">
-                    <tr>
-                      <td className="customer_order_table_data">무통장 입금</td>
-                      <td className="customer_order_table_data">결제완료</td>
-                      <td className="customer_order_table_data payment">9,999,999</td>
-                      <td className="customer_order_table_data">배송 대기</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </li>
-            <li className="customer_order_list_item">
-              <div className="customer_order_number">주문번호 [{ORDER_NUMBER}]</div>
-              <div className="customer_order_list_table_box">
-                <table className="customer_order_list_table">
-                  <thead className="customer_order_list_table_heading">
-                    <tr>
-                      <th className="customer_order_table_heading">결제방법</th>
-                      <th className="customer_order_table_heading">결제상태</th>
-                      <th className="customer_order_table_heading">총 결제금액</th>
-                      <th className="customer_order_table_heading">주문상태</th>
-                    </tr>
-                  </thead>
-                  <tbody className="customer_order_list_table_body">
-                    <tr>
-                      <td className="customer_order_table_data">무통장 입금</td>
-                      <td className="customer_order_table_data">결제완료</td>
-                      <td className="customer_order_table_data payment">12,000,000</td>
-                      <td className="customer_order_table_data">배송 대기</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <div className="customer_order_lists_contents">{displayCustomerOrderLists()}</div>
       </div>
     );
   };
@@ -295,9 +306,201 @@ const ChatAdviseInformationSection = () => {
     setIsShowDetailCustomerOrderListModal(false);
   };
 
-  const showDetailCustomerOrderListModal = () => {
+  const displayCustomerOrderDetailLists = () => {
+    /*  3-2-3-1. 상세 주문내역 리스트 - 없음 */
+    if (CUSTOMER_ORDER_COUNT === 0) {
+      return (
+        <div className="detail_customer_order_no_data_found_box">
+          <NoDataFound>주문내역이 없어요.</NoDataFound>
+          {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
+        </div>
+      );
+    }
+
+    /* 3-2-3-2. 상세 주문내역 리스트 */
     return (
-      <div className="fullpage_modal">
+      <div className="detail_customer_order_lists_box">
+        <ul className="detail_customer_order_lists">
+          <li className="detail_customer_order_list">
+            <h4 className="detail_customer_order_list_title">2022-05-27 [주문번호 : 20220620-00000016] / 주문 2건</h4>
+            <div className="detail_customer_order_list_contents_box">
+              <div className="detail_customer_order_list_contents_item">
+                <div className="detail_customer_order_image_box">
+                  <img src={PRODUCT_IMAGE_SAMPLE} alt="order product" className="detail_customer_order_image" />
+                </div>
+                <div className="detail_customer_order_description">
+                  <div className="customer_order_product_title">아디다스 이지 슬라이드 퓨어 슬라이드 퓨어퓨(재발매 버전)</div>
+                  <div className="customer_order_product_information_box">
+                    <div className="customer_order_product_information order_number">
+                      <div className="customer_order_product_information_label">주문번호</div>
+                      <div className="customer_order_product_information_contents">20220620-00000016</div>
+                    </div>
+                    <div className="customer_order_product_information order_state">
+                      <div className="customer_order_product_information_label">주문상태</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>입금전취소</OutlineTag>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information product_option">
+                      <div className="customer_order_product_information_label">옵션</div>
+                      <div className="customer_order_product_information_contents">color = 브라운</div>
+                    </div>
+                    <div className="customer_order_product_information order_quantity">
+                      <div className="customer_order_product_information_label">주문수량</div>
+                      <div className="customer_order_product_information_contents">
+                        <span className="order_quantity_number">1</span>
+                        <span className="order_quantity_unit">개</span>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information product_amount">
+                      <div className="customer_order_product_information_label">제품금액</div>
+                      <div className="customer_order_product_information_contents">
+                        <span className="product_amount_number">177,000</span>
+                        <span className="product_amount_unit">원</span>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information order_date">
+                      <div className="customer_order_product_information_label">결제날짜</div>
+                      <div className="customer_order_product_information_contents">-</div>
+                    </div>
+                    <div className="customer_order_product_information payment_method">
+                      <div className="customer_order_product_information_label">결제방법</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>무통장입금</OutlineTag>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information payment_state">
+                      <div className="customer_order_product_information_label">결제상태</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>결제대기</OutlineTag>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="detail_customer_order_list_contents_item">
+                <div className="detail_customer_order_image_box">
+                  <img src={PRODUCT_IMAGE_SAMPLE} alt="order product" className="detail_customer_order_image" />
+                </div>
+                <div className="detail_customer_order_description">
+                  <div className="customer_order_product_title">아디다스 이지 슬라이드 퓨어 슬라이드 퓨어퓨(재발매 버전)</div>
+                  <div className="customer_order_product_information_box">
+                    <div className="customer_order_product_information order_number">
+                      <div className="customer_order_product_information_label">주문번호</div>
+                      <div className="customer_order_product_information_contents">20220620-00000016</div>
+                    </div>
+                    <div className="customer_order_product_information order_state">
+                      <div className="customer_order_product_information_label">주문상태</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>입금전취소</OutlineTag>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information product_option">
+                      <div className="customer_order_product_information_label">옵션</div>
+                      <div className="customer_order_product_information_contents">color = 브라운</div>
+                    </div>
+                    <div className="customer_order_product_information order_quantity">
+                      <div className="customer_order_product_information_label">주문수량</div>
+                      <div className="customer_order_product_information_contents">
+                        <span className="order_quantity_number">1</span>
+                        <span className="order_quantity_unit">개</span>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information product_amount">
+                      <div className="customer_order_product_information_label">제품금액</div>
+                      <div className="customer_order_product_information_contents">
+                        <span className="product_amount_number">177,000</span>
+                        <span className="product_amount_unit">원</span>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information order_date">
+                      <div className="customer_order_product_information_label">결제날짜</div>
+                      <div className="customer_order_product_information_contents">-</div>
+                    </div>
+                    <div className="customer_order_product_information payment_method">
+                      <div className="customer_order_product_information_label">결제방법</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>무통장입금</OutlineTag>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information payment_state">
+                      <div className="customer_order_product_information_label">결제상태</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>결제대기</OutlineTag>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li className="detail_customer_order_list">
+            <h4 className="detail_customer_order_list_title">2022-05-27 [주문번호 : 20220620-00000016] / 주문 1건</h4>
+            <div className="detail_customer_order_list_contents_box">
+              <div className="detail_customer_order_list_contents_item">
+                <div className="detail_customer_order_image_box">
+                  <img src={PRODUCT_IMAGE_SAMPLE} alt="order product" className="detail_customer_order_image" />
+                </div>
+                <div className="detail_customer_order_description">
+                  <div className="customer_order_product_title">아디다스 이지 슬라이드 퓨어 슬라이드 퓨어퓨(재발매 버전)</div>
+                  <div className="customer_order_product_information_box">
+                    <div className="customer_order_product_information order_number">
+                      <div className="customer_order_product_information_label">주문번호</div>
+                      <div className="customer_order_product_information_contents">20220620-00000016</div>
+                    </div>
+                    <div className="customer_order_product_information order_state">
+                      <div className="customer_order_product_information_label">주문상태</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>입금전취소</OutlineTag>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information product_option">
+                      <div className="customer_order_product_information_label">옵션</div>
+                      <div className="customer_order_product_information_contents">color = 브라운</div>
+                    </div>
+                    <div className="customer_order_product_information order_quantity">
+                      <div className="customer_order_product_information_label">주문수량</div>
+                      <div className="customer_order_product_information_contents">
+                        <span className="order_quantity_number">1</span>
+                        <span className="order_quantity_unit">개</span>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information product_amount">
+                      <div className="customer_order_product_information_label">제품금액</div>
+                      <div className="customer_order_product_information_contents">
+                        <span className="product_amount_number">177,000</span>
+                        <span className="product_amount_unit">원</span>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information order_date">
+                      <div className="customer_order_product_information_label">결제날짜</div>
+                      <div className="customer_order_product_information_contents">-</div>
+                    </div>
+                    <div className="customer_order_product_information payment_method">
+                      <div className="customer_order_product_information_label">결제방법</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>무통장입금</OutlineTag>
+                      </div>
+                    </div>
+                    <div className="customer_order_product_information payment_state">
+                      <div className="customer_order_product_information_label">결제상태</div>
+                      <div className="customer_order_product_information_contents">
+                        <OutlineTag>결제대기</OutlineTag>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
+  const displayDetailCustomerOrderListModal = () => {
+    return (
+      <FullScreenDim>
         <div className="detail_customer_order_list_modal_container">
           <div className="detail_customer_order_list_modal_head">
             <div className="detail_customer_order_list_modal_title_box">
@@ -307,7 +510,7 @@ const ChatAdviseInformationSection = () => {
               </p>
             </div>
             <div className="detail_customer_order_list_modal_close_button_box">
-              <IconButton className="tiny" handleClick={handleHideDetailCustomerOrderListModal}>
+              <IconButton buttonClassName="tiny" handleClick={handleHideDetailCustomerOrderListModal}>
                 <IconCross />
               </IconButton>
             </div>
@@ -322,189 +525,9 @@ const ChatAdviseInformationSection = () => {
               </button>
             </div>
           </div>
-          {/* 3-2-3-1. 상세 주문내역 리스트 - 없음 */}
-          {/* <div className="detail_customer_order_no_data_found_box">
-            <NoDataFound>주문내역이 없습니다.</NoDataFound>
-          </div> */}
-          {/* 3-2-3-2. 상세 주문내역 리스트 */}
-          <div className="detail_customer_order_lists_box">
-            <ul className="detail_customer_order_lists">
-              <li className="detail_customer_order_list">
-                <h4 className="detail_customer_order_list_title">2022-05-27 [주문번호 : 20220620-00000016] / 주문 2건</h4>
-                <div className="detail_customer_order_list_contents_box">
-                  <div className="detail_customer_order_list_contents_item">
-                    <div className="detail_customer_order_image_box">
-                      <img src={PRODUCT_IMAGE_SAMPLE} alt="order product" className="detail_customer_order_image" />
-                    </div>
-                    <div className="detail_customer_order_description">
-                      <div className="customer_order_product_title">아디다스 이지 슬라이드 퓨어 슬라이드 퓨어퓨(재발매 버전)</div>
-                      <div className="customer_order_product_information_box">
-                        <div className="customer_order_product_information order_number">
-                          <div className="customer_order_product_information_label">주문번호</div>
-                          <div className="customer_order_product_information_contents">20220620-00000016</div>
-                        </div>
-                        <div className="customer_order_product_information order_state">
-                          <div className="customer_order_product_information_label">주문상태</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>입금전취소</OutlineTag>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information product_option">
-                          <div className="customer_order_product_information_label">옵션</div>
-                          <div className="customer_order_product_information_contents">color = 브라운</div>
-                        </div>
-                        <div className="customer_order_product_information order_quantity">
-                          <div className="customer_order_product_information_label">주문수량</div>
-                          <div className="customer_order_product_information_contents">
-                            <span className="order_quantity_number">1</span>
-                            <span className="order_quantity_unit">개</span>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information product_amount">
-                          <div className="customer_order_product_information_label">제품금액</div>
-                          <div className="customer_order_product_information_contents">
-                            <span className="product_amount_number">177,000</span>
-                            <span className="product_amount_unit">원</span>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information order_date">
-                          <div className="customer_order_product_information_label">결제날짜</div>
-                          <div className="customer_order_product_information_contents">-</div>
-                        </div>
-                        <div className="customer_order_product_information payment_method">
-                          <div className="customer_order_product_information_label">결제방법</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>무통장입금</OutlineTag>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information payment_state">
-                          <div className="customer_order_product_information_label">결제상태</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>결제대기</OutlineTag>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="detail_customer_order_list_contents_item">
-                    <div className="detail_customer_order_image_box">
-                      <img src={PRODUCT_IMAGE_SAMPLE} alt="order product" className="detail_customer_order_image" />
-                    </div>
-                    <div className="detail_customer_order_description">
-                      <div className="customer_order_product_title">아디다스 이지 슬라이드 퓨어 슬라이드 퓨어퓨(재발매 버전)</div>
-                      <div className="customer_order_product_information_box">
-                        <div className="customer_order_product_information order_number">
-                          <div className="customer_order_product_information_label">주문번호</div>
-                          <div className="customer_order_product_information_contents">20220620-00000016</div>
-                        </div>
-                        <div className="customer_order_product_information order_state">
-                          <div className="customer_order_product_information_label">주문상태</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>입금전취소</OutlineTag>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information product_option">
-                          <div className="customer_order_product_information_label">옵션</div>
-                          <div className="customer_order_product_information_contents">color = 브라운</div>
-                        </div>
-                        <div className="customer_order_product_information order_quantity">
-                          <div className="customer_order_product_information_label">주문수량</div>
-                          <div className="customer_order_product_information_contents">
-                            <span className="order_quantity_number">1</span>
-                            <span className="order_quantity_unit">개</span>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information product_amount">
-                          <div className="customer_order_product_information_label">제품금액</div>
-                          <div className="customer_order_product_information_contents">
-                            <span className="product_amount_number">177,000</span>
-                            <span className="product_amount_unit">원</span>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information order_date">
-                          <div className="customer_order_product_information_label">결제날짜</div>
-                          <div className="customer_order_product_information_contents">-</div>
-                        </div>
-                        <div className="customer_order_product_information payment_method">
-                          <div className="customer_order_product_information_label">결제방법</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>무통장입금</OutlineTag>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information payment_state">
-                          <div className="customer_order_product_information_label">결제상태</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>결제대기</OutlineTag>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li className="detail_customer_order_list">
-                <h4 className="detail_customer_order_list_title">2022-05-27 [주문번호 : 20220620-00000016] / 주문 1건</h4>
-                <div className="detail_customer_order_list_contents_box">
-                  <div className="detail_customer_order_list_contents_item">
-                    <div className="detail_customer_order_image_box">
-                      <img src={PRODUCT_IMAGE_SAMPLE} alt="order product" className="detail_customer_order_image" />
-                    </div>
-                    <div className="detail_customer_order_description">
-                      <div className="customer_order_product_title">아디다스 이지 슬라이드 퓨어 슬라이드 퓨어퓨(재발매 버전)</div>
-                      <div className="customer_order_product_information_box">
-                        <div className="customer_order_product_information order_number">
-                          <div className="customer_order_product_information_label">주문번호</div>
-                          <div className="customer_order_product_information_contents">20220620-00000016</div>
-                        </div>
-                        <div className="customer_order_product_information order_state">
-                          <div className="customer_order_product_information_label">주문상태</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>입금전취소</OutlineTag>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information product_option">
-                          <div className="customer_order_product_information_label">옵션</div>
-                          <div className="customer_order_product_information_contents">color = 브라운</div>
-                        </div>
-                        <div className="customer_order_product_information order_quantity">
-                          <div className="customer_order_product_information_label">주문수량</div>
-                          <div className="customer_order_product_information_contents">
-                            <span className="order_quantity_number">1</span>
-                            <span className="order_quantity_unit">개</span>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information product_amount">
-                          <div className="customer_order_product_information_label">제품금액</div>
-                          <div className="customer_order_product_information_contents">
-                            <span className="product_amount_number">177,000</span>
-                            <span className="product_amount_unit">원</span>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information order_date">
-                          <div className="customer_order_product_information_label">결제날짜</div>
-                          <div className="customer_order_product_information_contents">-</div>
-                        </div>
-                        <div className="customer_order_product_information payment_method">
-                          <div className="customer_order_product_information_label">결제방법</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>무통장입금</OutlineTag>
-                          </div>
-                        </div>
-                        <div className="customer_order_product_information payment_state">
-                          <div className="customer_order_product_information_label">결제상태</div>
-                          <div className="customer_order_product_information_contents">
-                            <OutlineTag>결제대기</OutlineTag>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
+          {displayCustomerOrderDetailLists()}
         </div>
-      </div>
+      </FullScreenDim>
     );
   };
 
@@ -538,7 +561,87 @@ const ChatAdviseInformationSection = () => {
   };
 
   /* 4-1. KMS 지식 추천 탭 */
-  const showKMSKnowledgeRecommandTab = () => {
+  const KMS_RECOMMAND_COUNT = 0; // 0 지정해서 결과 없는 화면 확인 가능
+  const displayKMSKnowledgeRecommandLists = () => {
+    /* 4-1-1. KMS 지식 추천 목록 없음 */
+    if (KMS_RECOMMAND_COUNT === 0) {
+      return (
+        /* 상담 지식 사전 버튼 클릭으로 접근했을 경우 | 검색 결과 없을 경우 문구 달라짐 */
+        <div className="knowledge_recommand_search_no_data_found_box KMS">
+          {/* <NoDataFound>KMS 지식을 검색해주세요.</NoDataFound> */}
+          <NoDataFound>
+            앗! 검색 결과가 없어요. <br />
+            다른 검색어를 입력해 주세요.
+          </NoDataFound>
+        </div>
+      );
+    }
+
+    /* 4-1-2. KMS 지식 추천 목록 */
+    return (
+      <ul className="knowledge_recommand_lists KMS">
+        <li className="knowledge_recommand_list KMS">
+          <div className="knowledge_recommand_contents KMS">
+            <div className="knowledge_recommand_title KMS">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area KMS">
+              <div className="knowledge_recommand_sentence KMS">주문배송란에 선물포장 기입</div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+        <li className="knowledge_recommand_list KMS">
+          <div className="knowledge_recommand_contents KMS">
+            <div className="knowledge_recommand_title KMS">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area KMS">
+              <div className="knowledge_recommand_sentence KMS">주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이</div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+        <li className="knowledge_recommand_list KMS">
+          <div className="knowledge_recommand_contents KMS">
+            <div className="knowledge_recommand_title KMS">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area KMS">
+              <div className="knowledge_recommand_sentence KMS">
+                주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
+              </div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+        <li className="knowledge_recommand_list KMS">
+          <div className="knowledge_recommand_contents KMS">
+            <div className="knowledge_recommand_title KMS">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area KMS">
+              <div className="knowledge_recommand_sentence KMS">
+                주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에
+                선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에 선물포장
+                기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
+              </div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+      </ul>
+    );
+  };
+  const displayKMSKnowledgeRecommandTab = () => {
     return (
       <div className="knowledge_recommand_container KMS">
         <div className="knowledge_recommand_search_text_field_box KMS">
@@ -548,72 +651,7 @@ const ChatAdviseInformationSection = () => {
             handleClickSearchButton={handleSearchKMSKnowledgeRecommand}
           />
         </div>
-        {/* 상담 지식 사전 버튼 클릭으로 접근했을 경우 | 검색 결과 없을 경우 문구 달라짐 */}
-        <div className="knowledge_recommand_search_no_data_found_box">
-          <NoDataFound>KMS 지식을 검색해주세요.</NoDataFound>
-          {/* <NoDataFound>검색 결과가 없습니다.</NoDataFound> */}
-        </div>
-        {/* KMS 지식 리스트 */}
-        {/* <ul className="knowledge_recommand_lists KMS">
-          <li className="knowledge_recommand_list KMS">
-            <div className="knowledge_recommand_contents KMS">
-              <div className="knowledge_recommand_title KMS">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area KMS">
-                <div className="knowledge_recommand_sentence KMS">주문배송란에 선물포장 기입</div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-          <li className="knowledge_recommand_list KMS">
-            <div className="knowledge_recommand_contents KMS">
-              <div className="knowledge_recommand_title KMS">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area KMS">
-                <div className="knowledge_recommand_sentence KMS">주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이</div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-          <li className="knowledge_recommand_list KMS">
-            <div className="knowledge_recommand_contents KMS">
-              <div className="knowledge_recommand_title KMS">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area KMS">
-                <div className="knowledge_recommand_sentence KMS">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-          <li className="knowledge_recommand_list KMS">
-            <div className="knowledge_recommand_contents KMS">
-              <div className="knowledge_recommand_title KMS">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area KMS">
-                <div className="knowledge_recommand_sentence KMS">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에
-                  선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에 선물포장
-                  기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-        </ul> */}
+        {displayKMSKnowledgeRecommandLists()}
         <div className="knowledge_recommand_pagination_box KMS">
           <div className="pagination">
             <button type="button" className="page_move_arrow_button go_to_first hide" onClick={handleClickMovePaginationArrowButton}>
@@ -644,7 +682,91 @@ const ChatAdviseInformationSection = () => {
   };
 
   /* 4-2. 챗봇 지식 추천 탭 */
-  const showChatbotKnowledgeRecommandTab = () => {
+  const CHATBOT_KNOWLEDGE_RECOMMAND_COUNT = 5; // 0 지정해서 결과 없는 화면 확인 가능
+  const displayChatbotKnowledgeRecommandLists = () => {
+    /* 4-2-1. 챗봇 지식 추천 목록 없음 */
+    if (CHATBOT_KNOWLEDGE_RECOMMAND_COUNT === 0) {
+      return (
+        /* 상담 지식 사전 버튼 클릭으로 접근했을 경우 | 검색 결과 없을 경우 문구 달라짐 */
+        <div className="knowledge_recommand_search_no_data_found_box chatbot">
+          <NoDataFound>챗봇 지식을 검색해주세요.</NoDataFound>
+          {/* 
+          <NoDataFound>
+            앗! 검색 결과가 없어요. <br />
+            다른 검색어를 입력해 주세요.
+          </NoDataFound>
+          */}
+        </div>
+      );
+    }
+
+    /* 4-2-2. 챗봇 지식 추천 목록 */
+    return (
+      <ul className="knowledge_recommand_lists chatbot">
+        <li className="knowledge_recommand_list chatbot">
+          <div className="knowledge_recommand_contents chatbot">
+            <div className="knowledge_recommand_title chatbot">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area chatbot">
+              <div className="knowledge_recommand_sentence chatbot">주문배송란에 선물포장 기입</div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+        <li className="knowledge_recommand_list chatbot">
+          <div className="knowledge_recommand_contents chatbot">
+            <div className="knowledge_recommand_title chatbot">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area chatbot">
+              <div className="knowledge_recommand_sentence chatbot">
+                주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이
+              </div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+        <li className="knowledge_recommand_list chatbot">
+          <div className="knowledge_recommand_contents chatbot">
+            <div className="knowledge_recommand_title chatbot">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area chatbot">
+              <div className="knowledge_recommand_sentence chatbot">
+                주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
+              </div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+        <li className="knowledge_recommand_list chatbot">
+          <div className="knowledge_recommand_contents chatbot">
+            <div className="knowledge_recommand_title chatbot">
+              포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
+            </div>
+            <div className="knowledge_recommand_sentence_scroll_area chatbot">
+              <div className="knowledge_recommand_sentence chatbot">
+                주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에
+                선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에 선물포장
+                기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
+              </div>
+            </div>
+            <div className="copy_recommand_sentence_button_box">
+              <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
+            </div>
+          </div>
+        </li>
+      </ul>
+    );
+  };
+  const displayChatbotKnowledgeRecommandTab = () => {
     return (
       <div className="knowledge_recommand_container chatbot">
         <div className="knowledge_recommand_search_text_field_box chatbot">
@@ -654,68 +776,7 @@ const ChatAdviseInformationSection = () => {
             handleClickSearchButton={handleSearchChatbotKnowledgeRecommand}
           />
         </div>
-        <ul className="knowledge_recommand_lists chatbot">
-          <li className="knowledge_recommand_list chatbot">
-            <div className="knowledge_recommand_contents chatbot">
-              <div className="knowledge_recommand_title chatbot">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area chatbot">
-                <div className="knowledge_recommand_sentence chatbot">주문배송란에 선물포장 기입</div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-          <li className="knowledge_recommand_list chatbot">
-            <div className="knowledge_recommand_contents chatbot">
-              <div className="knowledge_recommand_title chatbot">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area chatbot">
-                <div className="knowledge_recommand_sentence chatbot">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-          <li className="knowledge_recommand_list chatbot">
-            <div className="knowledge_recommand_contents chatbot">
-              <div className="knowledge_recommand_title chatbot">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area chatbot">
-                <div className="knowledge_recommand_sentence chatbot">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-          <li className="knowledge_recommand_list chatbot">
-            <div className="knowledge_recommand_contents chatbot">
-              <div className="knowledge_recommand_title chatbot">
-                포장 <span className="highlight">선물</span> 신청은 어떻게 하면 되나요
-              </div>
-              <div className="knowledge_recommand_sentence_scroll_area chatbot">
-                <div className="knowledge_recommand_sentence chatbot">
-                  주문배송란에 선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에
-                  선물포장 기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요. 주문배송란에 선물포장
-                  기입해주시면 선물 포장이가능 합니다. 단, 선물포장 시 5000원 비용이 발생하므로, 아래 계좌로 입금해주세요.
-                </div>
-              </div>
-              <div className="copy_recommand_sentence_button_box">
-                <SolidButton handleClick={handleCopyRecommandSentence}>답변 붙여넣기</SolidButton>
-              </div>
-            </div>
-          </li>
-        </ul>
+        {displayChatbotKnowledgeRecommandLists()}
         <div className="knowledge_recommand_pagination_box chatbot">
           <div className="pagination">
             <button type="button" className="page_move_arrow_button go_to_first" onClick={handleClickMovePaginationArrowButton}>
@@ -930,7 +991,7 @@ const ChatAdviseInformationSection = () => {
               <div className="customer_chat_information_title_tabs">
                 <button
                   type="button"
-                  className={`customer_chat_information_title_tab_button chat_advise_summary ${isCurrentTabChatAdviseSummary ? 'active' : ''}`}
+                  className={`customer_chat_information_title_tab_button chat_advise_summary ${isCurrentTabChatAdviseSummary ? 'breadscrumb' : ''}`}
                   onClick={handleTabChatAdviseSummary}
                 >
                   <span role="heading" aria-level="3" className="customer_chat_information_title">
@@ -939,7 +1000,7 @@ const ChatAdviseInformationSection = () => {
                 </button>
                 <button
                   type="button"
-                  className={`customer_chat_information_title_tab_button customer_order_list ${isCurrentTabChatAdviseSummary ? '' : 'active'}`}
+                  className={`customer_chat_information_title_tab_button customer_order_list ${isCurrentTabChatAdviseSummary ? '' : 'breadscrumb'}`}
                   onClick={handleTabCustomerOrderLists}
                 >
                   <span role="heading" aria-level="3" className="customer_chat_information_title">
@@ -953,13 +1014,13 @@ const ChatAdviseInformationSection = () => {
                 </SolidButton>
               </div>
             </div>
-            {isCurrentTabChatAdviseSummary ? showChatAdviseSummaryTab() : showCustomerOrderListsTab()}
+            {isCurrentTabChatAdviseSummary ? displayChatAdviseSummaryTab() : displayCustomerOrderListsTab()}
           </div>
           <button type="button" onClick={handleShowkKMSPannel}>
             상담지식사전
           </button>
           {/* 3-2-3. 상세 주문내역 전체화면 모달 */}
-          {isShowDetailCustomerOrderListModal ? showDetailCustomerOrderListModal() : ''}
+          {isShowDetailCustomerOrderListModal ? displayDetailCustomerOrderListModal() : ''}
         </div>
       </section>
       {/* 4. 상담 지식사전 패널 섹션 */}
@@ -975,7 +1036,7 @@ const ChatAdviseInformationSection = () => {
         <div className="KMS_pannel_sub_title_tabs">
           <button
             type="button"
-            className={`KMS_pannel_sub_title_tab_button KMS_knowledge_recommand ${isCurrentTabKMSKnowledgeRecommand ? 'active' : ''}`}
+            className={`KMS_pannel_sub_title_tab_button KMS_knowledge_recommand ${isCurrentTabKMSKnowledgeRecommand ? 'breadscrumb' : ''}`}
             onClick={handleTabKMSKnowledgeRecommand}
           >
             <span role="heading" aria-level="3" className="KMS_pannel_sub_title">
@@ -984,7 +1045,7 @@ const ChatAdviseInformationSection = () => {
           </button>
           <button
             type="button"
-            className={`KMS_pannel_sub_title_tab_button chatbot_knowledge_recommand ${isCurrentTabKMSKnowledgeRecommand ? '' : 'active'}`}
+            className={`KMS_pannel_sub_title_tab_button chatbot_knowledge_recommand ${isCurrentTabKMSKnowledgeRecommand ? '' : 'breadscrumb'}`}
             onClick={handleTabChatbotKnowledgeRecommand}
           >
             <span role="heading" aria-level="3" className="KMS_pannel_sub_title">
@@ -992,7 +1053,7 @@ const ChatAdviseInformationSection = () => {
             </span>
           </button>
         </div>
-        {isCurrentTabKMSKnowledgeRecommand ? showKMSKnowledgeRecommandTab() : showChatbotKnowledgeRecommandTab()}
+        {isCurrentTabKMSKnowledgeRecommand ? displayKMSKnowledgeRecommandTab() : displayChatbotKnowledgeRecommandTab()}
       </section>
     </>
   );

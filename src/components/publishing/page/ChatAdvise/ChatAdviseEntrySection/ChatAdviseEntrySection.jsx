@@ -15,8 +15,44 @@ import './ChatAdviseEntrySection.scss';
 const ChatAdviseEntrySection = () => {
   const TIME_OPEN = '9:00';
   const TIME_CLOSE = '18:00';
+  const SETTING_CHAT_ADVISE_OPERATING_TIME = false;
+  const IS_IN_OPERATING_TIME = false;
+  const displayOperatingTimeNotice = () => {
+    if (SETTING_CHAT_ADVISE_OPERATING_TIME) {
+      if (IS_IN_OPERATING_TIME) {
+        return (
+          <>
+            <div className="operating_time_notice_box">
+              <span>채팅상담 운영시간</span>
+              <span> {TIME_OPEN}</span>
+              <span> ~ </span>
+              <span>{TIME_CLOSE}</span>
+            </div>
+            <div className={`current_operation_color_tag_box ${SETTING_CHAT_ADVISE_OPERATING_TIME ? 'show' : ''}`}>
+              <ColorTag>운영중</ColorTag>
+            </div>
+          </>
+        );
+      }
+      return (
+        <>
+          <div className="operating_time_notice_box">
+            <span>채팅상담 운영시간</span>
+            <span> {TIME_OPEN}</span>
+            <span> ~ </span>
+            <span>{TIME_CLOSE}</span>
+          </div>
+        </>
+      );
+    }
 
-  const handleClickPageMoveButton = () => {
+    return (
+      <div className="operating_time_notice_box">
+        <span>채팅상담 운영시간이 미설정된 상태입니다.</span>
+      </div>
+    );
+  };
+  const handlePageMoveButton = () => {
     console.log('각 버튼에 따라 페이지 이동👋🏻');
   };
   return (
@@ -27,15 +63,7 @@ const ChatAdviseEntrySection = () => {
             <div className="entry_operating_time_adviser_icon_box">
               <IconLnbChatAdvise />
             </div>
-            <div className="operating_time_notice_box">
-              <span>채팅상담 운영시간</span>
-              <span> {TIME_OPEN}</span>
-              <span> ~ </span>
-              <span>{TIME_CLOSE}</span>
-            </div>
-            <div className="current_operation_color_tag_box">
-              <ColorTag>운영중</ColorTag>
-            </div>
+            {displayOperatingTimeNotice()}
           </div>
           <div className="chat_advise_entry_main_contents_box">
             <div className="chat_advise_entry_main_contents_top">
@@ -44,8 +72,8 @@ const ChatAdviseEntrySection = () => {
               <div
                 role="button"
                 tabIndex={0}
-                onClick={handleClickPageMoveButton}
-                onKeyUp={handleClickPageMoveButton}
+                onClick={handlePageMoveButton}
+                onKeyUp={handlePageMoveButton}
                 className="chat_advise_introduce_page_move_button customer_manage"
               >
                 <div className="chat_advise_entry_page_move_image_box">
@@ -66,13 +94,7 @@ const ChatAdviseEntrySection = () => {
             </div>
             <div className="chat_advise_entry_main_contents_bottom chat_keyword">
               <p className="chat_advise_entry_description">고객들과의 효율적인 대화를 도와주는 기능</p>
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={handleClickPageMoveButton}
-                onKeyUp={handleClickPageMoveButton}
-                className="chat_advise_introduce_page_move_button"
-              >
+              <div role="button" tabIndex={0} onClick={handlePageMoveButton} onKeyUp={handlePageMoveButton} className="chat_advise_introduce_page_move_button">
                 <div className="chat_advise_entry_page_move_image_box">
                   <img
                     className="chat_advise_entry_page_image"
@@ -91,8 +113,8 @@ const ChatAdviseEntrySection = () => {
               <div
                 role="button"
                 tabIndex={0}
-                onClick={handleClickPageMoveButton}
-                onKeyUp={handleClickPageMoveButton}
+                onClick={handlePageMoveButton}
+                onKeyUp={handlePageMoveButton}
                 className="chat_advise_introduce_page_move_button making_kms"
               >
                 <div className="chat_advise_entry_page_move_image_box">
@@ -109,8 +131,8 @@ const ChatAdviseEntrySection = () => {
               <div
                 role="button"
                 tabIndex={0}
-                onClick={handleClickPageMoveButton}
-                onKeyUp={handleClickPageMoveButton}
+                onClick={handlePageMoveButton}
+                onKeyUp={handlePageMoveButton}
                 className="chat_advise_introduce_page_move_button setting_page"
               >
                 <div className="chat_advise_entry_page_move_image_box">

@@ -6,9 +6,6 @@
   background-color: $white;
 }
 
-.chat_advise_entry_contents_container {
-  
-}
 /* 1. 채팅상담 진입 */
 .entry_operating_time_adviser_icon_box {
   @include flexCenter();
@@ -33,7 +30,11 @@
   line-height: 1;
 }
 .current_operation_color_tag_box{
-  display: bloex;
+  display: none;
+  
+  &.show {
+    display: block;
+  }
 
   .color_tag {
     border-radius: 14px;
@@ -118,4 +119,11 @@
 .chat_advise_entry_page_image {
   width: 100%;
   object-fit: fill;
+}
+
+/* 1510 지원을 위한 미디어쿼리 */
+@media only screen and (max-width: 1540px) {
+  .chat_advise_entry_contents_container {
+    transform: scale(0.9);
+  }
 }

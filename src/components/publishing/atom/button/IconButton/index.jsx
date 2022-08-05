@@ -5,7 +5,7 @@ import './style.scss';
 /** 디폴트 아이콘 버튼 스타일 38x38
  * @children : svg icon component
  * @handleClick : 버튼 클릭 이벤트
- * @buttonClassName : 'small' 32x32 || 'tiny' 25x25
+ * @buttonClassName : 'small' 32x32 || 'tiny' 24x24
  * @buttonStyle : inline style로 버튼 스타일 변경
  */
 const IconButton = ({ children, handleClick, buttonClassName, buttonStyle }) => {

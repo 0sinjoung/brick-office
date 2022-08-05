@@ -202,7 +202,7 @@
     color: $grey080;
   }
   
-  &.active {
+  &.breadscrumb {
     background-color: $white;
     
     .chat_advise_category_first_tab_text {
@@ -244,7 +244,7 @@
     border-radius: 8px;
   }
 
-  &.active {
+  &.breadscrumb {
     .chat_advise_category_second_tab_text {
       color: $grey080;
     }
@@ -681,4 +681,6 @@
   width: 100%;
   padding: 0 14px;
 }
+
+
 
