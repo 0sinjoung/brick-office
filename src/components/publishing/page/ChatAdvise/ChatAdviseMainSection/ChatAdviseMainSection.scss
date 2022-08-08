@@ -116,9 +116,6 @@
     &.show {
       display: block;
     }
-    .chat_advise_main_header_search_button {
-      border: none;
-    }
   }
   
   /* (2) 상담사 변경 버튼 */
@@ -623,7 +620,7 @@
 
 
 /* 3. 채팅 상담 푸터 */
-.chat_advise_footer_container {
+.chat_advise_footer_wrap {
   flex: 0 0 auto;
   width: 100%;
   padding: 0 20px 30px;
@@ -648,11 +645,11 @@
 .chat_advise_main_footer {
 }
 
-.chat_advise_main_footer_box {
+.chat_advise_main_footer_wrap {
   position: relative;
 }
 
-.chat_advise_main_footer_texteditor_box {
+.chat_advise_main_footer_texteditor {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -746,7 +743,7 @@
 }
 
 /* 3-1-1. 푸터 탑 버튼 영역 */
-.chat_advise_main_footer_top_buttons_box {
+.chat_advise_main_footer_top_buttons_container {
   @include flexSpace();
   flex-shrink: 0;
   width: 100%;
@@ -845,17 +842,258 @@
 }
 
 /* 3-1-2. 푸터 입력 영역 */
-.chat_advise_main_footer_textarea_box {
+.chat_advise_main_footer_textarea_container {
   flex-grow: 1;
-  padding: 0 14px;
+  padding: 14px 14px 0;
+  font-size: 14px;
+  font-weight: $regular;
+  color: $grey080;
 }
+
 /* 3-1-3. 푸터 첨부파일 영역 */
-.chat_advise_main_footer_file_thumnail_box { 
+.chat_advise_main_footer_attachments_container { 
   flex-shrink: 0;
   padding: 0 14px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+/* 3-1-3-1. 푸터 첨부파일 - 버튼 */
+.chat_advise_main_footer_attachments_buttons_box {
+  @include flexStart();
+  gap: 12px;
+}
+.chat_advise_main_footer_attachments_button_box {
+  width: fit-content;
+  max-width: 164px;
+  position: relative;
+
+  @include hoverTransition();
+  &:hover {
+    .chat_advise_main_footer_attachments_button {
+      background-color: $grey005;
+    }
+    .chat_advise_main_footer_attachments_button_delete_button {
+      @include flexCenter();
+    }
+  }
+}
+.chat_advise_main_footer_attachments_button {
+  @include flexStart();
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: $grey020-border;
+  border-radius: 8px;
+  background-color: $white;
+}
+.chat_advise_main_footer_attachments_button_text {
+  @include ellipsisOneLine();
+  width: 100%;
+  font-size: 16px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey080;
+}
+
+
+/* 3-1-3-2. 푸터 첨부파일 - 파일 | 이미지 */
+.chat_advise_main_footer_attachments_file_box {
+}
+
+.chat_advise_main_footer_attachments_file_thumnails_box {
+  @include flexStart();
+  gap: 12px;
+}
+
+.chat_advise_main_footer_attachments_file_thumnail_box {
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+
+  @include hoverTransition();
+  &:hover {
+    .chat_advise_main_footer_attachments_button_delete_button {
+      @include flexCenter();
+    }
+  }
+
+  &.image {
+    width: 60px;
+
+    .attachments_file_image_lightbox_button {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .chat_advise_main_footer_attachments_file_image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &.error {
+    &::after {
+      @include brickRedBadgeStyle();
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      transform: translate(50%, -50%);
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &.loading {
+    .attachments_file_image_lightbox_button {
+      &:hover {
+        cursor: default;
+      }
+    }
+    &:hover {
+      cursor: default;
+      .chat_advise_main_footer_attachments_button_delete_button {
+        display: none;
+      }
+    }
+  }
+}
+
+/* 로딩 스피너 */
+.attachments_file_loading_spinner {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  transform: translate(50%, -50%);
+  width: 18px;
+  height: 18px;
+  background-color: $grey010;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: animationSpinner 0.8s infinite linear;
+  
+  &::before {
+    content: '';
+    display: block;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 45%;
+    background-color: $grey030;
+    // transform: translate(50%, -50%);
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: $white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  // .icon_file_attachment_spinner {
+  //   width: 18px;
+  //   height: 18px;
+  //   // animation: animationSpinner 0.8s infinite linear;
+  // }
+}
+@keyframes animationSpinner {
+  0% {transform: translate(50%, -50%) rotate(45deg);}
+  100% {transform: translate(50%, -50%) rotate(405deg);}
+}
+
+/* 파일 템플릿 */
+.attachment_fileupload_file_template {
+  width: 180px;
+  background-color: $grey005;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.attachment_fileupload_file_contents {
+  @include flexSpace();
+  gap: 6px;
+}
+
+.attachment_file_thumnail_box {
+  flex-shrink: 0;
+  @include flexCenter();
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  background-color: $white;
+}
+
+.attachment_file_description_box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .attachment_filename_title {
+    @include flexStart();
+    max-width: 100px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: $semi-bold;
+    color: $grey080;
+
+    .attachment_filename_title_text {
+      @include ellipsisOneLine();
+      flex-grow: 1;
+      display: inline-block;
+    }
+    
+    .attachment_filename_extension {
+      flex-shrink: 0;
+      display: inline-block;
+    }
+  }
+  
+  .attachment_file_expiration_period,
+  .attachment_fileupload_size {
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: $regular;
+    color: $grey100;
+  }
+}
+
+/* 삭제 버튼 */
+.chat_advise_main_footer_attachments_button_delete_button {
+  // @include flexCenter();
+  display: none;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 11;
+  transform: translate(50%, -50%);
+  width: 18px;
+  height: 18px;
+  background-color: $grey020;
+  border-radius: 50%;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey080;
+  }
+
+  .icon_cross_small {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+
 /* 3-1-4. 푸터 바텀 버튼 영역 */
-.chat_advise_main_footer_bottom_buttons_box {
+.chat_advise_main_footer_bottom_buttons_container {
   flex-shrink: 0;
   @include flexEnd();
   width: 100%;
@@ -1163,7 +1401,7 @@
   .chat_advise_main_contents_container {
     padding: 0 14px 44px;
   }
-  .chat_advise_footer_container {
+  .chat_advise_footer_wrap {
     padding: 0 14px 30px;
   }
   .chat_advise_footer_keyword_pannel,

@@ -1,0 +1,103 @@
+@import "/src/styles/_variables.scss";
+
+.basic_text_selectbox_container {
+  width: 100%;
+  height: 100%;
+}
+
+.basic_text_selectbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown_toggle_button {
+  flex-grow: 1;
+  @include flexSpace();
+  width: 100%;
+  height: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: $grey020-border;
+  background-color: $white;
+  z-index: 10;
+  cursor: pointer;
+
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.dropdown_toggle_button_text {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: $medium;
+  color: $grey080;
+}
+
+.dropdown_toggle_button_arrow_icon_box {
+  flex-shrink: 0;
+  @include flexCenter();
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.basic_text_select_box {
+  display: none;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  transform: translateY(100%);
+  width: 100%;
+  height: fit-content;
+  padding: 4px 2px 4px 4px;
+  border-radius: 8px;
+  border: $grey020-border;
+  box-shadow: $shadow-basic;
+  background-color: $white;
+  overflow: hidden;
+
+  &.open {
+    display: block;
+  }
+}
+
+.basic_text_select_box_lists {
+  @include scrollStyle();
+  display: flex;
+  flex-direction: column;
+  max-height: 176px;
+}
+
+.basic_text_select_box_list {
+  width: calc(100% - 8px);
+}
+
+.basic_text_select_box_button {
+  display: block;
+  width: 100%;
+  height: 28px;
+  padding: 6px;
+  border-radius: 5px;
+  background-color: $white;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: $medium;
+  color: $grey080;
+
+  &:hover {
+    background-color: $grey005;
+  }
+  
+  &.active {
+    background-color: $grey005;
+  }
+}
+

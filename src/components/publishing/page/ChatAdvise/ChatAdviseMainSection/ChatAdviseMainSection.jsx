@@ -4,6 +4,8 @@ import { ReactComponent as IconArrowUpSmall } from 'assets/svg/icon/icon_arrow_u
 import { ReactComponent as IconArrowDownLong } from 'assets/svg/icon/icon_arrow_down_long.svg';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
+import { ReactComponent as IconCrossSmall } from 'assets/svg/icon/icon_cross_small.svg';
+import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg';
 import { ReactComponent as IconBookmark } from 'assets/svg/icon/icon_bookmark.svg';
 import { ReactComponent as IconSearch } from 'assets/svg/icon/icon_search.svg';
 import { ReactComponent as IconChatAdviseKeywordPannelButton } from 'assets/svg/icon/chatAdvise/icon_chat_advise_keyword_pannel_button.svg';
@@ -30,7 +32,7 @@ import './ChatAdviseMainSection.scss';
 
 /** 채팅 상담 메인 영역
  */
-const ChatAdviseMainSection = () => {
+const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   /* ref */
   const refSearchHeaderTextField = React.createRef();
   const refKeywordPannelTextField = React.createRef();
@@ -99,6 +101,29 @@ const ChatAdviseMainSection = () => {
     console.log('새 메시지 위치로 이동');
   };
 
+  /* 3-1-3. 푸터 첨부파일 영역 */
+  const handleDeleteAttachments = () => {
+    console.log('해당 요소 삭제하기');
+  }
+  /* 3-1-3-1. 푸터 첨부파일 - 버튼 */
+  // const [isShowDeleteButton1, setIsShowDeleteButton1] = useState(false);
+  // const [isShowDeleteButton2, setIsShowDeleteButton2] = useState(false);
+  // const [isShowDeleteButton3, setIsShowDeleteButton3] = useState(false);
+
+  /* 3-1-3-2. 푸터 첨부파일 - 파일 | 이미지 */
+  const ALT_FILE_NAME = '파일 이름';
+  const IMAGE_SAMPLE_LINK = 'https://cdn.brickchat.dev/assets/img/sample/sample_fileupload.png';
+  const FILE_EXTENSION = 'xlsx';
+  const PERIOD_DATE = '2022.01.18';
+  const FILE_SIZE_UNIT = '1KB';
+
+  const handleOpenLightbox = () => {
+    console.log('open lightbox');
+  };
+  const handleDownloadfile = () => {
+    console.log('📂 파일 다운로드');
+  };
+  
   /* 상담 키워드 패널 */
   const handleToggleChatAdviseKeywordPannel = () => {
     setIsShowChatAdviseKeywordPannel(!isShowChatAdviseKeywordPannel);
@@ -128,8 +153,9 @@ const ChatAdviseMainSection = () => {
   const handleTextDecoration = () => {
     console.log('텍스트 데코레이션');
   };
-  const handleKMSPannel = () => {
+  const handleClickKMSPannel = () => {
     console.log('상담 지식 사전 패널');
+    handleKMSPannel(!isShowKMSPannel);
   };
   const handleSendMessage = () => {
     console.log('💌 메시지 전송');
@@ -168,7 +194,7 @@ const ChatAdviseMainSection = () => {
               </div>
               <div className="chat_advise_main_header_buttons_box">
                 <div className={`chat_advise_main_header_search_button_box ${showHeaderSearchIcon}`}>
-                  <IconButton buttonClassName="chat_advise_main_header_search_button" handleClick={handleShowHeaderSearchArea}>
+                  <IconButton buttonClassName="small" handleClick={handleShowHeaderSearchArea}>
                     <IconSearch />
                   </IconButton>
                 </div>
@@ -246,10 +272,10 @@ const ChatAdviseMainSection = () => {
             <FileUploadScenario />
           </div>
           {/* 3. 채팅 상담 푸터 */}
-          <div className="chat_advise_footer_container">
+          <div className="chat_advise_footer_wrap">
             {/* 3-1. 메인 푸터 - 텍스트 에디터 영역 */}
             <footer className="chat_advise_main_footer">
-              <div className="chat_advise_main_footer_box">
+              <div className="chat_advise_main_footer_wrap">
                 {/* 3-1-0. 푸터 dimed */}
                 <div className={`chat_advise_main_footer_dimed_box ${DIMED_SHOW}`}>
                   <div className="chat_advise_main_footer_dimed_box_contents">
@@ -273,9 +299,9 @@ const ChatAdviseMainSection = () => {
                     </div> */}
                   </div>
                 </div>
-                <div className="chat_advise_main_footer_texteditor_box">
+                <div className="chat_advise_main_footer_texteditor">
                   {/* 3-1-1. 푸터 탑 버튼 영역 */}
-                  <div className="chat_advise_main_footer_top_buttons_box">
+                  <div className="chat_advise_main_footer_top_buttons_container">
                     <div className="chat_advise_main_footer_top_left_buttons_box">
                       <div
                         className="chat_advise_main_footer_top_button_box chat_advise_keyword_pannel"
@@ -318,18 +344,126 @@ const ChatAdviseMainSection = () => {
                     </div>
                     <div className="chat_advise_main_footer_top_right_buttons_box">
                       <div className="KMS_pannel_button_box">
-                        <OutlineButton buttonClassName="small" handleClick={handleKMSPannel}>
+                        <OutlineButton buttonClassName="small" handleClick={handleClickKMSPannel}>
                           상담 지식 사전
                         </OutlineButton>
                       </div>
                     </div>
                   </div>
                   {/* 3-1-2. 푸터 입력 영역 */}
-                  <div className="chat_advise_main_footer_textarea_box">텍스트입력부</div>
+                  <div className="chat_advise_main_footer_textarea_container">텍스트 입력 영역</div>
                   {/* 3-1-3. 푸터 첨부파일 영역 */}
-                  <div className="chat_advise_main_footer_file_thumnail_box">파일썸네일 영역</div>
+                  <div className="chat_advise_main_footer_attachments_container">
+                    <div className="chat_advise_main_footer_attachments_buttons_box">
+                      <div className="chat_advise_main_footer_attachments_button_box">
+                        <button type='button' className="chat_advise_main_footer_attachments_button">
+                          <span className="chat_advise_main_footer_attachments_button_text">
+                          버튼명은최대열글자까지나옵니다다다다다
+                          </span>
+                        </button>
+                        <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                          <IconCrossSmall />
+                        </button>
+                      </div>
+                      <div className="chat_advise_main_footer_attachments_button_box">
+                        <button type='button' className="chat_advise_main_footer_attachments_button">
+                          <span className="chat_advise_main_footer_attachments_button_text">
+                          브릭홈페이지
+                          </span>
+                        </button>
+                        <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                          <IconCrossSmall />
+                        </button>
+                      </div>
+                      <div className="chat_advise_main_footer_attachments_button_box">
+                        <button type='button' className="chat_advise_main_footer_attachments_button">
+                          <span className="chat_advise_main_footer_attachments_button_text">
+                          구글
+                          </span>
+                        </button>
+                        <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                          <IconCrossSmall />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="chat_advise_main_footer_attachments_file_box">
+                      <div className="chat_advise_main_footer_attachments_file_thumnails_box">
+                        <div className="chat_advise_main_footer_attachments_file_thumnail_box image loading">
+                          <button type='button' className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
+                            <img className="chat_advise_main_footer_attachments_file_image" src={IMAGE_SAMPLE_LINK} alt={ALT_FILE_NAME} />
+                          </button>
+                          <div className="attachments_file_loading_spinner">
+                            <span className="loading_spinner"></span>
+                          </div>
+                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossSmall />
+                          </button>
+                        </div>
+                        <div className="chat_advise_main_footer_attachments_file_thumnail_box image error">
+                          <button type='button' className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
+                            <img className="chat_advise_main_footer_attachments_file_image" src={IMAGE_SAMPLE_LINK} alt={ALT_FILE_NAME} />
+                          </button>
+                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossSmall />
+                          </button>
+                        </div>
+                        <div className="chat_advise_main_footer_attachments_file_thumnail_box file">
+                          <div className="attachment_fileupload_file_template">
+                            <div className="attachment_fileupload_file_contents">
+                              <div className="attachment_file_thumnail_box">
+                                {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
+                                <IconFileExtensionXlsx />
+                              </div>
+                              <div className="attachment_file_description_box">
+                                <p className="attachment_filename_title">
+                                  <span className="attachment_filename_title_text">파일이름최대최대최대최대</span>
+                                  <span className="attachment_filename_extension">{`.${FILE_EXTENSION}`}</span>
+                                </p>
+                                <p className="attachment_file_expiration_period">
+                                  <span className="attachment_period_date">{PERIOD_DATE}</span>
+                                  <span className="attachment_period_text"> 까지</span>
+                                </p>
+                                <p className="attachment_fileupload_size">
+                                  <span className="attachment_fileupload_size_unit">{FILE_SIZE_UNIT}</span>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossSmall />
+                          </button>
+                        </div>
+                        <div className="chat_advise_main_footer_attachments_file_thumnail_box file error">
+                          <div className="attachment_fileupload_file_template">
+                            <div className="attachment_fileupload_file_contents">
+                              <div className="attachment_file_thumnail_box">
+                                {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
+                                <IconFileExtensionXlsx />
+                              </div>
+                              <div className="attachment_file_description_box">
+                                <p className="attachment_filename_title">
+                                  <span className="attachment_filename_title_text">파일이름최대최대최대최대</span>
+                                  <span className="attachment_filename_extension">{`.${FILE_EXTENSION}`}</span>
+                                </p>
+                                <p className="attachment_file_expiration_period">
+                                  <span className="attachment_period_date">{PERIOD_DATE}</span>
+                                  <span className="attachment_period_text"> 까지</span>
+                                </p>
+                                <p className="attachment_fileupload_size">
+                                  <span className="attachment_fileupload_size_unit">{FILE_SIZE_UNIT}</span>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossSmall />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   {/* 3-1-4. 푸터 바텀 버튼 영역 */}
-                  <div className="chat_advise_main_footer_bottom_buttons_box">
+                  <div className="chat_advise_main_footer_bottom_buttons_container">
                     <div className="chat_advise_main_footer_bottom_right_buttons_box">
                       <div className="chat_advise_main_footer_bottom_button file_upload">
                         <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>

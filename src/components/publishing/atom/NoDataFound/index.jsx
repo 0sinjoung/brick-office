@@ -15,7 +15,7 @@ const NoDataFound = ({ children }) => {
 };
 
 NoDataFound.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
 };
 
 NoDataFound.defaultProps = {

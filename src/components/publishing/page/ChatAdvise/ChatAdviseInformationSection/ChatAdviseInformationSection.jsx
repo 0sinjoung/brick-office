@@ -13,24 +13,25 @@ import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
 import FullScreenDim from 'components/publishing/atom/FullScreenDim';
+import BasicTextSelectbox from 'components/publishing/molecule/selectbox/BasicTextSelectbox';
 import './ChatAdviseInformationSection.scss';
 
 /** 채팅 상담 정보 영역
  */
-const ChatAdviseInformationSection = () => {
+const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const refAdviseMemoTextField = useRef();
   const CUSTOMER_INFO = {
-    group_name: '고객그룹명',
+    groupName: '고객그룹명',
     name: '김다영',
     phone: '010-2222-3333',
     email: 'heyheyheyheyheyday@naver.com',
   };
   const ADVISE_INFO = {
-    advise_start: '2022-06-02 오후 11:59',
-    advise_end: '진행중',
-    memo: '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
-    advise_fields: ['교환 반품 환불', '고객 관리', 'A/S', '결제', '회원', '상품', '시스템', '주문', '기타', '프로모션', '배송'],
-    // advise_fields: ['교환 반품 환불', '고객 관리'],
+    adviseStart: '2022-06-02 오후 11:59',
+    adviseEnd: '진행중',
+    adviseMemo: '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
+    adviseFields: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '주문', '프로모션', '회원', '기타'],
+    // adviseFields: ['교환 반품 환불', '고객 관리'],
   };
 
   /* pagination */
@@ -41,16 +42,17 @@ const ChatAdviseInformationSection = () => {
     console.log("click pagination's arrow button");
   };
 
-  const [adviseFieldsCount, setAdviseFieldCount] = useState(ADVISE_INFO.advise_fields.length >= 3 ? 'over' : '');
+  const [adviseFieldsCount, setAdviseFieldCount] = useState(ADVISE_INFO.adviseFields.length >= 3 ? 'over' : '');
   const showAdviseFields = () => {
+    /* 채팅상담 기획서에는 없지만 필드 내림차순 정렬 방식으로 요청이 있었습니다. 상담 오피스 - 설정 기획서 10p. 순서 참조 - 기타는 맨 후순위 */
     if (adviseFieldsCount === 'over') {
       return (
         <div className="chat_advise_information_content">
           <div className="advise_field_chip_item">
-            <AdviseFieldChip>{ADVISE_INFO.advise_fields[0]}</AdviseFieldChip>
+            <AdviseFieldChip>{ADVISE_INFO.adviseFields[0]}</AdviseFieldChip>
           </div>
           <div className="advise_field_chip_item">
-            <AdviseFieldChip>{ADVISE_INFO.advise_fields[1]}</AdviseFieldChip>
+            <AdviseFieldChip>{ADVISE_INFO.adviseFields[1]}</AdviseFieldChip>
           </div>
           <div className="advise_field_more">
             <OutlineTag buttonClassName="tiny outline">
@@ -62,9 +64,9 @@ const ChatAdviseInformationSection = () => {
     }
     return (
       <div className="chat_advise_information_content">
-        {ADVISE_INFO.advise_fields.map((item, idx) => {
+        {ADVISE_INFO.adviseFields.map((item) => {
           return (
-            <div className="advise_field_chip_item" key={idx}>
+            <div className="advise_field_chip_item" key={item}>
               <AdviseFieldChip>{item}</AdviseFieldChip>
             </div>
           );
@@ -80,7 +82,7 @@ const ChatAdviseInformationSection = () => {
     if (!viewMoreAdviseInformationPannel) {
       setAdviseFieldCount('all');
     } else {
-      setAdviseFieldCount(ADVISE_INFO.advise_fields.length >= 3 ? 'over' : '');
+      setAdviseFieldCount(ADVISE_INFO.adviseFields.length >= 3 ? 'over' : '');
     }
   };
 
@@ -190,18 +192,18 @@ const ChatAdviseInformationSection = () => {
             <table className="customer_order_list_table">
               <thead className="customer_order_list_table_heading">
                 <tr>
-                  <th className="customer_order_table_heading">결제방법</th>
-                  <th className="customer_order_table_heading">결제상태</th>
-                  <th className="customer_order_table_heading">총 결제금액</th>
-                  <th className="customer_order_table_heading">주문상태</th>
+                  <th className="customer_order_table_heading payment_method">결제방법</th>
+                  <th className="customer_order_table_heading payment_status">결제상태</th>
+                  <th className="customer_order_table_heading payment_amount">총 결제금액</th>
+                  <th className="customer_order_table_heading order_status">주문상태</th>
                 </tr>
               </thead>
               <tbody className="customer_order_list_table_body">
                 <tr>
-                  <td className="customer_order_table_data">무통장 입금</td>
-                  <td className="customer_order_table_data">결제완료</td>
-                  <td className="customer_order_table_data payment">55,000</td>
-                  <td className="customer_order_table_data">배송 대기</td>
+                  <td className="customer_order_table_data payment_method">신용카드</td>
+                  <td className="customer_order_table_data payment_status">결제대기</td>
+                  <td className="customer_order_table_data payment_amount">55,000</td>
+                  <td className="customer_order_table_data order_status">배송대기</td>
                 </tr>
               </tbody>
             </table>
@@ -213,18 +215,18 @@ const ChatAdviseInformationSection = () => {
             <table className="customer_order_list_table">
               <thead className="customer_order_list_table_heading">
                 <tr>
-                  <th className="customer_order_table_heading">결제방법</th>
-                  <th className="customer_order_table_heading">결제상태</th>
-                  <th className="customer_order_table_heading">총 결제금액</th>
-                  <th className="customer_order_table_heading">주문상태</th>
+                  <th className="customer_order_table_heading payment_method">결제방법</th>
+                  <th className="customer_order_table_heading payment_status">결제상태</th>
+                  <th className="customer_order_table_heading payment_amount">총 결제금액</th>
+                  <th className="customer_order_table_heading order_status">주문상태</th>
                 </tr>
               </thead>
               <tbody className="customer_order_list_table_body">
                 <tr>
-                  <td className="customer_order_table_data">무통장 입금</td>
-                  <td className="customer_order_table_data">결제완료</td>
-                  <td className="customer_order_table_data payment">150,000</td>
-                  <td className="customer_order_table_data">배송 대기</td>
+                  <td className="customer_order_table_data payment_method">무통장 입금</td>
+                  <td className="customer_order_table_data payment_status">부분 결제</td>
+                  <td className="customer_order_table_data payment_amount">150,000</td>
+                  <td className="customer_order_table_data order_status">상품교환</td>
                 </tr>
               </tbody>
             </table>
@@ -236,18 +238,18 @@ const ChatAdviseInformationSection = () => {
             <table className="customer_order_list_table">
               <thead className="customer_order_list_table_heading">
                 <tr>
-                  <th className="customer_order_table_heading">결제방법</th>
-                  <th className="customer_order_table_heading">결제상태</th>
-                  <th className="customer_order_table_heading">총 결제금액</th>
-                  <th className="customer_order_table_heading">주문상태</th>
+                  <th className="customer_order_table_heading payment_method">결제방법</th>
+                  <th className="customer_order_table_heading payment_status">결제상태</th>
+                  <th className="customer_order_table_heading payment_amount">총 결제금액</th>
+                  <th className="customer_order_table_heading order_status">주문상태</th>
                 </tr>
               </thead>
               <tbody className="customer_order_list_table_body">
                 <tr>
-                  <td className="customer_order_table_data">무통장 입금</td>
-                  <td className="customer_order_table_data">결제완료</td>
-                  <td className="customer_order_table_data payment">9,999,999</td>
-                  <td className="customer_order_table_data">배송 대기</td>
+                  <td className="customer_order_table_data payment_method">휴대폰 결제</td>
+                  <td className="customer_order_table_data payment_status">결제완료</td>
+                  <td className="customer_order_table_data payment_amount">9,999,999</td>
+                  <td className="customer_order_table_data order_status">배송 중</td>
                 </tr>
               </tbody>
             </table>
@@ -259,18 +261,18 @@ const ChatAdviseInformationSection = () => {
             <table className="customer_order_list_table">
               <thead className="customer_order_list_table_heading">
                 <tr>
-                  <th className="customer_order_table_heading">결제방법</th>
-                  <th className="customer_order_table_heading">결제상태</th>
-                  <th className="customer_order_table_heading">총 결제금액</th>
-                  <th className="customer_order_table_heading">주문상태</th>
+                  <th className="customer_order_table_heading payment_method">결제방법</th>
+                  <th className="customer_order_table_heading payment_status">결제상태</th>
+                  <th className="customer_order_table_heading payment_amount">총 결제금액</th>
+                  <th className="customer_order_table_heading order_status">주문상태</th>
                 </tr>
               </thead>
               <tbody className="customer_order_list_table_body">
                 <tr>
-                  <td className="customer_order_table_data">무통장 입금</td>
-                  <td className="customer_order_table_data">결제완료</td>
-                  <td className="customer_order_table_data payment">12,000,000</td>
-                  <td className="customer_order_table_data">배송 대기</td>
+                  <td className="customer_order_table_data payment_method">계좌이체</td>
+                  <td className="customer_order_table_data payment_status">결제완료</td>
+                  <td className="customer_order_table_data payment_amount">12,000,000</td>
+                  <td className="customer_order_table_data order_status">상품준비중</td>
                 </tr>
               </tbody>
             </table>
@@ -335,7 +337,7 @@ const ChatAdviseInformationSection = () => {
                       <div className="customer_order_product_information_label">주문번호</div>
                       <div className="customer_order_product_information_contents">20220620-00000016</div>
                     </div>
-                    <div className="customer_order_product_information order_state">
+                    <div className="customer_order_product_information order_status">
                       <div className="customer_order_product_information_label">주문상태</div>
                       <div className="customer_order_product_information_contents">
                         <OutlineTag>입금전취소</OutlineTag>
@@ -369,7 +371,7 @@ const ChatAdviseInformationSection = () => {
                         <OutlineTag>무통장입금</OutlineTag>
                       </div>
                     </div>
-                    <div className="customer_order_product_information payment_state">
+                    <div className="customer_order_product_information payment_status">
                       <div className="customer_order_product_information_label">결제상태</div>
                       <div className="customer_order_product_information_contents">
                         <OutlineTag>결제대기</OutlineTag>
@@ -389,7 +391,7 @@ const ChatAdviseInformationSection = () => {
                       <div className="customer_order_product_information_label">주문번호</div>
                       <div className="customer_order_product_information_contents">20220620-00000016</div>
                     </div>
-                    <div className="customer_order_product_information order_state">
+                    <div className="customer_order_product_information order_status">
                       <div className="customer_order_product_information_label">주문상태</div>
                       <div className="customer_order_product_information_contents">
                         <OutlineTag>입금전취소</OutlineTag>
@@ -423,7 +425,7 @@ const ChatAdviseInformationSection = () => {
                         <OutlineTag>무통장입금</OutlineTag>
                       </div>
                     </div>
-                    <div className="customer_order_product_information payment_state">
+                    <div className="customer_order_product_information payment_status">
                       <div className="customer_order_product_information_label">결제상태</div>
                       <div className="customer_order_product_information_contents">
                         <OutlineTag>결제대기</OutlineTag>
@@ -448,7 +450,7 @@ const ChatAdviseInformationSection = () => {
                       <div className="customer_order_product_information_label">주문번호</div>
                       <div className="customer_order_product_information_contents">20220620-00000016</div>
                     </div>
-                    <div className="customer_order_product_information order_state">
+                    <div className="customer_order_product_information order_status">
                       <div className="customer_order_product_information_label">주문상태</div>
                       <div className="customer_order_product_information_contents">
                         <OutlineTag>입금전취소</OutlineTag>
@@ -482,7 +484,7 @@ const ChatAdviseInformationSection = () => {
                         <OutlineTag>무통장입금</OutlineTag>
                       </div>
                     </div>
-                    <div className="customer_order_product_information payment_state">
+                    <div className="customer_order_product_information payment_status">
                       <div className="customer_order_product_information_label">결제상태</div>
                       <div className="customer_order_product_information_contents">
                         <OutlineTag>결제대기</OutlineTag>
@@ -496,6 +498,24 @@ const ChatAdviseInformationSection = () => {
         </ul>
       </div>
     );
+  };
+
+  /* 3-2-3-1. 상세 주문내역 모달 - 셀렉트 박스 */
+  const detailCustomerOrderStatusData = [
+    {value: '전체', isSelect: true},
+    {value: '입금 전', isSelect: false},
+    {value: '상품준비중', isSelect: false},
+    {value: '배송준비중', isSelect: false},
+    {value: '배송대기', isSelect: false},
+    {value: '배송보류', isSelect: false},
+    {value: '배송 중', isSelect: false},
+    {value: '배송완료', isSelect: false},
+    {value: '주문취소', isSelect: false},
+    {value: '상품교환', isSelect: false},
+    {value: '상품반품', isSelect: false},
+  ];
+  const handleClickSelectBoxItem = value => {
+    console.log(value + '클릭됨');
   };
 
   const displayDetailCustomerOrderListModal = () => {
@@ -515,14 +535,9 @@ const ChatAdviseInformationSection = () => {
               </IconButton>
             </div>
           </div>
-          <div className="detail_customer_order_list_modal_selectbox_toggle_container">
-            <div className="detail_customer_order_list_modal_selectbox_toggle_box">
-              <button type="button" className="detail_customer_order_list_modal_selectbox_toggle_button">
-                <span className="detail_customer_order_list_modal_selectbox_toggle_button_text">주문상태</span>
-                <span className="detail_customer_order_list_modal_selectbox_toggle_button_icon">
-                  <IconDropdownArrow />
-                </span>
-              </button>
+          <div className="detail_customer_order_list_modal_basic_text_selectbox_area">
+            <div className="detail_customer_order_list_modal_basic_text_selectbox">
+              <BasicTextSelectbox defaultToggleButtonText="주문상태" selectBoxData={detailCustomerOrderStatusData} handleClickSelectItem={handleClickSelectBoxItem}/>
             </div>
           </div>
           {displayCustomerOrderDetailLists()}
@@ -540,12 +555,16 @@ const ChatAdviseInformationSection = () => {
   const handleSearchChatbotKnowledgeRecommand = () => {
     console.log('챗봇 지식 검색');
   };
-  const [isShowKMSPannel, setIsShowKMSPannel] = useState(false);
+  /** 수정할부분 */
+  // const [isShowKMSPannel, setIsShowKMSPannel] = useState(false);
   const handleShowkKMSPannel = () => {
-    setIsShowKMSPannel(true);
+    // setIsShowKMSPannel(true);
+    console.log('hi');
   };
   const handleHidekKMSPannel = () => {
-    setIsShowKMSPannel(false);
+    // setIsShowKMSPannel(false);
+    console.log('hi');
+    handleKMSPannel(false);
   };
 
   /* KMS 지식 추천 | 챗봇 지식 추천 탭 */
@@ -860,7 +879,7 @@ const ChatAdviseInformationSection = () => {
             <div className="customer_profile_title_head">
               <div className="customer_profile_title_box">
                 <h3 className="customer_profile_title">고객 정보</h3>
-                <OutlineTag>{CUSTOMER_INFO.group_name}</OutlineTag>
+                <OutlineTag>{CUSTOMER_INFO.groupName}</OutlineTag>
               </div>
               {/* 추후 수정 버튼 추가될수 있음 
               <div className="edit_customer_profile_button_box">
@@ -906,15 +925,15 @@ const ChatAdviseInformationSection = () => {
                   </li>
                   <li className="chat_advise_information_list advise_start_time">
                     <div className="chat_advise_information_label">상담 시작 시간</div>
-                    <div className="chat_advise_information_content">{ADVISE_INFO.advise_start}</div>
+                    <div className="chat_advise_information_content">{ADVISE_INFO.adviseStart}</div>
                   </li>
                   <li className="chat_advise_information_list advise_end_time">
                     <div className="chat_advise_information_label">상담 종료 시간</div>
-                    <div className="chat_advise_information_content">{ADVISE_INFO.advise_end}</div>
+                    <div className="chat_advise_information_content">{ADVISE_INFO.adviseEnd}</div>
                   </li>
-                  <li className="chat_advise_information_list memo">
+                  <li className="chat_advise_information_list advise_memo">
                     <div className="chat_advise_information_label">상담 메모</div>
-                    <div className="chat_advise_information_content">{ADVISE_INFO.memo}</div>
+                    <div className="chat_advise_information_content">{ADVISE_INFO.adviseMemo}</div>
                   </li>
                 </ul>
               </div>
@@ -947,13 +966,13 @@ const ChatAdviseInformationSection = () => {
                   </li>
                   <li className="edit_chat_advise_information_list advise_start_time">
                     <div className="edit_chat_advise_information_label">상담 시작 시간</div>
-                    <div className="edit_chat_advise_information_content">{ADVISE_INFO.advise_start}</div>
+                    <div className="edit_chat_advise_information_content">{ADVISE_INFO.adviseStart}</div>
                   </li>
                   <li className="edit_chat_advise_information_list advise_end_time">
                     <div className="edit_chat_advise_information_label">상담 종료 시간</div>
-                    <div className="edit_chat_advise_information_content">{ADVISE_INFO.advise_end}</div>
+                    <div className="edit_chat_advise_information_content">{ADVISE_INFO.adviseEnd}</div>
                   </li>
-                  <li className="edit_chat_advise_information_list memo">
+                  <li className="edit_chat_advise_information_list adviseMemo">
                     <div className="edit_chat_advise_information_label">상담 메모</div>
                     {/* 2-2-2. 상담 분야 메모 박스 */}
                     <div className="edit_chat_advise_memo_box">
@@ -1016,9 +1035,9 @@ const ChatAdviseInformationSection = () => {
             </div>
             {isCurrentTabChatAdviseSummary ? displayChatAdviseSummaryTab() : displayCustomerOrderListsTab()}
           </div>
-          <button type="button" onClick={handleShowkKMSPannel}>
+          {/* <button type="button" onClick={handleShowkKMSPannel}>
             상담지식사전
-          </button>
+          </button> */}
           {/* 3-2-3. 상세 주문내역 전체화면 모달 */}
           {isShowDetailCustomerOrderListModal ? displayDetailCustomerOrderListModal() : ''}
         </div>

@@ -137,6 +137,14 @@ $template-button-shadow: 0px 0px 10px #646F7C0F;
   color: $grey080;
 }
 
+@mixin stopTextDrag {
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* scroll style : 주의 - height 고정값 필요 */
 @mixin scrollStyle {
   overflow-x: hidden;

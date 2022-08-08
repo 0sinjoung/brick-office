@@ -1,0 +1,40 @@
+@import "/src/styles/_variables.scss";
+
+.deletable_chip {
+  display: none;
+  width: fit-content;
+  height: 22px;
+  padding: 0 0 0 6px;
+  border-radius: 5px;
+  border: $grey010-border;
+  background-color: $white;
+  font-size: 11px;
+  line-height: 17px;
+  font-weight: $medium;
+  color: $grey040;
+  
+  &.show {
+    @include flexSpace();
+  }
+
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.deletable_chip_text {
+  @include stopTextDrag();
+}
+
+.deletable_chip_delete_button {
+  @include flexCenter();
+  width: 18px;
+  height: 20px;
+
+  .icon_cross_small {
+    fill: $grey040;
+    stroke: $grey040;
+    stroke-width: 0.2px;
+  }
+}

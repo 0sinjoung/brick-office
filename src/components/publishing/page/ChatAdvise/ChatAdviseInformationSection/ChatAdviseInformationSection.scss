@@ -99,7 +99,7 @@
       &.advise_field {
         align-items: flex-start;
       }
-      &.memo {
+      &.advise_memo {
         align-items: flex-start;
       }
 
@@ -497,7 +497,7 @@
     text-overflow: ellipsis;
     // white-space : nowrap;
     
-    &.payment {
+    &.payment_amount {
       padding: 2px;
     }
   }
@@ -536,12 +536,19 @@
   color: $grey040;
 }
 
-.detail_customer_order_list_modal_selectbox_toggle_container {
+.detail_customer_order_list_modal_basic_text_selectbox_area {
   flex-shrink: 0;
   @include flexEnd();
+  width: 100%;
   padding: 0 24px;
   margin-bottom: 2px;
 }
+
+.detail_customer_order_list_modal_basic_text_selectbox {
+  width: 140px;
+  height: 32px;
+}
+
 
 /* 3-2-3-1. 상세 주문내역 리스트 - 없음 */
 .detail_customer_order_no_data_found_box {
@@ -852,23 +859,6 @@
 
 
 /* atom - 이 파일에선 삭제될 예정 */
-.detail_customer_order_list_modal_selectbox_toggle_button {
-  @include flexSpace();
-  width: 140px;
-  height: 32px;
-  padding: 0 10px;
-  border-radius: 8px;
-  border: $grey020-border;
-  background-color: $white;
-}
-
-.detail_customer_order_list_modal_selectbox_toggle_button_icon {
-  @include flexCenter();
-}
-
-
-
-
 /* pagination */
 .pagination {
   @include flexCenter();

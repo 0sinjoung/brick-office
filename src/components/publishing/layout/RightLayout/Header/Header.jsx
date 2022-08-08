@@ -45,7 +45,7 @@ const Header = () => {
             <span className="header_user_name_sir">님,</span>
           </div>
           <OutlineTag>{IS_ADMIN ? '관리자' : '멤버'}</OutlineTag>
-          <div className="icon_setting_box">
+          <div className="header_setting_icon_button_box">
             <IconButton handleClick={clickSettingDropdown}>
               <IconSetting />
             </IconButton>

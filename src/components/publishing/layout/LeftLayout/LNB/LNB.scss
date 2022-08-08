@@ -298,17 +298,22 @@
   @include hoverTransition();
   &:hover {
     background-color: $grey005;
-
+    
     .LNB_link_icon {
       svg {
         fill: #161D24;
         stroke: #161D24;
       }
     }
-
+    
     .LNB_link_text {
       color: $grey100;
     }
+  }
+  
+  
+  &.active {
+    background-color: $grey005;
   }
 
   /* notification badge - 채팅 상담 메뉴만 해당*/

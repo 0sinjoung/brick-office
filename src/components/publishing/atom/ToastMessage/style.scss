@@ -15,11 +15,11 @@
   background-color: $toast-message-background;
   border-radius: 10px;
   overflow: hidden;
-  // opacity: 0;
-  // animation: ToastMessagefadeIn 3s;
+  opacity: 0;
   
   &.show {
     @include flexStart();
+    animation: ToastMessagefadeIn 3s;
   }
 }
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import { ReactComponent as IconPreviousChatAdviseTime } from 'assets/svg/icon/chatAdvise/icon_previous_chat_advise_time.svg';
 import { ReactComponent as IconArrowUpLarge } from 'assets/svg/icon/icon_arrow_up_large.svg';
-import { ReactComponent as IconCrossSmall } from 'assets/svg/icon/icon_cross_small.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
 import { ReactComponent as IconDetailSearch } from 'assets/svg/icon/icon_detail_search.svg';
 import { ReactComponent as IconRefreshAction } from 'assets/svg/icon/icon_refresh_action.svg';
@@ -13,12 +12,16 @@ import NumberNotificationBadge from 'components/publishing/atom/notificationBadg
 import NewNotificationBadge from 'components/publishing/atom/notificationBadge/NewNotificationBadge';
 import OnairAvatarIcon from 'components/publishing/atom/avatarIcon/OnairAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
+import OutlineButton from 'components/publishing/atom/button/OutlineButton';
+import SolidButton from 'components/publishing/atom/button/SolidButton';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
+import DeletableChip from 'components/publishing/atom/chip/DeletableChip';
 import ColorTag from 'components/publishing/atom/tag/ColorTag';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
 import BasicConfirmModal from 'components/publishing/molecule/modal/BasicConfirmModal';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
+import BasicTextSelectbox from 'components/publishing/molecule/selectbox/BasicTextSelectbox';
 import './ChatAdviseListSection.scss';
 
 /** 채팅 상담 리스트 영역
@@ -66,9 +69,9 @@ const ChatAdviseListSection = () => {
 
   /* 0. 토스트 메시지 */
   const [toastMessageData, setToastMessageData] = useState({
-    isShow: true,
+    isShow: false,
     icon: '',
-    message: '토스트 메시지 SAMPLE',
+    message: '',
   });
 
   /* 1. 상담사 정보 영역 */
@@ -152,11 +155,59 @@ const ChatAdviseListSection = () => {
   /* 3. 채팅 상담 검색 영역 */
   const refDetailSearchCustomerTextField = React.createRef();
   const refPreviousSearchCustomerTextField = React.createRef();
+  const DETAIL_SEARCH_ACTIVE = 'active';
+  const PREVIOUS_DETAIL_SEARCH_ACTIVE = '';
+
+  /* 3-1. 상세 검색 결과 칩 영역 */
+  const handleDeleteDetailSearchKeyword = value => {
+    console.log(value, '삭제시 로직 수행');
+  }
+  /* 3-2. 상세 검색 패널 */
+  const [isShowDetailSearchPannel, setIsShowDetailSearchPannel] = useState(false);
   const handleShowDetailSearchPannel = () => {
-    console.log('안녕 난 상세 검색 패널이야👋');
+    setIsShowDetailSearchPannel(true);
   };
+  const handleCancleDetailSearchPannel = () => {
+    setIsShowDetailSearchPannel(false);
+  }
+  const handleSearchDetailChatAdviseLists = () => {
+    console.log('상담 목록 상세 검색🐰');
+    setIsShowDetailSearchPannel(false);
+  };
+  const detailSearchSelectboxAdviserData = [
+    {value: '전체', isSelect: true},
+    {value: '상담사 배정 필요', isSelect: false},
+    {value: '김제니(꾸꾸)', isSelect: false},
+    {value: '안재이(안재이)', isSelect: false},
+    {value: '김소나(안드로메다)', isSelect: false},
+  ];
+  const detailSearchSelectboxChannelData = [
+    {value: '전체', isSelect: true},
+    {value: '브릭', isSelect: false},
+    {value: '카카오톡', isSelect: false},
+    {value: '네이버 톡톡', isSelect: false},
+    {value: '라인', isSelect: false},
+  ];
+  const detailSearchSelectboxAdviseFieldData = [
+    {value: '전체', isSelect: true},
+    {value: 'A/S', isSelect: false},
+    {value: '결제', isSelect: false},
+    {value: '고객 관리', isSelect: false},
+    {value: '교환 반품 환불', isSelect: false},
+    {value: '배송', isSelect: false},
+    {value: '상품', isSelect: false},
+    {value: '시스템', isSelect: false},
+    {value: '주문', isSelect: false},
+    {value: '프로모션', isSelect: false},
+    {value: '회원', isSelect: false},
+    {value: '기타', isSelect: false},
+  ];
+
+  const handleClickSelectBoxItem = value => {
+    console.log(value, '선택됨');
+  }
   const handleSearchCustomerInformation = () => {
-    console.log('회원 정보 검색🐰');
+    console.log('회원 정보 검색🐰, DeletableChip 생성');
   };
   const handleRefreshSearch = () => {
     console.log('검색 초기화🥕');
@@ -189,9 +240,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -254,9 +302,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -317,9 +362,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed active">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -382,9 +424,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -445,9 +484,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -508,9 +544,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -572,14 +605,14 @@ const ChatAdviseListSection = () => {
   };
 
   /* 5. 이전 상담 보기 영역 */
-  const [showPreviousChatListPannel, setShowPreviousChatListPannel] = useState(false);
+  const [isShowPreviousChatListPannel, setIsShowPreviousChatListPannel] = useState(false);
   const handleShowPreviousChatListPannel = () => {
-    setShowPreviousChatListPannel(!showPreviousChatListPannel);
+    setIsShowPreviousChatListPannel(!isShowPreviousChatListPannel);
   };
 
   /* 5-1. 이전 상담 보기 패널 */
   const PREVISOUS_CHAT_ADIVSE_LIST_COUNT = 0;
-  const showPreviousChatAdviseLists = () => {
+  const displayPreviousChatAdviseLists = () => {
     /* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */
     if (PREVISOUS_CHAT_ADIVSE_LIST_COUNT === 0) {
       return (
@@ -597,9 +630,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -662,9 +692,6 @@ const ChatAdviseListSection = () => {
           <article className="chat_advise_article">
             <div className="chat_advise_dimed">
               <div className="chat_advise_dimed_text_box">
-                <div className="chat_advise_dimed_icon_box">
-                  <IconLnbChatAdvise />
-                </div>
                 <div className="chat_advise_dimed_text">{DIMED_TEXT_CASE1}</div>
               </div>
             </div>
@@ -864,19 +891,71 @@ const ChatAdviseListSection = () => {
                   handleClickSearchButton={handleSearchCustomerInformation}
                 />
               </div>
-              <div className="chat_advise_detail_search_box">
-                <IconButton buttonClassName="small outline" handleClick={handleShowDetailSearchPannel}>
-                  <IconDetailSearch />
-                </IconButton>
-                <IconButton buttonClassName="small outline" handleClick={handleRefreshSearch}>
-                  <IconRefreshAction />
-                </IconButton>
-                <IconButton buttonClassName="small outline" handleClick={handleSortingChatList}>
-                  <IconSorting />
-                </IconButton>
+              <div className="chat_advise_detail_search_icon_buttons_box">
+                <div className={`chat_advise_detail_search_icon_button_box detail_pannel ${DETAIL_SEARCH_ACTIVE}`}>
+                  <IconButton buttonClassName="small outline" handleClick={handleShowDetailSearchPannel}>
+                    <IconDetailSearch />
+                  </IconButton>
+                </div>
+                <div className="chat_advise_detail_search_icon_button_box refresh">
+                  <IconButton buttonClassName="small outline" handleClick={handleRefreshSearch}>
+                    <IconRefreshAction />
+                  </IconButton>
+                </div>
+                <div className="chat_advise_detail_search_icon_button_box sorting">
+                  <IconButton buttonClassName="small outline" handleClick={handleSortingChatList}>
+                    <IconSorting />
+                  </IconButton>
+                </div>
+                {/* <div className="header_setting_icon_button_box">
+                  <IconButton handleClick={clickSettingDropdown}>
+                    <IconSetting />
+                  </IconButton>
+                  <div className={`dropdown_box ${showSettingDropdown ? 'show' : ''}`}>
+                    <SimpleDropdown dropdownData={settingDropdownData} />
+                  </div>
+                </div> */}
               </div>
             </div>
-            <div className="chat_advise_search_detail_pannel">검색 패널 영역</div>
+            {/* 3-1. 상세 검색 결과 칩 영역 */}
+            <div className={`detail_search_deletable_chip_box ${DETAIL_SEARCH_ACTIVE === 'active' ? 'show' : ''}`}>
+              <div className="detail_search_deletable_chips">
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>브릭</DeletableChip>
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#프로모션</DeletableChip>
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#교환 반품 환불</DeletableChip>
+              </div>
+            </div>
+            {/* 3-2. 상세 검색 패널 */}
+            <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
+              <div className="chat_advise_search_detail_pannel_selectboxs_container">
+                {/* 내 상담일 경우 상담사 검색 셀렉트 박스 없음 */}
+                {/* <div className="chat_advise_search_detail_pannel_selectbox adviser">
+                  <BasicTextSelectbox defaultToggleButtonText="상담사" selectBoxData={detailSearchSelectboxAdviserData} handleClickSelectItem={handleClickSelectBoxItem} />
+                </div> */}
+                <div className="chat_advise_search_detail_pannel_selectbox channel">
+                  <BasicTextSelectbox defaultToggleButtonText="상담채널" selectBoxData={detailSearchSelectboxChannelData} handleClickSelectItem={handleClickSelectBoxItem} />
+                </div>
+                <div className="chat_advise_search_detail_pannel_selectbox advise_field">
+                  <BasicTextSelectbox defaultToggleButtonText="상담분야" selectBoxData={detailSearchSelectboxAdviseFieldData} handleClickSelectItem={handleClickSelectBoxItem} />
+                </div>
+              </div>
+              <div className="chat_advise_search_detail_pannel_action_buttons_container">
+                <div className="chat_advise_search_detail_pannel_cancle_button_box">
+                  <OutlineButton handleClick={handleCancleDetailSearchPannel}>
+                    취소
+                  </OutlineButton>
+                </div>
+                <div className="chat_advise_search_detail_pannel_cancle_button_box">
+                  <SolidButton handleClick={handleSearchDetailChatAdviseLists}>
+                    검색하기
+                  </SolidButton>
+                </div>
+              </div>
+            </div>
           </div>
           {/* 4. 채팅 상담 리스트 영역 */}
           <div className="chat_advise_list_container">{displayChatAdviseLists()}</div>
@@ -901,7 +980,7 @@ const ChatAdviseListSection = () => {
             </div>
           </div>
           {/* 5-1. 이전 상담 보기 패널 */}
-          <div className={`previous_chat_list_pannel ${showPreviousChatListPannel ? 'show' : ''}`}>
+          <div className={`previous_chat_list_pannel ${isShowPreviousChatListPannel ? 'show' : ''}`}>
             <div className="previous_chat_list_pannel_title_box">
               <h3 className="previous_chat_list_pannel_title">이전 상담 보기</h3>
               <div className="previous_chat_list_pannel_close_button_box">
@@ -919,17 +998,59 @@ const ChatAdviseListSection = () => {
                     handleClickSearchButton={handleSearchCustomerInformation}
                   />
                 </div>
-                <div className="chat_advise_detail_search_box">
-                  <IconButton buttonClassName="small outline" handleClick={handleShowDetailSearchPannel}>
-                    <IconDetailSearch />
-                  </IconButton>
-                  <IconButton buttonClassName="small outline" handleClick={handleRefreshSearch}>
-                    <IconRefreshAction />
-                  </IconButton>
+                <div className="chat_advise_detail_search_icon_buttons_box">
+                  <div className={`chat_advise_detail_search_icon_button_box detail_pannel ${PREVIOUS_DETAIL_SEARCH_ACTIVE}`}>
+                    <IconButton buttonClassName="small outline" handleClick={handleShowDetailSearchPannel}>
+                      <IconDetailSearch />
+                    </IconButton>
+                  </div>
+                  <div className="chat_advise_detail_search_icon_button_box refresh">
+                    <IconButton buttonClassName="small outline" handleClick={handleRefreshSearch}>
+                      <IconRefreshAction />
+                    </IconButton>
+                  </div>
+                </div>
+                {/* 5-1-1. 상세 검색 결과 칩 영역 */}
+                <div className={`detail_search_deletable_chip_box ${PREVIOUS_DETAIL_SEARCH_ACTIVE === 'active' ? 'show' : ''}`}>
+                  <div className="detail_search_deletable_chips">
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>브릭</DeletableChip>
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#프로모션</DeletableChip>
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#교환 반품 환불</DeletableChip>
+                  </div>
+                </div>
+                {/* 5-1-2. 상세 검색 패널 */}
+                <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
+                  <div className="chat_advise_search_detail_pannel_selectboxs_container">
+                    <div className="chat_advise_search_detail_pannel_selectbox adviser">
+                      <BasicTextSelectbox defaultToggleButtonText="상담사" selectBoxData={detailSearchSelectboxAdviserData} handleClickSelectItem={handleClickSelectBoxItem} />
+                    </div>
+                    <div className="chat_advise_search_detail_pannel_selectbox channel">
+                      <BasicTextSelectbox defaultToggleButtonText="상담채널" selectBoxData={detailSearchSelectboxChannelData} handleClickSelectItem={handleClickSelectBoxItem} />
+                    </div>
+                    <div className="chat_advise_search_detail_pannel_selectbox advise_field">
+                      <BasicTextSelectbox defaultToggleButtonText="상담분야" selectBoxData={detailSearchSelectboxAdviseFieldData} handleClickSelectItem={handleClickSelectBoxItem} />
+                    </div>
+                  </div>
+                  <div className="chat_advise_search_detail_pannel_action_buttons_container">
+                    <div className="chat_advise_search_detail_pannel_cancle_button_box">
+                      <OutlineButton handleClick={handleCancleDetailSearchPannel}>
+                        취소
+                      </OutlineButton>
+                    </div>
+                    <div className="chat_advise_search_detail_pannel_cancle_button_box">
+                      <SolidButton handleClick={handleSearchDetailChatAdviseLists}>
+                        검색하기
+                      </SolidButton>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="previous_chat_advise_list_box">{showPreviousChatAdviseLists()}</div>
+            <div className="previous_chat_advise_list_box">{displayPreviousChatAdviseLists()}</div>
           </div>
         </div>
       </section>

@@ -47,7 +47,7 @@ const FileUploadScenario = () => {
   };
 
   /* 이미지 업로드 */
-  const ALT_FILE_NAME = '이미지 입니다.';
+  const ALT_FILE_NAME = '파일 이름';
   const IMAGE_SAMPLE_LINK = 'https://cdn.brickchat.dev/assets/img/sample/sample_fileupload.png';
   const handleShowLightbox = () => {
     console.log('🖼 이미지 원본 사이즈 보기');
