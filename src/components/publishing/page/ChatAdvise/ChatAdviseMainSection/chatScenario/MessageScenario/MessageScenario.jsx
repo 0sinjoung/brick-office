@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ReactComponent as IconTrashCan } from 'assets/svg/icon/icon_trash_can.svg';
+import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
 import BasicAvatarIcon from 'components/publishing/atom/avatarIcon/BasicAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
@@ -70,7 +70,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -101,7 +101,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -133,7 +133,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -172,7 +172,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -201,7 +201,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -218,7 +218,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -235,7 +235,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -268,7 +268,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -304,7 +304,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -333,7 +333,7 @@ const MessageScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>

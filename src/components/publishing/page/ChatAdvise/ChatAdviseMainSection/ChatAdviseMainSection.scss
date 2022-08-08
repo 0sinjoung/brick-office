@@ -566,6 +566,14 @@
 .message_delete_button_box {
   order: 1;
   display: none;
+  
+  .icon_button {
+    transform: rotate(90deg);
+
+    .icon_setting {
+      fill: $grey030;
+    }
+  }
 }
 /* 메시지 삭제 된 경우 message_delete 클래스 message_contents_box 클래스 상위 어느곳에든 설정 가능 */
 .message_delete {
@@ -648,6 +656,8 @@
   }
 }
 
+
+/* 3. 채팅 상담 푸터 */
 /* 3-1. 메인 푸터 - 텍스트 에디터 영역 */
 .chat_advise_main_footer {
 }
@@ -656,19 +666,7 @@
   position: relative;
 }
 
-.chat_advise_main_footer_texteditor {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 188px;
-  border-radius: 10px;
-  border: $grey020-border;
-  background-color: $white;
-}
-
-/* 3-1-0. 푸터 dimed */
+/* 3-1-1. 푸터 dim */
 .chat_advise_main_footer_dimed_box {
   display: none;
   position: absolute;
@@ -676,7 +674,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 100;
   flex-grow: 1;
   width: 100%;
   background-color: #646F7C99;
@@ -695,6 +693,8 @@
   width: 100%;
   gap: 14px;
 }
+
+/* 3-1-1-1. CASE1 : 버튼 표시 */
 .chat_advise_main_footer_dimed_button {
   @include flexCenter();
   width: fit-content;
@@ -713,7 +713,7 @@
   }
 }
 
-
+/* 3-1-1-2. CASE2 : 정보 표시 */
 .chat_advise_main_footer_dimed_information_box {
   @include flexCenter();
   width: fit-content;
@@ -726,30 +726,22 @@
   color: $grey080;
   gap: 12px;
   white-space: pre-line;
-
-  &.shutdown {
-    .chat_advise_main_footer_dimed_information_icon {
-      display: none;
-    }
-  }
-
-  .chat_advise_main_footer_dimed_information_icon {
-    @include flexCenter();
-    width: 22px;
-    height: 22px;
-
-    .icon_lnb_chat_advise {
-      fill: $grey080;
-      stroke: $grey080;
-    }
-  }
-
-  .chat_advise_main_footer_dimed_information_text {
-    display: block;
-  }
 }
 
-/* 3-1-1. 푸터 탑 버튼 영역 */
+/* 3-1-2. 푸터 텍스트 에디터 */
+.chat_advise_main_footer_texteditor {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 188px;
+  border-radius: 10px;
+  border: $grey020-border;
+  background-color: $white;
+}
+
+/* 3-1-2-1. 푸터 탑 버튼 영역 */
 .chat_advise_main_footer_top_buttons_container {
   @include flexSpace();
   flex-shrink: 0;
@@ -762,7 +754,30 @@
   @include flexCenter();
 }
 
-/* 3-1-1-1. 푸터 탑 버튼 툴팁 */
+.chat_advise_main_footer_top_left_buttons_box {
+  @include flexStart();
+  gap: 4px;
+
+  .text_bold {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 10px;
+      background-color: $grey030;
+      margin: 0 8px 0 4px;
+    }
+  }
+}
+.chat_advise_main_footer_top_right_buttons_box {
+  @include flexEnd();
+}
+
+/* 푸터 탑 버튼 툴팁 */
 [data-chat-advise-footer-tooltip] {
   position: relative;
   @include hoverTransition();
@@ -825,30 +840,7 @@
 }
 
 
-.chat_advise_main_footer_top_left_buttons_box {
-  @include flexStart();
-  gap: 4px;
-
-  .text_bold {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &::before {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 10px;
-      background-color: $grey030;
-      margin: 0 8px 0 4px;
-    }
-  }
-}
-.chat_advise_main_footer_top_right_buttons_box {
-  @include flexEnd();
-}
-
-/* 3-1-2. 푸터 입력 영역 */
+/* 3-1-2-2. 푸터 입력 영역 */
 .chat_advise_main_footer_textarea_container {
   flex-grow: 1;
   padding: 14px 14px 0;
@@ -857,7 +849,7 @@
   color: $grey080;
 }
 
-/* 3-1-3. 푸터 첨부파일 영역 */
+/* 3-1-2-3. 푸터 첨부파일 영역 */
 .chat_advise_main_footer_attachments_container { 
   flex-shrink: 0;
   padding: 0 14px;
@@ -866,7 +858,33 @@
   flex-direction: column;
   gap: 12px;
 }
-/* 3-1-3-1. 푸터 첨부파일 - 버튼 */
+
+/* 공통 - 첨부파일 삭제 버튼 - 공통 */
+.chat_advise_main_footer_attachments_button_delete_button {
+  // @include flexCenter();
+  display: none;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 11;
+  transform: translate(50%, -50%);
+  width: 18px;
+  height: 18px;
+  background-color: $grey020;
+  border-radius: 50%;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey080;
+  }
+
+  .icon_cross_small {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+/* 3-1-2-3-1. 첨부파일 CASE1: 버튼 액션 영역 */
 .chat_advise_main_footer_attachments_buttons_box {
   @include flexStart();
   flex-wrap: wrap;
@@ -906,67 +924,11 @@
 }
 
 
-/* 3-1-3-2. 푸터 첨부파일 - 파일 | 이미지 */
-.chat_advise_main_footer_attachments_file_box {
-}
-
+/* 3-1-2-3-2. 첨부파일 CASE2: 파일 썸네일 영역 */
 .chat_advise_main_footer_attachments_file_thumnails_box {
   @include flexStart();
   flex-wrap: wrap;
   gap: 12px;
-}
-
-.chat_advise_main_footer_attachments_file_thumnail_box {
-  height: 60px;
-  position: relative;
-  cursor: pointer;
-
-  @include hoverTransition();
-  &:hover {
-    .chat_advise_main_footer_attachments_button_delete_button {
-      @include flexCenter();
-    }
-  }
-
-  &.image {
-    width: 60px;
-
-    .attachments_file_image_lightbox_button {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    
-    .chat_advise_main_footer_attachments_file_image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  &.error {
-    &::after {
-      @include brickRedBadgeStyle();
-      top: 4px;
-      right: 4px;
-      transform: translate(50%, -50%) scale(0.5);
-    }
-  }
-
-  &.loading {
-    .attachments_file_image_lightbox_button {
-      &:hover {
-        cursor: default;
-      }
-    }
-    &:hover {
-      cursor: default;
-      .chat_advise_main_footer_attachments_button_delete_button {
-        display: none;
-      }
-    }
-  }
 }
 
 /* 로딩 스피너 */
@@ -990,7 +952,6 @@
     width: 45%;
     height: 45%;
     background-color: $grey030;
-    // transform: translate(50%, -50%);
   }
   &::after {
     content: '';
@@ -1005,10 +966,90 @@
     transform: translate(-50%, -50%);
   }
 }
-@keyframes animationSpinner {
-  0% {transform: translate(50%, -50%) rotate(45deg);}
-  100% {transform: translate(50%, -50%) rotate(405deg);}
+
+.chat_advise_main_footer_attachments_file_thumnail_box {
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+
+  @include hoverTransition();
+  &:hover {
+    .chat_advise_main_footer_attachments_button_delete_button {
+      @include flexCenter();
+    }
+  }
+
+  /* 이미지 */
+  &.image {
+    width: 60px;
+
+    .attachments_file_image_lightbox_button {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .chat_advise_main_footer_attachments_file_image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* 실제 비디오 업로드 후 확인 필요 - 현재 이미지 상태 */
+  &.video {
+    width: 60px;
+    position: relative;
+
+    .attachments_file_video_play_button {
+      @include flexCenter();
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .chat_advise_main_footer_attachments_file_video_thumnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+
+  &.error {
+    &::after {
+      @include brickRedBadgeStyle();
+      top: 4px;
+      right: 4px;
+      transform: translate(50%, -50%) scale(0.5);
+    }
+  }
+
+  &.loading {
+    .attachments_file_image_lightbox_button {
+      &:hover {
+        cursor: default;
+      }
+    }
+    .attachments_file_video_play_button {
+      &:hover {
+        cursor: default;
+      }
+    }
+    &:hover {
+      cursor: default;
+      .chat_advise_main_footer_attachments_button_delete_button {
+        display: none;
+      }
+    }
+  }
 }
+
+
 
 /* 파일 템플릿 */
 .attachment_fileupload_file_template {
@@ -1066,33 +1107,7 @@
   }
 }
 
-/* 삭제 버튼 */
-.chat_advise_main_footer_attachments_button_delete_button {
-  // @include flexCenter();
-  display: none;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  z-index: 11;
-  transform: translate(50%, -50%);
-  width: 18px;
-  height: 18px;
-  background-color: $grey020;
-  border-radius: 50%;
-  
-  @include hoverTransition();
-  &:hover {
-    background-color: $grey080;
-  }
-
-  .icon_cross_small {
-    width: 7px;
-    height: 7px;
-  }
-}
-
-
-/* 3-1-4. 푸터 바텀 버튼 영역 */
+/* 3-1-2-4. 푸터 바텀 버튼 영역 */
 .chat_advise_main_footer_bottom_buttons_container {
   flex-shrink: 0;
   @include flexEnd();
@@ -1171,8 +1186,8 @@
     height: 100%;
     font-size: 14px;
     font-weight: $medium;
-    line-height: 1;
     color: $grey030;
+    text-align: center;
   }
 
   .chat_advise_keyword_highlight {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ReactComponent as IconTrashCan } from 'assets/svg/icon/icon_trash_can.svg';
+import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg';
 import { ReactComponent as IconFileDownload } from 'assets/svg/icon/fileUpload/icon_file_download.svg';
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg';
 import { ReactComponent as IconFileUnvailavleBgGrey } from 'assets/svg/icon/fileUpload/icon_file_unavailable_bg_grey.svg';
@@ -91,7 +91,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -122,7 +122,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -154,7 +154,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -187,7 +187,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -216,7 +216,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -365,7 +365,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -631,7 +631,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>
@@ -660,7 +660,7 @@ const FileUploadScenario = () => {
             </div>
             <div className="message_delete_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
-                <IconTrashCan />
+                <IconSetting />
               </IconButton>
             </div>
           </div>

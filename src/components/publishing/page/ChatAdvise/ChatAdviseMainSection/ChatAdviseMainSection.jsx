@@ -7,6 +7,7 @@ import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdo
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
 import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg';
+import { ReactComponent as IconFilePlay } from 'assets/svg/icon/fileUpload/icon_file_play.svg';
 import { ReactComponent as IconBookmark } from 'assets/svg/icon/icon_bookmark.svg';
 import { ReactComponent as IconSearch } from 'assets/svg/icon/icon_search.svg';
 import { ReactComponent as IconChatAdviseKeywordPannelButton } from 'assets/svg/icon/chatAdvise/icon_chat_advise_keyword_pannel_button.svg';
@@ -40,26 +41,22 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const refButtonActionPannelButtonNameTextField = React.createRef();
   const refButtonActionPannelButtonActionTextField = React.createRef();
 
-  const [dimedChangeAdviserButton, setDimedChangeAdviserButton] = useState('dimed');
-  const [showSearchHeaderCalendarIcon, setShowSearchHeaderCalendarIcon] = useState('show');
-  const [showHeaderAlertBar, setShowHeaderAlertBar] = useState('');
-  const [isActiveCalendarIconButton, setIsActiveCalendarIconButton] = useState(false);
-  const [isShowChatAdviseKeywordPannel, setIsShowChatAdviseKeywordPannel] = useState(false);
-  const [isShowButtonActionPannel, setIsShowButtonActionPannel] = useState(false);
   const CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE = 'https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png';
   const CUSTOMER_NAME_SHORT = '김다영';
   const CURRENT_ADVISE_CHAT_STATE = '꾸꾸 상담 진행 중';
   const HEADER_ALERT_BAR_TITLE = '상담사 변경 요청 이유';
   const HEADER_ALERT_BAR_DESCRIPTION = '상담분야 변경: 배송문의 - 결제문의';
   const CURRENT_CHAT_STATE = '상담진행중';
-  const CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY = '0'; // 단축키 ctrl 고정 + 숫자 0~9 까지
-  const CHAT_ADVISER_KEYWORD_NO_LIST = '등록한 상담 키워드가 없습니다.' || '검색 결과가 없습니다.';
   const DISABLE = 'disable';
 
   /* 1. 채팅 상담 헤더 */
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showHeaderSearchArea, setShowHeaderSearchArea] = useState('');
   const [showHeaderSearchIcon, setShowHeaderSearchIcon] = useState('show');
+  const [isDimChangeAdviserButton, setIsDimChangeAdviserButton] = useState(true);
+  const [showSearchHeaderCalendarIcon, setShowSearchHeaderCalendarIcon] = useState('show');
+  const [showHeaderAlertBar, setShowHeaderAlertBar] = useState('');
+  const [isActiveCalendarIconButton, setIsActiveCalendarIconButton] = useState(false);
   const handleShowHeaderSearchArea = () => {
     setShowHeaderSearchArea('show');
     setShowHeaderSearchIcon('');
@@ -93,13 +90,11 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
 
   /* 3. 채팅 상담 푸터 */
   /* 3-1. 메인 푸터 - 텍스트 에디터 영역 */
-  /* 3-1-0. 푸터 dim */
-  const [isTextEditorDimed, setisTextEditorDimed] = useState(false);
-  const DIMED_SHOW = '';
+  /* 3-1-1. 푸터 dim */
+  const [isTextEditorDimed, setIsTextEditorDimed] = useState(false);
+
+  /* 3-1-0-1. CASE1 : 버튼 표시 */
   const FOOTER_DIMED_BUTTON_TEXT = '상담 시작하기';
-  const FOOTER_DIMED_INFORMATION_TEXT_CASE1 = '김제니 상담사가 상담보류 중 입니다.';
-  const FOOTER_DIMED_INFORMATION_TEXT_CASE2 = '지금은 업무 종료 상태입니다. \n 업무 시작으로 변경 후, 채팅상담을 진행 할 수 있습니다.';
-  const FOOTER_DIMED_INFORMATION_TEXT_CASE2_CLASSNAME = 'shutdown'; // 디폴트 ''
   const handleFooterDimedButton = () => {
     // button text case : 상담 시작하기 | 변경 요청 취소 | 상담사 변경 거절 | 상담사 변경 수락
     console.log('footer dimed 버튼 클릭');
@@ -107,19 +102,27 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
       return () => console.log('상담 시작하기');
     }
   };
-  /* 3-1-0-1. CASE : 버튼 표시 */
-  /* 3-1-0-2. CASE : 정보 표시 */
 
-  /* 3-1-1. 푸터 탑 버튼 영역 */
-  /* 3-1-2. 푸터 입력 영역 */
+  /* 3-1-0-2. CASE2 : 정보 표시 */
+  const FOOTER_DIMED_INFORMATION_TEXT_CASE1 = '김제니 상담사가 상담 진행 중 입니다.';
+  const FOOTER_DIMED_INFORMATION_TEXT_CASE2 = '지금은 업무 종료 상태입니다. \n 업무 시작으로 변경 후, 채팅상담을 진행할 수 있어요.';
 
-  /* 3-1-3. 푸터 첨부파일 영역 */
+  /* 3-1-2. 푸터 텍스트 에디터 */
+  /* 3-1-2-1. 푸터 탑 버튼 영역 */
+  const handleTextDecoration = () => {
+    console.log('텍스트 데코레이션');
+  };
+  const handleClickKMSPannel = () => {
+    handleKMSPannel(!isShowKMSPannel);
+  };
+
+  /* 3-1-2-2. 푸터 입력 영역 */
+  /* 3-1-2-3. 푸터 첨부파일 영역 */
   const handleDeleteAttachments = () => {
     console.log('해당 요소 삭제하기');
   };
-  /* 3-1-3-1. 푸터 첨부파일 - 버튼 */
-
-  /* 3-1-3-2. 푸터 첨부파일 - 파일 | 이미지 */
+  /* 3-1-2-3-1. 첨부파일 CASE1: 버튼 */
+  /* 3-1-2-3-2. 첨부파일 CASE2: 푸터 첨부파일 - 이미지 | 비디오 | 파일 */
   const ALT_FILE_NAME = '파일 이름';
   const IMAGE_SAMPLE_LINK = 'https://cdn.brickchat.dev/assets/img/sample/sample_fileupload.png';
   const FILE_EXTENSION = 'xlsx';
@@ -129,13 +132,27 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const handleOpenLightbox = () => {
     console.log('open lightbox');
   };
+  const handlePlayVideo = () => {
+    console.log('비디오 재생');
+  };
   const handleDownloadfile = () => {
     console.log('📂 파일 다운로드');
   };
 
-  /* 3-1-4. 푸터 바텀 버튼 영역 */
+  /* 3-1-2-4. 푸터 바텀 버튼 영역 */
+  const handleUploadFile = () => {
+    console.log('파일 업로드 버튼 클릭');
+  };
+  const handleOpenEmojiPannel = () => {
+    console.log('이모지 패널 열기');
+  };
+  const handleSendMessage = () => {
+    console.log('💌 메시지 전송');
+  };
 
   /* 3-2. 상담 키워드 패널 */
+  const CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY = '0'; // 단축키 ctrl 고정 + 숫자 0~9 까지
+  const [isShowChatAdviseKeywordPannel, setIsShowChatAdviseKeywordPannel] = useState(false);
   const handleToggleChatAdviseKeywordPannel = () => {
     setIsShowChatAdviseKeywordPannel(!isShowChatAdviseKeywordPannel);
   };
@@ -148,8 +165,120 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const handleClickChatAdviseKeywordItem = () => {
     console.log('상담 키워드 리스트 아이템 클릭');
   };
+  const CURRENT_CHAT_ADIVSE_KEYWORD_COUNT = 5;
+  const displayChatAdviseKeywordLists = () => {
+    /* 3-2-1. 상담 키워드 없는 경우 */
+    if (CURRENT_CHAT_ADIVSE_KEYWORD_COUNT === 0) {
+      return (
+        /* 등록한 상담 키워드 없는 경우 | 검색 결과 없을 경우 문구 달라짐 */
+        <div className="keyword_pannel_keyword_list_no_data_found">등록된 상담 키워드가 없어요.</div>
+        // <div className="keyword_pannel_keyword_list_no_data_found">앗! 검색 결과가 없어요. <br />
+        // 다른 검색어를 입력해 주세요.</div>
+      );
+    }
+
+    /* 3-2-2. 상담 키워드 있는 경우 */
+    return (
+      <div className="keyword_pannel_scroll_box">
+        <ul className="keyword_pannel_keyword_lists">
+          <li className="keyword_pannel_keyword_list">
+            <div
+              role="button"
+              tabIndex={0}
+              className="keyword_pannel_keyword_item_button"
+              onClick={handleClickChatAdviseKeywordItem}
+              onKeyUp={handleClickChatAdviseKeywordItem}
+            >
+              <div className="chat_advise_keyword_shortcut_text">
+                /<span className="chat_advise_keyword_highlight">고객</span>상담
+              </div>
+              <div className="chat_advise_keyword_contents">
+                텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
+              </div>
+              <div className="chat_advise_keyword_shortcut_keyboard no_keyboard_shortcut">단축키 없음</div>
+            </div>
+          </li>
+          <li className="keyword_pannel_keyword_list">
+            <div
+              role="button"
+              tabIndex={0}
+              className="keyword_pannel_keyword_item_button"
+              onClick={handleClickChatAdviseKeywordItem}
+              onKeyUp={handleClickChatAdviseKeywordItem}
+            >
+              <div className="chat_advise_keyword_shortcut_text">/환불문의</div>
+              <div className="chat_advise_keyword_contents">
+                텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
+              </div>
+              <div className="chat_advise_keyword_shortcut_keyboard">
+                <ColorTag>Ctrl</ColorTag>
+                <span>+</span>
+                <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
+              </div>
+            </div>
+          </li>
+          <li className="keyword_pannel_keyword_list">
+            <div
+              role="button"
+              tabIndex={0}
+              className="keyword_pannel_keyword_item_button"
+              onClick={handleClickChatAdviseKeywordItem}
+              onKeyUp={handleClickChatAdviseKeywordItem}
+            >
+              <div className="chat_advise_keyword_shortcut_text">/고객문의</div>
+              <div className="chat_advise_keyword_contents">
+                텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
+              </div>
+              <div className="chat_advise_keyword_shortcut_keyboard">
+                <ColorTag>Ctrl</ColorTag>
+                <span>+</span>
+                <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
+              </div>
+            </div>
+          </li>
+          <li className="keyword_pannel_keyword_list">
+            <div
+              role="button"
+              tabIndex={0}
+              className="keyword_pannel_keyword_item_button"
+              onClick={handleClickChatAdviseKeywordItem}
+              onKeyUp={handleClickChatAdviseKeywordItem}
+            >
+              <div className="chat_advise_keyword_shortcut_text">/환불고객문의문의문의문의</div>
+              <div className="chat_advise_keyword_contents">길지않은 텍스트도 올 수 있음</div>
+              <div className="chat_advise_keyword_shortcut_keyboard">
+                <ColorTag>Ctrl</ColorTag>
+                <span>+</span>
+                <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
+              </div>
+            </div>
+          </li>
+          <li className="keyword_pannel_keyword_list">
+            <div
+              role="button"
+              tabIndex={0}
+              className="keyword_pannel_keyword_item_button"
+              onClick={handleClickChatAdviseKeywordItem}
+              onKeyUp={handleClickChatAdviseKeywordItem}
+            >
+              <div className="chat_advise_keyword_shortcut_text">/환불고객문의문의문의문의</div>
+              <div className="chat_advise_keyword_contents">
+                텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
+              </div>
+              <div className="chat_advise_keyword_shortcut_keyboard">
+                <ColorTag>Ctrl</ColorTag>
+                <span>+</span>
+                <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    );
+  };
 
   /* 3-3. 버튼액션 추가 패널 */
+  const [isShowButtonActionPannel, setIsShowButtonActionPannel] = useState(false);
   const handleToggleButtonActionPannel = () => {
     setIsShowButtonActionPannel(!isShowButtonActionPannel);
   };
@@ -158,18 +287,6 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   };
   const handleAddButtonAction = () => {
     console.log('버튼 액션 추가🥕');
-  };
-
-  /* 텍스트 에디터 */
-  const handleTextDecoration = () => {
-    console.log('텍스트 데코레이션');
-  };
-  const handleClickKMSPannel = () => {
-    console.log('상담 지식 사전 패널');
-    handleKMSPannel(!isShowKMSPannel);
-  };
-  const handleSendMessage = () => {
-    console.log('💌 메시지 전송');
   };
 
   /* 3-4. 이모지 패널 */
@@ -207,7 +324,7 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                     <IconSearch />
                   </IconButton>
                 </div>
-                <div className={`chat_advise_main_header_change_adviser_button_box ${dimedChangeAdviserButton}`}>
+                <div className={`chat_advise_main_header_change_adviser_button_box ${isDimChangeAdviserButton ? 'dimed' : ''}`}>
                   <OutlineButton buttonClassName="small" handleClick={handleChangeAdviser}>
                     상담사 변경
                   </OutlineButton>
@@ -285,31 +402,28 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
             {/* 3-1. 메인 푸터 - 텍스트 에디터 영역 */}
             <footer className="chat_advise_main_footer">
               <div className="chat_advise_main_footer_wrap">
-                {/* 3-1-0. 푸터 dim */}
+                {/* 3-1-1. 푸터 dim */}
                 <div className={`chat_advise_main_footer_dimed_box ${isTextEditorDimed ? 'show' : ''}`}>
                   <div className="chat_advise_main_footer_dimed_box_contents">
-                    {/* 3-1-0-1. CASE : 버튼 표시 */}
+                    {/* 3-1-1-1. CASE1 : 버튼 표시 */}
                     <div className="chat_advise_main_footer_dimed_button_box">
                       <button type="button" className="chat_advise_main_footer_dimed_button" onClick={handleFooterDimedButton}>
                         {FOOTER_DIMED_BUTTON_TEXT}
                       </button>
                     </div>
-                    <div className="chat_advise_main_footer_dimed_button_box">
-                      <button type="button" className="chat_advise_main_footer_dimed_button" onClick={handleFooterDimedButton}>
-                        {FOOTER_DIMED_BUTTON_TEXT}
-                      </button>
-                    </div>
-                    {/* 3-1-0-2. CASE : 정보 표시 */}
-                    {/* <div className={`chat_advise_main_footer_dimed_information_box ${FOOTER_DIMED_INFORMATION_TEXT_CASE2_CLASSNAME}`}>
-                      <span className="chat_advise_main_footer_dimed_information_icon">
-                        <IconLnbChatAdvise />
-                      </span>
-                      <span className="chat_advise_main_footer_dimed_information_text">{FOOTER_DIMED_INFORMATION_TEXT_CASE2}</span>
+                    {/* footer dim 버튼 2개까지 올 수 있음 : 상담사 변경 거절 | 상담사 변경 수락  */}
+                    {/* <div className="chat_advise_main_footer_dimed_button_box">
+                      <button type="button" className="chat_advise_main_footer_dimed_button" onClick={handleFooterDimedButton}>상담사 변경 수락</button>
+                    </div> */}
+                    {/* 3-1-1-2. CASE2 : 정보 표시 */}
+                    {/* <div className="chat_advise_main_footer_dimed_information_box">
+                      <div className="chat_advise_main_footer_dimed_information_text">{FOOTER_DIMED_INFORMATION_TEXT_CASE2}</div>
                     </div> */}
                   </div>
                 </div>
+                {/* 3-1-2. 푸터 텍스트 에디터 */}
                 <div className="chat_advise_main_footer_texteditor">
-                  {/* 3-1-1. 푸터 탑 버튼 영역 */}
+                  {/* 3-1-2-1. 푸터 탑 버튼 영역 */}
                   <div className="chat_advise_main_footer_top_buttons_container">
                     <div className="chat_advise_main_footer_top_left_buttons_box">
                       <div
@@ -359,10 +473,11 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                       </div>
                     </div>
                   </div>
-                  {/* 3-1-2. 푸터 입력 영역 */}
+                  {/* 3-1-2-2. 푸터 입력 영역 */}
                   <div className="chat_advise_main_footer_textarea_container">텍스트 입력 영역</div>
-                  {/* 3-1-3. 푸터 첨부파일 영역 */}
+                  {/* 3-1-2-3. 푸터 첨부파일 영역 */}
                   <div className="chat_advise_main_footer_attachments_container">
+                    {/* 3-1-2-3-1. 첨부파일 CASE1: 버튼 영역 */}
                     <div className="chat_advise_main_footer_attachments_buttons_box">
                       <div className="chat_advise_main_footer_attachments_button_box">
                         <button type="button" className="chat_advise_main_footer_attachments_button">
@@ -389,8 +504,10 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                         </button>
                       </div>
                     </div>
+                    {/* 3-1-2-3-2. 첨부파일 CASE2: 파일 썸네일 영역 */}
                     <div className="chat_advise_main_footer_attachments_file_box">
                       <div className="chat_advise_main_footer_attachments_file_thumnails_box">
+                        {/* 이미지 */}
                         <div className="chat_advise_main_footer_attachments_file_thumnail_box image loading">
                           <button type="button" className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
                             <img className="chat_advise_main_footer_attachments_file_image" src={IMAGE_SAMPLE_LINK} alt={ALT_FILE_NAME} />
@@ -410,11 +527,22 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                             <IconCrossTiny />
                           </button>
                         </div>
-                        <div className="chat_advise_main_footer_attachments_file_thumnail_box file">
+                        {/* 비디오 : 썸네일 상태에서 재생 가능한지 확인 필요 */}
+                        <div className="chat_advise_main_footer_attachments_file_thumnail_box video">
+                          <button type="button" className="attachments_file_video_play_button" onClick={handlePlayVideo}>
+                            <IconFilePlay />
+                          </button>
+                          <img className="chat_advise_main_footer_attachments_file_video_thumnail" src={IMAGE_SAMPLE_LINK} alt={ALT_FILE_NAME} />
+                          <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossTiny />
+                          </button>
+                        </div>
+                        {/* 파일 템플릿 */}
+                        <div className="chat_advise_main_footer_attachments_file_thumnail_box file loading">
                           <div className="attachment_fileupload_file_template">
                             <div className="attachment_fileupload_file_contents">
                               <div className="attachment_file_thumnail_box">
-                                {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
+                                {/* svg icon : 가상선택자 사용해서 className으로 지정하는 방법도 있음 */}
                                 <IconFileExtensionXlsx />
                               </div>
                               <div className="attachment_file_description_box">
@@ -432,6 +560,9 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                               </div>
                             </div>
                           </div>
+                          <div className="attachments_file_loading_spinner">
+                            <span className="loading_spinner" />
+                          </div>
                           <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
                             <IconCrossTiny />
                           </button>
@@ -440,7 +571,7 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                           <div className="attachment_fileupload_file_template">
                             <div className="attachment_fileupload_file_contents">
                               <div className="attachment_file_thumnail_box">
-                                {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
+                                {/* svg icon : 가상선택자 사용해서 className으로 지정하는 방법도 있음 */}
                                 <IconFileExtensionXlsx />
                               </div>
                               <div className="attachment_file_description_box">
@@ -465,16 +596,16 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                       </div>
                     </div>
                   </div>
-                  {/* 3-1-4. 푸터 바텀 버튼 영역 */}
+                  {/* 3-1-2-4. 푸터 바텀 버튼 영역 */}
                   <div className="chat_advise_main_footer_bottom_buttons_container">
                     <div className="chat_advise_main_footer_bottom_right_buttons_box">
                       <div className="chat_advise_main_footer_bottom_button file_upload">
-                        <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
+                        <IconButton buttonClassName="tiny" handleClick={handleUploadFile}>
                           <IconFileUpload />
                         </IconButton>
                       </div>
                       <div className="chat_advise_main_footer_bottom_button emoji_pannel">
-                        <IconButton buttonClassName="tiny" handleClick={handleTextDecoration}>
+                        <IconButton buttonClassName="tiny" handleClick={handleOpenEmojiPannel}>
                           <IconEmojiPannel />
                         </IconButton>
                       </div>
@@ -502,108 +633,14 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                 <div className="keyword_pannel_outline_search_text_field_box">
                   <OutlineSearchTextField
                     ref={refKeywordPannelTextField}
-                    placeholderText="검색 내용을 입력해주세요."
+                    placeholderText="검색어를 입력해주세요."
                     handleClickSearchButton={handleSearchChatAdviseKeywordPannel}
                   />
                 </div>
                 <div className="keyword_pannel_keyword_list_box">
                   {/* 등록된 상담 키워드가 없거나 | 검색 결과가 없을 경우 출력 - 각 상황 문구 다름 주의 */}
                   {/* <div className="keyword_pannel_keyword_list_no_data_found">{CHAT_ADVISER_KEYWORD_NO_LIST}</div> */}
-                  <div className="keyword_pannel_scroll_box">
-                    <ul className="keyword_pannel_keyword_lists">
-                      <li className="keyword_pannel_keyword_list">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="keyword_pannel_keyword_item_button"
-                          onClick={handleClickChatAdviseKeywordItem}
-                          onKeyUp={handleClickChatAdviseKeywordItem}
-                        >
-                          <div className="chat_advise_keyword_shortcut_text">
-                            /<span className="chat_advise_keyword_highlight">고객</span>상담
-                          </div>
-                          <div className="chat_advise_keyword_contents">
-                            텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
-                          </div>
-                          <div className="chat_advise_keyword_shortcut_keyboard no_keyboard_shortcut">단축키 없음</div>
-                        </div>
-                      </li>
-                      <li className="keyword_pannel_keyword_list">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="keyword_pannel_keyword_item_button"
-                          onClick={handleClickChatAdviseKeywordItem}
-                          onKeyUp={handleClickChatAdviseKeywordItem}
-                        >
-                          <div className="chat_advise_keyword_shortcut_text">/환불문의</div>
-                          <div className="chat_advise_keyword_contents">
-                            텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
-                          </div>
-                          <div className="chat_advise_keyword_shortcut_keyboard">
-                            <ColorTag>Ctrl</ColorTag>
-                            <span>+</span>
-                            <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="keyword_pannel_keyword_list">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="keyword_pannel_keyword_item_button"
-                          onClick={handleClickChatAdviseKeywordItem}
-                          onKeyUp={handleClickChatAdviseKeywordItem}
-                        >
-                          <div className="chat_advise_keyword_shortcut_text">/고객문의</div>
-                          <div className="chat_advise_keyword_contents">
-                            텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
-                          </div>
-                          <div className="chat_advise_keyword_shortcut_keyboard">
-                            <ColorTag>Ctrl</ColorTag>
-                            <span>+</span>
-                            <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="keyword_pannel_keyword_list">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="keyword_pannel_keyword_item_button"
-                          onClick={handleClickChatAdviseKeywordItem}
-                          onKeyUp={handleClickChatAdviseKeywordItem}
-                        >
-                          <div className="chat_advise_keyword_shortcut_text">/환불고객문의문의문의문의</div>
-                          <div className="chat_advise_keyword_contents">길지않은 텍스트도 올 수 있음</div>
-                          <div className="chat_advise_keyword_shortcut_keyboard">
-                            <ColorTag>Ctrl</ColorTag>
-                            <span>+</span>
-                            <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="keyword_pannel_keyword_list">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="keyword_pannel_keyword_item_button"
-                          onClick={handleClickChatAdviseKeywordItem}
-                          onKeyUp={handleClickChatAdviseKeywordItem}
-                        >
-                          <div className="chat_advise_keyword_shortcut_text">/환불고객문의문의문의문의</div>
-                          <div className="chat_advise_keyword_contents">
-                            텍스트를길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게길게
-                          </div>
-                          <div className="chat_advise_keyword_shortcut_keyboard">
-                            <ColorTag>Ctrl</ColorTag>
-                            <span>+</span>
-                            <ColorTag>{CHAT_ADVISE_KEYWORD_SHORTCUT_NUMBER_KEY}</ColorTag>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                  {displayChatAdviseKeywordLists()}
                 </div>
               </div>
             </div>

@@ -171,6 +171,11 @@ $template-button-shadow: 0px 0px 10px #646F7C0F;
   transition: all .3s;
 }
 
+@keyframes animationSpinner {
+  0% {transform: translate(50%, -50%) rotate(45deg);}
+  100% {transform: translate(50%, -50%) rotate(405deg);}
+}
+
 /* tooltip style - content만 따로 지정해서 사용 */
 @mixin tooltipStyle {
   content: '';
