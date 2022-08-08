@@ -557,10 +557,10 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   };
   /** 수정할부분 */
   // const [isShowKMSPannel, setIsShowKMSPannel] = useState(false);
-  const handleShowkKMSPannel = () => {
+  // const handleShowkKMSPannel = () => {
     // setIsShowKMSPannel(true);
-    console.log('hi');
-  };
+    // console.log('hi');
+  // };
   const handleHidekKMSPannel = () => {
     // setIsShowKMSPannel(false);
     console.log('hi');
