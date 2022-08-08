@@ -112,9 +112,14 @@
   /* (1) 채팅 검색 버튼 */
   .chat_advise_main_header_search_button_box {
     display: none;
+    flex-shrink: 0;
     
     &.show {
       display: block;
+    }
+
+    .icon_search {
+      width: 32px;
     }
   }
   
@@ -192,6 +197,11 @@
   
   &.active {
     background-color: $grey005;
+  }
+
+  .text_field_delete_button {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -379,7 +389,7 @@
             bottom: 0;
             left: initial;
             right: -8px;
-            transform: translateX(100%);
+            transform: translateX(100%) scale(0.5);
           }
         }
       }
@@ -522,8 +532,8 @@
   padding: 10px;
   font-size: 15px;
   line-height: 21px;
-  color: $grey080;
-  font-weight: $regular;
+  color: $grey070;
+  font-weight: $medium;
   border-radius: 10px 0 10px 10px;
   background-color: $grey005;
   word-break: break-all;
@@ -564,16 +574,13 @@
     color: $grey030;
 
     &::before {
-      content: '\e900';
-      font-family: 'icomoon';
-      color: $white;
-      font-size: 8px;
-      @include flexCenter();
-      width: 16px;
-      height: 16px;
-      margin-right: 6px;
-      background-color: $grey030;
-      border-radius: 50%;
+      @include brickRedBadgeStyle();
+      background: $grey030;
+      box-shadow: none;
+      margin: -8px;
+      margin-right: -2px;
+      position: relative;
+      transform: scale(0.5);
     }
   }
 }
@@ -747,7 +754,7 @@
   @include flexSpace();
   flex-shrink: 0;
   width: 100%;
-  padding: 14px;
+  padding: 10px;
   border-bottom: $grey020-border;
 }
 
@@ -862,6 +869,7 @@
 /* 3-1-3-1. 푸터 첨부파일 - 버튼 */
 .chat_advise_main_footer_attachments_buttons_box {
   @include flexStart();
+  flex-wrap: wrap;
   gap: 12px;
 }
 .chat_advise_main_footer_attachments_button_box {
@@ -891,7 +899,7 @@
 .chat_advise_main_footer_attachments_button_text {
   @include ellipsisOneLine();
   width: 100%;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: $medium;
   line-height: 1;
   color: $grey080;
@@ -904,6 +912,7 @@
 
 .chat_advise_main_footer_attachments_file_thumnails_box {
   @include flexStart();
+  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -939,12 +948,9 @@
   &.error {
     &::after {
       @include brickRedBadgeStyle();
-      position: absolute;
       top: 4px;
       right: 4px;
-      transform: translate(50%, -50%);
-      width: 18px;
-      height: 18px;
+      transform: translate(50%, -50%) scale(0.5);
     }
   }
 
@@ -998,12 +1004,6 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
   }
-
-  // .icon_file_attachment_spinner {
-  //   width: 18px;
-  //   height: 18px;
-  //   // animation: animationSpinner 0.8s infinite linear;
-  // }
 }
 @keyframes animationSpinner {
   0% {transform: translate(50%, -50%) rotate(45deg);}

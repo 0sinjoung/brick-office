@@ -189,15 +189,16 @@ $template-button-shadow: 0px 0px 10px #646F7C0F;
   z-index: 10;
 }
 
-/* brick red exclamation badge style - 위치만 따로 지정해서 사용 */
+/* brick red exclamation badge style - top, left 위치와 transform으로 scale(0.5) 지정해서 사용 */
 @mixin brickRedBadgeStyle {
   content: '\e900';
   font-family: 'icomoon';
   color: $white;
-  font-size: 8px;
+  font-size: 16px;
+  font-weight: $semi-bold;
   @include flexCenter();
-  width: 17px;
-  height: 17px;
+  width: 32px;
+  height: 32px;
   background: transparent linear-gradient(125deg, #FD8E86 0%, #FE5E4F 100%) 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #FF96A040;
   border-radius: 50%;

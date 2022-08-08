@@ -9,7 +9,7 @@ import './style.scss';
  * @handleClickSelectItem : 셀렉트 아이템 클릭시 실행 함수
  */
 
-const BasicTextSelectbox = ({defaultToggleButtonText, selectBoxData, handleClickSelectItem}) => {
+const BasicTextSelectbox = ({ defaultToggleButtonText, selectBoxData, handleClickSelectItem }) => {
   const refBasicSelectbox = useRef(null);
   const [selectedItem, setSelectedItem] = useState(defaultToggleButtonText);
   const [currentSelectBoxData, setCurrentSelectBoxData] = useState(selectBoxData);
@@ -22,7 +22,7 @@ const BasicTextSelectbox = ({defaultToggleButtonText, selectBoxData, handleClick
       if (item.value === currentSelectedItemValue) {
         item.isSelect = true;
       }
-    })
+    });
     setSelectedItem(currentSelectedItemValue);
     setCurrentSelectBoxData([...newData]);
     handleClickSelectItem(currentSelectedItemValue);
@@ -38,18 +38,15 @@ const BasicTextSelectbox = ({defaultToggleButtonText, selectBoxData, handleClick
     const isInside = refBasicSelectbox.current.contains(e.target);
     if (!isInside) {
       setIsOpenDropdown(false);
-      return;
     }
-    return;
-  }
+  };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   });
-  
 
   return (
     <div className="basic_text_selectbox_container" ref={refBasicSelectbox}>
@@ -62,10 +59,15 @@ const BasicTextSelectbox = ({defaultToggleButtonText, selectBoxData, handleClick
         </div>
         <div className={`basic_text_select_box ${isOpenDropdown ? 'open' : ''}`}>
           <ul className="basic_text_select_box_lists">
-            {currentSelectBoxData.map((item) => {
+            {currentSelectBoxData.map(item => {
               return (
                 <li className="basic_text_select_box_list" key={item.value}>
-                  <button type="button" value={item.value} className={`basic_text_select_box_button ${item.isSelect ? 'active' : ''}`} onClick={handleSelectItem}>
+                  <button
+                    type="button"
+                    value={item.value}
+                    className={`basic_text_select_box_button ${item.isSelect ? 'active' : ''}`}
+                    onClick={handleSelectItem}
+                  >
                     {item.text ? item.text : item.value}
                   </button>
                 </li>
@@ -80,14 +82,14 @@ const BasicTextSelectbox = ({defaultToggleButtonText, selectBoxData, handleClick
 
 BasicTextSelectbox.propTypes = {
   defaultToggleButtonText: PropTypes.string,
-  showBrickIcon: PropTypes.string,
-  children: PropTypes.any,
+  selectBoxData: PropTypes.array,
+  handleClickSelectItem: PropTypes.func,
 };
 
 BasicTextSelectbox.defaultProps = {
   defaultToggleButtonText: '',
-  showBrickIcon: '',
-  children: '',
+  selectBoxData: [],
+  handleClickSelectItem: () => {},
 };
 
 export default BasicTextSelectbox;

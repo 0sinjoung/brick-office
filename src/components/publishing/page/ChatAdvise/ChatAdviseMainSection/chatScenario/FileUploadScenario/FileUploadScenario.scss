@@ -173,7 +173,7 @@
       @include brickRedBadgeStyle();
       bottom: 0;
       left: -8px;
-      transform: translateX(-100%);
+      transform: translateX(-100%) scale(0.5);
     }
 
     .fileupload_image_box {
@@ -214,6 +214,7 @@
       @include brickRedBadgeStyle();
       top: 0;
       right: 0;
+      transform: scale(0.5)
     }
   }
 }

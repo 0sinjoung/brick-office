@@ -15,7 +15,7 @@
 @mixin chatAdviseInformationSectionText {
   font-size: 14px;
   line-height: 20px;
-  font-weight: $semi-bold;
+  font-weight: $medium;
   color: $grey050;
 }
 
@@ -96,13 +96,6 @@
   
   &.open {
     .chat_advise_information_list {
-      &.advise_field {
-        align-items: flex-start;
-      }
-      &.advise_memo {
-        align-items: flex-start;
-      }
-
       .chat_advise_information_content {
         display: flex;
         flex-wrap: wrap;
@@ -137,6 +130,7 @@
 }
 .chat_advise_information_list {
   @include flexStart();
+  align-items: flex-start;
 
   .chat_advise_information_label {
     flex-shrink: 0;

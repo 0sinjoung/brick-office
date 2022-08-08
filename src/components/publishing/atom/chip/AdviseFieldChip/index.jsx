@@ -7,7 +7,7 @@ import './style.scss';
  */
 const AdviseFieldChip = ({ children }) => {
   let chipStyle;
-  
+
   if (children === 'A/S') chipStyle = { backgroundColor: '#ECEDEF' };
   if (children === '결제') chipStyle = { backgroundColor: '#FCEBDB' };
   if (children === '고객 관리') chipStyle = { backgroundColor: '#D9E7FF' };

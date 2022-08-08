@@ -12,11 +12,11 @@ const DeletableChip = ({ children, chipStyle, handleDelete }) => {
   const handleClickDeleteButton = () => {
     handleDelete(children);
     setIsDeleteChip(true);
-  }
+  };
   return (
     <div className={`deletable_chip ${isDeleteChip ? '' : 'show'}`} style={chipStyle}>
       <span className="deletable_chip_text">{children}</span>
-      <button type='button' className="deletable_chip_delete_button" onClick={handleClickDeleteButton}>
+      <button type="button" className="deletable_chip_delete_button" onClick={handleClickDeleteButton}>
         <IconCrossSmall />
       </button>
     </div>

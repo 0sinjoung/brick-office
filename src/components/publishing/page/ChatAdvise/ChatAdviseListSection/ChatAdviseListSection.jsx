@@ -58,7 +58,7 @@ const ChatAdviseListSection = () => {
   const MESSAGE_SHORT = '단문메시지';
   const MESSAGE_LONG = '장문메시지장문메시지장문메시지장문메시지장문메시지장문메시지장문메시지장문메시지';
   const LAST_MESSAGE_TIME_STAMP = '4분 전';
-  const DIMED_TEXT_CASE1 = '안재이님에게 상담사 변경 요청을 보냈습니다.';
+  const DIMED_TEXT_CASE1 = '안재이님에게 상담사 변경 요청을 보냈어요.';
 
   /* 상담 분류 */
   const CHAT_ADVISE_FIELD_CASE1 = '교환 반품 환불';
@@ -110,7 +110,7 @@ const ChatAdviseListSection = () => {
         return (
           <BasicConfirmModal
             showModal={showAdviserWorkingStateModal}
-            titleText="상담 업무를 시작하시겠습니까?"
+            titleText="상담 업무를 시작할까요?"
             actionButtonText="시작하기"
             handleAction={handleActionAdviserWorkingStateStartModal}
             handleClose={handleCloseAdviserWorkingStateModal}
@@ -121,7 +121,7 @@ const ChatAdviseListSection = () => {
       return (
         <BasicConfirmModal
           showModal={showAdviserWorkingStateModal}
-          titleText="상담 업무를 종료하시겠습니까?"
+          titleText="상담 업무를 종료할까요?"
           actionButtonText="종료하기"
           handleAction={handleActionAdviserWorkingStateEndModal}
           handleClose={handleCloseAdviserWorkingStateModal}
@@ -161,7 +161,7 @@ const ChatAdviseListSection = () => {
   /* 3-1. 상세 검색 결과 칩 영역 */
   const handleDeleteDetailSearchKeyword = value => {
     console.log(value, '삭제시 로직 수행');
-  }
+  };
   /* 3-2. 상세 검색 패널 */
   const [isShowDetailSearchPannel, setIsShowDetailSearchPannel] = useState(false);
   const handleShowDetailSearchPannel = () => {
@@ -169,43 +169,43 @@ const ChatAdviseListSection = () => {
   };
   const handleCancleDetailSearchPannel = () => {
     setIsShowDetailSearchPannel(false);
-  }
+  };
   const handleSearchDetailChatAdviseLists = () => {
     console.log('상담 목록 상세 검색🐰');
     setIsShowDetailSearchPannel(false);
   };
   const detailSearchSelectboxAdviserData = [
-    {value: '전체', isSelect: true},
-    {value: '상담사 배정 필요', isSelect: false},
-    {value: '김제니(꾸꾸)', isSelect: false},
-    {value: '안재이(안재이)', isSelect: false},
-    {value: '김소나(안드로메다)', isSelect: false},
+    { value: '전체', isSelect: true },
+    { value: '상담사 배정 필요', isSelect: false },
+    { value: '김제니(꾸꾸)', isSelect: false },
+    { value: '안재이(안재이)', isSelect: false },
+    { value: '김소나(안드로메다)', isSelect: false },
   ];
   const detailSearchSelectboxChannelData = [
-    {value: '전체', isSelect: true},
-    {value: '브릭', isSelect: false},
-    {value: '카카오톡', isSelect: false},
-    {value: '네이버 톡톡', isSelect: false},
-    {value: '라인', isSelect: false},
+    { value: '전체', isSelect: true },
+    { value: '브릭', isSelect: false },
+    { value: '카카오톡', isSelect: false },
+    { value: '네이버 톡톡', isSelect: false },
+    { value: '라인', isSelect: false },
   ];
   const detailSearchSelectboxAdviseFieldData = [
-    {value: '전체', isSelect: true},
-    {value: 'A/S', isSelect: false},
-    {value: '결제', isSelect: false},
-    {value: '고객 관리', isSelect: false},
-    {value: '교환 반품 환불', isSelect: false},
-    {value: '배송', isSelect: false},
-    {value: '상품', isSelect: false},
-    {value: '시스템', isSelect: false},
-    {value: '주문', isSelect: false},
-    {value: '프로모션', isSelect: false},
-    {value: '회원', isSelect: false},
-    {value: '기타', isSelect: false},
+    { value: '전체', isSelect: true },
+    { value: 'A/S', isSelect: false },
+    { value: '결제', isSelect: false },
+    { value: '고객 관리', isSelect: false },
+    { value: '교환 반품 환불', isSelect: false },
+    { value: '배송', isSelect: false },
+    { value: '상품', isSelect: false },
+    { value: '시스템', isSelect: false },
+    { value: '주문', isSelect: false },
+    { value: '프로모션', isSelect: false },
+    { value: '회원', isSelect: false },
+    { value: '기타', isSelect: false },
   ];
 
   const handleClickSelectBoxItem = value => {
     console.log(value, '선택됨');
-  }
+  };
   const handleSearchCustomerInformation = () => {
     console.log('회원 정보 검색🐰, DeletableChip 생성');
   };
@@ -937,22 +937,26 @@ const ChatAdviseListSection = () => {
                   <BasicTextSelectbox defaultToggleButtonText="상담사" selectBoxData={detailSearchSelectboxAdviserData} handleClickSelectItem={handleClickSelectBoxItem} />
                 </div> */}
                 <div className="chat_advise_search_detail_pannel_selectbox channel">
-                  <BasicTextSelectbox defaultToggleButtonText="상담채널" selectBoxData={detailSearchSelectboxChannelData} handleClickSelectItem={handleClickSelectBoxItem} />
+                  <BasicTextSelectbox
+                    defaultToggleButtonText="상담채널"
+                    selectBoxData={detailSearchSelectboxChannelData}
+                    handleClickSelectItem={handleClickSelectBoxItem}
+                  />
                 </div>
                 <div className="chat_advise_search_detail_pannel_selectbox advise_field">
-                  <BasicTextSelectbox defaultToggleButtonText="상담분야" selectBoxData={detailSearchSelectboxAdviseFieldData} handleClickSelectItem={handleClickSelectBoxItem} />
+                  <BasicTextSelectbox
+                    defaultToggleButtonText="상담분야"
+                    selectBoxData={detailSearchSelectboxAdviseFieldData}
+                    handleClickSelectItem={handleClickSelectBoxItem}
+                  />
                 </div>
               </div>
               <div className="chat_advise_search_detail_pannel_action_buttons_container">
                 <div className="chat_advise_search_detail_pannel_cancle_button_box">
-                  <OutlineButton handleClick={handleCancleDetailSearchPannel}>
-                    취소
-                  </OutlineButton>
+                  <OutlineButton handleClick={handleCancleDetailSearchPannel}>취소</OutlineButton>
                 </div>
                 <div className="chat_advise_search_detail_pannel_cancle_button_box">
-                  <SolidButton handleClick={handleSearchDetailChatAdviseLists}>
-                    검색하기
-                  </SolidButton>
+                  <SolidButton handleClick={handleSearchDetailChatAdviseLists}>검색하기</SolidButton>
                 </div>
               </div>
             </div>
@@ -1026,25 +1030,33 @@ const ChatAdviseListSection = () => {
                 <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
                   <div className="chat_advise_search_detail_pannel_selectboxs_container">
                     <div className="chat_advise_search_detail_pannel_selectbox adviser">
-                      <BasicTextSelectbox defaultToggleButtonText="상담사" selectBoxData={detailSearchSelectboxAdviserData} handleClickSelectItem={handleClickSelectBoxItem} />
+                      <BasicTextSelectbox
+                        defaultToggleButtonText="상담사"
+                        selectBoxData={detailSearchSelectboxAdviserData}
+                        handleClickSelectItem={handleClickSelectBoxItem}
+                      />
                     </div>
                     <div className="chat_advise_search_detail_pannel_selectbox channel">
-                      <BasicTextSelectbox defaultToggleButtonText="상담채널" selectBoxData={detailSearchSelectboxChannelData} handleClickSelectItem={handleClickSelectBoxItem} />
+                      <BasicTextSelectbox
+                        defaultToggleButtonText="상담채널"
+                        selectBoxData={detailSearchSelectboxChannelData}
+                        handleClickSelectItem={handleClickSelectBoxItem}
+                      />
                     </div>
                     <div className="chat_advise_search_detail_pannel_selectbox advise_field">
-                      <BasicTextSelectbox defaultToggleButtonText="상담분야" selectBoxData={detailSearchSelectboxAdviseFieldData} handleClickSelectItem={handleClickSelectBoxItem} />
+                      <BasicTextSelectbox
+                        defaultToggleButtonText="상담분야"
+                        selectBoxData={detailSearchSelectboxAdviseFieldData}
+                        handleClickSelectItem={handleClickSelectBoxItem}
+                      />
                     </div>
                   </div>
                   <div className="chat_advise_search_detail_pannel_action_buttons_container">
                     <div className="chat_advise_search_detail_pannel_cancle_button_box">
-                      <OutlineButton handleClick={handleCancleDetailSearchPannel}>
-                        취소
-                      </OutlineButton>
+                      <OutlineButton handleClick={handleCancleDetailSearchPannel}>취소</OutlineButton>
                     </div>
                     <div className="chat_advise_search_detail_pannel_cancle_button_box">
-                      <SolidButton handleClick={handleSearchDetailChatAdviseLists}>
-                        검색하기
-                      </SolidButton>
+                      <SolidButton handleClick={handleSearchDetailChatAdviseLists}>검색하기</SolidButton>
                     </div>
                   </div>
                 </div>

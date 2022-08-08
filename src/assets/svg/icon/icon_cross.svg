@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" fill="#fff" stroke="#646f7c" className="icon_cross">
-  <g id="마스크_그룹_8408" data-name="마스크 그룹 8408"    transform="translate(-640.037 -500.037)">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" className="icon_cross" fill="#646f7c">
+  <!-- <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_3040" data-name="사각형 3040" fill="#fff" stroke="#f5f6f7" width="24" height="24" transform="translate(640.037 500.037)"/>
+    </clipPath>
+  </defs> -->
+  <g id="마스크_그룹_23" data-name="마스크 그룹 23" class="icon_cross_clip_path" transform="translate(-640.037 -500.037)">
     <g id="btn_cancle_bl" transform="translate(656.472 507.602) rotate(90)">
-      <line id="선_873" data-name="선 873" class=" " x2="12.543" transform="translate(0 0) rotate(45)" stroke-linecap="round" stroke-width="2px"/>
-      <line id="선_874" data-name="선 874" class=" " y1="12.543" transform="translate(8.869 0) rotate(45)" stroke-linecap="round" stroke-width="2px"/>
+      <path id="선_14" data-name="선 14" d="M12.543,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H12.543a1,1,0,0,1,1,1A1,1,0,0,1,12.543,1Z" transform="translate(0 0) rotate(45)" />
+      <path id="선_15" data-name="선 15" d="M0,13.543a1,1,0,0,1-1-1V0A1,1,0,0,1,0-1,1,1,0,0,1,1,0V12.543A1,1,0,0,1,0,13.543Z" transform="translate(8.869 0) rotate(45)" />
     </g>
   </g>
 </svg>

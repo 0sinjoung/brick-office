@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as IconCrossSmall } from 'assets/svg/icon/icon_cross_small.svg';
+import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
 import './style.scss';
 
 /** Outline Text Field - text field | small cancle button
@@ -55,7 +55,7 @@ const OutlineTextField = React.forwardRef(({ placeholderText }, ref) => {
         autoComplete="off"
       />
       <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
-        <IconCrossSmall />
+        <IconCrossTiny />
       </button>
     </div>
   );

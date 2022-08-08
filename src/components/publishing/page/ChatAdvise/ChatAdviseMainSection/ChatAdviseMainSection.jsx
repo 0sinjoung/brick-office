@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ReactComponent as IconCalendar } from 'assets/svg/icon/icon_calendar.svg';
 import { ReactComponent as IconArrowUpSmall } from 'assets/svg/icon/icon_arrow_up_small.svg';
 import { ReactComponent as IconArrowDownLong } from 'assets/svg/icon/icon_arrow_down_long.svg';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
-import { ReactComponent as IconCrossSmall } from 'assets/svg/icon/icon_cross_small.svg';
+import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg';
 import { ReactComponent as IconBookmark } from 'assets/svg/icon/icon_bookmark.svg';
 import { ReactComponent as IconSearch } from 'assets/svg/icon/icon_search.svg';
@@ -55,7 +56,7 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const CHAT_ADVISER_KEYWORD_NO_LIST = '등록한 상담 키워드가 없습니다.' || '검색 결과가 없습니다.';
   const DISABLE = 'disable';
 
-  /* header */
+  /* 1. 채팅 상담 헤더 */
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showHeaderSearchArea, setShowHeaderSearchArea] = useState('');
   const [showHeaderSearchIcon, setShowHeaderSearchIcon] = useState('show');
@@ -90,25 +91,33 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
     setIsBookmarked(!isBookmarked);
   };
 
-  /* footer */
-  const [showScrollBottomButton, setShowScrollBottomButton] = useState('show');
-  const handleMoveScrollBottom = () => {
-    console.log('scroll bottom!');
+  /* 3. 채팅 상담 푸터 */
+  /* 3-1. 메인 푸터 - 텍스트 에디터 영역 */
+  /* 3-1-0. 푸터 dim */
+  const [isTextEditorDimed, setisTextEditorDimed] = useState(false);
+  const DIMED_SHOW = '';
+  const FOOTER_DIMED_BUTTON_TEXT = '상담 시작하기';
+  const FOOTER_DIMED_INFORMATION_TEXT_CASE1 = '김제니 상담사가 상담보류 중 입니다.';
+  const FOOTER_DIMED_INFORMATION_TEXT_CASE2 = '지금은 업무 종료 상태입니다. \n 업무 시작으로 변경 후, 채팅상담을 진행 할 수 있습니다.';
+  const FOOTER_DIMED_INFORMATION_TEXT_CASE2_CLASSNAME = 'shutdown'; // 디폴트 ''
+  const handleFooterDimedButton = () => {
+    // button text case : 상담 시작하기 | 변경 요청 취소 | 상담사 변경 거절 | 상담사 변경 수락
+    console.log('footer dimed 버튼 클릭');
+    if (FOOTER_DIMED_BUTTON_TEXT === '상담 시작하기') {
+      return () => console.log('상담 시작하기');
+    }
   };
+  /* 3-1-0-1. CASE : 버튼 표시 */
+  /* 3-1-0-2. CASE : 정보 표시 */
 
-  const [showScrollNewMessageButton, setScrollNewMessageButton] = useState('show');
-  const handleMoveNewMessagePosition = () => {
-    console.log('새 메시지 위치로 이동');
-  };
+  /* 3-1-1. 푸터 탑 버튼 영역 */
+  /* 3-1-2. 푸터 입력 영역 */
 
   /* 3-1-3. 푸터 첨부파일 영역 */
   const handleDeleteAttachments = () => {
     console.log('해당 요소 삭제하기');
-  }
+  };
   /* 3-1-3-1. 푸터 첨부파일 - 버튼 */
-  // const [isShowDeleteButton1, setIsShowDeleteButton1] = useState(false);
-  // const [isShowDeleteButton2, setIsShowDeleteButton2] = useState(false);
-  // const [isShowDeleteButton3, setIsShowDeleteButton3] = useState(false);
 
   /* 3-1-3-2. 푸터 첨부파일 - 파일 | 이미지 */
   const ALT_FILE_NAME = '파일 이름';
@@ -123,8 +132,10 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const handleDownloadfile = () => {
     console.log('📂 파일 다운로드');
   };
-  
-  /* 상담 키워드 패널 */
+
+  /* 3-1-4. 푸터 바텀 버튼 영역 */
+
+  /* 3-2. 상담 키워드 패널 */
   const handleToggleChatAdviseKeywordPannel = () => {
     setIsShowChatAdviseKeywordPannel(!isShowChatAdviseKeywordPannel);
   };
@@ -138,7 +149,7 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
     console.log('상담 키워드 리스트 아이템 클릭');
   };
 
-  /* 버튼 액션 패널 */
+  /* 3-3. 버튼액션 추가 패널 */
   const handleToggleButtonActionPannel = () => {
     setIsShowButtonActionPannel(!isShowButtonActionPannel);
   };
@@ -160,18 +171,16 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const handleSendMessage = () => {
     console.log('💌 메시지 전송');
   };
-  /* 푸터 dimed */
-  const DIMED_SHOW = '';
-  const FOOTER_DIMED_BUTTON_TEXT = '상담 시작하기';
-  const FOOTER_DIMED_INFORMATION_TEXT_CASE1 = '김제니 상담사가 상담보류 중 입니다.';
-  const FOOTER_DIMED_INFORMATION_TEXT_CASE2 = '지금은 업무 종료 상태입니다. \n 업무 시작으로 변경 후, 채팅상담을 진행 할 수 있습니다.';
-  const FOOTER_DIMED_INFORMATION_TEXT_CASE2_CLASSNAME = 'shutdown'; // 디폴트 ''
-  const handleFooterDimedButton = () => {
-    // button text case : 상담 시작하기 | 변경 요청 취소 | 상담사 변경 거절 | 상담사 변경 수락
-    console.log('footer dimed 버튼 클릭');
-    if (FOOTER_DIMED_BUTTON_TEXT === '상담 시작하기') {
-      return () => console.log('상담 시작하기');
-    }
+
+  /* 3-4. 이모지 패널 */
+  /* 3-5. 푸터 영역 fixed 버튼 */
+  const [showScrollBottomButton, setShowScrollBottomButton] = useState('show');
+  const handleMoveScrollBottom = () => {
+    console.log('scroll bottom!');
+  };
+  const [showScrollNewMessageButton, setScrollNewMessageButton] = useState('show');
+  const handleMoveNewMessagePosition = () => {
+    console.log('새 메시지 위치로 이동');
   };
 
   return (
@@ -276,8 +285,8 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
             {/* 3-1. 메인 푸터 - 텍스트 에디터 영역 */}
             <footer className="chat_advise_main_footer">
               <div className="chat_advise_main_footer_wrap">
-                {/* 3-1-0. 푸터 dimed */}
-                <div className={`chat_advise_main_footer_dimed_box ${DIMED_SHOW}`}>
+                {/* 3-1-0. 푸터 dim */}
+                <div className={`chat_advise_main_footer_dimed_box ${isTextEditorDimed ? 'show' : ''}`}>
                   <div className="chat_advise_main_footer_dimed_box_contents">
                     {/* 3-1-0-1. CASE : 버튼 표시 */}
                     <div className="chat_advise_main_footer_dimed_button_box">
@@ -356,55 +365,49 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                   <div className="chat_advise_main_footer_attachments_container">
                     <div className="chat_advise_main_footer_attachments_buttons_box">
                       <div className="chat_advise_main_footer_attachments_button_box">
-                        <button type='button' className="chat_advise_main_footer_attachments_button">
-                          <span className="chat_advise_main_footer_attachments_button_text">
-                          버튼명은최대열글자까지나옵니다다다다다
-                          </span>
+                        <button type="button" className="chat_advise_main_footer_attachments_button">
+                          <span className="chat_advise_main_footer_attachments_button_text">버튼명은최대열글자까지나옵니다다다다다</span>
                         </button>
-                        <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                          <IconCrossSmall />
+                        <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                          <IconCrossTiny />
                         </button>
                       </div>
                       <div className="chat_advise_main_footer_attachments_button_box">
-                        <button type='button' className="chat_advise_main_footer_attachments_button">
-                          <span className="chat_advise_main_footer_attachments_button_text">
-                          브릭홈페이지
-                          </span>
+                        <button type="button" className="chat_advise_main_footer_attachments_button">
+                          <span className="chat_advise_main_footer_attachments_button_text">브릭홈페이지</span>
                         </button>
-                        <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                          <IconCrossSmall />
+                        <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                          <IconCrossTiny />
                         </button>
                       </div>
                       <div className="chat_advise_main_footer_attachments_button_box">
-                        <button type='button' className="chat_advise_main_footer_attachments_button">
-                          <span className="chat_advise_main_footer_attachments_button_text">
-                          구글
-                          </span>
+                        <button type="button" className="chat_advise_main_footer_attachments_button">
+                          <span className="chat_advise_main_footer_attachments_button_text">구글</span>
                         </button>
-                        <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                          <IconCrossSmall />
+                        <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                          <IconCrossTiny />
                         </button>
                       </div>
                     </div>
                     <div className="chat_advise_main_footer_attachments_file_box">
                       <div className="chat_advise_main_footer_attachments_file_thumnails_box">
                         <div className="chat_advise_main_footer_attachments_file_thumnail_box image loading">
-                          <button type='button' className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
+                          <button type="button" className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
                             <img className="chat_advise_main_footer_attachments_file_image" src={IMAGE_SAMPLE_LINK} alt={ALT_FILE_NAME} />
                           </button>
                           <div className="attachments_file_loading_spinner">
-                            <span className="loading_spinner"></span>
+                            <span className="loading_spinner" />
                           </div>
-                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                            <IconCrossSmall />
+                          <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossTiny />
                           </button>
                         </div>
                         <div className="chat_advise_main_footer_attachments_file_thumnail_box image error">
-                          <button type='button' className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
+                          <button type="button" className="attachments_file_image_lightbox_button" onClick={handleOpenLightbox}>
                             <img className="chat_advise_main_footer_attachments_file_image" src={IMAGE_SAMPLE_LINK} alt={ALT_FILE_NAME} />
                           </button>
-                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                            <IconCrossSmall />
+                          <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossTiny />
                           </button>
                         </div>
                         <div className="chat_advise_main_footer_attachments_file_thumnail_box file">
@@ -429,8 +432,8 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                               </div>
                             </div>
                           </div>
-                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                            <IconCrossSmall />
+                          <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossTiny />
                           </button>
                         </div>
                         <div className="chat_advise_main_footer_attachments_file_thumnail_box file error">
@@ -455,8 +458,8 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                               </div>
                             </div>
                           </div>
-                          <button type='button' className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
-                            <IconCrossSmall />
+                          <button type="button" className="chat_advise_main_footer_attachments_button_delete_button" onClick={handleDeleteAttachments}>
+                            <IconCrossTiny />
                           </button>
                         </div>
                       </div>
@@ -648,6 +651,16 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
       </section>
     </>
   );
+};
+
+ChatAdviseMainSection.propTypes = {
+  handleKMSPannel: PropTypes.func,
+  isShowKMSPannel: PropTypes.bool,
+};
+
+ChatAdviseMainSection.defaultProps = {
+  handleKMSPannel: () => {},
+  isShowKMSPannel: false,
 };
 
 export default ChatAdviseMainSection;

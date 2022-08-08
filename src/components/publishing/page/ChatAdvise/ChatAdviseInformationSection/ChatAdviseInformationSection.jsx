@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { ReactComponent as IconEdit } from 'assets/svg/icon/icon_edit.svg';
 import { ReactComponent as IconEllipsis } from 'assets/svg/icon/icon_ellipsis.svg';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
@@ -27,9 +28,10 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
     email: 'heyheyheyheyheyday@naver.com',
   };
   const ADVISE_INFO = {
-    adviseStart: '2022-06-02 오후 11:59',
+    adviseStart: '2022.06.02 오후 11:59',
     adviseEnd: '진행중',
-    adviseMemo: '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
+    adviseMemo:
+      '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
     adviseFields: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '주문', '프로모션', '회원', '기타'],
     // adviseFields: ['교환 반품 환불', '고객 관리'],
   };
@@ -64,7 +66,7 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
     }
     return (
       <div className="chat_advise_information_content">
-        {ADVISE_INFO.adviseFields.map((item) => {
+        {ADVISE_INFO.adviseFields.map(item => {
           return (
             <div className="advise_field_chip_item" key={item}>
               <AdviseFieldChip>{item}</AdviseFieldChip>
@@ -101,6 +103,10 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const [characterCountNumber, setCharacterCountNumber] = useState(0);
   const countTextFieldCharacter = () => {
     const countNumber = refAdviseMemoTextField.current.value.length;
+    if (countNumber > 100) {
+      setCharacterCountNumber(100);
+      return;
+    }
     setCharacterCountNumber(countNumber);
   };
 
@@ -502,17 +508,17 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
 
   /* 3-2-3-1. 상세 주문내역 모달 - 셀렉트 박스 */
   const detailCustomerOrderStatusData = [
-    {value: '전체', isSelect: true},
-    {value: '입금 전', isSelect: false},
-    {value: '상품준비중', isSelect: false},
-    {value: '배송준비중', isSelect: false},
-    {value: '배송대기', isSelect: false},
-    {value: '배송보류', isSelect: false},
-    {value: '배송 중', isSelect: false},
-    {value: '배송완료', isSelect: false},
-    {value: '주문취소', isSelect: false},
-    {value: '상품교환', isSelect: false},
-    {value: '상품반품', isSelect: false},
+    { value: '전체', isSelect: true },
+    { value: '입금 전', isSelect: false },
+    { value: '상품준비중', isSelect: false },
+    { value: '배송준비중', isSelect: false },
+    { value: '배송대기', isSelect: false },
+    { value: '배송보류', isSelect: false },
+    { value: '배송 중', isSelect: false },
+    { value: '배송완료', isSelect: false },
+    { value: '주문취소', isSelect: false },
+    { value: '상품교환', isSelect: false },
+    { value: '상품반품', isSelect: false },
   ];
   const handleClickSelectBoxItem = value => {
     console.log(value + '클릭됨');
@@ -537,7 +543,11 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
           </div>
           <div className="detail_customer_order_list_modal_basic_text_selectbox_area">
             <div className="detail_customer_order_list_modal_basic_text_selectbox">
-              <BasicTextSelectbox defaultToggleButtonText="주문상태" selectBoxData={detailCustomerOrderStatusData} handleClickSelectItem={handleClickSelectBoxItem}/>
+              <BasicTextSelectbox
+                defaultToggleButtonText="주문상태"
+                selectBoxData={detailCustomerOrderStatusData}
+                handleClickSelectItem={handleClickSelectBoxItem}
+              />
             </div>
           </div>
           {displayCustomerOrderDetailLists()}
@@ -555,15 +565,7 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const handleSearchChatbotKnowledgeRecommand = () => {
     console.log('챗봇 지식 검색');
   };
-  /** 수정할부분 */
-  // const [isShowKMSPannel, setIsShowKMSPannel] = useState(false);
-  // const handleShowkKMSPannel = () => {
-    // setIsShowKMSPannel(true);
-    // console.log('hi');
-  // };
   const handleHidekKMSPannel = () => {
-    // setIsShowKMSPannel(false);
-    console.log('hi');
     handleKMSPannel(false);
   };
 
@@ -1076,6 +1078,16 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
       </section>
     </>
   );
+};
+
+ChatAdviseInformationSection.propTypes = {
+  handleKMSPannel: PropTypes.func,
+  isShowKMSPannel: PropTypes.bool,
+};
+
+ChatAdviseInformationSection.defaultProps = {
+  handleKMSPannel: () => {},
+  isShowKMSPannel: false,
 };
 
 export default ChatAdviseInformationSection;

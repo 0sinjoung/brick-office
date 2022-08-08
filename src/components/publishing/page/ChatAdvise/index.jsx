@@ -13,23 +13,14 @@ const ChatAdvise = ({ children }) => {
   const [isAdviserWorkingStart, setIsAdviserWorkingStart] = useState(true);
   /* 상담 지식 패널 */
   const [isShowKMSPannel, setIsShowKMSPannel] = useState(false);
-  const handleTogglekKMSPannel = () => {
-    setIsShowKMSPannel(!isShowKMSPannel);
-  };
-  const handleShowkKMSPannel = () => {
-    setIsShowKMSPannel(true);
-  };
-  const handleHidekKMSPannel = () => {
-    setIsShowKMSPannel(false);
-  };
   const displayAdviseEntrySection = () => {
     if (!isAdviserWorkingStart) {
       return <ChatAdviseEntrySection />;
     }
     return (
       <>
-        <ChatAdviseMainSection handleKMSPannel={setIsShowKMSPannel} isShowKMSPannel={isShowKMSPannel}/>
-        <ChatAdviseInformationSection handleKMSPannel={setIsShowKMSPannel} isShowKMSPannel={isShowKMSPannel}/>
+        <ChatAdviseMainSection handleKMSPannel={setIsShowKMSPannel} isShowKMSPannel={isShowKMSPannel} />
+        <ChatAdviseInformationSection handleKMSPannel={setIsShowKMSPannel} isShowKMSPannel={isShowKMSPannel} />
       </>
     );
   };
