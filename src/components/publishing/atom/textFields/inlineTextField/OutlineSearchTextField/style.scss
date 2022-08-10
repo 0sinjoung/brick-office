@@ -8,8 +8,22 @@
   padding: 0 10px;
   border-radius: 8px;
   border: $grey020-border;
+  // position: relative;
 
   &.focus {
+    // &::after {
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    //   width: 103%;
+    //   height: 103%;
+    //   background-color: #1F71F9;
+    //   opacity: 20%;
+    //   // z-index: ;
+    // }
     border: 1px solid $grey080;
   }
 }

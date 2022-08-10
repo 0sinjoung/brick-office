@@ -11,6 +11,7 @@ import { ReactComponent as IconLnbChatAdvise } from 'assets/svg/icon/lnb/icon_ln
 import NumberNotificationBadge from 'components/publishing/atom/notificationBadge/NumberNotificationBadge';
 import NewNotificationBadge from 'components/publishing/atom/notificationBadge/NewNotificationBadge';
 import OnairAvatarIcon from 'components/publishing/atom/avatarIcon/OnairAvatarIcon';
+import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
@@ -21,7 +22,7 @@ import OutlineSearchTextField from 'components/publishing/atom/textFields/inline
 import NoDataFound from 'components/publishing/atom/NoDataFound';
 import BasicConfirmModal from 'components/publishing/molecule/modal/BasicConfirmModal';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
-import BasicTextSelectbox from 'components/publishing/molecule/selectbox/BasicTextSelectbox';
+import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
 import './ChatAdviseListSection.scss';
 
 /** 채팅 상담 리스트 영역
@@ -203,7 +204,7 @@ const ChatAdviseListSection = () => {
     { value: '기타', isSelect: false },
   ];
 
-  const handleClickSelectBoxItem = value => {
+  const handleClickDropdownMenuItem = value => {
     console.log(value, '선택됨');
   };
   const handleSearchCustomerInformation = () => {
@@ -212,9 +213,21 @@ const ChatAdviseListSection = () => {
   const handleRefreshSearch = () => {
     console.log('검색 초기화🥕');
   };
-  const handleSortingChatList = () => {
-    console.log('상담 리스트 정렬🥕');
+
+  const [isShowSortingDropdown, setIsShowSortingDropdown] = useState(false);
+  const handleClickSortingDropdown = () => {
+    setIsShowSortingDropdown(!isShowSortingDropdown);
   };
+  const handleSortingChatList = e => {
+    const currentValue = e.target.textContent;
+    console.log('상담 리스트 정렬🥕', currentValue);
+  };
+  const sortingDropdownData = [
+    { value: '최신대화순', handleClick: handleSortingChatList },
+    { value: '오래된 대화순', handleClick: handleSortingChatList },
+    { value: '최신 문의순', handleClick: handleSortingChatList },
+    { value: '오래된 문의순', handleClick: handleSortingChatList },
+  ];
 
   /* 4. 채팅 상담 리스트 영역 */
   const CURRENT_CHAT_ADIVSE_LIST_COUNT = 10;
@@ -903,18 +916,11 @@ const ChatAdviseListSection = () => {
                   </IconButton>
                 </div>
                 <div className="chat_advise_detail_search_icon_button_box sorting">
-                  <IconButton buttonClassName="small outline" handleClick={handleSortingChatList}>
+                  <IconButton buttonClassName="small outline" handleClick={handleClickSortingDropdown}>
                     <IconSorting />
                   </IconButton>
+                  <DropdownMenu showDropdownMenu={isShowSortingDropdown ? 'show' : ''} dropdownMenuData={sortingDropdownData} />
                 </div>
-                {/* <div className="header_setting_icon_button_box">
-                  <IconButton handleClick={clickSettingDropdown}>
-                    <IconSetting />
-                  </IconButton>
-                  <div className={`dropdown_box ${showSettingDropdown ? 'show' : ''}`}>
-                    <SimpleDropdown dropdownData={settingDropdownData} />
-                  </div>
-                </div> */}
               </div>
             </div>
             {/* 3-1. 상세 검색 결과 칩 영역 */}
@@ -931,23 +937,23 @@ const ChatAdviseListSection = () => {
             </div>
             {/* 3-2. 상세 검색 패널 */}
             <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
-              <div className="chat_advise_search_detail_pannel_selectboxs_container">
+              <div className="chat_advise_search_detail_pannel_dropdown_container">
                 {/* 내 상담일 경우 상담사 검색 셀렉트 박스 없음 */}
-                {/* <div className="chat_advise_search_detail_pannel_selectbox adviser">
-                  <BasicTextSelectbox defaultToggleButtonText="상담사" selectBoxData={detailSearchSelectboxAdviserData} handleClickSelectItem={handleClickSelectBoxItem} />
+                {/* <div className="chat_advise_search_detail_pannel_dropdown adviser">
+                  <BasicTextDropdown defaultToggleText="상담사" dropdownMenuData={detailSearchSelectboxAdviserData} handleClickMenuItem={handleClickDropdownMenuItem} />
                 </div> */}
-                <div className="chat_advise_search_detail_pannel_selectbox channel">
-                  <BasicTextSelectbox
-                    defaultToggleButtonText="상담채널"
-                    selectBoxData={detailSearchSelectboxChannelData}
-                    handleClickSelectItem={handleClickSelectBoxItem}
+                <div className="chat_advise_search_detail_pannel_dropdown channel">
+                  <BasicTextDropdown
+                    defaultToggleText="상담채널"
+                    dropdownMenuData={detailSearchSelectboxChannelData}
+                    handleClickMenuItem={handleClickDropdownMenuItem}
                   />
                 </div>
-                <div className="chat_advise_search_detail_pannel_selectbox advise_field">
-                  <BasicTextSelectbox
-                    defaultToggleButtonText="상담분야"
-                    selectBoxData={detailSearchSelectboxAdviseFieldData}
-                    handleClickSelectItem={handleClickSelectBoxItem}
+                <div className="chat_advise_search_detail_pannel_dropdown advise_field">
+                  <BasicTextDropdown
+                    defaultToggleText="상담분야"
+                    dropdownMenuData={detailSearchSelectboxAdviseFieldData}
+                    handleClickMenuItem={handleClickDropdownMenuItem}
                   />
                 </div>
               </div>
@@ -1028,26 +1034,26 @@ const ChatAdviseListSection = () => {
                 </div>
                 {/* 5-1-2. 상세 검색 패널 */}
                 <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
-                  <div className="chat_advise_search_detail_pannel_selectboxs_container">
-                    <div className="chat_advise_search_detail_pannel_selectbox adviser">
-                      <BasicTextSelectbox
-                        defaultToggleButtonText="상담사"
-                        selectBoxData={detailSearchSelectboxAdviserData}
-                        handleClickSelectItem={handleClickSelectBoxItem}
+                  <div className="chat_advise_search_detail_pannel_dropdown_container">
+                    <div className="chat_advise_search_detail_pannel_dropdown adviser">
+                      <BasicTextDropdown
+                        defaultToggleText="상담사"
+                        dropdownMenuData={detailSearchSelectboxAdviserData}
+                        handleClickMenuItem={handleClickDropdownMenuItem}
                       />
                     </div>
-                    <div className="chat_advise_search_detail_pannel_selectbox channel">
-                      <BasicTextSelectbox
-                        defaultToggleButtonText="상담채널"
-                        selectBoxData={detailSearchSelectboxChannelData}
-                        handleClickSelectItem={handleClickSelectBoxItem}
+                    <div className="chat_advise_search_detail_pannel_dropdown channel">
+                      <BasicTextDropdown
+                        defaultToggleText="상담채널"
+                        dropdownMenuData={detailSearchSelectboxChannelData}
+                        handleClickMenuItem={handleClickDropdownMenuItem}
                       />
                     </div>
-                    <div className="chat_advise_search_detail_pannel_selectbox advise_field">
-                      <BasicTextSelectbox
-                        defaultToggleButtonText="상담분야"
-                        selectBoxData={detailSearchSelectboxAdviseFieldData}
-                        handleClickSelectItem={handleClickSelectBoxItem}
+                    <div className="chat_advise_search_detail_pannel_dropdown advise_field">
+                      <BasicTextDropdown
+                        defaultToggleText="상담분야"
+                        dropdownMenuData={detailSearchSelectboxAdviseFieldData}
+                        handleClickMenuItem={handleClickDropdownMenuItem}
                       />
                     </div>
                   </div>

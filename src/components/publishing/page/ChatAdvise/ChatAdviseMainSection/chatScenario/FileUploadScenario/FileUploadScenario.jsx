@@ -6,6 +6,7 @@ import { ReactComponent as IconFileUnvailavleBgGrey } from 'assets/svg/icon/file
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
 import BasicAvatarIcon from 'components/publishing/atom/avatarIcon/BasicAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
+import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import './FileUploadScenario.scss';
 
 /** 채팅 상담 - 파일 업로드 시나리오
@@ -64,6 +65,31 @@ const FileUploadScenario = () => {
     console.log('📂 파일 다운로드');
   };
 
+  /* 메시지 삭제하기 버튼 */
+  const [isShowMessageDropdown, setIsShowMessageDropdown] = useState(false);
+  const handleToggleMessageActionButton = () => {
+    console.log('메시지 액션 버튼 클릭');
+    setIsShowMessageDropdown(!isShowMessageDropdown);
+  };
+  const handleClickMessageActionButton = e => {
+    const currentValue = e.target.textContent;
+    console.log(currentValue, '실행');
+    setIsShowMessageDropdown(false);
+  };
+  const messageActionDropdownNormalMessageData = [
+    { value: '삭제하기', handleClick: handleClickMessageActionButton },
+  ];
+  const messageActionDropdownFileuploadCustomerData = [
+    { value: '다운로드', handleClick: handleClickMessageActionButton },
+  ];
+  const messageActionDropdownFileuploadErrorData = [
+    { value: '삭제하기', handleClick: handleClickMessageActionButton },
+  ];
+  const messageActionDropdownFileuploadData = [
+    { value: '다운로드', handleClick: handleClickMessageActionButton },
+    { value: '삭제하기', handleClick: handleClickMessageActionButton },
+  ];
+
   return (
     <>
       <div className="message_wrapper bot">
@@ -89,7 +115,8 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>
@@ -120,7 +147,8 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>
@@ -152,7 +180,8 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>
@@ -185,10 +214,12 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -214,10 +245,12 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -225,16 +258,20 @@ const FileUploadScenario = () => {
         {/* 1-1. 이미지 1개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents single_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents single_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
               </div>
             </div>
           </div>
@@ -242,19 +279,23 @@ const FileUploadScenario = () => {
         {/* 1-2. 이미지 2개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents double_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents double_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
               </div>
             </div>
           </div>
@@ -262,22 +303,26 @@ const FileUploadScenario = () => {
         {/* 1-3. 이미지 3개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents triple_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents triple_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
               </div>
             </div>
           </div>
@@ -285,59 +330,201 @@ const FileUploadScenario = () => {
         {/* 1-4. 이미지 4개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents quadruple_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents quadruple_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
               </div>
             </div>
           </div>
         </div>
-        {/* 1-5. 이미지 업로드 에러 - 케이스 없음 */}
-        {/* 2. 파일 업로드 - 에러 케이스 없음 */}
-        <div className="fileupload_container file">
-          <div className="fileupload_contents_box">
-            <div className="fileupload_file_template">
-              <div className="fileupload_file_contents">
-                <div className="file_thumnail_box">
-                  {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
-                  <IconFileExtensionXlsx />
-                </div>
-                <div className="file_description_box">
-                  <p className="filename_title">
-                    <span className="filename_title_text">파일이름최대최대최대최대</span>
-                    <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
-                  </p>
-                  <p className="file_expiration_period">
-                    <span className="period_tag">유효기간 : </span>
-                    <span className="period_date">{`~${PERIOD_DATE}`}</span>
-                  </p>
-                  <p className="fileupload_size">
-                    <span className="fileupload_size_tag">용량 : </span>
-                    <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
-                  </p>
+        {/* 1-5. 이미지 업로드 - 에러 케이스 */}
+        <div className="fileupload_container image">
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents quadruple_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
                 </div>
               </div>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+              </div>
             </div>
-            <div className="file_download_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDownloadfile}>
-                <IconFileDownload />
-              </IconButton>
+          </div>
+        </div>
+        <div className="fileupload_container image">
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents triple_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                </div>
+              </div>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="fileupload_container image">
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents double_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                </div>
+              </div>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="fileupload_container image">
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents single_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                </div>
+              </div>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 2. 파일 업로드 */}
+        {/* 2-1. 파일 업로드 - CASE1 : 성공 */}
+        <div className="fileupload_container file">
+          <div className="fileupload_contents_box">
+            <div className="message_button_box">
+              <div className="fileupload_file_template">
+                <div className="fileupload_file_contents">
+                  <div className="file_thumnail_box">
+                    {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
+                    <IconFileExtensionXlsx />
+                  </div>
+                  <div className="file_description_box">
+                    <p className="filename_title">
+                      <span className="filename_title_text">파일이름최대최대최대최대</span>
+                      <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
+                    </p>
+                    <p className="file_expiration_period">
+                      <span className="period_tag">유효기간 : </span>
+                      <span className="period_date">{`~${PERIOD_DATE}`}</span>
+                    </p>
+                    <p className="fileupload_size">
+                      <span className="fileupload_size_tag">용량 : </span>
+                      <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 2-2. 파일 업로드 - CASE2 : 실패 */}
+        <div className="fileupload_container file">
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_file_template">
+                <div className="fileupload_file_contents">
+                  <div className="file_thumnail_box">
+                    <IconFileExtensionXlsx />
+                  </div>
+                  <div className="file_description_box">
+                    <p className="filename_title">
+                      <span className="filename_title_text">파일이름최대최대최대최대</span>
+                      <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
+                    </p>
+                    <p className="file_expiration_period">
+                      <span className="period_tag">유효기간 : </span>
+                      <span className="period_date">{`~${PERIOD_DATE}`}</span>
+                    </p>
+                    <p className="fileupload_size">
+                      <span className="fileupload_size_tag">용량 : </span>
+                      <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+              </div>
             </div>
           </div>
         </div>
@@ -363,7 +550,8 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>
@@ -374,16 +562,20 @@ const FileUploadScenario = () => {
         {/* 1-1. 이미지 1개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents single_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents single_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
               </div>
             </div>
           </div>
@@ -391,19 +583,23 @@ const FileUploadScenario = () => {
         {/* 1-2. 이미지 2개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents double_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents double_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
               </div>
             </div>
           </div>
@@ -411,22 +607,26 @@ const FileUploadScenario = () => {
         {/* 1-3. 이미지 3개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents triple_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents triple_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
               </div>
             </div>
           </div>
@@ -434,108 +634,128 @@ const FileUploadScenario = () => {
         {/* 1-4. 이미지 4개 업로드 */}
         <div className="fileupload_container image">
           <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents quadruple_image">
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
-                </div>
-                <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
-                  <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents quadruple_image">
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
+                  <div className="fileupload_image_box" role="button" onClick={handleShowLightbox} onKeyUp={handleShowLightbox} tabIndex={0}>
+                    <img className="fileupload_image" alt={ALT_FILE_NAME} src={IMAGE_SAMPLE_LINK} />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
               </div>
             </div>
           </div>
         </div>
         {/* 1-5. 이미지 업로드 에러 */}
         <div className="fileupload_container image">
-          <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents quadruple_image error">
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
-                </div>
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
-                </div>
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
-                </div>
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents quadruple_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
               </div>
             </div>
           </div>
         </div>
         <div className="fileupload_container image">
-          <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents triple_image error">
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
-                </div>
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
-                </div>
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents triple_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
               </div>
             </div>
           </div>
         </div>
         <div className="fileupload_container image">
-          <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents double_image error">
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
-                </div>
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents double_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
               </div>
             </div>
           </div>
         </div>
         <div className="fileupload_container image">
-          <div className="fileupload_contents_box">
-            <div className="fileupload_image_template">
-              <div className="fileupload_image_contents single_image error">
-                <div className="fileupload_image_box">
-                  <IconFileUnvailavleBgGrey />
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_image_template">
+                <div className="fileupload_image_contents single_image">
+                  <div className="fileupload_image_box">
+                    <IconFileUnvailavleBgGrey />
+                  </div>
                 </div>
               </div>
-              <div className="image_download_button_box">
-                <IconButton handleClick={handleDownloadImages}>
-                  <IconFileDownload />
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
                 </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
               </div>
             </div>
           </div>
@@ -543,63 +763,71 @@ const FileUploadScenario = () => {
         {/* 2. 파일 업로드 */}
         <div className="fileupload_container file">
           <div className="fileupload_contents_box">
-            <div className="fileupload_file_template">
-              <div className="fileupload_file_contents">
-                <div className="file_thumnail_box">
-                  {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
-                  <IconFileExtensionXlsx />
-                </div>
-                <div className="file_description_box">
-                  <p className="filename_title">
-                    <span className="filename_title_text">파일이름최대최대최대최대</span>
-                    <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
-                  </p>
-                  <p className="file_expiration_period">
-                    <span className="period_tag">유효기간 : </span>
-                    <span className="period_date">{`~${PERIOD_DATE}`}</span>
-                  </p>
-                  <p className="fileupload_size">
-                    <span className="fileupload_size_tag">용량 : </span>
-                    <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
-                  </p>
+            <div className="message_button_box">
+              <div className="fileupload_file_template">
+                <div className="fileupload_file_contents">
+                  <div className="file_thumnail_box">
+                    {/* svg icon : 가상선택자 사용해서 className으로 지정도 가능 */}
+                    <IconFileExtensionXlsx />
+                  </div>
+                  <div className="file_description_box">
+                    <p className="filename_title">
+                      <span className="filename_title_text">파일이름최대최대최대최대</span>
+                      <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
+                    </p>
+                    <p className="file_expiration_period">
+                      <span className="period_tag">유효기간 : </span>
+                      <span className="period_date">{`~${PERIOD_DATE}`}</span>
+                    </p>
+                    <p className="fileupload_size">
+                      <span className="fileupload_size_tag">용량 : </span>
+                      <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="file_download_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDownloadfile}>
-                <IconFileDownload />
-              </IconButton>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
+              </div>
             </div>
           </div>
         </div>
         {/* 고객 - 파일 업로드 에러 케이스 있음 */}
         <div className="fileupload_container file">
-          <div className="fileupload_contents_box">
-            <div className="fileupload_file_template error">
-              <div className="fileupload_file_contents">
-                <div className="file_thumnail_box">
-                  <IconFileExtensionXlsx />
-                </div>
-                <div className="file_description_box">
-                  <p className="filename_title">
-                    <span className="filename_title_text">파일이름최대최대최대최대</span>
-                    <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
-                  </p>
-                  <p className="file_expiration_period">
-                    <span className="period_tag">유효기간 : </span>
-                    <span className="period_date">{`~${PERIOD_DATE}`}</span>
-                  </p>
-                  <p className="fileupload_size">
-                    <span className="fileupload_size_tag">용량 : </span>
-                    <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
-                  </p>
+          <div className="fileupload_contents_box error">
+            <div className="message_button_box">
+              <div className="fileupload_file_template">
+                <div className="fileupload_file_contents">
+                  <div className="file_thumnail_box">
+                    <IconFileExtensionXlsx />
+                  </div>
+                  <div className="file_description_box">
+                    <p className="filename_title">
+                      <span className="filename_title_text">파일이름최대최대최대최대</span>
+                      <span className="filename_extension">{`.${FILE_EXTENSION}`}</span>
+                    </p>
+                    <p className="file_expiration_period">
+                      <span className="period_tag">유효기간 : </span>
+                      <span className="period_date">{`~${PERIOD_DATE}`}</span>
+                    </p>
+                    <p className="fileupload_size">
+                      <span className="fileupload_size_tag">용량 : </span>
+                      <span className="fileupload_size_unit">{FILE_SIZE_UNIT}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="file_download_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDownloadfile}>
-                <IconFileDownload />
-              </IconButton>
+              <div className="upload_error_icon" />
+              <div className="message_action_button_box">
+                <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
+                  <IconSetting />
+                </IconButton>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+              </div>
             </div>
           </div>
         </div>
@@ -629,7 +857,8 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>
@@ -658,7 +887,8 @@ const FileUploadScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="upload_error_icon" />
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>

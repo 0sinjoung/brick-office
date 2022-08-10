@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import FullScreenDim from 'components/publishing/atom/FullScreenDim';
+import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import './style.scss';
@@ -9,7 +9,7 @@ import './style.scss';
  * @titleText : 모달 title text
  * @children : 모달 description text
  * @showModal : className으로 'show' || ''
- * @actionButtonText : 모달 action buutton text || '확인
+ * @actionButtonText : 모달 action button text || '확인'
  * @handleAction : 확인시 실행할 비즈니스 로직 함수
  * @handleClose : 모달 닫는 함수
  */

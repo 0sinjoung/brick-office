@@ -79,7 +79,7 @@ const ChatbotScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>
@@ -516,7 +516,7 @@ const ChatbotScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
+            <div className="message_action_button_box">
               <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
                 <IconSetting />
               </IconButton>

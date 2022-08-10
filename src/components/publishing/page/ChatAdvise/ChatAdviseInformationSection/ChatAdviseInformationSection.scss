@@ -530,7 +530,7 @@
   color: $grey040;
 }
 
-.detail_customer_order_list_modal_basic_text_selectbox_area {
+.detail_customer_order_list_modal_basic_text_dropdown_container {
   flex-shrink: 0;
   @include flexEnd();
   width: 100%;
@@ -538,7 +538,7 @@
   margin-bottom: 2px;
 }
 
-.detail_customer_order_list_modal_basic_text_selectbox {
+.detail_customer_order_list_modal_basic_text_dropdown {
   width: 140px;
   height: 32px;
 }

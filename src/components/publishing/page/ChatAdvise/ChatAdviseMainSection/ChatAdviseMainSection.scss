@@ -59,7 +59,6 @@
     }
   }
   
-  
   .chat_advise_header_customer_name {
     font-size: 16px;
     font-weight: $bold;
@@ -68,6 +67,7 @@
     margin-right: 6px;
   }
   
+  /* 1-1-1. 즐겨찾기 */
   .chat_advise_header_bookmark_button {
     @include flexCenter();
     width: 10px;
@@ -109,7 +109,7 @@
   flex-shrink: 0;
   gap: 6px;
 
-  /* (1) 채팅 검색 버튼 */
+  /* 1-1-2. 채팅 검색 */
   .chat_advise_main_header_search_button_box {
     display: none;
     flex-shrink: 0;
@@ -123,7 +123,7 @@
     }
   }
   
-  /* (2) 상담사 변경 버튼 */
+  /* 1-1-3. 상담사 변경 */
   .chat_advise_main_header_change_adviser_button_box {
     position: relative;
 
@@ -136,40 +136,11 @@
     }
   }
   
-  /* (3) 상담 상태 변경 버튼 */
-  .chat_advise_main_header_change_chat_state_select_button_box {
-    width: 113px;
+  /* 1-1-4. 상담 상태 변경 */
+  .chat_advise_main_header_change_chat_status_dropdown {
+    width: 112px;
+    height: 32px;
     position: relative;
-
-    .change_chat_state_select_toggle_button {
-      @include flexSpace();
-      width: 112px;
-      height: 32px;
-      padding: 8px 10px;
-      border: $grey020-border;
-      border-radius: 8px;
-      background-color: $white;
-      
-      .change_chat_state_select_toggle_button_text {
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: $medium;
-        line-height: 1;
-      }
-      .change_chat_state_select_toggle_button_arrow {
-        @include flexCenter();
-      }
-      
-      @include hoverTransition();
-      &:hover {
-        background-color: $grey005;
-      }
-    } 
-
-    /*임시*/
-    .change_chat_state_select_box {
-      display: none;
-    }
   }
 }
 
@@ -367,7 +338,7 @@
           .message_KMS_search_button_box {
             display: block;
           }
-          .message_delete_button_box {
+          .message_action_button_box {
             display: none;
           }
         }
@@ -382,14 +353,43 @@
     .fileupload_container {
       @include flexStart();
 
-      .fileupload_image_contents {
+      .fileupload_contents_box {
+        /* 파일 업로드 에러 */
         &.error {
-          &::after {
-            @include brickRedBadgeStyle();
-            bottom: 0;
-            left: initial;
-            right: -8px;
-            transform: translateX(100%) scale(0.5);
+          .upload_error_icon {
+            &::after {
+              margin: 0 -6px -6px -2px;
+            }
+          }
+          .fileupload_image_contents {
+            .fileupload_image_box {
+              cursor: default;
+            }
+          }
+          .fileupload_file_template {
+            cursor: default;
+          }
+
+          &:hover {
+            .message_button_box {
+              .message_action_button_box {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      .message_button_box {
+        .fileupload_image_template,
+        .fileupload_file_template {
+          order: 1;  
+        }
+        .message_action_button_box {
+          order: 2;
+          .dropdown_menu {
+            left: 0;
+            transform: translateX(38px);
           }
         }
       }
@@ -424,7 +424,7 @@
             .message_KMS_search_button_box {
               display: none;
             }
-            .message_delete_button_box {
+            .message_action_button_box {
               display: block;
             }
           }
@@ -471,7 +471,7 @@
         height: 4px;
         border-radius: 50%;
         background-color: #BC7D6C;
-        animation: 1.2s infinite alternate animationLoading;
+        animation: 1.2s infinite alternate animationChatLoading;
   
         &:first-child {
           animation-delay: 0;
@@ -520,7 +520,6 @@
 .message_button_box {
   display: flex;
   align-items: flex-end;
-  gap: 6px;
   margin-bottom: 4px;
 }
 
@@ -541,6 +540,7 @@
 
 .message_KMS_search_button_box {
   order: 3;
+  margin-left: 6px;
   display: none;
 }
 .message_KMS_search_button {
@@ -563,8 +563,10 @@
   }
 }
 
-.message_delete_button_box {
+.message_action_button_box {
   order: 1;
+  margin: 0 6px;
+  position: relative;
   display: none;
   
   .icon_button {
@@ -572,6 +574,23 @@
 
     .icon_setting {
       fill: $grey030;
+    }
+  }
+
+  .dropdown_menu {
+    width: 114px;
+    position: absolute;
+    bottom: 0;
+    left: -6px;
+    transform: translateX(-100%);
+    z-index: 50;
+    
+    .dropdown_lists {
+      padding: 4px;
+
+      .dropdown_button {
+        padding: 6px;
+      }
     }
   }
 }
@@ -697,9 +716,8 @@
 /* 3-1-1-1. CASE1 : 버튼 표시 */
 .chat_advise_main_footer_dimed_button {
   @include flexCenter();
-  width: fit-content;
+  width: 160px;
   height: 40px;
-  padding: 0 40px;
   border-radius: 8px;
   border: $grey020-border;
   background-color: $white;
@@ -859,31 +877,6 @@
   gap: 12px;
 }
 
-/* 공통 - 첨부파일 삭제 버튼 - 공통 */
-.chat_advise_main_footer_attachments_button_delete_button {
-  // @include flexCenter();
-  display: none;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  z-index: 11;
-  transform: translate(50%, -50%);
-  width: 18px;
-  height: 18px;
-  background-color: $grey020;
-  border-radius: 50%;
-  
-  @include hoverTransition();
-  &:hover {
-    background-color: $grey080;
-  }
-
-  .icon_cross_small {
-    width: 7px;
-    height: 7px;
-  }
-}
-
 /* 3-1-2-3-1. 첨부파일 CASE1: 버튼 액션 영역 */
 .chat_advise_main_footer_attachments_buttons_box {
   @include flexStart();
@@ -895,12 +888,28 @@
   max-width: 164px;
   position: relative;
 
+  .delete_circle_button {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 11;
+    transform: translate(50%, -50%);
+  }
+
+  .mini_loading_spinner {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    transform: translate(50%, -50%);
+  }
+
   @include hoverTransition();
   &:hover {
     .chat_advise_main_footer_attachments_button {
       background-color: $grey005;
     }
-    .chat_advise_main_footer_attachments_button_delete_button {
+    .delete_circle_button {
       @include flexCenter();
     }
   }
@@ -931,50 +940,29 @@
   gap: 12px;
 }
 
-/* 로딩 스피너 */
-.attachments_file_loading_spinner {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  transform: translate(50%, -50%);
-  width: 18px;
-  height: 18px;
-  background-color: $grey010;
-  border-radius: 50%;
-  overflow: hidden;
-  animation: animationSpinner 0.8s infinite linear;
-  
-  &::before {
-    content: '';
-    display: block;
-    top: 0;
-    left: 0;
-    width: 45%;
-    height: 45%;
-    background-color: $grey030;
-  }
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    background-color: $white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
 .chat_advise_main_footer_attachments_file_thumnail_box {
   height: 60px;
   position: relative;
   cursor: pointer;
 
+  .delete_circle_button {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 11;
+    transform: translate(50%, -50%);
+  }
+  .mini_loading_spinner {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    transform: translate(50%, -50%);
+  }
+
   @include hoverTransition();
   &:hover {
-    .chat_advise_main_footer_attachments_button_delete_button {
+    .delete_circle_button {
       @include flexCenter();
     }
   }
@@ -1030,6 +1018,12 @@
   }
 
   &.loading {
+    &:hover {
+      cursor: default;
+      .delete_circle_button {
+        display: none;
+      }
+    }
     .attachments_file_image_lightbox_button {
       &:hover {
         cursor: default;
@@ -1038,12 +1032,6 @@
     .attachments_file_video_play_button {
       &:hover {
         cursor: default;
-      }
-    }
-    &:hover {
-      cursor: default;
-      .chat_advise_main_footer_attachments_button_delete_button {
-        display: none;
       }
     }
   }
@@ -1429,11 +1417,8 @@
   .chat_advise_main_header_buttons_box {
     gap: 4px;
   }
+  .message_contents_box {
+    max-width: 280px;
+  }
 }
 
-/* message loading animation */
-@keyframes animationLoading {
-  0% {background-color: #BC7D6C;}
-  50% {background-color: $tag130;}
-  100% {background-color: #BC7D6C;} 
-}

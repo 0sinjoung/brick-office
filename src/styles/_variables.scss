@@ -171,6 +171,14 @@ $template-button-shadow: 0px 0px 10px #646F7C0F;
   transition: all .3s;
 }
 
+/* message loading animation */
+@keyframes animationChatLoading {
+  0% {background-color: #BC7D6C;}
+  50% {background-color: $tag130;}
+  100% {background-color: #BC7D6C;} 
+}
+
+
 @keyframes animationSpinner {
   0% {transform: translate(50%, -50%) rotate(45deg);}
   100% {transform: translate(50%, -50%) rotate(405deg);}

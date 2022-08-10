@@ -3,6 +3,7 @@ import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg'
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
 import BasicAvatarIcon from 'components/publishing/atom/avatarIcon/BasicAvatarIcon';
 import IconButton from 'components/publishing/atom/button/IconButton';
+import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import './MessageScenario.scss';
 
 /** 채팅 상담 - 일반 메시지 시나리오
@@ -39,9 +40,22 @@ const MessageScenario = () => {
   const handleSearchKMS = () => {
     console.log('KMS 지식 검색');
   };
-  const handleDeleteMessage = () => {
-    console.log('메시지 삭제');
+  
+  /* 메시지 삭제하기 버튼 */
+  const [isShowMessageDropdown, setIsShowMessageDropdown] = useState(false);
+  const handleToggleMessageActionButton = () => {
+    console.log('메시지 액션 버튼 클릭');
+    setIsShowMessageDropdown(!isShowMessageDropdown);
   };
+  const handleClickMessageActionButton = e => {
+    const currentValue = e.target.textContent;
+    console.log(currentValue, '실행');
+    setIsShowMessageDropdown(false);
+  };
+  const messageActionDropdownNormalMessageData = [
+    // { value: '다운로드', handleClick: handleClickMessageActionButton },
+    { value: '삭제하기', handleClick: handleClickMessageActionButton },
+  ];
 
   return (
     <>
@@ -68,8 +82,8 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
             </div>
@@ -99,8 +113,8 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
             </div>
@@ -131,8 +145,8 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
             </div>
@@ -170,10 +184,11 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -199,10 +214,11 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -216,10 +232,11 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -233,10 +250,11 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -266,10 +284,11 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
             </div>
           </div>
         </div>
@@ -302,8 +321,8 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
             </div>
@@ -331,8 +350,8 @@ const MessageScenario = () => {
                 지식검색
               </button>
             </div>
-            <div className="message_delete_button_box">
-              <IconButton buttonClassName="small outline" handleClick={handleDeleteMessage}>
+            <div className="message_action_button_box">
+              <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
             </div>

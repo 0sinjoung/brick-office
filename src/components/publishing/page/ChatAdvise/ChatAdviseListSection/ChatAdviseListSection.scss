@@ -329,24 +329,20 @@
       }
     }
   }
+
+  &.sorting {
+    position: relative;
+
+    .dropdown_menu {
+      width: 116px;
+      position: absolute;
+      top: 36px;
+      right: 0;
+      z-index: 500;
+    }
+  }
 }
 
-// .header_setting_icon_button_box {
-//   position: relative;
-
-//   .dropdown_box {
-//     display: none;
-//     width: 175px;
-//     position: absolute;
-//     top: 44px;
-//     right: 0;
-//     z-index: 10;
-    
-//     &.show {
-//       display: block;
-//     }
-//   }
-// }
 
 
 /* 3-2. 상세 검색 결과 칩 영역 */
@@ -415,34 +411,34 @@
     gap: 16px;
   }
 }
-.chat_advise_search_detail_pannel_selectboxs_container {
+.chat_advise_search_detail_pannel_dropdown_container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px
 }
 
-.chat_advise_search_detail_pannel_selectbox {
-  .basic_text_select_box_lists {
+.chat_advise_search_detail_pannel_dropdown {
+  .basic_text_dropdown_lists {
     max-height: 200px;
   }
-  .basic_text_select_box_button {
+  .basic_text_dropdown_button {
     height: 32px;
     padding: 6px 8px;
   }
   &.adviser {
-    .dropdown_toggle_button {
+    .basic_text_dropdown_toggle {
       z-index: 14;
     }
-    .basic_text_select_box {
+    .basic_text_dropdown_menu {
       z-index: 13;
     }
   }
   &.channel {
-    .dropdown_toggle_button {
+    .basic_text_dropdown_toggle {
       z-index: 12;
     }
-    .basic_text_select_box {
+    .basic_text_dropdown_menu {
       z-index: 11;
     }
   }

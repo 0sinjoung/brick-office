@@ -1,0 +1,28 @@
+@import "/src/styles/_variables.scss";
+
+.checkbox_input {
+  display: none;
+
+  &:checked {
+    &+.checkbox_label {
+      .icon_checkbox {
+        display: block;
+      }
+    }
+  }
+}
+
+.checkbox_label {
+  @include flexCenter();
+  width: 14px;
+  height: 14px;
+  border: 1px solid $grey030;
+  border-radius: 3px;
+  background-color: $white;
+  cursor: pointer;
+
+  .icon_checkbox {
+    display: none;
+  }
+}
+

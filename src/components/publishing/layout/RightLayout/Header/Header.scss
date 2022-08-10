@@ -58,17 +58,18 @@
 
 .header_setting_icon_button_box {
   position: relative;
+  margin-left: 24px;
 
-  .dropdown_box {
-    display: none;
+  .dropdown_menu {
     width: 175px;
     position: absolute;
     top: 44px;
     right: 0;
-    z-index: 10;
-    
-    &.show {
-      display: block;
+    z-index: 1000;
+
+    .dropdown_lists {
+      gap: 4px;
+      padding: 10px;
     }
   }
 }

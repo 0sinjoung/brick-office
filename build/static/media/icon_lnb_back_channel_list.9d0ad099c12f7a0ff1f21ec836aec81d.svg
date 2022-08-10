@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22" className="icon_lnb_back_channel_list" fill="#8b949f" stroke="#8b949f">
+  <g id="마스크_그룹_8390" data-name="마스크 그룹 8390"    stroke-width="0.3px">
+    <g id="그룹_9086" data-name="그룹 9086" transform="translate(2.078 18.683) rotate(-90)">
+      <path id="Fill_124" data-name="Fill 124" class=" " d="M13.543,11.6H2.3A2.3,2.3,0,0,1,0,9.3v-7A2.3,2.3,0,0,1,2.3,0H4.119a.627.627,0,0,1,0,1.253H2.3A1.046,1.046,0,0,0,1.253,2.3v7A1.046,1.046,0,0,0,2.3,10.344H13.543A1.046,1.046,0,0,0,14.588,9.3v-7a1.046,1.046,0,0,0-1.044-1.044H11.722a.627.627,0,0,1,0-1.253h1.821a2.3,2.3,0,0,1,2.3,2.3v7a2.3,2.3,0,0,1-2.3,2.3" transform="translate(0 6.366)"/>
+      <path id="Fill_125" data-name="Fill 125" class=" " d="M.627,12.792A.627.627,0,0,1,0,12.165V.627a.627.627,0,0,1,1.253,0V12.165a.627.627,0,0,1-.627.627" transform="translate(7.294)"/>
+      <path id="Fill_126" data-name="Fill 126" class=" " d="M6.109,3.987A.622.622,0,0,1,5.666,3.8l-2.3-2.3L1.07,3.8a.627.627,0,0,1-.886-.886L2.924.176a.646.646,0,0,1,.886,0L6.552,2.917a.627.627,0,0,1-.443,1.069" transform="translate(4.553 0.007)"/>
+    </g>
+  </g>
+</svg>

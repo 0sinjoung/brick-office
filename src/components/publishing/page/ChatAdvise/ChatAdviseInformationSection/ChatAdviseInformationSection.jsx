@@ -13,8 +13,8 @@ import SolidButton from 'components/publishing/atom/button/SolidButton';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
-import FullScreenDim from 'components/publishing/atom/FullScreenDim';
-import BasicTextSelectbox from 'components/publishing/molecule/selectbox/BasicTextSelectbox';
+import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
+import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
 import './ChatAdviseInformationSection.scss';
 
 /** 채팅 상담 정보 영역
@@ -520,7 +520,7 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
     { value: '상품교환', isSelect: false },
     { value: '상품반품', isSelect: false },
   ];
-  const handleClickSelectBoxItem = value => {
+  const handleClickCustomerOrderStatusItem = value => {
     console.log(value + '클릭됨');
   };
 
@@ -541,12 +541,12 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
               </IconButton>
             </div>
           </div>
-          <div className="detail_customer_order_list_modal_basic_text_selectbox_area">
-            <div className="detail_customer_order_list_modal_basic_text_selectbox">
-              <BasicTextSelectbox
-                defaultToggleButtonText="주문상태"
-                selectBoxData={detailCustomerOrderStatusData}
-                handleClickSelectItem={handleClickSelectBoxItem}
+          <div className="detail_customer_order_list_modal_basic_text_dropdown_container">
+            <div className="detail_customer_order_list_modal_basic_text_dropdown">
+              <BasicTextDropdown
+                defaultToggleText="주문상태"
+                dropdownMenuData={detailCustomerOrderStatusData}
+                handleClickMenuItem={handleClickCustomerOrderStatusItem}
               />
             </div>
           </div>

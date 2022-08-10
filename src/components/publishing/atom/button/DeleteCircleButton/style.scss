@@ -1,0 +1,19 @@
+@import "/src/styles/_variables.scss";
+
+.delete_circle_button {
+  @include flexCenter();
+  width: 18px;
+  height: 18px;
+  background-color: $grey020;
+  border-radius: 50%;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey080;
+  }
+
+  .icon_cross_small {
+    width: 7px;
+    height: 7px;
+  }
+}

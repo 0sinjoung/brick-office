@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
-import SimpleDropdown from 'components/publishing/atom/dropdown/SimpleDropdown';
+import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import './Header.scss';
 
 const Header = () => {
@@ -13,10 +13,10 @@ const Header = () => {
   const MY_PROFILE_NICNAME = '꾸꾸';
   const IS_ADMIN = false;
 
-  /* about dropdown */
-  const [showSettingDropdown, setShowSettingDropdown] = useState(false);
+  /* 헤더 설정 아이콘 */
+  const [isShowSettingDropdown, setIsShowSettingDropdown] = useState(false);
   const clickSettingDropdown = () => {
-    setShowSettingDropdown(!showSettingDropdown);
+    setIsShowSettingDropdown(!isShowSettingDropdown);
   };
   const handleGoToMyPage = () => {
     console.log('GO TO MYPAGE!');
@@ -25,8 +25,8 @@ const Header = () => {
     console.log('LOGOUT!');
   };
   const settingDropdownData = [
-    { text: '마이페이지', handleClick: handleGoToMyPage },
-    { text: '로그아웃', handleClick: handleLogout },
+    { value: '마이페이지', handleClick: handleGoToMyPage },
+    { value: '로그아웃', handleClick: handleLogout },
   ];
 
   return (
@@ -49,9 +49,7 @@ const Header = () => {
             <IconButton handleClick={clickSettingDropdown}>
               <IconSetting />
             </IconButton>
-            <div className={`dropdown_box ${showSettingDropdown ? 'show' : ''}`}>
-              <SimpleDropdown dropdownData={settingDropdownData} />
-            </div>
+            <DropdownMenu showDropdownMenu={isShowSettingDropdown ? 'show' : ''} dropdownMenuData={settingDropdownData} />
           </div>
         </div>
       </div>

@@ -6,22 +6,25 @@
   @include flexEnd();
   width: 100%;
 
+  .message_button_box {
+    .fileupload_image_template,
+    .fileupload_file_template {
+      order: 3;  
+    }
+    .upload_error_icon {
+      order: 2;  
+    }
+    .message_action_button_box {
+      order: 1;  
+    }
+  }
+
   &.file {
     .fileupload_contents_box {
       display: flex;
       align-items: flex-end;
       gap: 10px;
       cursor: pointer;
-
-      &:hover {
-        .file_download_button_box {
-          order: 1;
-          display: block;
-        }
-        .fileupload_file_template {
-          order: 2;
-        }
-      }
     }
   }
 }
@@ -30,32 +33,50 @@
   position: relative;
   margin-bottom: 4px;
 
+  /* 파일 업로드 에러 */
+  &.error {
+    .upload_error_icon {
+      &::after {
+        @include brickRedBadgeStyle();
+        position: relative;
+        margin: 0 -2px -6px -6px;
+        transform: scale(0.5);
+      }
+    }
+    .single_image {
+      .fileupload_image_box {
+        width: 138px;
+        height: 138px;
+      }
+    }
+
+    .fileupload_image_box {
+      @include flexCenter();
+      background-color: $grey005;
+    }
+
+    &:hover {
+      .message_button_box {
+        .message_action_button_box {
+          // position: absolute;
+          // left: -66px;
+          // bottom: 4px;
+          // margin-right: 30px;
+          position: relative;
+          // z-index: -1;
+        }
+      }
+    }
+  }
+
   &:hover {
-    .image_download_button_box {
+    .message_action_button_box {
       @include flexCenter();
     }
   }
 }
 
 /* 1. 사진 업로드 */
-/* 이미지 다운로드 버튼 */
-.image_download_button_box {
-  display: none;
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-
-  .icon_button {
-    background-color: $grey005;
-    &:hover {
-      .icon_file_download {
-        fill: $grey050;
-        stroke: $grey050;
-      }
-    }
-  }
-}
-
 /* 이미지 박스 */
 .fileupload_image_box {
   border-radius: 10px;
@@ -66,6 +87,7 @@
 .fileupload_image_contents {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-end;
 
   /* 1-1. 이미지 1장 업로드 */
   &.single_image {
@@ -79,13 +101,6 @@
       border-radius: 10px;
       overflow: hidden;
       object-fit: cover;
-    }
-
-    &.error {
-      .fileupload_image_box {
-        width: 138px;
-        height: 138px;
-      }
     }
   }
   
@@ -144,61 +159,10 @@
       object-fit: cover;
     }
   }
-
-  /* 1-4. 이미지 4장 업로드 */
-  &.quadruple_image {
-    width: 282px;
-    flex-wrap: wrap;
-    gap: 6px;
-
-    .fileupload_image_box {
-      width: 138px;
-      height: 138px;
-    }
-    
-    .fileupload_image {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      object-fit: cover;
-    }
-  }
-
-  /* 1-5. 이미지 업로드 에러 */
-  &.error {
-    position: relative;
-
-    &::after {
-      @include brickRedBadgeStyle();
-      bottom: 0;
-      left: -8px;
-      transform: translateX(-100%) scale(0.5);
-    }
-
-    .fileupload_image_box {
-      @include flexCenter();
-      background-color: $grey005;
-      cursor: default;
-    }
-
-    +.image_download_button_box {
-      display: none;
-    }
-  }
 }
 
 
 /* 2. 파일 업로드 */
-/* 파일 다운로드 버튼 */
-.file_download_button_box {
-  display: none;
-
-  .icon_file_download {
-    transform: scale(0.8);
-  }
-}
-
 /* 파일 템플릿 */
 .fileupload_file_template {
   width: 260px;
@@ -269,8 +233,4 @@
   }
 }
 
-@keyframes animationLoading {
-  0% {background-color: $grey020;}
-  50% {background-color: $grey030;}
-  100% {background-color: $grey020;} 
-}
+
