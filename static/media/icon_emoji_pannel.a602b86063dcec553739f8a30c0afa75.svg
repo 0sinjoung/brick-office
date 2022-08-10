@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" className="icon_emoji_pannel" fill="#646f7c" stroke="#646f7c" stroke-width="0.3px">
+  <g id="그룹_9529" data-name="그룹 9529" transform="translate(0 0.033)">
+    <rect id="사각형_3967" data-name="사각형 3967" width="27" height="27" rx="5" transform="translate(0 26.967) rotate(-90)" opacity="0" />
+    <g id="Layer_31" data-name="Layer 31" transform="translate(5.863 6.258)" fill="#646f7c" stroke="#646f7c" stroke-width="0.3px">
+      <path id="패스_6885" data-name="패스 6885" d="M7.636,15.266a7.638,7.638,0,1,1,7.63-7.631A7.638,7.638,0,0,1,7.636,15.266Zm0-14.137a6.506,6.506,0,1,0,6.5,6.506,6.506,6.506,0,0,0-6.5-6.506Z" transform="translate(0.01 0.01)"/>
+      <path id="패스_6886" data-name="패스 6886" d="M9.175,14.59a3.887,3.887,0,0,1-2.755-1.14.566.566,0,0,1,.8-.8,2.83,2.83,0,0,0,3.9,0,.566.566,0,0,1,.8.8A3.872,3.872,0,0,1,9.175,14.59Z" transform="translate(-1.53 -3.058)"/>
+      <ellipse id="타원_244" data-name="타원 244" cx="0.883" cy="0.883" rx="0.883" ry="0.883" transform="translate(4.408 4.883)"/>
+      <ellipse id="타원_245" data-name="타원 245" cx="0.883" cy="0.883" rx="0.883" ry="0.883" transform="translate(9.11 4.883)"/>
+    </g>
+  </g>
+</svg>
