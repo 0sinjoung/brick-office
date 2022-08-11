@@ -60,6 +60,8 @@
   }
   
   .chat_advise_header_customer_name {
+    @include ellipsisOneLine();
+    // max-width: 92px;
     font-size: 16px;
     font-weight: $bold;
     line-height: 1;
@@ -90,7 +92,7 @@
     }
   }
 
-  .chat_advise_header_current_chat_state_tag {
+  .chat_advise_header_current_chat_status_tag {
     @include flexCenter();
     width: fit-content;
     height: fit-content;
@@ -1419,6 +1421,17 @@
   }
   .message_contents_box {
     max-width: 280px;
+  }
+  .chat_advise_header_customer_name {
+    max-width: 56px;
+  }
+  .chat_advise_main_header_information_box {
+    .chat_advise_header_current_chat_status_tag {
+      .current_chat_status_tag_adviser_nickname {
+        @include ellipsisOneLine();
+        max-width: 38px;
+      }
+    }
   }
 }
 

@@ -1,0 +1,28 @@
+@import "/src/styles/_variables.scss";
+
+.chat_list_dim {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  border-radius: 10px;
+  background-color: #F5F6F7CC;
+
+  &.show {
+    @include flexCenter();
+  }
+}
+.chat_list_dim_text_box {
+  @include flexCenter();
+  gap: 8px;
+}
+
+.chat_list_dim_text {
+  font-size: 15px;
+  font-weight: $semi-bold;
+  line-height: 1;
+  color: $grey080;
+}

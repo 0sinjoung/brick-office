@@ -1,0 +1,327 @@
+@import "/src/styles/_variables.scss";
+
+@mixin chatbotAdvisePannelTitleStyle {
+  font-size: 18px;
+  font-weight: $bold;
+  line-height: 24px;
+  color: $grey080;
+}
+
+.chatbot_advise_main_section_wrap {
+  flex: 1 1 auto;
+  // height: 100%;
+  background-color: $white;
+}
+
+.chatbot_advise_main_container_wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+
+
+/* 1. 채팅 상담 헤더 */
+.chatbot_advise_main_header_container {
+  flex: 0 0 70px;
+  // height: 70px;
+  padding: 0 20px;
+  border-bottom: $grey020-border;
+  background-color: $white;
+  position: relative;
+}
+
+/* 1-1. 메인 헤더 */
+.chatbot_advise_main_header {
+  @include flexSpace();
+  width: 100%;
+  height: 70px;
+}
+
+.chatbot_advise_main_header_information_box {
+  @include flexStart();
+  flex-shrink: 0;
+
+  .chatbot_advise_header_channel_delimiter_img_box {
+    @include flexCenter();
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-right: 8px;
+    
+    .chatbot_advise_header_channel_delimiter_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .chatbot_advise_header_customer_name {
+    @include ellipsisOneLine();
+    // max-width: 92px;
+    font-size: 16px;
+    font-weight: $bold;
+    line-height: 1;
+    color: $grey080;
+    margin-right: 6px;
+  }
+  
+  .chatbot_advise_header_current_chatbot_state_tag {
+    @include flexCenter();
+    width: fit-content;
+    height: fit-content;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 17px;
+    font-weight: $medium;
+    color: $grey040;
+    background-color: $grey010;
+  }
+}
+
+.chatbot_advise_main_header_buttons_box {
+  @include flexEnd();
+  flex-shrink: 0;
+  gap: 6px;
+
+  /* 1-1-2. 채팅 검색 */
+  .chatbot_advise_main_header_search_button_box {
+    display: none;
+    flex-shrink: 0;
+    
+    &.show {
+      display: block;
+    }
+
+    .icon_search {
+      width: 32px;
+    }
+  }
+}
+
+
+/* 1-2. 헤더 검색 영역 */
+.chatbot_advise_search_header_container {
+  display: none;
+  gap: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  z-index: 200;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  background-color: $white;
+  border-top: $grey020-border;
+  border-bottom: $grey020-border;
+  
+  &.show {
+    @include flexSpace();
+  }
+  
+  &.active {
+    background-color: $grey005;
+  }
+
+  .text_field_delete_button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.chatbot_advise_search_header_basic_search_text_field_box {
+  flex-grow: 1;
+
+  .text_field_search_action_button {
+    width: 40px;
+    padding: 6px 8px;
+    font-size: 14px;
+    line-height: 1;
+  }
+}
+
+.chatbot_advise_search_header_buttons_box {
+  flex-shrink: 0;
+  @include flexEnd();
+
+  .chatbot_advise_search_header_calendar_button_box {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+    
+    .icon_button {
+      background-color: transparent;
+      
+      &:hover {
+        .icon_calendar {
+          fill: $grey040;
+          stroke: $grey040;
+        }
+      }
+    }
+  }
+
+  .chatbot_advise_main_header_search_cancle_button_box {
+    .outline_button {
+      border: none;
+      background-color: transparent;
+      color: $grey050;
+      
+      &:hover {
+        background-color: $grey020;
+      }
+    }
+  }
+}
+
+.chatbot_search_focus_move_buttons_box {
+  display: none;
+  gap: 6px;
+  position: absolute;
+  bottom: -14px;
+  right: 14px;
+  transform: translateY(100%);
+  z-index: 201;
+
+  &.show {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon_button {
+    background-color: #161D24B3;
+
+    &.down {
+      transform: rotate(180deg);
+    }
+
+    &.disable {
+      cursor: default;
+
+      .icon_arrow_up_small {
+        stroke: #FFFFFF33;
+      }
+
+      &:hover {
+        background-color: #161D24B3;
+      }
+    }
+    
+    &:hover {
+      background-color: $grey100;
+    }
+  }
+}
+
+/* 2. 채팅 상담 컨텐츠  */
+.chatbot_advise_main_content_container {
+  @include scrollStyle();
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  padding: 16px 20px calc(36px + 8px);
+  &.adviser {
+    &.my_advise {
+      .message_container {
+        .message_button_box {
+          .message_contents_box {
+            cursor: pointer;
+          }
+          &:hover {
+            .message_KMS_search_button_box {
+              display: none;
+            }
+            .message_action_button_box {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  .message_contents_box {
+    cursor: default;
+  }
+
+  .message_wrapper {
+    &.adviser {
+      &.my_advise {
+        .message_container {
+          .message_button_box {
+            &:hover {
+              .message_KMS_search_button_box {
+                display: none;
+              }
+              .message_action_button_box {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.customer {
+      .message_button_box {
+        .message_contents_box {
+          cursor: default;
+        }
+        &:hover {
+          .message_KMS_search_button_box {
+            display: none;
+          }
+          .message_action_button_box {
+            display: none;
+          }
+        }
+      }
+    }
+  
+    .fileupload_container {
+      @include flexStart();
+      .fileupload_contents_box {
+        /* 파일 업로드 에러 */
+        &.error {
+          &:hover {
+            .message_button_box {
+              .message_action_button_box {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* 1510 지원을 위한 미디어쿼리 */
+@media only screen and (max-width: 1540px) {
+  .chatbot_advise_main_header_container {
+    padding: 0 14px;
+  }
+  .chatbot_advise_main_contents_container {
+    padding: 0 14px 44px;
+  }
+  .chatbot_advise_header_alert_bar_container {
+    padding: 12px 14px 0;
+  }
+  .chatbot_advise_main_header_buttons_box {
+    gap: 4px;
+  }
+  .message_contents_box {
+    max-width: 280px;
+  }
+  .chatbot_advise_header_customer_name {
+    max-width: 56px;
+  }
+}
+

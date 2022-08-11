@@ -76,15 +76,9 @@ const FileUploadScenario = () => {
     console.log(currentValue, '실행');
     setIsShowMessageDropdown(false);
   };
-  const messageActionDropdownNormalMessageData = [
-    { value: '삭제하기', handleClick: handleClickMessageActionButton },
-  ];
-  const messageActionDropdownFileuploadCustomerData = [
-    { value: '다운로드', handleClick: handleClickMessageActionButton },
-  ];
-  const messageActionDropdownFileuploadErrorData = [
-    { value: '삭제하기', handleClick: handleClickMessageActionButton },
-  ];
+  const messageActionDropdownNormalMessageData = [{ value: '삭제하기', handleClick: handleClickMessageActionButton }];
+  const messageActionDropdownFileuploadCustomerData = [{ value: '다운로드', handleClick: handleClickMessageActionButton }];
+  const messageActionDropdownFileuploadErrorData = [{ value: '삭제하기', handleClick: handleClickMessageActionButton }];
   const messageActionDropdownFileuploadData = [
     { value: '다운로드', handleClick: handleClickMessageActionButton },
     { value: '삭제하기', handleClick: handleClickMessageActionButton },
@@ -219,7 +213,7 @@ const FileUploadScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
@@ -250,7 +244,7 @@ const FileUploadScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
@@ -271,7 +265,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData} />
               </div>
             </div>
           </div>
@@ -295,7 +289,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData} />
               </div>
             </div>
           </div>
@@ -322,7 +316,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData} />
               </div>
             </div>
           </div>
@@ -352,7 +346,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData} />
               </div>
             </div>
           </div>
@@ -382,7 +376,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -408,7 +402,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -431,7 +425,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -451,7 +445,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -488,7 +482,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData} />
               </div>
             </div>
           </div>
@@ -523,7 +517,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -575,7 +569,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData} />
               </div>
             </div>
           </div>
@@ -599,7 +593,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData} />
               </div>
             </div>
           </div>
@@ -626,7 +620,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData} />
               </div>
             </div>
           </div>
@@ -656,7 +650,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData} />
               </div>
             </div>
           </div>
@@ -686,7 +680,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -712,7 +706,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadData} />
               </div>
             </div>
           </div>
@@ -735,7 +729,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -755,7 +749,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>
@@ -791,7 +785,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadCustomerData} />
               </div>
             </div>
           </div>
@@ -826,7 +820,7 @@ const FileUploadScenario = () => {
                 <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                   <IconSetting />
                 </IconButton>
-                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData}/>
+                <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownFileuploadErrorData} />
               </div>
             </div>
           </div>

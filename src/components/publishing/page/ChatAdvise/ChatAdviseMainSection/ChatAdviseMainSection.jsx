@@ -49,8 +49,9 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   /* 1-1. 메인 헤더 */
   const CHANNEL_BRICK_ADVISER_DEFAULT_IMAGE = 'https://cdn.brickchat.dev/assets/icon/brick_chat_icon_white.png';
   const CUSTOMER_NAME_SHORT = '김다영';
-  const CURRENT_ADVISE_CHAT_STATE = '꾸꾸 상담 진행 중';
-  
+  const ADVISER_NICKNAME = '꾸꾸꾸꾸꾸';
+  const CURRENT_ADVISE_CHAT_STATE = '상담 진행 중';
+
   /* 1-1-1. 즐겨찾기 */
   const [isBookmarked, setIsBookmarked] = useState(false);
   const handleToggleBookmark = () => {
@@ -108,7 +109,6 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
   const HEADER_ALERT_BAR_TITLE = '상담사 변경 요청 이유';
   const HEADER_ALERT_BAR_DESCRIPTION = '상담분야 변경: 배송문의 - 결제문의';
   const [showHeaderAlertBar, setShowHeaderAlertBar] = useState('');
-
 
   /* 3. 채팅 상담 푸터 */
   /* 3-1. 메인 푸터 - 텍스트 에디터 영역 */
@@ -339,7 +339,8 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                 <button type="button" className={`chat_advise_header_bookmark_button ${isBookmarked ? 'active' : ''}`} onClick={handleToggleBookmark}>
                   <IconBookmark />
                 </button>
-                <div className="chat_advise_header_current_chat_state_tag">{CURRENT_ADVISE_CHAT_STATE}</div>
+                <div className="chat_advise_header_current_chat_status_tag">
+                  <span className="current_chat_status_tag_adviser_nickname">{ADVISER_NICKNAME}</span>{CURRENT_ADVISE_CHAT_STATE}</div>
               </div>
               <div className="chat_advise_main_header_buttons_box">
                 {/* 1-1-2. 채팅 검색 */}
@@ -357,11 +358,7 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                 {/* 1-1-4. 상담 상태 변경 */}
                 <div className="chat_advise_main_header_change_chat_status_dropdown">
                   {/* <div className="dimed" /> */}
-                  <BasicTextDropdown
-                    defaultToggleText="상담진행"
-                    dropdownMenuData={chatHeaderChatStatusData}
-                    handleClickMenuItem={handleClickSelectBoxItem}
-                  />
+                  <BasicTextDropdown defaultToggleText="상담진행" dropdownMenuData={chatHeaderChatStatusData} handleClickMenuItem={handleClickSelectBoxItem} />
                 </div>
               </div>
             </header>

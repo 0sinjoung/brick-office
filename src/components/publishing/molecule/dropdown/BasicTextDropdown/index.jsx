@@ -6,7 +6,7 @@ import './style.scss';
 /** 텍스트 드롭다운
  * @defaultToggleText : 토글버튼 텍스트
  * @dropdownMenuData : 드롭다운 메뉴 데이터, 배열
- * @handleClickMenuItem : 셀렉트 아이템 클릭시 실행 함수
+ * @handleClickMenuItem : 드롭다운 메뉴 클릭시 실행 함수
  */
 
 const BasicTextDropdown = ({ defaultToggleText, dropdownMenuData, handleClickMenuItem }) => {
@@ -61,12 +61,7 @@ const BasicTextDropdown = ({ defaultToggleText, dropdownMenuData, handleClickMen
           {currentSelectBoxData.map(item => {
             return (
               <li className="basic_text_dropdown_list" key={item.value}>
-                <button
-                  type="button"
-                  value={item.value}
-                  className={`basic_text_dropdown_button ${item.isSelect ? 'active' : ''}`}
-                  onClick={handleSelectItem}
-                >
+                <button type="button" value={item.value} className="basic_text_dropdown_button" onClick={handleSelectItem}>
                   {item.text ? item.text : item.value}
                 </button>
               </li>

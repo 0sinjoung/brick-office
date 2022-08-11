@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { ReactComponent as IconLnbHome } from 'assets/svg/icon/lnb/icon_lnb_home.svg';
 import { ReactComponent as IconLnbDashboard } from 'assets/svg/icon/lnb/icon_lnb_dashboard.svg';
 import { ReactComponent as IconLnbChatAdvise } from 'assets/svg/icon/lnb/icon_lnb_chat_advise.svg';

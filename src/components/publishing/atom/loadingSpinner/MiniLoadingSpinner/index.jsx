@@ -4,12 +4,10 @@ import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny
 import './style.scss';
 
 /** 미니 로딩 스피너 : 푸터 첨부 파일 영역 사용
- * @showSpinner : '' | 'show' 
+ * @showSpinner : '' | 'show'
  */
 const MiniLoadingSpinner = ({ showSpinner }) => {
-  return (
-    <div className={`mini_loading_spinner ${showSpinner}`} />
-  );
+  return <div className={`mini_loading_spinner ${showSpinner}`} />;
 };
 
 MiniLoadingSpinner.propTypes = {

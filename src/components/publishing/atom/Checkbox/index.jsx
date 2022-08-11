@@ -17,7 +17,7 @@ const Checkbox = ({ children, handleClick, buttonClassName, buttonStyle }) => {
   return (
     <div className="checkbox">
       <input type="checkbox" id="brick_checkbox" className="checkbox_input" onClick={handleClickCheckbox} ref={refCheckbox} />
-      <label for="brick_checkbox" className="checkbox_label">
+      <label htmlFor="brick_checkbox" className="checkbox_label">
         <IconCheckbox />
       </label>
     </div>

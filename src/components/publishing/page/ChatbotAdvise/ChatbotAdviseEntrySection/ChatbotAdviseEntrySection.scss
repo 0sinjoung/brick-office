@@ -1,0 +1,87 @@
+@import "/src/styles/_variables.scss";
+
+.chatbot_advise_entry_section_wrap {
+  flex-grow: 1;
+  @include flexCenter();
+  background-color: $white;
+}
+
+.chatbot_advise_entry_main_contents_box {
+  width: 556px;
+  height: 366px;
+  padding: 40px;
+  background-color: $white;
+  border-radius: 20px;
+  border: $grey020-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.chatbot_advise_entry_main_title {
+  font-size: 26px;
+  padding: 0 28px;
+  font-weight: $bold;
+  color: $grey100;
+  margin-bottom: 40px;
+}
+.chatbot_advise_entry_description {
+  font-size: 16px;
+  padding: 0 28px;
+  font-weight: $medium;
+  color: $grey100;
+  margin-bottom: 14px;
+}
+.chatbot_advise_introduce_page_title {
+  font-size: 16px;
+  font-weight: $bold;
+  color: $grey080;
+  margin-bottom: 6px;
+}
+.chatbot_advise_introduce_description {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey050;
+}
+
+
+
+
+.chatbot_advise_introduce_page_move_button {
+  @include flexStart();
+  gap: 18px;
+  padding: 22px 26px;
+  width: 100%;
+  background-color: $white;
+  border-radius: 20px;
+
+  @include hoverTransition();
+  &.customer_manage {
+    &:hover {
+      background-color: #F1FDF9;
+    }
+  }
+  &:hover {
+    background-color: #FFF5F4;
+  }
+}
+
+.chatbot_advise_entry_page_move_image_box {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.chatbot_advise_entry_page_image {
+  width: 100%;
+  object-fit: fill;
+}
+
+/* 1510 지원을 위한 미디어쿼리 */
+@media only screen and (max-width: 1540px) {
+  .chatbot_advise_entry_contents_container {
+    transform: scale(0.9);
+  }
+}

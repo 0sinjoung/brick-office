@@ -6,7 +6,7 @@ const Snackbars = () => {
   return (
     <div className="snackbars">
       <div className="snackbars_wrap">
-        <Snackbar snackbarTitle="알림 타이틀1" showBrickIcon="">
+        {/* <Snackbar snackbarTitle="알림 타이틀1" showBrickIcon="">
           김양양양양김양양양양김양양양양김양양양양님이 상담사 변경 요청을 수락하였습니다. 스낵바 너비는 고정, 높이는 가변. 브릭 아이콘 없는 케이스 있음
         </Snackbar>
         <Snackbar snackbarTitle="알림 타이틀2" showBrickIcon="show">
@@ -14,7 +14,7 @@ const Snackbars = () => {
         </Snackbar>
         <Snackbar snackbarTitle="알림 메시지" showBrickIcon="show">
           김제니님이 상담사 변경 요청을 수락했어요.
-        </Snackbar>
+        </Snackbar> */}
       </div>
     </div>
   );

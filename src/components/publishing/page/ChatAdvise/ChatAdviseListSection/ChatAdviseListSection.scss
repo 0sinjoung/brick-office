@@ -777,13 +777,19 @@
   @include flexCenter();
 }
 
-.previous_chat_list_search_box {
+.previous_chat_list_search_container {
   flex-shrink: 0;
-  padding: 0 24px 16px;
   position: relative;
-  
+  min-height: 64px;
+  max-height: 84px;
+  width: 100%;
+
   .chat_advise_search_box {
-    padding: 0;
+    padding: 0 24px 16px;
+  }
+  
+  .detail_search_deletable_chip_box {
+    padding: 0 24px 8px;
   }
 
   .chat_advise_search_detail_pannel {
@@ -791,13 +797,13 @@
   }
 }
 
-/* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */
+/* 5-1 CASE1. 이전 상담 보기 패널 - 리스트 없음 */
 .previous_chat_advise_lists_no_data_found_box {
   @include flexCenter();
   height: 100%;
 }
 
-/* 5-1-2. 이전 상담 보기 패널 - 상담 리스트 영역*/
+/* 5-1 CASE2. 이전 상담 보기 패널 - 상담 리스트 영역*/
 .previous_chat_advise_list_box {
   @include scrollStyle();
   flex-grow: 1;

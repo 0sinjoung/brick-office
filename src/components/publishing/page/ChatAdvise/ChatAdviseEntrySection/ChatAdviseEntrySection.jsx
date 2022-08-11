@@ -67,7 +67,7 @@ const ChatAdviseEntrySection = () => {
           </div>
           <div className="chat_advise_entry_main_contents_box">
             <div className="chat_advise_entry_main_contents_top">
-              <h2 className="chat_advise_entry_main_title">채팅상담에 편리한 기능을 설정해보세요.</h2>
+              <h2 className="chat_advise_entry_main_title">채팅상담에 편리한 기능을 설정해 보세요.</h2>
               <p className="chat_advise_entry_description">고객 관계관리를 도와주는 CRM기능</p>
               <div
                 role="button"

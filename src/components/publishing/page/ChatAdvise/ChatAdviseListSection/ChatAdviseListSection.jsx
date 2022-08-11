@@ -157,7 +157,7 @@ const ChatAdviseListSection = () => {
   const refDetailSearchCustomerTextField = React.createRef();
   const refPreviousSearchCustomerTextField = React.createRef();
   const DETAIL_SEARCH_ACTIVE = 'active';
-  const PREVIOUS_DETAIL_SEARCH_ACTIVE = '';
+  const PREVIOUS_DETAIL_SEARCH_ACTIVE = 'active';
 
   /* 3-1. 상세 검색 결과 칩 영역 */
   const handleDeleteDetailSearchKeyword = value => {
@@ -626,7 +626,7 @@ const ChatAdviseListSection = () => {
   /* 5-1. 이전 상담 보기 패널 */
   const PREVISOUS_CHAT_ADIVSE_LIST_COUNT = 0;
   const displayPreviousChatAdviseLists = () => {
-    /* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */
+    /* CASE1. 이전 상담 보기 패널 - 리스트 없음 */
     if (PREVISOUS_CHAT_ADIVSE_LIST_COUNT === 0) {
       return (
         <div className="previous_chat_advise_lists_no_data_found_box">
@@ -636,7 +636,7 @@ const ChatAdviseListSection = () => {
       );
     }
 
-    /* 5-1-2. 이전 상담 보기 패널 - 상담 리스트 영역 */
+    /* CASE2. 이전 상담 보기 패널 - 상담 리스트 영역 */
     return (
       <ul className="previous_chat_advise_lists">
         <li className="previous_chat_advise_list">
@@ -999,7 +999,8 @@ const ChatAdviseListSection = () => {
                 </IconButton>
               </div>
             </div>
-            <div className="previous_chat_list_search_box">
+            <div className="previous_chat_list_search_container">
+              {/* 5-1-1. 상세 검색 텍스트 필드 영역 */}
               <div className="chat_advise_search_box">
                 <div className="chat_advise_customer_information_search_text_field_box">
                   <OutlineSearchTextField
@@ -1020,50 +1021,50 @@ const ChatAdviseListSection = () => {
                     </IconButton>
                   </div>
                 </div>
-                {/* 5-1-1. 상세 검색 결과 칩 영역 */}
-                <div className={`detail_search_deletable_chip_box ${PREVIOUS_DETAIL_SEARCH_ACTIVE === 'active' ? 'show' : ''}`}>
-                  <div className="detail_search_deletable_chips">
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>브릭</DeletableChip>
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#프로모션</DeletableChip>
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
-                    <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#교환 반품 환불</DeletableChip>
+              </div>
+              {/* 5-1-2. 상세 검색 결과 칩 영역 */}
+              <div className={`detail_search_deletable_chip_box ${PREVIOUS_DETAIL_SEARCH_ACTIVE === 'active' ? 'show' : ''}`}>
+                <div className="detail_search_deletable_chips">
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>브릭</DeletableChip>
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#프로모션</DeletableChip>
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#고객관리</DeletableChip>
+                  <DeletableChip handleDelete={handleDeleteDetailSearchKeyword}>#교환 반품 환불</DeletableChip>
+                </div>
+              </div>
+              {/* 5-1-3. 상세 검색 패널 */}
+              <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
+                <div className="chat_advise_search_detail_pannel_dropdown_container">
+                  <div className="chat_advise_search_detail_pannel_dropdown adviser">
+                    <BasicTextDropdown
+                      defaultToggleText="상담사"
+                      dropdownMenuData={detailSearchSelectboxAdviserData}
+                      handleClickMenuItem={handleClickDropdownMenuItem}
+                    />
+                  </div>
+                  <div className="chat_advise_search_detail_pannel_dropdown channel">
+                    <BasicTextDropdown
+                      defaultToggleText="상담채널"
+                      dropdownMenuData={detailSearchSelectboxChannelData}
+                      handleClickMenuItem={handleClickDropdownMenuItem}
+                    />
+                  </div>
+                  <div className="chat_advise_search_detail_pannel_dropdown advise_field">
+                    <BasicTextDropdown
+                      defaultToggleText="상담분야"
+                      dropdownMenuData={detailSearchSelectboxAdviseFieldData}
+                      handleClickMenuItem={handleClickDropdownMenuItem}
+                    />
                   </div>
                 </div>
-                {/* 5-1-2. 상세 검색 패널 */}
-                <div className={`chat_advise_search_detail_pannel ${isShowDetailSearchPannel ? 'show' : ''}`}>
-                  <div className="chat_advise_search_detail_pannel_dropdown_container">
-                    <div className="chat_advise_search_detail_pannel_dropdown adviser">
-                      <BasicTextDropdown
-                        defaultToggleText="상담사"
-                        dropdownMenuData={detailSearchSelectboxAdviserData}
-                        handleClickMenuItem={handleClickDropdownMenuItem}
-                      />
-                    </div>
-                    <div className="chat_advise_search_detail_pannel_dropdown channel">
-                      <BasicTextDropdown
-                        defaultToggleText="상담채널"
-                        dropdownMenuData={detailSearchSelectboxChannelData}
-                        handleClickMenuItem={handleClickDropdownMenuItem}
-                      />
-                    </div>
-                    <div className="chat_advise_search_detail_pannel_dropdown advise_field">
-                      <BasicTextDropdown
-                        defaultToggleText="상담분야"
-                        dropdownMenuData={detailSearchSelectboxAdviseFieldData}
-                        handleClickMenuItem={handleClickDropdownMenuItem}
-                      />
-                    </div>
+                <div className="chat_advise_search_detail_pannel_action_buttons_container">
+                  <div className="chat_advise_search_detail_pannel_cancle_button_box">
+                    <OutlineButton handleClick={handleCancleDetailSearchPannel}>취소</OutlineButton>
                   </div>
-                  <div className="chat_advise_search_detail_pannel_action_buttons_container">
-                    <div className="chat_advise_search_detail_pannel_cancle_button_box">
-                      <OutlineButton handleClick={handleCancleDetailSearchPannel}>취소</OutlineButton>
-                    </div>
-                    <div className="chat_advise_search_detail_pannel_cancle_button_box">
-                      <SolidButton handleClick={handleSearchDetailChatAdviseLists}>검색하기</SolidButton>
-                    </div>
+                  <div className="chat_advise_search_detail_pannel_cancle_button_box">
+                    <SolidButton handleClick={handleSearchDetailChatAdviseLists}>검색하기</SolidButton>
                   </div>
                 </div>
               </div>

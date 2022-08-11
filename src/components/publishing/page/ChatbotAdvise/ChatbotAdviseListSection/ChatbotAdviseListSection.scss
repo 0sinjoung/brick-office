@@ -1,0 +1,515 @@
+@import "/src/styles/_variables.scss";
+
+.chatbot_advise_list_section_wrap {
+  flex: 0 0 auto;
+  width: 410px;
+  // height: 100%;
+  background-color: $white;
+}
+.chatbot_advise_list_container_wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: $grey010-border;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* 1. 챗봇 정보 영역 */
+.chatbot_adviser_information_container {
+  @include flexSpace();
+  flex: 0 0 90px;
+  width: 100%;
+  padding: 20px 18px 18px;
+}
+.chatbot_adviser_information_box {
+  @include flexStart();
+  align-items: flex-end;
+  gap: 14px;
+}
+.chatbot_adviser_information_text_box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.chatbot_adviser_information_name_box {
+  font-size: 16px;
+  font-weight: $bold;
+  line-height: 1;
+  color: $grey100;
+}
+.chatbot_advise_operate_tag_box {
+  .icon_charging {
+    margin-left: 4px;
+  }
+}
+
+
+/* 2. 상담 카테고리 영역 */
+.chatbot_advise_category_container {
+  flex: 0 0 58px;
+  width: 100%;
+}
+
+/* 2-1. first tabs : 내 상담 | 전체 상담 */
+.chatbot_advise_category_tabs {
+  @include flexSpace();
+  width: 100%;
+}
+.chatbot_advise_category_tab_button {
+  @include flexSpace();
+  width: 50%;
+  height: 54px;
+  padding: 16px 25px;
+  background-color: $grey010;
+  border-top: $grey010-border;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  
+  &.proceeding {
+    border-right: $grey010-border;
+  }
+  &.end {
+    border-left: $grey010-border;
+  }
+  
+  .chatbot_advise_category_tab_text {
+    font-size: 18px;
+    font-weight: $semi-bold;
+    line-height: 1;
+    color: $grey040;
+  }
+  
+  .chatbot_advise_category_tab_alert_count {
+    opacity: 0;
+  }
+  .tab_alert_count_number {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    line-height: 1;
+    color: $grey080;
+  }
+  .tab_alert_count_text {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: $semi-bold;
+    line-height: 1;
+    color: $grey080;
+  }
+  
+  &.breadscrumb {
+    background-color: $white;
+    
+    .chatbot_advise_category_tab_text {
+      color: $grey080;
+    }
+    .chatbot_advise_category_tab_alert_count {
+      opacity: 1;
+    }
+  }
+}
+
+
+/* 3. 챗봇 상담 검색 영역 */
+.chatbot_advise_search_container {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 64px;
+  max-height: 84px;
+  position: relative;
+}
+
+.chatbot_advise_search_box {
+  @include flexSpace();
+  gap: 6px;
+  padding: 16px 14px;
+}
+.chatbot_advise_customer_information_search_text_field_box {
+  height: 32px;
+  flex-grow: 1;
+}
+.chatbot_advise_detail_search_icon_buttons_box {
+  @include flexSpace();
+  flex-shrink: 0;
+  gap: 4px;
+}
+.chatbot_advise_detail_search_icon_button_box {
+  @include flexCenter();
+  &.detail_pannel {
+    &.active {
+      .icon_button {
+        position: relative;
+      
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          width: 6px;
+          height: 6px;
+          background-color: $green100;
+          border: 1px solid $white;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  &.sorting {
+    position: relative;
+
+    .dropdown_menu {
+      width: 116px;
+      position: absolute;
+      top: 36px;
+      right: 0;
+      z-index: 500;
+    }
+  }
+}
+
+
+
+/* 3-2. 상세 검색 결과 칩 영역 */
+.detail_search_deletable_chip_box {
+  display: none;
+  margin-top: -8px;
+  padding: 0 16px 8px;
+  overflow: hidden;
+
+  &.show {
+    display: block;
+  }
+}
+
+.detail_search_deletable_chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  overflow-x: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: $grey030;
+  background-color: $white;
+  
+  &::-webkit-scrollbar {
+    height: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    // background: $grey030;
+    background: transparent;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 3px;
+  }
+
+  .deletable_chip {
+    flex-shrink: 0;
+  }
+}
+
+
+
+/* 3-2. 상세 검색 패널 */
+.chatbot_advise_search_detail_pannel {
+  display: none;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  width: 382px;
+  // height: 200px;
+  padding: 16px;
+  background-color: $white;
+  border-radius: 8px;
+  border: $grey020-border;
+  box-shadow: $shadow-basic;
+
+  &.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
+.chatbot_advise_search_detail_pannel_dropdown_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px
+}
+
+.chatbot_advise_search_detail_pannel_dropdown {
+  .basic_text_dropdown_lists {
+    max-height: 200px;
+  }
+  .basic_text_dropdown_button {
+    height: 32px;
+    padding: 6px 8px;
+  }
+}
+.chatbot_advise_search_detail_pannel_action_buttons_container {
+  @include flexEnd();
+  gap: 6px;
+}
+
+
+/* 4. 채팅 상담 리스트 영역 */
+.chatbot_advise_list_container {
+  @include scrollStyle();
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 14px;
+}
+
+/* 4-1. 챗봇 상담 리스트 없는 경우 */
+.chatbot_advise_lists_no_data_found_box {
+  flex: 1 1 auto;
+  @include flexCenter();
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+/* 4-2. 챗봇 상담 리스트 */
+.chatbot_advise_article {
+  width: 100%;
+  position: relative;
+}
+
+.chatbot_advise_article_clickable_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  height: 94px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: $white;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey000;
+  }
+  
+  &.active {
+    background-color: $grey005;
+  }
+}
+
+.chatbot_advise_article_information_container,
+.chatbot_advise_article_contents_container,
+.chatbot_advise_article_fields_container {
+  @include flexSpace();
+  width: 100%;
+}
+
+.chatbot_advise_article_information_box {
+  @include flexStart();
+}
+
+.chatbot_advise_channel_delimiter_img_box {
+  flex-shrink: 0;
+  @include flexCenter();
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.chatbot_advise_channel_delimiter_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chatbot_advise_article_customer_name {
+  @include ellipsisOneLine();
+  @include chatAdviseNameStyle();
+  max-width: 102px;
+  margin-left: 4px; 
+}
+
+.chatbot_advise_article_bookmark_icon_box {
+  display: none;
+  margin-left: 6px;
+  width: 10px;
+  height: 18px;
+  
+  &.show {
+    @include flexCenter();
+  }
+}
+
+.chatbot_advise_article_adviser_name_box {
+  flex-shrink: 0;
+  margin-left: 2px;
+  height: 21px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  position: relative;
+  font-size: 11px;
+  font-weight: $medium;
+  color: $grey040;
+}
+
+
+.chatbot_advise_last_message_time_stamp_box {
+  font-size: 11px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey030;
+}
+
+.chatbot_advise_latest_message_box {
+  @include ellipsisOneLine();
+  width: 82%;
+  font-size: 14px;
+  font-weight: $regular;
+  line-height: 20px;
+  color: $grey070;
+}
+
+
+
+/* 5. 이전 상담 보기 영역 */
+.previous_chatbot_advise_container {
+  flex: 0 0 94px;
+  width: 100%;
+  // height: 94px;
+  border-top: $grey005-border;
+  position: relative;
+}
+.previous_chatbot_advise_show_button {
+  @include flexSpace();
+  width: 100%;
+  padding: 24px 28px 30px 34px;
+
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+  }
+}
+
+.previous_chatbot_advise_button_text_box {
+  @include flexStart();
+  gap: 16px;
+}
+
+.previous_chatbot_advise_time_icon_box {
+  @include flexCenter();
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #D3DBE6;
+}
+
+.previous_chatbot_advise_button_text {
+  font-size: 16px;
+  font-weight: $bold;
+  line-height: 21px;
+  color: $grey100;
+}
+
+.previous_chatbot_advise_arrow_icon_box {
+  @include flexCenter();
+  width: 26px;
+  height: 26px;
+}
+
+/* 5-1. 이전 상담 보기 패널 */
+.previous_chatbot_list_pannel {
+  // display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 98%;
+  padding: 0 0 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  border-radius: 20px 20px 0 0;
+  background-color: $white;
+  box-shadow: $shadow-basic;
+  transform: translateY(200%);
+  transition: all .4s;
+  
+  &.show {
+    transform: translateY(0);
+  }
+}
+
+.previous_chatbot_list_pannel_title_box {
+  flex-shrink: 0;
+  @include flexSpace();
+  padding: 24px;
+}
+
+.previous_chatbot_list_pannel_title {
+  font-size: 18px;
+  font-weight: $bold;
+  // line-height: 1;
+  color: $grey080;
+}
+
+.previous_chatbot_list_pannel_close_button_box {
+  @include flexCenter();
+}
+
+.previous_chatbot_list_search_container {
+  flex-shrink: 0;
+  position: relative;
+  min-height: 64px;
+  max-height: 84px;
+  width: 100%;
+
+  .chatbot_advise_search_box {
+    padding: 0 24px 16px;
+  }
+  
+  .detail_search_deletable_chip_box {
+    padding: 0 24px 8px;
+  }
+
+  .chatbot_advise_search_detail_pannel {
+    top: 0;
+  }
+}
+
+.chatbot_advise_customer_information_search_text_field_box {
+  height: 32px;
+  flex-grow: 1;
+}
+
+
+/* 5-1-1. 이전 상담 보기 패널 - 리스트 없음 */
+.previous_chatbot_advise_lists_no_data_found_box {
+  @include flexCenter();
+  height: 100%;
+}
+
+/* 5-1-2. 이전 상담 보기 패널 - 상담 리스트 영역 */
+.previous_chatbot_advise_list_box {
+  @include scrollStyle();
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 14px;
+}
+
+
+

@@ -40,7 +40,7 @@ const MessageScenario = () => {
   const handleSearchKMS = () => {
     console.log('KMS 지식 검색');
   };
-  
+
   /* 메시지 삭제하기 버튼 */
   const [isShowMessageDropdown, setIsShowMessageDropdown] = useState(false);
   const handleToggleMessageActionButton = () => {
@@ -188,7 +188,7 @@ const MessageScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@ const MessageScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@ const MessageScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
@@ -254,7 +254,7 @@ const MessageScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
@@ -288,7 +288,7 @@ const MessageScenario = () => {
               <IconButton buttonClassName="small outline" handleClick={handleToggleMessageActionButton}>
                 <IconSetting />
               </IconButton>
-              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData}/>
+              <DropdownMenu showDropdownMenu={isShowMessageDropdown ? 'show' : ''} dropdownMenuData={messageActionDropdownNormalMessageData} />
             </div>
           </div>
         </div>
