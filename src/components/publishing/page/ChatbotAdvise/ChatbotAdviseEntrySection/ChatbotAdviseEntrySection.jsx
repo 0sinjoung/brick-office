@@ -31,8 +31,8 @@ const ChatbotAdviseEntrySection = () => {
                 <div className="chatbot_advise_introduce_contents_box">
                   <h4 className="chatbot_advise_introduce_page_title">챗봇 지식 만들기</h4>
                   <p className="chatbot_advise_introduce_description">
-                  어떤 질문이 들어와도 챗봇이 고객 질문의 의도를 파악하여 <br />
-                  정확한 답변을 전달합니다.
+                    어떤 질문이 들어와도 챗봇이 고객 질문의 의도를 파악하여 <br />
+                    정확한 답변을 전달합니다.
                   </p>
                 </div>
               </div>
@@ -53,8 +53,8 @@ const ChatbotAdviseEntrySection = () => {
                 <div className="chatbot_advise_introduce_contents_box">
                   <h4 className="chatbot_advise_introduce_page_title">챗봇 웰컴 메시지 만들기</h4>
                   <p className="chatbot_advise_introduce_description">
-                  환영 인사 메시지를 통해 브랜드 소개나 자주 묻는 질문을 <br />
-                  안내할 수 있습니다.
+                    환영 인사 메시지를 통해 브랜드 소개나 자주 묻는 질문을 <br />
+                    안내할 수 있습니다.
                   </p>
                 </div>
               </div>

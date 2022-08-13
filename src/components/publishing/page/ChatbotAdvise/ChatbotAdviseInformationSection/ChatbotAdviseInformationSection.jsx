@@ -8,9 +8,13 @@ import './ChatbotAdviseInformationSection.scss';
 /** 챗봇 상담 정보 영역
  */
 const ChatbotAdviseInformationSection = () => {
+  /**
+   * groupName: 고객 > 고객그룹에 등록된 고객 그룹명. 그룹 미지정시 '미지정 상태'로 표기
+   * name : 비회원일 경우 임시 이름 발급, 난수 5자리
+   */
   const CUSTOMER_INFO = {
-    groupName: '미지정 상태', //고객 > 고객그룹에 등록된 고객 그룹명. 그룹 미지정시 '미지정 상태'로 표기
-    name: '비회원94846', //비회원일 경우 임시 이름 발급, 난수 5자리
+    groupName: '미지정 상태',
+    name: '비회원94846',
     phone: '',
     email: '',
   };
@@ -20,7 +24,7 @@ const ChatbotAdviseInformationSection = () => {
     adviseMemo:
       '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
     // adviseFields: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '주문', '프로모션', '회원', '기타'],
-    adviseFields: ['프로모션', ],
+    adviseFields: ['프로모션'],
   };
 
   const [chatbotAdviseFieldsCount, setChatbotAdviseFieldCount] = useState(ADVISE_INFO.adviseFields.length >= 3 ? 'over' : '');
@@ -122,7 +126,7 @@ const ChatbotAdviseInformationSection = () => {
                 </li>
                 <li className="customer_profile_contents_list email">
                   <div className="customer_profile_label">이메일</div>
-                  <div className="customer_profile_information">{CUSTOMER_INFO.email === '' ? '-' : ""}</div>
+                  <div className="customer_profile_information">{CUSTOMER_INFO.email === '' ? '-' : ''}</div>
                 </li>
               </ul>
             </div>
@@ -173,16 +177,6 @@ const ChatbotAdviseInformationSection = () => {
       </section>
     </>
   );
-};
-
-ChatbotAdviseInformationSection.propTypes = {
-  handleKMSPannel: PropTypes.func,
-  isShowKMSPannel: PropTypes.bool,
-};
-
-ChatbotAdviseInformationSection.defaultProps = {
-  handleKMSPannel: () => {},
-  isShowKMSPannel: false,
 };
 
 export default ChatbotAdviseInformationSection;

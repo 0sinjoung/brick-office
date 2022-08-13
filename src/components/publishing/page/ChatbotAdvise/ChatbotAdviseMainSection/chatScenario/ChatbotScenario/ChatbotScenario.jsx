@@ -11,7 +11,6 @@ import './ChatbotScenario.scss';
 const ChatbotScenario = () => {
   const [isViewTypeHorizontal, setIsViewTypeHorizontal] = useState(true);
   const [showTemplateSliderButtonsBox, setShowTemplateSliderButtonsBox] = useState('show');
-  
 
   /* Bot */
   const BOT_NAME = '브릭';

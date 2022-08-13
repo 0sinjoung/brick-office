@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ReactComponent as IconCalendar } from 'assets/svg/icon/icon_calendar.svg';
 import { ReactComponent as IconArrowUpSmall } from 'assets/svg/icon/icon_arrow_up_small.svg';
 import { ReactComponent as IconArrowDownLong } from 'assets/svg/icon/icon_arrow_down_long.svg';
-// import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg';
 import { ReactComponent as IconFilePlay } from 'assets/svg/icon/fileUpload/icon_file_play.svg';
@@ -340,7 +339,9 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                   <IconBookmark />
                 </button>
                 <div className="chat_advise_header_current_chat_status_tag">
-                  <span className="current_chat_status_tag_adviser_nickname">{ADVISER_NICKNAME}</span>{CURRENT_ADVISE_CHAT_STATE}</div>
+                  <span className="current_chat_status_tag_adviser_nickname">{ADVISER_NICKNAME}</span>
+                  {CURRENT_ADVISE_CHAT_STATE}
+                </div>
               </div>
               <div className="chat_advise_main_header_buttons_box">
                 {/* 1-1-2. 채팅 검색 */}

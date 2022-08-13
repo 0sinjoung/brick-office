@@ -149,8 +149,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -187,8 +186,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -225,8 +223,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -263,8 +260,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -301,8 +297,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -339,8 +334,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -377,8 +371,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -442,8 +435,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -481,8 +473,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -520,8 +511,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -559,8 +549,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -598,8 +587,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -637,8 +625,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -676,8 +663,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -715,8 +701,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -754,8 +739,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -793,8 +777,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -832,8 +815,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -871,8 +853,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -910,8 +891,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -949,8 +929,7 @@ const ChatbotAdviseListSection = () => {
                     <img className="chatbot_advise_channel_delimiter_img" alt="channel delimiter" src={ICON_BRICK_CHATBOT_DEFAULT_IMAGE} />
                   </div>
                   <div className="chatbot_advise_article_customer_name">{CUSTOMER_NAME_SHORT}</div>
-                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담
-                  </div>
+                  <div className="chatbot_advise_article_adviser_name_box">BOT 상담</div>
                 </div>
                 <div className="chatbot_advise_last_message_time_stamp_box">{LAST_MESSAGE_TIME_STAMP}</div>
               </div>
@@ -990,7 +969,9 @@ const ChatbotAdviseListSection = () => {
               <div className="chatbot_adviser_information_text_box">
                 <div className="chatbot_adviser_information_name_box">{CHANNEL_BRICK_CAHTBOT_NAME}</div>
                 <div className="chatbot_advise_operate_tag_box">
-                  <ColorTag tagStyle={{backgroundColor: '#E8F4ED', color: '#219652'}}>챗봇 운영 중 <IconLightning /></ColorTag>
+                  <ColorTag tagStyle={{ backgroundColor: '#E8F4ED', color: '#219652' }}>
+                    챗봇 운영 중 <IconLightning />
+                  </ColorTag>
                 </div>
               </div>
             </div>
