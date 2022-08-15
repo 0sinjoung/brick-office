@@ -1,5 +1,4 @@
-// import logo from './logo.svg';
-import Publishing from 'components/publishing'
+import Publishing from 'components/publishing';
 
 function App() {
   return (

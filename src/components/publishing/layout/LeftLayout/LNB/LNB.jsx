@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import { ReactComponent as IconLnbHome } from 'assets/svg/icon/lnb/icon_lnb_home.svg';
 import { ReactComponent as IconLnbDashboard } from 'assets/svg/icon/lnb/icon_lnb_dashboard.svg';
 import { ReactComponent as IconLnbChatAdvise } from 'assets/svg/icon/lnb/icon_lnb_chat_advise.svg';
@@ -31,8 +32,8 @@ const LNB = () => {
   const LNBMenuFirstGroupListData = [
     { name: '홈', link: '/', icon: <IconLnbHome />, ariaLabel: '홈 메뉴 링크 아이콘' },
     { name: '대시보드', link: '/', icon: <IconLnbDashboard />, ariaLabel: '대시보드 메뉴 링크 아이콘' },
-    { name: '채팅 상담', link: '/', icon: <IconLnbChatAdvise />, ariaLabel: '채팅 상담 메뉴 링크 아이콘' },
-    { name: '챗봇 상담', link: '/', icon: <IconLnbChatbotAdvise />, ariaLabel: '챗봇 상담 메뉴 링크 아이콘' },
+    { name: '채팅 상담', link: '/chatAdvise', icon: <IconLnbChatAdvise />, ariaLabel: '채팅 상담 메뉴 링크 아이콘' },
+    { name: '챗봇 상담', link: '/chatbotAdvise', icon: <IconLnbChatbotAdvise />, ariaLabel: '챗봇 상담 메뉴 링크 아이콘' },
     { name: '챗봇 만들기', link: '/', icon: <IconLnbChatbotMaking />, ariaLabel: '챗봇 만들기 메뉴 링크 아이콘' },
     { name: '상담 키워드', link: '/', icon: <IconLnbAdviseKeyword />, ariaLabel: '상담 키워드 메뉴 링크 아이콘' },
     { name: 'KMS', link: '/', icon: <IconLnbKms />, ariaLabel: 'KMS 메뉴 링크 아이콘' },
@@ -71,7 +72,7 @@ const LNB = () => {
   };
 
   const handleShowSecondDepth = e => {
-    e.preventDefault();
+    // e.preventDefault();
     const currentMenuTitle = e.target.closest('.LNB_menu_link').dataset.menuText;
     setCurrentMenu(currentMenuTitle);
 
@@ -105,22 +106,22 @@ const LNB = () => {
                   if (item.name === '채팅 상담') {
                     return (
                       <li className="LNB_menu_list" key={`small_menu_first_group_${idx}`}>
-                        <a href={item.link} className="LNB_menu_link" onClick={handleShowSecondDepth} data-menu-text={item.name}>
+                        <NavLink to={item.link} className="LNB_menu_link" onClick={handleShowSecondDepth} data-menu-text={item.name}>
                           <div className="LNB_link_icon" role="img" aria-label={item.ariaLabel}>
                             {item.icon}
                           </div>
                           <NewNotificationBadge />
-                        </a>
+                        </NavLink>
                       </li>
                     );
                   }
                   return (
                     <li className="LNB_menu_list" key={`small_menu_first_group_${idx}`}>
-                      <a href={item.link} className="LNB_menu_link" onClick={handleShowSecondDepth} data-menu-text={item.name}>
+                      <NavLink to={item.link} className="LNB_menu_link" onClick={handleShowSecondDepth} data-menu-text={item.name}>
                         <div className="LNB_link_icon" role="img" aria-label={item.ariaLabel}>
                           {item.icon}
                         </div>
-                      </a>
+                      </NavLink>
                     </li>
                   );
                 })}
