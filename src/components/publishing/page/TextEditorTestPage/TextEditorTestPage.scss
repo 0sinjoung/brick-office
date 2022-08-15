@@ -1,6 +1,6 @@
 @import "/src/styles/_variables.scss";
 
-.text_editor_wrap {
+.text_editor_page_wrap {
   width: 100%;
   height: 100%;
   @include flexCenter();
@@ -11,8 +11,4 @@
 .text_editor_title {
   font-size: 32px;
   font-weight: $bold;
-}
-
-.text_editor_box {
-  width: 60%;
 }

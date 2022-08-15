@@ -200,7 +200,7 @@ a {
     text-decoration: none;
   }
 }
-address, caption, cite, code, dfn, em, var {
+address, caption, cite, code, dfn, var {
   font-style: inherit;
   font-weight: inherit;
 }
@@ -294,10 +294,6 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
-}
-
-em {
-  font-style: normal;
 }
 
 img {

@@ -1,0 +1,153 @@
+@import "/src/styles/_variables.scss";
+
+
+.text_editor_container {
+  width: 472px;
+  padding: 14px 0;
+  min-height: 188px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  border: $grey020-border;
+}
+
+#text_editor_scrolling_container {
+  flex-grow: 1;
+  height: 118px;
+  padding: 0 14px;
+  margin-bottom: 14px;
+  @include scrollStyle();
+}
+
+.basic_quill {
+  .ql-container {
+    font-family: "inter", Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+    font-weight: $medium;
+    text-align: left;
+    color: $grey100;
+  
+    .ql-editor {
+      line-height: 20px;
+      padding: 0;
+  
+      &.ql-blank {
+        &::before {
+          left: 0;
+          right: 0;
+          font-style: normal;
+          font-size: 14px;
+          font-weight: $medium;
+          color: $grey030;
+        }
+      }
+    }
+  
+    .ql-clipboard {
+  
+    }
+  
+    .ql-tooltip {
+  
+    }
+  }
+}
+
+
+/* 텍스트 에디터 툴바 */
+.custom_basic_toolbar {
+  flex-shrink: 0;
+  @include flexSpace();
+  align-items: flex-end;
+  width: 100%;
+  padding: 0 14px;
+}
+
+.custom_basic_toolbar_buttons_box {
+  @include flexStart();
+  gap: 4px;
+}
+
+.custom_basic_toolbar_button_box {
+  width: 25px;
+  height: 25px;
+  background-color: $white;
+  border-radius: 5px;
+  
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+
+  }
+
+  button {
+    width: 100%;
+    height: 100%;
+    @include flexCenter();
+  }
+}
+
+.custom_basic_toolbar_text_counter {
+  @include flexEnd();
+  font-size: 12px;
+  font-weight: $regular;
+  text-align: right;
+  color: $grey030;
+}
+
+
+
+/* 텍스트 에디터 툴바 - 버튼 툴팁 */
+[data-text-editor-toolbar-tooltip] {
+  position: relative;
+
+  &:hover {
+    &::after {
+      @include tooltipStyle();
+    }
+  }
+}
+
+[data-text-editor-toolbar-tooltip='text_bold'] {
+  &:hover {
+    &::after {
+      content: '굵게';
+    }
+  }
+}
+[data-text-editor-toolbar-tooltip='text_italic'] {
+  &:hover {
+    &::after {
+      content: '기울기';
+    }
+  }
+}
+[data-text-editor-toolbar-tooltip='text_underline'] {
+  &:hover {
+    &::after {
+      content: '밑줄';
+    }
+  }
+}
+[data-text-editor-toolbar-tooltip='text_color'] {
+  &:hover {
+    &::after {
+      content: '텍스트 색';
+    }
+  }
+}
+[data-text-editor-toolbar-tooltip='text_background'] {
+  &:hover {
+    &::after {
+      content: '텍스트 배경색';
+    }
+  }
+}
+[data-text-editor-toolbar-tooltip='emoji'] {
+  &:hover {
+    &::after {
+      content: '이모지';
+    }
+  }
+}

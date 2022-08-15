@@ -17,7 +17,6 @@ import { ReactComponent as IconTextColor } from 'assets/svg/icon/textEditor/icon
 import { ReactComponent as IconTextBackground } from 'assets/svg/icon/textEditor/icon_text_background.svg';
 import { ReactComponent as IconFileUpload } from 'assets/svg/icon/textEditor/icon_file_upload.svg';
 import { ReactComponent as IconEmojiPannel } from 'assets/svg/icon/textEditor/icon_emoji_pannel.svg';
-import Checkbox from 'components/publishing/atom/Checkbox';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
