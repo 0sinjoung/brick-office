@@ -4,14 +4,13 @@ import { ReactComponent as IconEdit } from 'assets/svg/icon/icon_edit.svg';
 import { ReactComponent as IconEllipsis } from 'assets/svg/icon/icon_ellipsis.svg';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
-import { ReactComponent as IconPainationFirst } from 'assets/svg/icon/icon_pagination_first.svg';
-import { ReactComponent as IconPainationPrev } from 'assets/svg/icon/icon_pagination_prev.svg';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import Pagination from 'components/publishing/atom/Pagination';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
@@ -34,14 +33,6 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
       '메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하메모를입력  하고있음메메모를입력하고있음메메모를입력하메모를입력하고있음메메모를입력하고있음메메모를입력하',
     adviseFields: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '주문', '프로모션', '회원', '기타'],
     // adviseFields: ['교환 반품 환불', '고객 관리'],
-  };
-
-  /* pagination */
-  const handleGoToPaginationIndex = () => {
-    console.log("go to pagination's index");
-  };
-  const handleClickMovePaginationArrowButton = () => {
-    console.log("click pagination's arrow button");
   };
 
   const [adviseFieldsCount, setAdviseFieldCount] = useState(ADVISE_INFO.adviseFields.length >= 3 ? 'over' : '');
@@ -674,29 +665,7 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
         </div>
         {displayKMSKnowledgeRecommandLists()}
         <div className="knowledge_recommand_pagination_box KMS">
-          <div className="pagination">
-            <button type="button" className="page_move_arrow_button go_to_first hide" onClick={handleClickMovePaginationArrowButton}>
-              <IconPainationFirst />
-            </button>
-            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_prev">
-              <IconPainationPrev />
-            </button>
-            <div className="pagination_buttons_box">
-              <ol className="pagination_button_lists">
-                <li className="pagination_button_list">
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button breadscrumb">
-                    1
-                  </button>
-                </li>
-              </ol>
-            </div>
-            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_next">
-              <IconPainationPrev />
-            </button>
-            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_last hide">
-              <IconPainationFirst />
-            </button>
-          </div>
+          <Pagination pageNumber="1" />
         </div>
       </div>
     );
@@ -799,74 +768,7 @@ const ChatAdviseInformationSection = ({ handleKMSPannel, isShowKMSPannel }) => {
         </div>
         {displayChatbotKnowledgeRecommandLists()}
         <div className="knowledge_recommand_pagination_box chatbot">
-          <div className="pagination">
-            <button type="button" className="page_move_arrow_button go_to_first" onClick={handleClickMovePaginationArrowButton}>
-              <IconPainationFirst />
-            </button>
-            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_prev">
-              <IconPainationPrev />
-            </button>
-            <div className="pagination_buttons_box">
-              <ol className="pagination_button_lists">
-                <li className="pagination_button_list">
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button breadscrumb">
-                    1
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    2
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    3
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    4
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    5
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    6
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    7
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    8
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    9
-                  </button>
-                </li>
-                <li>
-                  <button type="button" onClick={handleGoToPaginationIndex} className="pagination_button">
-                    10
-                  </button>
-                </li>
-              </ol>
-            </div>
-            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_next">
-              <IconPainationPrev />
-            </button>
-            <button type="button" onClick={handleClickMovePaginationArrowButton} className="page_move_arrow_button go_to_last">
-              <IconPainationFirst />
-            </button>
-          </div>
+          <Pagination pageNumber="10" />
         </div>
       </div>
     );

@@ -1,0 +1,53 @@
+@import "/src/styles/_variables.scss";
+
+/* pagination */
+.pagination {
+  @include flexCenter();
+}
+
+.page_move_arrow_button {
+  @include flexCenter();
+  width: 18px;
+  height: 18px;
+
+  &.go_to_next,
+  &.go_to_last {
+    transform: rotate(180deg);
+  }
+  
+  &.go_to_first,
+  &.go_to_last {
+    &.hide {
+      display: none;
+    }
+  }
+}
+
+.pagination_button_lists {
+  @include flexSpace();
+  margin: 0 4px;
+  gap: 4px;
+}
+
+.pagination_button {
+  @include flexCenter();
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: $grey020-border;
+  background-color: $white;
+  color: $grey080;
+  font-size: 10px;
+  font-weight: $medium;
+  line-height: 1;
+
+  &:hover {
+    background-color: $grey005;
+  }
+  
+  &.breadscrumb {
+    color: $white;
+    background-color: $grey100;
+    border: 1px solid $grey100;
+  }
+}
