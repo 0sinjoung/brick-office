@@ -1,11 +1,11 @@
 @import "/src/styles/_variables.scss";
 
-.outline_search_text_field_border_box {
+.validation_text_field_border_box {
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 2;
-
+  
   &.focus {
     &::before {
       content: "";
@@ -20,13 +20,33 @@
       background-color: #1F71F933;
     }
 
-    .outline_search_text_field_box {
+    .validation_text_field_box {
       border: 1px solid $brickblue090;
+    }
+  }
+
+  &.error {
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: -3px;
+      bottom: -3px;
+      left: -3px;
+      right: -3px;
+      border-radius: 9px;
+      background-color: #1F71F933;
+      background-color: #D32F2F33;
+    }
+
+    .validation_text_field_box {
+      border: 1px solid $red100;
     }
   }
 }
 
-.outline_search_text_field_box {
+.validation_text_field_box {
   @include flexSpace();
   gap: 6px;
   width: 100%;
@@ -39,7 +59,7 @@
   border: $grey020-border;
 }
 
-.outline_search_text_field {
+.validation_text_field {
   flex-grow: 1;
   width: 100%;
   height: 100%;
@@ -73,27 +93,39 @@
   &.show {
     opacity: 1;
     cursor: pointer;
-    
+
     &:hover {
       background-color: $grey030;
     }
   }
 }
 
-.text_field_search_action_button {
-  flex-shrink: 0;
-  @include flexCenter();
-  padding: 3px 6px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: $medium;
-  color: transparent;
+
+.validation_error_text_box {
+  display: none;
+  margin-top: 8px;
+  gap: 4px;
   
-  &.focus {
-    color: $grey030;
+  &.error {
+    @include flexStart();
   }
-  &.active {
-    color: $grey050;
-    background-color: $grey020;
+
+  .icon_error_circle_box {
+    @include flexCenter();
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid $red100;
+
+    .icon_exclamation {
+      fill: $red100;
+      transform: scale(0.7);
+    }
+  }
+  .validation_error_text {
+    font-size: 13px;
+    font-weight: $regular;
+    line-height: 1;
+    color: $red100;
   }
 }

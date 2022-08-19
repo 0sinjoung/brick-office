@@ -1,17 +1,42 @@
 @import "/src/styles/_variables.scss";
 
+.outline_text_field_border_box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  
+  &.focus {
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: -3px;
+      bottom: -3px;
+      left: -3px;
+      right: -3px;
+      border-radius: 9px;
+      background-color: #1F71F933;
+    }
+
+    .outline_text_field_box {
+      border: 1px solid $brickblue090;
+    }
+  }
+}
+
 .outline_text_field_box {
   @include flexSpace();
   gap: 6px;
   width: 100%;
   height: 100%;
-  padding: 0 16px;
+  padding: 0 10px;
+  position: relative;
+  z-index: 3;
   border-radius: 8px;
+  background-color: $white;
   border: $grey020-border;
-
-  &.focus {
-    border: 1px solid $grey080;
-  }
 }
 
 .outline_text_field {
@@ -48,7 +73,7 @@
   &.show {
     opacity: 1;
     cursor: pointer;
-    
+
     &:hover {
       background-color: $grey030;
     }

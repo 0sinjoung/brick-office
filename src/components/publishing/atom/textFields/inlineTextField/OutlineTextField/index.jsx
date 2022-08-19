@@ -41,22 +41,24 @@ const OutlineTextField = React.forwardRef(({ placeholderText }, ref) => {
   };
 
   return (
-    <div className={`outline_text_field_box ${outlineStyle}`}>
-      <input
-        type="text"
-        name="outline_text_field"
-        className="outline_text_field"
-        ref={ref}
-        placeholder={placeholderText}
-        onKeyUp={handleChangeTextField}
-        onFocus={handleFocusTextField}
-        onBlur={handleBlurTextField}
-        spellCheck="false"
-        autoComplete="off"
-      />
-      <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
-        <IconCrossTiny />
-      </button>
+    <div className={`outline_text_field_border_box ${outlineStyle}`}>
+      <div className="outline_text_field_box">
+        <input
+          type="text"
+          name="outline_text_field"
+          className="outline_text_field"
+          ref={ref}
+          placeholder={placeholderText}
+          onKeyUp={handleChangeTextField}
+          onFocus={handleFocusTextField}
+          onBlur={handleBlurTextField}
+          spellCheck="false"
+          autoComplete="off"
+        />
+        <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
+          <IconCrossTiny />
+        </button>
+      </div>
     </div>
   );
 });
@@ -68,6 +70,5 @@ OutlineTextField.propTypes = {
 OutlineTextField.defaultProps = {
   placeholderText: '',
 };
-OutlineTextField.displayName = 'OutlineTextField';
 
 export default OutlineTextField;

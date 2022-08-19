@@ -11,10 +11,6 @@ const TextEditorTestPage = ({ children }) => {
       <div className="text_editor_wrap">
         <BasicTextEditor placeholder="edit text..."/>
       </div>
-      <h1 className="text_editor_title">CHAT ADVISE TEXT EDITOR</h1>
-      <div className="text_editor_wrap">
-        <ChatAdviseTextEditor placeholder="edit text..."/>
-      </div>
     </div>
   );
 };

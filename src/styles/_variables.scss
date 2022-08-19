@@ -26,6 +26,7 @@ $brickCoral000: #F8F4F3;
 $red100: #D32F2F;
 $red010: #F2483A;
 $green100: #4CAF50;
+$green050: #07B419;
 
 /* color - opacity */
 $dim-basic: #646F7C99;
@@ -45,8 +46,8 @@ $tag080: #EDF2FF;
 $tag090: #EFF8DC;
 $tag100: #FFECC9;
 $tag110: #FFE4C9;
-$tag120: #FFECC9;
-$tag130: #6A3A2D;
+$tag120: #E8F4ED;
+$tag130: #219652;
 
 /* font */
 /* font - weight */
@@ -121,6 +122,7 @@ $template-button-shadow: 0px 0px 10px #646F7C0F;
   text-overflow: ellipsis;
   word-break: break-all;
 }
+
 /* 아래 mixin을 include -> -webkit-line-clamp만 재지정하여 사용 */
 @mixin ellipsisMultiLine {
   display: -webkit-box;
@@ -171,13 +173,12 @@ $template-button-shadow: 0px 0px 10px #646F7C0F;
   transition: all .3s;
 }
 
-/* message loading animation */
+/* keyframes */
 @keyframes animationChatLoading {
   0% {background-color: #BC7D6C;}
   50% {background-color: $tag130;}
   100% {background-color: #BC7D6C;} 
 }
-
 
 @keyframes animationSpinner {
   0% {transform: translate(50%, -50%) rotate(45deg);}

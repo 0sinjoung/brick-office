@@ -27,6 +27,7 @@ import ColorTag from 'components/publishing/atom/tag/ColorTag';
 import BasicSearchTextField from 'components/publishing/atom/textFields/inlineTextField/BasicSearchTextField';
 import OutlineTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineTextField';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import ValidationTextField from 'components/publishing/atom/textFields/inlineTextField/ValidationTextField';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
 import MessageScenario from './chatScenario/MessageScenario/MessageScenario';
 import ChatbotScenario from './chatScenario/ChatbotScenario/ChatbotScenario';
@@ -647,7 +648,7 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                 <div className="button_action_text_fields_box">
                   <div className="button_action_text_field_label_box">
                     <div className="button_action_text_field_label">버튼명</div>
-                    <div className="button_action_text_field_box">
+                    <div className="button_action_text_field_box button_name">
                       <OutlineTextField ref={refButtonActionPannelButtonNameTextField} placeholderText="버튼명을 입력해주세요." />
                     </div>
                   </div>
@@ -655,8 +656,8 @@ const ChatAdviseMainSection = ({ handleKMSPannel, isShowKMSPannel }) => {
                     <div className="button_action_text_field_label">
                       액션<OutlineTag>URL</OutlineTag>
                     </div>
-                    <div className="button_action_text_field_box">
-                      <OutlineTextField ref={refButtonActionPannelButtonActionTextField} placeholderText="버튼 클릭 시 연결할 URL을 입력해주세요." />
+                    <div className="button_action_text_field_box button_action_validation">
+                      <ValidationTextField ref={refButtonActionPannelButtonActionTextField} placeholderText="버튼 클릭 시 연결할 URL을 입력해주세요." validationErrorText="URL 입력형식이 올바르지 않습니다."/>
                     </div>
                   </div>
                 </div>

@@ -51,25 +51,27 @@ const OutlineSearchTextField = React.forwardRef(({ placeholderText, handleClickS
   };
 
   return (
-    <div className={`outline_search_text_field_box ${outlineStyle}`}>
-      <input
-        type="text"
-        name="outline_search_text_field"
-        className="outline_search_text_field"
-        ref={ref}
-        placeholder={placeholderText}
-        onKeyUp={handleKeyUpTextField}
-        onFocus={handleFocusTextField}
-        onBlur={handleBlurTextField}
-        spellCheck="false"
-        autoComplete="off"
-      />
-      <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
-        <IconCrossTiny />
-      </button>
-      <button type="button" className={`text_field_search_action_button ${searchButtonStyle}`} onClick={handleClickSearchButton}>
-        검색
-      </button>
+    <div className={`outline_search_text_field_border_box ${outlineStyle}`}>
+      <div className="outline_search_text_field_box">
+        <input
+          type="text"
+          name="outline_search_text_field"
+          className="outline_search_text_field"
+          ref={ref}
+          placeholder={placeholderText}
+          onKeyUp={handleKeyUpTextField}
+          onFocus={handleFocusTextField}
+          onBlur={handleBlurTextField}
+          spellCheck="false"
+          autoComplete="off"
+        />
+        <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
+          <IconCrossTiny />
+        </button>
+        <button type="button" className={`text_field_search_action_button ${searchButtonStyle}`} onClick={handleClickSearchButton}>
+          검색
+        </button>
+      </div>
     </div>
   );
 });

@@ -1294,6 +1294,7 @@
 
 .button_action_text_field_label_box {
   @include flexSpace();
+  align-items: flex-start;
   gap: 12px;
 
   .button_action_text_field_label {
@@ -1301,6 +1302,7 @@
     @include flexStart();
     gap: 4px;
     width: 60px;
+    height: 32px;
     font-size: 14px;
     font-weight: $medium;
     color: $grey080;
@@ -1313,8 +1315,13 @@
     flex-grow: 1;
     height: 32px;
 
-    .outline_text_field_box {
-      padding: 0 10px;
+    &.button_action_validation {
+      height: fit-content;
+      min-width: 32px;
+
+      .validation_text_field_border_box {
+        height: 32px;
+      }
     }
   }
 }
