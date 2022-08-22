@@ -136,6 +136,186 @@ const AdviseKeyword = ({ children }) => {
                     </div>
                   </td>
                 </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="table_row">
+                  <td>1</td>
+                  <td>
+                    <span>/일이삼사오육칠팔구십</span>
+                    <button type='button' className="row_edit_button">
+                      <IconEdit />
+                      수정
+                    </button>
+                  </td>
+                  <td data-type="ellipsis">온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능</td>
+                  <td>{ADVISE_KEYWORD_SHORCUT}</td>
+                  <td>{LAST_UPDATE_DATE}</td>
+                  <td data-type="edit">
+                    <div className="row_data_edit_icon_button_box">
+                      <IconButton buttonClassName="small" handleClick={handleToggleEditDropdownMenu}>
+                        <IconSetting />
+                      </IconButton>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </section>
