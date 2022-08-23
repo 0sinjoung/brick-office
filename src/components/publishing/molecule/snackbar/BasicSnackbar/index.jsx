@@ -4,12 +4,12 @@ import IconButton from 'components/publishing/atom/button/IconButton';
 import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
 import './style.scss';
 
-/** 스낵바
+/** 베이직 스낵바
  * @snackbarTitle : 스낵바 타이틀 텍스트
  * @showBrickIcon : 'show' || ''
  * @children : 스낵바 contents
  */
-const Snackbar = ({ snackbarTitle, showBrickIcon, children }) => {
+const BasicSnackbar = ({ snackbarTitle, showBrickIcon, children }) => {
   const [hideSnackbar, setHideSnackbar] = useState('');
   const handleCloseSnackbar = () => {
     setHideSnackbar('hide');
@@ -34,16 +34,16 @@ const Snackbar = ({ snackbarTitle, showBrickIcon, children }) => {
   );
 };
 
-Snackbar.propTypes = {
+BasicSnackbar.propTypes = {
   snackbarTitle: PropTypes.string,
   showBrickIcon: PropTypes.string,
   children: PropTypes.any,
 };
 
-Snackbar.defaultProps = {
+BasicSnackbar.defaultProps = {
   snackbarTitle: '',
   showBrickIcon: '',
   children: '',
 };
 
-export default Snackbar;
+export default BasicSnackbar;

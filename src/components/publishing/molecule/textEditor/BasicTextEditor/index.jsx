@@ -79,7 +79,7 @@ const CustomBasicToolbar = () => {
   );
 };
 
-const BasicTextEditor = ({ ...rest }) => {
+const BasicTextEditor = ({ placeholderText, ...rest }) => {
   const [value, setValue] = useState('');
   console.log(value);
 
@@ -96,7 +96,7 @@ const BasicTextEditor = ({ ...rest }) => {
   return (
     <div className="text_editor_container">
       <div id="text_editor_scrolling_container">
-        <ReactQuill className="basic_quill" modules={modules} theme="" placeholder="내용을 작성해 주세요. (공백 포함 1,500자 이하)" onChange={setValue} value={value} scrollingContainer="#text_editor_scrolling_container"/>
+        <ReactQuill className="basic_quill" modules={modules} theme="" placeholder={placeholderText ? placeholderText : "내용을 작성해 주세요. (공백 포함 1,500자 이하)"} onChange={setValue} value={value} scrollingContainer="#text_editor_scrolling_container"/>
       </div>
       <CustomBasicToolbar />
     </div>

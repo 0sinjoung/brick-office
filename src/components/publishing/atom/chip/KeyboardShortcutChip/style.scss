@@ -1,0 +1,14 @@
+@import "/src/styles/_variables.scss";
+
+.advise_field_color_chip {
+  @include flexCenter();
+  width: fit-content;
+  height: 22px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 17px;
+  font-weight: $medium;
+  color: $grey080;
+  background-color: $white;
+}

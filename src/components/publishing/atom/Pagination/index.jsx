@@ -14,7 +14,7 @@ const Pagination = ({ pageNumber }) => {
   const handleClickMovePaginationArrowButton = () => {
     console.log("click pagination's arrow button");
   };
-  if (pageNumber === "1") {
+  if (pageNumber === 1) {
     return (
       <div className="pagination">
         <button type="button" className="page_move_arrow_button go_to_first hide" onClick={handleClickMovePaginationArrowButton}>
@@ -115,11 +115,11 @@ const Pagination = ({ pageNumber }) => {
 };
 
 Pagination.propTypes = {
-  pageNumber: PropTypes.string,
+  pageNumber: PropTypes.number,
 };
 
 Pagination.defaultProps = {
-  children: '',
+  pageNumber: 1,
 };
 
 export default Pagination;

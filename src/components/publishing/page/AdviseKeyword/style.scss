@@ -9,6 +9,114 @@
   background-color: $white;
 }
 
+/* 0. 상담키워드 모달 공통 스타일 */
+.make_advise_keyword_modal_container,
+.upload_advise_keyword_modal_container {
+  width: 520px;
+  height: fit-content;
+  padding: 24px;
+  border-radius: 10px;
+  border: $grey020-border;
+  box-shadow: $shadow-basic;
+  background-color: $white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.make_advise_keyword_modal_head,
+.upload_advise_keyword_modal_head {
+  margin-bottom: 30px;
+}
+.make_advise_keyword_modal_title,
+.upload_advise_keyword_modal_title {
+  font-size: 18px;
+  font-weight: $bold;
+  line-height: 1;
+  color: $grey080;
+}
+.make_advise_keyword_modal_subtitle {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey080;
+  margin-bottom: 10px;
+}
+
+.advise_keyword_text_field_box {
+  @include flexSpace();
+  gap: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.advise_keyword_text_field {
+  flex-grow: 1;
+  width: 100%;
+  height: 32px;
+
+  &::after {
+    content: '/';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: fit-content;
+    height: 32px;
+    line-height: 32px;
+    z-index: 10;
+  }
+
+  .outline_text_field {
+    padding: 0 0 0 6px;
+  }
+}
+.advise_keyword_make_shortcut_dropdown {
+  flex-shrink: 0;
+  width: 94px;
+  height: 32px;
+
+  .basic_text_dropdown_list {
+    .basic_text_dropdown_button {
+      position: relative;
+
+      .dropdown_value {
+        display: inline-block;
+        line-height: 1;
+        padding: 4px 6px;
+        margin-left: 46px;
+        border-radius: 5px;
+        background-color: $tag110;
+        
+        &::before {
+          content: 'Ctrl';
+          position: absolute;
+          top: 50%;
+          left: 8px;
+          transform: translateY(-50%);
+          line-height: 1;
+          padding: 4px 6px;
+          border-radius: 5px;
+          background-color: $tag110;
+        } 
+        &::after {
+          content: '+';
+          position: absolute;
+          top: 50%;
+          left: 8px;
+          margin-left: 36px;
+          transform: translateY(-50%);
+          line-height: 1;
+        } 
+      }
+    }
+    &:last-child {
+      .dropdown_value {
+        padding: 0;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
 /* 1. 테이블 탑 섹션 */
 .advise_keyword_table_top_section {
   flex-shrink: 0;
@@ -24,7 +132,7 @@
   gap: 6px;
 }
 
-/* 1-1. 상담 키워드 만들기 모달  */
+/* 1-1. 상담 키워드 만들기 버튼 | 모달  */
 .make_advise_keyword_button_box {
   flex-shrink: 0;
 }
@@ -41,14 +149,331 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 40px;
+}
+.make_advise_keyword_modal_head {
+  margin-bottom: 30px;
+}
+.make_advise_keyword_modal_title {
+  font-size: 18px;
+  font-weight: $bold;
+  line-height: 1;
+  color: $grey080;
+}
+.make_advise_keyword_modal_subtitle {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey080;
+  margin-bottom: 10px;
 }
 
-/* 1-2. 엑셀 템플릿 모달 */
+.advise_keyword_text_field_box {
+  @include flexSpace();
+  gap: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.advise_keyword_text_field {
+  flex-grow: 1;
+  width: 100%;
+  height: 32px;
+
+  &::after {
+    content: '/';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: fit-content;
+    height: 32px;
+    line-height: 32px;
+    z-index: 10;
+  }
+
+  .outline_text_field {
+    padding: 0 0 0 6px;
+  }
+}
+.advise_keyword_make_shortcut_dropdown {
+  flex-shrink: 0;
+  width: 94px;
+  height: 32px;
+
+  .basic_text_dropdown_list {
+    .basic_text_dropdown_button {
+      position: relative;
+
+      .dropdown_value {
+        display: inline-block;
+        line-height: 1;
+        padding: 4px 6px;
+        margin-left: 46px;
+        border-radius: 5px;
+        background-color: $tag110;
+        
+        &::before {
+          content: 'Ctrl';
+          position: absolute;
+          top: 50%;
+          left: 8px;
+          transform: translateY(-50%);
+          line-height: 1;
+          padding: 4px 6px;
+          border-radius: 5px;
+          background-color: $tag110;
+        } 
+        &::after {
+          content: '+';
+          position: absolute;
+          top: 50%;
+          left: 8px;
+          margin-left: 36px;
+          transform: translateY(-50%);
+          line-height: 1;
+        } 
+      }
+    }
+    &:last-child {
+      .dropdown_value {
+        padding: 0;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.make_advise_keyword_text_editor_box {
+  margin-bottom: 22px;
+}
+
+/* 1-2. 엑셀 템플릿 드롭다운 | 모달 */
+/* 1-2-1. 엑셀 템플릿 업로드 모달 */
+.upload_advise_keyword_exel_template_download_button_box {
+  margin-bottom: 20px;
+
+  .button_contents {
+    @include flexStart();
+
+    .icon_exel_template {
+      margin-right: 4px;
+    }
+  }
+}
+.exel_template_download_button_description {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: $medium;
+  color: $grey080;
+  margin-bottom: 16px;
+}
+.upload_advise_keyword_add_file_area {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 12px;
+}
+/* 파일 선택 전 */
+.upload_advise_keyword_add_file_standby {
+  @include flexCenter();
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: $white;
+  border: 1px dashed $grey020;
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey080;
+
+  .file_add_icon_box {
+    @include flexCenter();
+    margin-right: 8px;
+  }
+  
+  .upload_advise_keyword_add_file_link {
+    margin-left: 4px;
+    color: $brickblue090;
+    font-weight: $medium;
+    text-decoration: underline;
+  }
+  
+  &:hover {
+    background-color: $grey000;
+  }
+}
+
+/* 파일 선택 후 */
+.upload_advise_keyword_add_file_template_outline_box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+
+  &.error {
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: -3px;
+      bottom: -3px;
+      left: -3px;
+      right: -3px;
+      border-radius: 10px;
+      background-color: #D32F2F33;
+    }
+    .upload_advise_keyword_add_file_template {
+      border: 1px solid $red100;
+    }
+
+  }
+}
+
+.upload_advise_keyword_add_file_template {
+  @include flexSpace();
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: $grey005;
+  position: relative;
+  z-index: 3;
+}
+
+.attachment_fileupload_file_contents {
+  @include flexSpace();
+  gap: 6px;
+}
+
+.add_file_template_thumnail_box {
+  flex-shrink: 0;
+  @include flexCenter();
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: $white;
+
+  .icon_file_extension_xlsx {
+    transform: scale(1.3);
+  }
+}
+
+.add_file_template_contents {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .add_file_template_title {
+    @include ellipsisOneLine();
+    width: 100%;
+    max-width: 350px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: $semi-bold;
+    color: $grey080;
+  }
+  
+  .add_file_template_text {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: $regular;
+    color: $grey100;
+    .add_file_template_unit {
+      display: none;
+      &.show {
+        display: inline-block;
+      }
+    }
+    .add_file_template_error_text {
+      display: none;
+      color: $red100;
+      &.show {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.add_file_template_delete_button {
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+
+  .delete_circle_button {
+    background-color: $grey030;
+    
+    &:hover {
+      background-color: $grey080;
+    }
+  }
+}
+
+.upload_advise_keyword_warning_box {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #FFF6F4;
+  border: 1px solid #F2483A29;
+  font-size: 13px;
+  line-height: 21px;
+  font-weight: $regular;
+  color: $grey080;
+  margin-bottom: 20px;
+}
+.upload_advise_keyword_warning_icon_box {
+  @include flexCenter();
+  width: 18px;
+  height: 20px;
+}
+.warning_title {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $red100;
+  margin-bottom: 6px;
+}
+.warning_emphasis {
+  color: $red100;
+}
+
+/* 1-2-2. 엑셀 템플릿 다운로드 모달 */
+/* 1-2-3. 엑셀 템플릿 드롭다운 */
 .exel_template_dropdown_container {
   flex-shrink: 0;
   width: 130px;
+  position: relative;
+
+  .dropdown_menu {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    transform: translateY(100%);
+
+    .dropdown_lists {
+      padding: 4px;
+      .dropdown_button {
+        padding: 6px;
+      }
+    }
+  }
 }
+
+// position: relative;
+//   margin-left: 24px;
+
+//   .dropdown_menu {
+//     width: 175px;
+//     position: absolute;
+//     top: 44px;
+//     right: 0;
+//     z-index: 1000;
+
+//     .dropdown_lists {
+//       gap: 4px;
+//       padding: 10px;
+//     }
+//   }
 
 /* 1-3. 검색 결과 */
 .advise_keyword_table_top_search_box {
@@ -57,26 +482,39 @@
 }
 
 .search_result_text_box {
+  display: none;
   font-size: 14px;
   font-weight: $regular;
   color: $grey080;
   margin-right: 4px;
+
+  &.show {
+    display: block;
+  }
+
+  .search_result_count {
+    font-weight: $semi-bold;
+    color: $green050;
+  }
 }
 
-.search_result_count {
-  font-weight: $semi-bold;
-  color: $green050;
-}
 
 /* 1-4. 검색 드롭다운 | 텍스트 필드 */
-.advise_keyword_dropdown_container {
+.advise_keyword_search_dropdown_container {
   width: 118px;
+
+  .basic_text_dropdown_menu {
+    padding: 4px;
+
+    .basic_text_dropdown_list {
+      width: 100%;
+    }
+  }
 }
 
 .advise_keyword_search_text_field {
   height: 32px;
 }
-
 
 
 /* 2. 테이블 섹션 */
@@ -112,6 +550,7 @@
   grid-template-columns: 80px 350px 660px 200px 200px 86px;
   grid-auto-rows: 50px;
   border-collapse: collapse;
+  position: relative;
   
   .table_head,
   .table_body,
@@ -150,7 +589,7 @@
       }
     }
   }
-  td {
+  [data-table] {
     @include flexSpace();
     @include hoverTransition();
     padding: 0 16px;
@@ -182,7 +621,7 @@
 }
 
 
-/* 2-1. 테이블 - 열 */
+/* 2-1. 테이블 - 헤드 */
 .table_head {
   height: 44px;
 }
@@ -208,7 +647,26 @@
 }
 
 
-/* 2-2. 테이블 - 행 */
+/* 2-2. 테이블 - 바디 */
+/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
+.advise_keyword_no_data_found {
+  flex-grow: 1;
+  @include flexCenter();
+  // grid-row-start: 2;
+  // grid-row-end: 12;
+  // grid-column-start: 1;
+  // grid-column-end: 7;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  [data-table] {
+    border-bottom: 0;
+  }
+}
+
+/* 2-2-2. 상담 키워드 로우 데이터 */
 .row_edit_button {
   display: none;
   width: fit-content;
@@ -231,11 +689,32 @@
   }
 }
 
+/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
+.detail_customer_order_no_data_found_box {
+  flex-grow: 1;
+  @include flexCenter();
+  margin: 0 24px 24px;
+  border-radius: 8px;
+  border: $grey020-border;
+}
+
 
 /* 3. 테이블 바텀 섹션 */
 .advise_keyword_bottom_section {
   flex-shrink: 0;
   @include flexCenter();
   width: 100%;
-  margin-top: 5.2vh;
+  margin-top: 7vh;
 }
+
+
+
+/* 1510 지원을 위한 미디어쿼리 */
+// @media only screen and (max-width: 1540px) {
+//   .advise_keyword_no_data_found {
+//     // grid-row-start: 2;
+//     // grid-row-end: 12;
+//     // grid-column-start: 1;
+//     // grid-column-end: 4;
+//   }
+// }

@@ -13,7 +13,7 @@ const DropdownMenu = ({ showDropdownMenu, dropdownMenuData }) => {
           return (
             <li className="dropdown_list" key={item.value}>
               <button type="button" className="dropdown_button" onClick={item.handleClick}>
-                {item.value}
+                <span className="dropdown_value">{item.value}</span>
               </button>
             </li>
           );

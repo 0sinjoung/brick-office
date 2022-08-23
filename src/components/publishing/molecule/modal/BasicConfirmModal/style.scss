@@ -40,8 +40,10 @@
 
 .basic_confirm_modal_contents_description {
   font-size: 16px;
+  line-height: 24px;
   font-weight: $medium;
   color: $grey050;
+  white-space: pre-line;
 }
 
 .basic_confirm_modal_buttons_box {

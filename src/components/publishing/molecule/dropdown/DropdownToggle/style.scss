@@ -1,0 +1,47 @@
+@import "/src/styles/_variables.scss";
+
+.basic_text_dropdown {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown_toggle {
+  flex-grow: 1;
+  @include flexSpace();
+  width: 100%;
+  height: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: $grey020-border;
+  background-color: $white;
+  z-index: 10;
+  cursor: pointer;
+
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey005;
+  }
+
+  .dropdown_toggle_text {
+    @include flexCenter();
+    gap: 4px;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: $medium;
+    color: $grey080;
+  }
+  
+  .dropdown_toggle_arrow {
+    flex-shrink: 0;
+    @include flexCenter();
+  
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+

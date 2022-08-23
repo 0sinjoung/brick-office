@@ -16,6 +16,7 @@ const BasicTextDropdown = ({ defaultToggleText, dropdownMenuData, handleClickMen
 
   const handleSelectItem = e => {
     const currentSelectedItemValue = e.target.value;
+    console.log(currentSelectedItemValue);
     const newData = [...currentSelectBoxData];
     newData.forEach(item => {
       item.isSelect = false;
@@ -62,7 +63,7 @@ const BasicTextDropdown = ({ defaultToggleText, dropdownMenuData, handleClickMen
             return (
               <li className="basic_text_dropdown_list" key={item.value}>
                 <button type="button" value={item.value} className="basic_text_dropdown_button" onClick={handleSelectItem}>
-                  {item.text ? item.text : item.value}
+                  {item.value}
                 </button>
               </li>
             );
