@@ -7,6 +7,7 @@ import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpl
 import { ReactComponent as IconExelTemplate } from 'assets/svg/icon/fileUpload/icon_exel_template.svg'
 import { ReactComponent as IconFileAdd } from 'assets/svg/icon/fileUpload/icon_file_add.svg'
 import { ReactComponent as IconTriangleWarning } from 'assets/svg/icon/icon_triangle_warning.svg'
+import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import KeyboardShortcutChip from 'components/publishing/atom/chip/KeyboardShortcutChip';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
@@ -43,20 +44,16 @@ const KMS = ({ children }) => {
   const refMakeKMSTitleTextField = useRef(null);
   const [isShowMakeAdviseKeywordModal, setIsShowMakeAdviseKeywordModal] = useState(false);
   const [isDimMakeAdviseKeywordButton, setIsDimMakeAdviseKeywordButton] = useState(true);
-  const [isShowAdviseKeywordDropdown, setIsShowAdviseKeywordDropdown] = useState(false);
-  const adviseKeywordShortcutDropdownData = [
-    { value: '0', isSelect: false },
-    { value: '1', isSelect: false },
-    { value: '2', isSelect: false },
-    { value: '3', isSelect: false },
-    { value: '4', isSelect: false },
-    { value: '5', isSelect: false },
-    { value: '6', isSelect: false },
-    { value: '7', isSelect: false },
-    { value: '8', isSelect: false },
-    { value: '9', isSelect: false },
-    { value: '단축키 없음', isSelect: false },
+  const [isShowAddKMSCategoryTextField, setIsShowAddKMSCategoryTextField] = useState(false);
+  const KMSCategoryDropdownData = [
+    { value: '카테고리 없음', isSelect: true },
   ];
+  const handleClickKMSCategoryDropdownMenuItem = value => {
+    console.log(value, '선택됨');
+  };
+  const handleShowCategoryAddTextField = () => {
+    setIsShowAddKMSCategoryTextField(true);
+  }
 
   const handleShowMakeAdviseKeywordModal = () => {
     console.log('상담 키워드 만들기 모달 show');
@@ -70,8 +67,106 @@ const KMS = ({ children }) => {
     console.log('상담 키워드 만들기!');
     handleHideMakeAdviseKeywordModal();
   }
+
+  /* KMS 지식 만들기 - 카테고리 추가 text field */
+  const refAddKMSCategryTextField = useRef(null);
+  const [outlineStyle, setOutlineStyle] = useState('');
+  const [showTextFieldDeleteButton, setShowTextFieldDeleteButton] = useState('');
+  const [searchButtonStyle, setSearchButtonStyle] = useState('');
+
+  const handleKeyUpAddKMSCategoryTextField = e => {
+    const { value } = e.target;
+    setOutlineStyle('focus');
+
+    if (value) {
+      setShowTextFieldDeleteButton('show');
+      setSearchButtonStyle('active');
+    } else {
+      setShowTextFieldDeleteButton('');
+      setSearchButtonStyle('focus');
+    }
+  };
+
+  const handleDeleteAddKMSCategoryTextField = () => {
+    refAddKMSCategryTextField.current.value = '';
+    refAddKMSCategryTextField.current.focus();
+    setShowTextFieldDeleteButton('');
+    setOutlineStyle('focus');
+    setSearchButtonStyle('focus');
+  };
+
+  const handleFocusAddKMSCategoryTextField = e => {
+    const { value } = e.target;
+    setOutlineStyle('focus');
+    setSearchButtonStyle('focus');
+
+    if (value) {
+      setShowTextFieldDeleteButton('show');
+      setSearchButtonStyle('active');
+    }
+  };
+
+  const handleBlurAddKMSCategoryTextField = () => {
+    setShowTextFieldDeleteButton('');
+    setSearchButtonStyle('');
+    setOutlineStyle('');
+  };
+  
+  const handleAddKMSCategory = () => {
+    console.log('KMS 카테고리 추가'); 
+  };
+  const handleCancleAddCategory = () => {
+    setIsShowAddKMSCategoryTextField(false);
+  };
+
   
   /* 1-1-2. KMS 지식 만들기 모달 컴포넌트 */
+  const displayAddKMSCategory = () => {
+    if (isShowAddKMSCategoryTextField) {
+      return (
+        <div className="make_KMS_category_text_field_box">
+          <div className={`outline_search_text_field_border_box ${outlineStyle}`}>
+            <div className="outline_search_text_field_box">
+              <input
+                type="text"
+                name="outline_search_text_field"
+                className="outline_search_text_field"
+                ref={refAddKMSCategryTextField}
+                placeholder="카테고리를 입력해주세요.(공백 불가 10자 이하)"
+                onKeyUp={handleKeyUpAddKMSCategoryTextField}
+                onFocus={handleFocusAddKMSCategoryTextField}
+                onBlur={handleBlurAddKMSCategoryTextField}
+                spellCheck="false"
+                autoComplete="off"
+              />
+              <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleDeleteAddKMSCategoryTextField}>
+                <IconCrossTiny />
+              </button>
+              <button type="button" className={`text_field_search_action_button ${searchButtonStyle}`} onClick={handleAddKMSCategory}>
+                추가
+              </button>
+              <button type="button" className="add_KMS_category_cancle_button" onClick={handleCancleAddCategory}>
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="make_KMS_category_dropdown_box">
+        <BasicTextDropdown
+          defaultToggleText="카테고리 선택"
+          dropdownMenuData={KMSCategoryDropdownData}
+          handleClickMenuItem={handleClickKMSCategoryDropdownMenuItem}
+        />
+        <div className="make_KMS_category_add_button">
+          <OutlineButton buttonClassName="small" handleClick={handleShowCategoryAddTextField}>카테고리 추가</OutlineButton>
+        </div>
+      </div>
+    );
+  };
   const displayMakeKMSModal = () => {
     return (
       <FullScreenDim>
@@ -81,39 +176,9 @@ const KMS = ({ children }) => {
               <h3 className="make_KMS_modal_title">KMS 지식 만들기</h3>
             </div>
           </div>
-          <div className="make_KMS_category_text_field_box">
+          <div className="make_KMS_category_box">
             <h4 className="make_KMS_modal_subtitle">카테고리</h4>
-            <div className="make_KMS_category_dropdown_box">
-              <BasicTextDropdown></BasicTextDropdown>
-            </div>
-            <div className="make_KMS_category_text_field_box"></div>
-            {/* <div className="KMS_text_field_box">
-              <div className="KMS_text_field">
-                <ValidationTextField
-                placeholderText="상담 키워드를 작성해 주세요.(공백 불가 10자 이하)"
-                validationErrorText="글자, 숫자, 하이픈( - ) 및 언더바 ( _ )만 입력할 수 있습니다."
-                ref={refMakeAdviseKeywordTextField}
-                />
-              </div>
-              <div className="KMS_make_shortcut_dropdown">
-                <DropdownToggle isOpenDropdown={isShowAdviseKeywordDropdown} setIsOpenDropdown={setIsShowAdviseKeywordDropdown}>
-                  단축키
-                </DropdownToggle>
-                <div className={`dropdown_menu ${isShowAdviseKeywordDropdown ? 'show' : ''}`}>
-                  <ul className="dropdown_lists">
-                    {adviseKeywordShortcutDropdownData.map(item => {
-                      return (
-                        <li className="dropdown_list" key={item.value}>
-                          <button type="button" className="dropdown_button" onClick={item.handleClick}>
-                            <KeyboardShortcutChip>{item.value}</KeyboardShortcutChip>
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </div> */}
+            {displayAddKMSCategory()}
           </div>
           <div className="make_KMS_title_text_field_box">
             <h4 className="make_KMS_modal_subtitle">제목</h4>
@@ -286,14 +351,15 @@ const KMS = ({ children }) => {
   const handleClickDropdownMenuItem = menuItem => {
     console.log(menuItem, '클릭됨!');
   };
-  const refAdviseKeywordSearchTextField = React.createRef();
-  const handleSearchAdviseKeywordTable = () => {
-    console.log('상담 키워드 테이블 검색');
+  const refKMSSearchTextField = React.createRef();
+  const handleSearchKMSTable = () => {
+    console.log('KMS 테이블 검색');
   };
-  const adviseKeywordTableSearchData = [
+  const KMSTableSearchData = [
     { value: '전체', isSelect: true },
-    { value: '상담 키워드', isSelect: false },
-    { value: '자동 완성 문장', isSelect: false },
+    { value: '카테고리', isSelect: false },
+    { value: '제목', isSelect: false },
+    { value: '내용', isSelect: false },
   ];
 
   /* 2. 테이블 메인 섹션 */
@@ -312,85 +378,85 @@ const KMS = ({ children }) => {
   ];
   
   /* 2-2. 테이블 - 바디 */
-  const [adviseKeywordData, setAdviseKeywordData] = useState([
+  const [KMSKnowledgeData, setKMSKnowledgeData] = useState([
     {
-      adviseKeywordText: '/일이삼사오육칠팔구십',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
       
     },
     {
-      adviseKeywordText: '/상담키워드는',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '1',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/열글자까지',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '2',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/띄어쓰기불가',
-      autoComplateText: '온라인 주문 시 신용카드 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '3',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/샘플1',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '4',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/샘플2',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '5',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/샘플3',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '6',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/샘플4',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '7',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/샘플5',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '8',
+      KMSCategoryText: '회원정보',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
     {
-      adviseKeywordText: '/샘플6',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '9',
+      KMSCategoryText: '',
+      KMSTitle: '탈퇴는 어떻게 하나요?',
+      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
       lastUpdateDate: '2022.08.02',
       isSettingButtonSelected: false,
     },
   ]);
   
   const handleToggleEditDropdownMenu = idx => {
-    const currentAdviseKeywordData = [...adviseKeywordData];
+    const currentAdviseKeywordData = [...KMSKnowledgeData];
     currentAdviseKeywordData.map(item => item.isSettingButtonSelected = false);
     currentAdviseKeywordData[idx].isSettingButtonSelected = true;
-    setAdviseKeywordData(currentAdviseKeywordData);
+    setKMSKnowledgeData(currentAdviseKeywordData);
   };
   
   const ROW_DATA_COUNT = 5;
@@ -409,20 +475,21 @@ const KMS = ({ children }) => {
 
     /* 2-2-2. 상담 키워드 로우 데이터 */
     return (
-      adviseKeywordData.map((item, idx) => {
+      KMSKnowledgeData.map((item, idx) => {
         return (
-          <tr className="table_row" key={item.adviseKeywordText}>
+          <tr className="table_row" key={`${item.KMSCategoryText}_${idx}`}>
             <td data-table>{idx + 1}</td>
             <td data-table>
-              <span>{item.adviseKeywordText}</span>
+              {item.KMSCategoryText === '' ? '-' : item.KMSCategoryText}
+            </td>
+            <td data-table>
+              <span>{item.KMSTitle}</span>
               <button type='button' className="row_edit_button" onClick={() => handleShowEditAdviseKeywordModal(idx)}>
                 <IconEdit />
                 수정
               </button>
             </td>
-            <td data-table data-type="ellipsis">{item.autoComplateText}</td>
-            <td data-table>
-              <KeyboardShortcutChip>{item.adviseKeywordShorcutKey}</KeyboardShortcutChip>
+            <td data-table data-type="ellipsis">{item.KMSContents}
             </td>
             <td data-table>{item.lastUpdateDate}</td>
             <td data-table data-type="edit">
@@ -467,7 +534,7 @@ const KMS = ({ children }) => {
   const handleDeleteRowData = () => {
     console.log('row data 삭제!');
     handleCloseDeleteRowDataConfirmModal();
-    setToastMessageData({ ...toastMessageData, isShow: true, message: '상담 키워드를 삭제했어요.' });
+    setToastMessageData({ ...toastMessageData, isShow: true, message: 'KMS 지식을 삭제했어요.' });
     setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
   };
   
@@ -570,14 +637,14 @@ const KMS = ({ children }) => {
               {/* 1-4. 검색 드롭다운 | 텍스트 필드 */}
               <div className="KMS_search_dropdown_container">
                 <BasicTextDropdown defaultToggleText="전체"
-                  dropdownMenuData={adviseKeywordTableSearchData}
+                  dropdownMenuData={KMSTableSearchData}
                   handleClickMenuItem={handleClickDropdownMenuItem}></BasicTextDropdown>
               </div>
               <div className="KMS_search_text_field">
                 <OutlineSearchTextField
-                  ref={refAdviseKeywordSearchTextField}
+                  ref={refKMSSearchTextField}
                   placeholderText="입력해 주세요."
-                  handleClickSearchButton={handleSearchAdviseKeywordTable}
+                  handleClickSearchButton={handleSearchKMSTable}
                 />
               </div>
             </div>
@@ -591,14 +658,17 @@ const KMS = ({ children }) => {
                   <tr className="table_row">
                     <th className="table_header" data-type="numeric">NO</th>
                     <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadAdivseKeywordDropdown} setIsOpenDropdown={setIsShowTableHeadAdivseKeywordDropdown}>상담 키워드</DropdownToggle>
+                      <DropdownToggle isOpenDropdown={isShowTableHeadAdivseKeywordDropdown} setIsOpenDropdown={setIsShowTableHeadAdivseKeywordDropdown}>카테고리</DropdownToggle>
                       <DropdownMenu showDropdownMenu={isShowTableHeadAdivseKeywordDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header dropdown" data-type="text-long">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadAutoComplateSentenceDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>자동 완성 문장</DropdownToggle>
+                      <DropdownToggle isOpenDropdown={isShowTableHeadAutoComplateSentenceDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>제목</DropdownToggle>
                       <DropdownMenu showDropdownMenu={isShowTableHeadAutoComplateSentenceDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
-                    <th className="table_header" data-type="text-short">단축키</th>
+                    <th className="table_header dropdown" data-type="text-short">
+                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>내용</DropdownToggle>
+                      <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                    </th>
                     <th className="table_header dropdown" data-type="text-short">
                       <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 수정 날짜</DropdownToggle>
                       <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
@@ -614,11 +684,11 @@ const KMS = ({ children }) => {
               {/* {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''} */}
               <BasicConfirmModal
                 showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
-                titleText="상담 키워드를 삭제할까요?"
+                titleText="KMS 지식을 삭제할까요?"
                 actionButtonText="삭제하기"
                 handleAction={handleDeleteRowData}
                 handleClose={handleCloseDeleteRowDataConfirmModal}
-              >삭제한 상담 키워드는 복원되지 않습니다.
+              >삭제한 KMS 지식은 복원되지 않습니다.
               </BasicConfirmModal>
             </div>
           </section>
