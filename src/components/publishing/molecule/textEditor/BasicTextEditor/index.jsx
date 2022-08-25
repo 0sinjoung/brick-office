@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import { ReactComponent as IconTextBold } from 'assets/svg/icon/textEditor/icon_text_bold.svg';
 import { ReactComponent as IconTextItalic } from 'assets/svg/icon/textEditor/icon_text_italic.svg';
@@ -40,38 +40,36 @@ class Counter {
 Quill.register('modules/counter', Counter);
 
 const CustomBasicToolbar = () => {
+  const handleCustomEmoji = () => {
+    console.log('open custom emoji pannel');
+  };
+
   return (
     <div className="custom_basic_toolbar">
       <div className="custom_basic_toolbar_buttons_box">
         <div className="custom_basic_toolbar_button_box text_bold" data-text-editor-toolbar-tooltip="text_bold">
-          <button className="ql-bold">
-            <IconTextBold />
-          </button>
+          <button type="button" className="ql-bold" />
+          <IconTextBold />
         </div>
-        <div className="custom_basic_toolbar_button_box text_bold" data-text-editor-toolbar-tooltip="text_italic">
-          <button className="ql-italic">
-            <IconTextItalic />
-          </button>
+        <div className="custom_basic_toolbar_button_box text_italic" data-text-editor-toolbar-tooltip="text_italic">
+          <button type="button" className="ql-italic" />
+          <IconTextItalic />
         </div>
-        <div className="custom_basic_toolbar_button_box text_bold" data-text-editor-toolbar-tooltip="text_underline">
-          <button className="ql-underline">
-            <IconTextUnderline />
-          </button>
+        <div className="custom_basic_toolbar_button_box text_underline" data-text-editor-toolbar-tooltip="text_underline">
+          <button type="button" className="ql-underline" />
+          <IconTextUnderline />
         </div>
-        <div className="custom_basic_toolbar_button_box text_bold" data-text-editor-toolbar-tooltip="text_color">
-          <button className="ql-color">
-            <IconTextColor />
-          </button>
+        <div className="custom_basic_toolbar_button_box text_color" data-text-editor-toolbar-tooltip="text_color">
+          <select className="ql-color" defaultValue="#161D24" />
+          <IconTextColor />
         </div>
-        <div className="custom_basic_toolbar_button_box text_bold" data-text-editor-toolbar-tooltip="text_background">
-          <button className="ql-background">
-            <IconTextBackground />
-          </button>
+        <div className="custom_basic_toolbar_button_box text_background" data-text-editor-toolbar-tooltip="text_background">
+          <select className="ql-background" defaultValue="#ffffff" />
+          <IconTextBackground />
         </div>
-        <div className="custom_basic_toolbar_button_box text_bold" data-text-editor-toolbar-tooltip="emoji">
-          <button className="ql-background">
-            <IconEmojiPannel />
-          </button>
+        <div className="custom_basic_toolbar_button_box emoji" data-text-editor-toolbar-tooltip="emoji">
+          <button type="button" className="emoji_pannel_button" onClick={handleCustomEmoji} />
+          <IconEmojiPannel />
         </div>
       </div>
       <div className="custom_basic_toolbar_text_counter" />
@@ -80,8 +78,8 @@ const CustomBasicToolbar = () => {
 };
 
 const BasicTextEditor = ({ placeholderText, ...rest }) => {
+  const refReactQuill = useRef(null);
   const [value, setValue] = useState('');
-  console.log(value);
 
   const modules = {
     toolbar: {
@@ -92,11 +90,28 @@ const BasicTextEditor = ({ placeholderText, ...rest }) => {
       unit: '/1,500자'
     }
   };
+  const formats = useMemo(
+    () => ([
+    'bold',
+    'italic',
+    'underline',
+    'color',
+    'background',
+  ]), []);
+
+  const handleClickTextArea = () => {
+    refReactQuill.current?.focus();
+  };
+  const handleKeyUpTextArea = () => {};
 
   return (
     <div className="text_editor_container">
-      <div id="text_editor_scrolling_container">
-        <ReactQuill className="basic_quill" modules={modules} theme="" placeholder={placeholderText ? placeholderText : "내용을 작성해 주세요. (공백 포함 1,500자 이하)"} onChange={setValue} value={value} scrollingContainer="#text_editor_scrolling_container"/>
+      <div className="text_editor_scrolling_container" role="button" tabIndex={0} onKeyUp={handleKeyUpTextArea} onClick={handleClickTextArea}>
+        <ReactQuill ref={(el) => {
+          if (el !== null) {
+            refReactQuill.current = el;
+          }
+        }} className="basic_quill" modules={modules} formats={formats} theme="snow" placeholder={placeholderText} onChange={setValue} value={value} scrollingContainer=".text_editor_scrolling_container"/>
       </div>
       <CustomBasicToolbar />
     </div>

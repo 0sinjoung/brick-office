@@ -2,37 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-/** 상담 분류 chip
- * @children : chip text
+/** 단축키 chip
+ * @children : number string
  */
-const AdviseFieldChip = ({ children }) => {
-  let chipStyle;
-
-  if (children === 'A/S') chipStyle = { backgroundColor: '#ECEDEF' };
-  if (children === '결제') chipStyle = { backgroundColor: '#FCEBDB' };
-  if (children === '고객 관리') chipStyle = { backgroundColor: '#D9E7FF' };
-  if (children === '교환 반품 환불') chipStyle = { backgroundColor: '#F4EFFA' };
-  if (children === '기타') chipStyle = { backgroundColor: '#E0E5EE' };
-  if (children === '배송') chipStyle = { backgroundColor: '#E1F5EA' };
-  if (children === '상품') chipStyle = { backgroundColor: '#D8F0F8' };
-  if (children === '시스템') chipStyle = { backgroundColor: '#FEECEB' };
-  if (children === '주문') chipStyle = { backgroundColor: '#EDF2FF' };
-  if (children === '프로모션') chipStyle = { backgroundColor: '#EFF8DC' };
-  if (children === '회원') chipStyle = { backgroundColor: '#FFECC9' };
+const KeyboardShortcutChip = ({ children }) => {
+  if (children === '') {
+    return (
+      <div className="keyboard_shortcut_chip">-</div>
+    )
+  } 
+  if (children === '단축키 없음') {
+    return (
+      <div className="keyboard_shortcut_chip">단축키 없음</div>
+    )
+  } 
 
   return (
-    <div className="advise_field_color_chip" style={chipStyle}>
-      #{children}
+    <div className="keyboard_shortcut_chip">
+      <span className="default_shortcut">Ctrl</span>
+      <span> + </span> 
+      <span className="default_shortcut">{children}</span>
     </div>
   );
 };
 
-AdviseFieldChip.propTypes = {
-  children: PropTypes.any,
+KeyboardShortcutChip.propTypes = {
+  children: PropTypes.string,
 };
 
-AdviseFieldChip.defaultProps = {
+KeyboardShortcutChip.defaultProps = {
   children: '',
 };
 
-export default AdviseFieldChip;
+export default KeyboardShortcutChip;

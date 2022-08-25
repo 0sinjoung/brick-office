@@ -26,11 +26,11 @@ import ValidationTextField from 'components/publishing/atom/textFields/inlineTex
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import './style.scss';
 
-/** 상담 키워드 페이지
+/** KMS 페이지
  * @children : children
  */
 
-const AdviseKeyword = ({ children }) => {
+const KMS = ({ children }) => {
   /* 0. 공통 - 토스트 메시지 */
   const [toastMessageData, setToastMessageData] = useState({
     isShow: false,
@@ -39,8 +39,8 @@ const AdviseKeyword = ({ children }) => {
   });
 
   /* 1. 테이블 탑 섹션 */
-  /* 1-1. 상담 키워드 만들기 버튼 | 모달 */
-  const refMakeAdviseKeywordTextField = useRef(null);
+  /* 1-1. KMS 지식 만들기 버튼 | 모달 */
+  const refMakeKMSTitleTextField = useRef(null);
   const [isShowMakeAdviseKeywordModal, setIsShowMakeAdviseKeywordModal] = useState(false);
   const [isDimMakeAdviseKeywordButton, setIsDimMakeAdviseKeywordButton] = useState(true);
   const [isShowAdviseKeywordDropdown, setIsShowAdviseKeywordDropdown] = useState(false);
@@ -71,27 +71,31 @@ const AdviseKeyword = ({ children }) => {
     handleHideMakeAdviseKeywordModal();
   }
   
-  /* 1-1-2. 상담 키워드 만들기 모달 컴포넌트 */
-  const displayMakeAdviseKeywordModal = () => {
+  /* 1-1-2. KMS 지식 만들기 모달 컴포넌트 */
+  const displayMakeKMSModal = () => {
     return (
       <FullScreenDim>
-        <div className="make_advise_keyword_modal_container">
-          <div className="make_advise_keyword_modal_head">
-            <div className="make_advise_keyword_modal_title_box">
-              <h3 className="make_advise_keyword_modal_title">상담 키워드 만들기</h3>
+        <div className="make_KMS_modal_container">
+          <div className="make_KMS_modal_head">
+            <div className="make_KMS_modal_title_box">
+              <h3 className="make_KMS_modal_title">KMS 지식 만들기</h3>
             </div>
           </div>
-          <div className="make_advise_keyword_text_field_box">
-            <h4 className="make_advise_keyword_modal_subtitle">상담 키워드</h4>
-            <div className="advise_keyword_text_field_box">
-              <div className="advise_keyword_text_field">
+          <div className="make_KMS_category_text_field_box">
+            <h4 className="make_KMS_modal_subtitle">카테고리</h4>
+            <div className="make_KMS_category_dropdown_box">
+              <BasicTextDropdown></BasicTextDropdown>
+            </div>
+            <div className="make_KMS_category_text_field_box"></div>
+            {/* <div className="KMS_text_field_box">
+              <div className="KMS_text_field">
                 <ValidationTextField
                 placeholderText="상담 키워드를 작성해 주세요.(공백 불가 10자 이하)"
                 validationErrorText="글자, 숫자, 하이픈( - ) 및 언더바 ( _ )만 입력할 수 있습니다."
                 ref={refMakeAdviseKeywordTextField}
                 />
               </div>
-              <div className="advise_keyword_make_shortcut_dropdown">
+              <div className="KMS_make_shortcut_dropdown">
                 <DropdownToggle isOpenDropdown={isShowAdviseKeywordDropdown} setIsOpenDropdown={setIsShowAdviseKeywordDropdown}>
                   단축키
                 </DropdownToggle>
@@ -109,12 +113,23 @@ const AdviseKeyword = ({ children }) => {
                   </ul>
                 </div>
               </div>
+            </div> */}
+          </div>
+          <div className="make_KMS_title_text_field_box">
+            <h4 className="make_KMS_modal_subtitle">제목</h4>
+            <div className="KMS_title_text_field_box">
+              <div className="KMS_title_text_field">
+                <ValidationTextField
+                placeholderText="제목을 작성해 주세요. (공백 포함 20자 이하)"
+                validationErrorText=""
+                ref={refMakeKMSTitleTextField}
+                />
+              </div>
             </div>
           </div>
-          <div className="make_advise_keyword_text_editor_box">
-            <h4 className="make_advise_keyword_modal_subtitle">자동 완성 문장</h4>
-            <BasicTextEditor placeholderText="상담 키워드를 작성해 주세요. (공백 포함 1,500자 이하)" />
-            <p className="mac_os_keyboard_shortcut_infomation">MacOS에서는 단축키 사용 시, ‘Ctrl’ key 대신 ‘Command’ key를 사용하세요.(임시)</p>
+          <div className="make_KMS_text_editor_box">
+            <h4 className="make_KMS_modal_subtitle">내용</h4>
+            <BasicTextEditor placeholderText="내용을 작성해 주세요. (공백 포함 1,500자 이하)" />
           </div>
           <div className="basic_confirm_modal_buttons_box">
             <OutlineButton handleClick={handleHideMakeAdviseKeywordModal}>취소</OutlineButton>
@@ -132,7 +147,7 @@ const AdviseKeyword = ({ children }) => {
   const [isDimUploadAdviseKeywordExelTemplateButton, setIsDimUploadAdviseKeywordExelTemplateButton] = useState(true);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const [isFileUploadError, setIsFileUploadError] = useState(true);
-  const FILE_NAME = '상담키워드 파일 파일명 길게 오는 경우 확인 파일명 길게 오는 경우 확인';
+  const FILE_NAME = '상담키워드 파일';
   const FILE_SIZE_UNIT = '10KB';
   
 
@@ -174,8 +189,8 @@ const AdviseKeyword = ({ children }) => {
   const displayAddFileArea = () => {
     if (isFileSelected) {
       return (
-        <div className={`upload_advise_keyword_add_file_template_outline_box ${isFileUploadError ? "error" : ""}`}>
-          <div className="upload_advise_keyword_add_file_template">
+        <div className={`upload_KMS_add_file_template_outline_box ${isFileUploadError ? "error" : ""}`}>
+          <div className="upload_KMS_add_file_template">
             <div className="add_file_template_thumnail_box">
               <IconFileExtensionXlsx />
             </div>
@@ -197,26 +212,25 @@ const AdviseKeyword = ({ children }) => {
     }
 
     return (
-      <div role="button" tabIndex={0} onClick={handleClickExelTemplateFileSelect}className="upload_advise_keyword_add_file_standby">
+      <div role="button" tabIndex={0} onClick={handleClickExelTemplateFileSelect}className="upload_KMS_add_file_standby">
         <div className="file_add_icon_box">
           <IconFileAdd />
         </div>
-        <p className="upload_advise_keyword_add_file_description">업로드할 파일을 여기로 끌어다 놓으세요. 또는 </p>
-        <span className="upload_advise_keyword_add_file_select_text" >파일 선택하기</span>
+        <p className="upload_KMS_add_file_description">업로드할 파일을 여기로 끌어다 놓으세요. 또는 </p>
+        <span className="upload_KMS_add_file_select_text" >파일 선택하기</span>
       </div>
     );
   }
-
   const displayExelTemplateUploadModal = () => {
     return (
       <FullScreenDim>
-        <div className="upload_advise_keyword_modal_container">
-          <div className="upload_advise_keyword_modal_head">
-            <div className="upload_advise_keyword_modal_title_box">
-              <h3 className="upload_advise_keyword_modal_title">상담 키워드 업로드하기</h3>
+        <div className="upload_KMS_modal_container">
+          <div className="upload_KMS_modal_head">
+            <div className="upload_KMS_modal_title_box">
+              <h3 className="upload_KMS_modal_title">상담 키워드 업로드하기</h3>
             </div>
           </div>
-          <div className="upload_advise_keyword_exel_template_download_button_box">
+          <div className="upload_KMS_exel_template_download_button_box">
             <p className="exel_template_download_button_description">
             대량의 상담 키워드를 한번에 업로드할 수 있어요.<br />
             아래의 엑셀 템플릿을 다운로드 받고, 템플릿에 상담 키워드를 작성해서 업로드해주세요.
@@ -226,14 +240,14 @@ const AdviseKeyword = ({ children }) => {
               엑셀 템플릿 다운로드
             </OutlineButton>
           </div>
-          <div className="upload_advise_keyword_add_file_area">
+          <div className="upload_KMS_add_file_area">
             {displayAddFileArea()}
           </div>
-          <div className="upload_advise_keyword_warning_box">
-            <div className='upload_advise_keyword_warning_icon_box'>
+          <div className="upload_KMS_warning_box">
+            <div className='upload_KMS_warning_icon_box'>
               <IconTriangleWarning />
             </div>
-            <div className="upload_advise_keyword_warning_descriptions">
+            <div className="upload_KMS_warning_descriptions">
               <h4 className='warning_title'>주의사항</h4>
               <p className="warning_emphasis">상담 키워드 업로드 시, 기존에 등록된 상담 키워드는 삭제되므로 주의해 주세요.</p>
               <p>엑셀 파일(.xls .xlsx)만 업로드할 수 있습니다.</p>
@@ -379,13 +393,13 @@ const AdviseKeyword = ({ children }) => {
     setAdviseKeywordData(currentAdviseKeywordData);
   };
   
-  const ROW_DATA_COUNT = 0;
+  const ROW_DATA_COUNT = 5;
   const displayAdviseKeywordRowData = () => {
     /* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
       return (
-        <tr className="advise_keyword_no_data_found">
-          <td data-table className="advise_keyword_no_data_found_box">
+        <tr className="KMS_no_data_found">
+          <td data-table className="KMS_no_data_found_box">
             <NoDataFound>상담 키워드를 만들어 주세요.</NoDataFound>
             {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
           </td>
@@ -462,73 +476,73 @@ const AdviseKeyword = ({ children }) => {
     { value: '삭제', isSelect: false, handleClick: handleShowDeleteRowDataConfirmModal}
   ];
 
-  const displayEditAdviseKeywordModal = () => {
-    return (
-      <FullScreenDim>
-        <div className="make_advise_keyword_modal_container">
-          <div className="make_advise_keyword_modal_head">
-            <div className="make_advise_keyword_modal_title_box">
-              <h3 className="make_advise_keyword_modal_title">상담 키워드 편집하기</h3>
-            </div>
-          </div>
-          <div className="make_advise_keyword_text_field_box">
-            <h4 className="make_advise_keyword_modal_subtitle">상담 키워드</h4>
-            <div className="advise_keyword_text_field_box">
-              <div className="advise_keyword_text_field">
-                <ValidationTextField
-                placeholderText="상담 키워드를 작성해 주세요.(공백 불가 10자 이하)"
-                validationErrorText="글자, 숫자, 하이픈( - ) 및 언더바 ( _ )만 입력할 수 있습니다."
-                ref={refMakeAdviseKeywordTextField}
-                />
-              </div>
-              <div className="advise_keyword_make_shortcut_dropdown">
-                <DropdownToggle isOpenDropdown={isShowAdviseKeywordDropdown} setIsOpenDropdown={setIsShowAdviseKeywordDropdown}>
-                  단축키
-                </DropdownToggle>
-                <div className={`dropdown_menu ${isShowAdviseKeywordDropdown ? 'show' : ''}`}>
-                  <ul className="dropdown_lists">
-                    {adviseKeywordShortcutDropdownData.map(item => {
-                      return (
-                        <li className="dropdown_list" key={item.value}>
-                          <button type="button" className="dropdown_button" onClick={item.handleClick}>
-                            <KeyboardShortcutChip>{item.value}</KeyboardShortcutChip>
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="make_advise_keyword_text_editor_box">
-            <h4 className="make_advise_keyword_modal_subtitle">자동 완성 문장</h4>
-            <BasicTextEditor placeholderText="상담 키워드를 작성해 주세요. (공백 포함 1,500자 이하)" />
-            {/* 아래 문구 MacOS 에서만 표시 */}
-            <p className="mac_os_keyboard_shortcut_infomation">MacOS에서는 단축키 사용 시, ‘Ctrl’ key 대신 ‘Command’ key를 사용하세요.</p>
-          </div>
-          <div className="basic_confirm_modal_buttons_box">
-            <OutlineButton handleClick={handleHideEditAdviseKeywordModal}>취소</OutlineButton>
-            <SolidButton handleClick={handleEditAdviseKeyword}>편집하기</SolidButton>
-          </div>
-        </div>
-      </FullScreenDim>
-    );
-  };
+  // const displayEditAdviseKeywordModal = () => {
+  //   return (
+  //     <FullScreenDim>
+  //       <div className="make_KMS_modal_container">
+  //         <div className="make_KMS_modal_head">
+  //           <div className="make_KMS_modal_title_box">
+  //             <h3 className="make_KMS_modal_title">상담 키워드 편집하기</h3>
+  //           </div>
+  //         </div>
+  //         <div className="make_KMS_text_field_box">
+  //           <h4 className="make_KMS_modal_subtitle">상담 키워드</h4>
+  //           <div className="KMS_text_field_box">
+  //             <div className="KMS_text_field">
+  //               <ValidationTextField
+  //               placeholderText="상담 키워드를 작성해 주세요.(공백 불가 10자 이하)"
+  //               validationErrorText="글자, 숫자, 하이픈( - ) 및 언더바 ( _ )만 입력할 수 있습니다."
+  //               ref={refMakeAdviseKeywordTextField}
+  //               />
+  //             </div>
+  //             <div className="KMS_make_shortcut_dropdown">
+  //               <DropdownToggle isOpenDropdown={isShowAdviseKeywordDropdown} setIsOpenDropdown={setIsShowAdviseKeywordDropdown}>
+  //                 단축키
+  //               </DropdownToggle>
+  //               <div className={`dropdown_menu ${isShowAdviseKeywordDropdown ? 'show' : ''}`}>
+  //                 <ul className="dropdown_lists">
+  //                   {adviseKeywordShortcutDropdownData.map(item => {
+  //                     return (
+  //                       <li className="dropdown_list" key={item.value}>
+  //                         <button type="button" className="dropdown_button" onClick={item.handleClick}>
+  //                           <KeyboardShortcutChip>{item.value}</KeyboardShortcutChip>
+  //                         </button>
+  //                       </li>
+  //                     );
+  //                   })}
+  //                 </ul>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div className="make_KMS_text_editor_box">
+  //           <h4 className="make_KMS_modal_subtitle">자동 완성 문장</h4>
+  //           <BasicTextEditor placeholderText="상담 키워드를 작성해 주세요. (공백 포함 1,500자 이하)" />
+  //           {/* 아래 문구 MacOS 에서만 표시 */}
+  //           <p className="mac_os_keyboard_shortcut_infomation">MacOS에서는 단축키 사용 시, ‘Ctrl’ key 대신 ‘Command’ key를 사용하세요.</p>
+  //         </div>
+  //         <div className="basic_confirm_modal_buttons_box">
+  //           <OutlineButton handleClick={handleHideEditAdviseKeywordModal}>취소</OutlineButton>
+  //           <SolidButton handleClick={handleEditAdviseKeyword}>편집하기</SolidButton>
+  //         </div>
+  //       </div>
+  //     </FullScreenDim>
+  //   );
+  // };
 
 
   return (
     <div className="contents_wrap">
       <main className="page_wrap full">
-        <div className="advise_keyword_section_wrap">
+        <div className="KMS_section_wrap">
           {/* 1. 테이블 탑 섹션 */}
-          <section className="advise_keyword_table_top_section">
-            <div className="advise_keyword_table_top_buttons_box">
+          <section className="KMS_table_top_section">
+            <div className="KMS_table_top_buttons_box">
               {/* 1-1. 상담 키워드 만들기 버튼 | 모달 */}
-              <div className="make_advise_keyword_button_box">
-                <SolidButton buttonClassName="small" handleClick={handleShowMakeAdviseKeywordModal}>상담 키워드 만들기</SolidButton>
+              <div className="make_KMS_button_box">
+                <SolidButton buttonClassName="small" handleClick={handleShowMakeAdviseKeywordModal}>KMS 지식 만들기</SolidButton>
                 {/* 1-1-2. 상담 키워드 만들기 모달 컴포넌트 */}
-                {isShowMakeAdviseKeywordModal ? displayMakeAdviseKeywordModal() : ''}
+                {isShowMakeAdviseKeywordModal ? displayMakeKMSModal() : ''}
               </div>
               {/* 1-2. 엑셀 템플릿 드롭다운 | 모달 */}
               <div className="exel_template_dropdown_container">
@@ -540,26 +554,26 @@ const AdviseKeyword = ({ children }) => {
                 {isExelTemplateUploadModal ? displayExelTemplateUploadModal() : ''}
                 <BasicConfirmModal
                   showModal={isExelTemplateUploadConfirmModal ? 'show' : ""}
-                  titleText="상담 키워드를 업로드할까요?"
+                  titleText="KMS 지식을 업로드할까요?"
                   actionButtonText="업로드"
                   handleAction={handleUploadAdviseKeywordFromExelTemplateFile}
                   handleClose={handleCancleConfirmModal}
-                >{'업로드 시 현재에 등록되어 있는 상담 키워드는 \n 모두 사라지고 엑셀에 등록된 내용으로 덮어씌워집니다.'}
+                >{'업로드 시 현재에 등록되어 있는 KMS 지식은 모두 사라지고\n 엑셀에 등록된 내용으로 덮어씌워집니다.'}
                 </BasicConfirmModal>
               </div>
             </div>
-            <div className="advise_keyword_table_top_search_box">
+            <div className="KMS_table_top_search_box">
               {/* 1-3. 검색 결과 */}
               <div className={`search_result_text_box ${SEARCH_RESULT_COUNT === 0 ? '' : 'show' }`}>
                 <p className="search_result_text">총 <span className="search_result_count">{`${SEARCH_RESULT_COUNT} 건`}</span>을 찾았어요.</p>
               </div>
               {/* 1-4. 검색 드롭다운 | 텍스트 필드 */}
-              <div className="advise_keyword_search_dropdown_container">
+              <div className="KMS_search_dropdown_container">
                 <BasicTextDropdown defaultToggleText="전체"
                   dropdownMenuData={adviseKeywordTableSearchData}
                   handleClickMenuItem={handleClickDropdownMenuItem}></BasicTextDropdown>
               </div>
-              <div className="advise_keyword_search_text_field">
+              <div className="KMS_search_text_field">
                 <OutlineSearchTextField
                   ref={refAdviseKeywordSearchTextField}
                   placeholderText="입력해 주세요."
@@ -569,8 +583,8 @@ const AdviseKeyword = ({ children }) => {
             </div>
           </section>
           {/* 2. 테이블 메인 섹션 */}
-          <section className="advise_keyword_table_section">
-            <div className="advise_keyword_table_wrap">
+          <section className="KMS_table_section">
+            <div className="KMS_table_wrap">
               <table className="table_container">
                 {/* 2-1. 테이블 - 헤드 */}
                 <thead className="table_head">
@@ -597,7 +611,7 @@ const AdviseKeyword = ({ children }) => {
                   {displayAdviseKeywordRowData()}
                 </tbody>
               </table>
-              {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''}
+              {/* {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''} */}
               <BasicConfirmModal
                 showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
                 titleText="상담 키워드를 삭제할까요?"
@@ -609,7 +623,7 @@ const AdviseKeyword = ({ children }) => {
             </div>
           </section>
           {/* 3. 테이블 바텀 섹션 */}
-          <section className="advise_keyword_bottom_section">
+          <section className="KMS_bottom_section">
             <Pagination pageNumber={1} />
           </section>
           <ToastMessage showToast={toastMessageData.isShow ? 'show' : ''} iconStyle={toastMessageData.icon}>
@@ -621,12 +635,12 @@ const AdviseKeyword = ({ children }) => {
   );
 };
 
-AdviseKeyword.propTypes = {
+KMS.propTypes = {
   children: PropTypes.any,
 };
 
-AdviseKeyword.defaultProps = {
+KMS.defaultProps = {
   children: '',
 };
 
-export default AdviseKeyword;
+export default KMS;

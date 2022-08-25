@@ -7,7 +7,7 @@ import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import './Header.scss';
 
 const Header = () => {
-  const MENU_TITLE = '상담 키워드';
+  const MENU_TITLE = 'KMS';
   const MY_PROFILE_AVATAR_IMG_URL = 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile2.png';
   const MY_PROFILE_NAME = '김다이';
   const MY_PROFILE_NICNAME = '꾸꾸';

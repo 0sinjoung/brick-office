@@ -1,23 +1,31 @@
 @import "/src/styles/_variables.scss";
 
-
+/* text_editor_container 외부 div에서 width 값 고정해서 사용, 기본 472px */
 .text_editor_container {
-  width: 472px;
+  // width: 472px;
+  width: 100%;
   padding: 14px 0;
+  height: fit-content;
   min-height: 188px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
   border: $grey020-border;
+  background-color: $white;
 }
 
-#text_editor_scrolling_container {
+.text_editor_scrolling_container {
+  @include scrollStyle();
   flex-grow: 1;
   height: 118px;
   padding: 0 14px;
   margin-bottom: 14px;
-  @include scrollStyle();
+  cursor: text !important;
+
+  &:focus {
+    outline: none !important;
+  }
 }
 
 .basic_quill {
@@ -56,17 +64,79 @@
 
 
 /* 텍스트 에디터 툴바 */
+/* snow style reset */
+.ql-snow {
+  &.ql-toolbar {
+    font-family: inherit;
+    padding: 0 14px;
+    border: none;
+
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      float: unset;
+      width: inherit;
+      height: inherit;
+    }
+
+    .ql-picker {
+      float: unset;
+      width: inherit;
+      height: inherit;
+
+      .ql-picker-label {
+        position: relative;
+        z-index: 3;
+        border: none;
+        padding: 0;
+
+        svg {
+          right: 0;
+        }
+      }
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .ql-bold, .ql-italic, .ql-underline, .ql-color, .ql-background, .emoji_pannel_button {
+    svg {
+      display: none;
+    }
+  }
+}
+
+.ql-container {
+  &.ql-snow {
+    border: none;
+    padding: 0;
+  }
+}
+
 .custom_basic_toolbar {
   flex-shrink: 0;
   @include flexSpace();
   align-items: flex-end;
   width: 100%;
-  padding: 0 14px;
+
+  .icon_text_bold, .icon_text_italic, .icon_text_underline, .icon_text_color, .icon_text_background, .icon_emoji_pannel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
 }
 
 .custom_basic_toolbar_buttons_box {
   @include flexStart();
   gap: 4px;
+  position: relative;
+  z-index: 1;
 }
 
 .custom_basic_toolbar_button_box {
@@ -85,6 +155,8 @@
     width: 100%;
     height: 100%;
     @include flexCenter();
+    position: relative;
+    z-index: 3;
   }
 }
 
@@ -95,7 +167,22 @@
   text-align: right;
   color: $grey030;
 }
+.ql-color {}
+.ql-picker {
+  color: #444;
+  display: inline-block;
+  float: left;
+  font-size: 14px;
+  font-weight: 500;
+  height: 24px;
+  position: relative;
+  vertical-align: middle;
 
+  .ql-picker-label {}
+  .ql-picker-options {
+    
+  }
+}
 
 
 /* 텍스트 에디터 툴바 - 버튼 툴팁 */

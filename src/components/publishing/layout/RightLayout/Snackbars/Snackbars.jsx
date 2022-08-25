@@ -7,9 +7,11 @@ const Snackbars = () => {
   return (
     <div className="snackbars">
       <div className="snackbars_wrap">
-        <FileUploadSnackbar fileUploadState="loading" fileExtension="xlsx" fileName="파일명긴경우파일명긴경우파일명긴경우파일명긴경우" />
+        {/* 파일 업로드 스낵바 */}
+        {/* <FileUploadSnackbar fileUploadState="loading" fileExtension="xlsx" fileName="파일명긴경우파일명긴경우파일명긴경우파일명긴경우" />
         <FileUploadSnackbar fileUploadState="complate" fileExtension="xlsx" fileName="상담 키워드" />
-        <FileUploadSnackbar fileUploadState="error" fileExtension="xlsx" fileName="상담 키워드" />
+        <FileUploadSnackbar fileUploadState="error" fileExtension="xlsx" fileName="상담 키워드" /> */}
+        {/* 채팅상담 스낵바 */}
         {/* <BasicSnackbar snackbarTitle="알림 타이틀1" showBrickIcon="">
           김양양양양김양양양양김양양양양김양양양양님이 상담사 변경 요청을 수락하였습니다. 스낵바 너비는 고정, 높이는 가변. 브릭 아이콘 없는 케이스 있음
         </BasicSnackbar>
