@@ -1,8 +1,0 @@
-<svg id="구성_요소_101_260" data-name="구성 요소 101 – 260" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" className="icon_edit">
-  <rect id="사각형_4086" data-name="사각형 4086" width="25" height="25" rx="5" fill="#f5f6f7" opacity="0" />
-  <g id="but-edit" transform="translate(20948.996 24571.119)">
-    <path id="패스_5047" data-name="패스 5047" d="M182.47,74.4a.392.392,0,0,0-.106.2l-.548,2.742a.387.387,0,0,0,.381.464.369.369,0,0,0,.076-.008l2.741-.548a.386.386,0,0,0,.2-.106L191.347,71l-2.741-2.741Zm0,0" transform="translate(-21124.805 -24630.918)" fill="#646f7c"/>
-    <path id="패스_5048" data-name="패스 5048" d="M395.26,1.068a1.94,1.94,0,0,0-2.741,0l-1.073,1.073,2.741,2.741,1.073-1.073a1.938,1.938,0,0,0,0-2.741Zm0,0" transform="translate(-21326.824 -24565.621)" fill="#646f7c"/>
-    <line id="선_71" data-name="선 71" x2="5" transform="translate(-20936.996 -24554.119)" fill="none" stroke="#646f7c" stroke-linecap="round" stroke-width="2px"/>
-  </g>
-</svg>
