@@ -8,10 +8,12 @@ import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
 import './style.scss';
 
 /** 파일 업로드 스낵바
- * @fileUploadState : 'loading' || 'complate' || 'error'
- * @fileExtension : 'xlsx' ...
+ * @fileName : 파일명 text
+ * @isFileUpload : true || false: download
+ * @fileState : 'loading' || 'complate' || 'error'
+ * @fileExtension : 'xlsx' 이후 상황 추가 ...
  */
-const FileUploadSnackbar = ({ fileName, fileExtension, fileUploadState }) => {
+const FileUploadSnackbar = ({ fileName, isFileUpload, fileExtension, fileState }) => {
   const [hideSnackbar, setHideSnackbar] = useState('');
   const handleCloseSnackbar = () => {
     setHideSnackbar('hide');
@@ -25,23 +27,23 @@ const FileUploadSnackbar = ({ fileName, fileExtension, fileUploadState }) => {
     }
   };
   const displaySnackbarTitle = () => {
-    if (fileUploadState === 'loading') snackbarTitleText='업로드 중입니다.';
-    if (fileUploadState === 'complate') snackbarTitleText='업로드를 완료했어요.';
-    if (fileUploadState === 'error') snackbarTitleText='업로드에 실패했어요.';
+    if (fileState === 'loading') snackbarTitleText=' 중입니다.';
+    if (fileState === 'complate') snackbarTitleText='를 완료했어요.';
+    if (fileState === 'error') snackbarTitleText='에 실패했어요.';
 
     return (
       <h5 className="file_upload_snackbar_title">
-        {snackbarTitleText}
+        {isFileUpload ? '업로드' : '다운로드'}{snackbarTitleText}
       </h5>
     )
   };
   const displayUploadingIcon = () => {
-    if (fileUploadState === 'loading') {
+    if (fileState === 'loading') {
       return (
         <div className="snackbar_upload_spinner show" />
       )
     }
-    if (fileUploadState === 'complate') {
+    if (fileState === 'complate') {
       return (
         <IconFileUploadConfirmCircle />
       )
@@ -57,14 +59,14 @@ const FileUploadSnackbar = ({ fileName, fileExtension, fileUploadState }) => {
         <div className="file_upload_snackbar_title_box">
           {displaySnackbarTitle()}
         </div>
-        <div className={`file_upload_snackbar_close_button_box ${fileUploadState === 'loading' ? 'loading' : ''}`}>
+        <div className={`file_upload_snackbar_close_button_box ${fileState === 'loading' ? 'loading' : ''}`}>
           <IconButton buttonClassName="tiny" handleClick={handleCloseSnackbar}>
             <IconCross />
           </IconButton>
         </div>
       </div>
       <div className="file_upload_snackbar_contents">
-        <div className={`file_upload_snackbar_extension_icon_box ${fileUploadState === 'loading' ? 'loading' : ''}`}>{displayExtensionIcon()}</div>
+        <div className={`file_upload_snackbar_extension_icon_box ${fileState === 'loading' ? 'loading' : ''}`}>{displayExtensionIcon()}</div>
         <div className="file_upload_snackbar_file_name">{fileName}.{fileExtension}</div>
         <div className="file_upload_snackbar_state_icon_box">
           {displayUploadingIcon()}
@@ -75,15 +77,17 @@ const FileUploadSnackbar = ({ fileName, fileExtension, fileUploadState }) => {
 };
 
 FileUploadSnackbar.propTypes = {
-  snackbarTitle: PropTypes.string,
-  showBrickIcon: PropTypes.string,
-  children: PropTypes.any,
+  fileName: PropTypes.string,
+  isFileUpload: PropTypes.bool,
+  fileState: PropTypes.string,
+  fileExtension: PropTypes.string,
 };
 
 FileUploadSnackbar.defaultProps = {
-  snackbarTitle: '',
-  showBrickIcon: '',
-  children: '',
+  fileName: '',
+  isFileUpload: true,
+  fileState: '',
+  fileExtension: '',
 };
 
 export default FileUploadSnackbar;

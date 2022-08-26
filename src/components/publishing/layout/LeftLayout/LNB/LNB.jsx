@@ -32,11 +32,11 @@ const LNB = () => {
   const LNBMenuFirstGroupListData = [
     { name: '홈', link: '/', icon: <IconLnbHome />, ariaLabel: '홈 메뉴 링크 아이콘' },
     { name: '대시보드', link: '/', icon: <IconLnbDashboard />, ariaLabel: '대시보드 메뉴 링크 아이콘' },
-    { name: '채팅 상담', link: '/chatAdvise', icon: <IconLnbChatAdvise />, ariaLabel: '채팅 상담 메뉴 링크 아이콘' },
-    { name: '챗봇 상담', link: '/chatbotAdvise', icon: <IconLnbChatbotAdvise />, ariaLabel: '챗봇 상담 메뉴 링크 아이콘' },
+    { name: '채팅 상담', link: '/brick-office/chatAdvise', icon: <IconLnbChatAdvise />, ariaLabel: '채팅 상담 메뉴 링크 아이콘' },
+    { name: '챗봇 상담', link: '/brick-office/chatbotAdvise', icon: <IconLnbChatbotAdvise />, ariaLabel: '챗봇 상담 메뉴 링크 아이콘' },
     { name: '챗봇 만들기', link: '/', icon: <IconLnbChatbotMaking />, ariaLabel: '챗봇 만들기 메뉴 링크 아이콘' },
-    { name: '상담 키워드', link: '/adviseKeyword', icon: <IconLnbAdviseKeyword />, ariaLabel: '상담 키워드 메뉴 링크 아이콘' },
-    { name: 'KMS', link: '/KMS', icon: <IconLnbKms />, ariaLabel: 'KMS 메뉴 링크 아이콘' },
+    { name: '상담 키워드', link: '/brick-office/adviseKeyword', icon: <IconLnbAdviseKeyword />, ariaLabel: '상담 키워드 메뉴 링크 아이콘' },
+    { name: 'KMS', link: '/brick-office/KMS', icon: <IconLnbKms />, ariaLabel: 'KMS 메뉴 링크 아이콘' },
     { name: '고객', link: '/', icon: <IconLnbCustomer />, ariaLabel: '고객 메뉴 링크 아이콘' },
   ];
   const LNBMenuSecondGroupListData = [

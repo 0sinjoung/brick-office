@@ -123,6 +123,13 @@
 /* 1-1. KMS 지식 만들기 버튼 | 모달  */
 .make_KMS_button_box {
   flex-shrink: 0;
+  
+  /* 1-1-3. KMS 만들기 초과 확인 모달  */
+  .basic_confirm_modal_buttons_box {
+    .outline_button {
+      display: none;
+    }
+  }
 }
 
 .make_KMS_modal_container {
@@ -497,8 +504,10 @@
 .KMS_table_section {
   width: 100%;
   min-height: 552px;
+  position: relative;
 }
 .KMS_table_wrap {
+  width: 100%;
   max-height: 552px;
   margin-top: 16px;
   overflow-y: hidden;
@@ -507,35 +516,26 @@
   scrollbar-width: thin;
   scrollbar-color: $grey030;
   background-color: $white;
-  
-  &:hover {
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-    }
-  }
+  border: $grey020-border;
+  border-radius: 10px;
 
   &::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
     background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
     background: $grey030;
     background-clip: padding-box;
     border: 2px solid transparent;
-    border-radius: 3px;
+    border-radius: 5px;
   }
-  border: $grey020-border;
-  border-radius: 10px;
 }
 
 .table_container {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 80px 200px 400px 612px 200px 86px;
+  grid-template-columns: 79px 200px 400px 612px 200px 86px;
   grid-auto-rows: 50px;
   border-collapse: collapse;
   position: relative;

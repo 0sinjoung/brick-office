@@ -265,7 +265,7 @@ const AdviseKeyword = ({ children }) => {
 
   /* 1-3. 검색 결과 */
   // 0건이면 아예 표시하지 않음(공통UI 참조, SEARCH_RESULT_COUNT=0이면 사라짐)
-  const SEARCH_RESULT_COUNT = 5; 
+  const SEARCH_RESULT_COUNT = 0; 
 
   /* 1-4. 검색 드롭다운 | 텍스트 필드 */
   /* 1-4-1. 검색 드롭다운 */
@@ -387,7 +387,10 @@ const AdviseKeyword = ({ children }) => {
         <tr className="advise_keyword_no_data_found">
           <td data-table className="advise_keyword_no_data_found_box">
             <NoDataFound>상담 키워드를 만들어 주세요.</NoDataFound>
-            {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
+              {/* <NoDataFound>
+              앗! 검색 결과가 없어요. <br />
+              다른 검색어를 입력해 주세요.
+              </NoDataFound> */}
           </td>
         </tr>
       );

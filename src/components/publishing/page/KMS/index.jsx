@@ -41,9 +41,16 @@ const KMS = ({ children }) => {
 
   /* 1. 테이블 탑 섹션 */
   /* 1-1. KMS 지식 만들기 버튼 | 모달 */
+  /* 1-1-3. KMS 만들기 초과 확인 모달 */
+  const [isShowMakeAboveKMSConfirmModal, setIsShowMakeAboveKMSConfirmModal] = useState(false);
+  const handleCancleMakeAboveKMSConfirmModal = () => {
+    setIsShowMakeAboveKMSConfirmModal(false);
+  };
+  
+  /* 1-1-2. KMS 만들기 모달 */
   const refMakeKMSTitleTextField = useRef(null);
-  const [isShowMakeAdviseKeywordModal, setIsShowMakeAdviseKeywordModal] = useState(false);
-  const [isDimMakeAdviseKeywordButton, setIsDimMakeAdviseKeywordButton] = useState(true);
+  const [isShowMakeKMSModal, setIsShowMakeKMSModal] = useState(false);
+  const [isDimMakeKMSButton, setIsDimMakeKMSButton] = useState(true);
   const [isShowAddKMSCategoryTextField, setIsShowAddKMSCategoryTextField] = useState(false);
   const KMSCategoryDropdownData = [
     { value: '카테고리 없음', isSelect: true },
@@ -55,17 +62,23 @@ const KMS = ({ children }) => {
     setIsShowAddKMSCategoryTextField(true);
   }
 
-  const handleShowMakeAdviseKeywordModal = () => {
-    console.log('상담 키워드 만들기 모달 show');
-    setIsShowMakeAdviseKeywordModal(true);
+  const CURRENT_ROW_DATA_COUNT = 100;
+  const handleShowMakeKMSModal = () => {
+    console.log('KMS 만들기 모달 show');
+    if (CURRENT_ROW_DATA_COUNT >= 100) {
+      setIsShowMakeAboveKMSConfirmModal(true);
+      setIsShowMakeKMSModal(false);
+      return;
+    }
+    setIsShowMakeKMSModal(true);
   };
-  const handleHideMakeAdviseKeywordModal = () => {
-    console.log('상담 키워드 만들기 모달 hide');
-    setIsShowMakeAdviseKeywordModal(false);
+  const handleHideMakeKMSModal = () => {
+    console.log('KMS 만들기 모달 hide');
+    setIsShowMakeKMSModal(false);
   };
-  const handleMakeAdviseKeyword = () => {
-    console.log('상담 키워드 만들기!');
-    handleHideMakeAdviseKeywordModal();
+  const handleMakeKMS = () => {
+    console.log('KMS 만들기!');
+    handleHideMakeKMSModal();
   }
 
   /* KMS 지식 만들기 - 카테고리 추가 text field */
@@ -197,8 +210,8 @@ const KMS = ({ children }) => {
             <BasicTextEditor placeholderText="내용을 작성해 주세요. (공백 포함 1,500자 이하)" />
           </div>
           <div className="basic_confirm_modal_buttons_box">
-            <OutlineButton handleClick={handleHideMakeAdviseKeywordModal}>취소</OutlineButton>
-            <SolidButton handleClick={handleMakeAdviseKeyword} isDim={isDimMakeAdviseKeywordButton}>만들기</SolidButton>
+            <OutlineButton handleClick={handleHideMakeKMSModal}>취소</OutlineButton>
+            <SolidButton handleClick={handleMakeKMS} isDim={isDimMakeKMSButton}>만들기</SolidButton>
           </div>
         </div>
       </FullScreenDim>
@@ -209,10 +222,10 @@ const KMS = ({ children }) => {
   /* 1-2-1. 엑셀 업로드 */
   const [isExelTemplateUploadModal, setIsExelTemplateUploadModal] = useState(false);
   const [isExelTemplateUploadConfirmModal, setIsExelTemplateUploadConfirmModal] = useState(false);
-  const [isDimUploadAdviseKeywordExelTemplateButton, setIsDimUploadAdviseKeywordExelTemplateButton] = useState(true);
+  const [isDimUploadKMSExelTemplateButton, setIsDimUploadKMSExelTemplateButton] = useState(true);
   const [isFileSelected, setIsFileSelected] = useState(false);
-  const [isFileUploadError, setIsFileUploadError] = useState(true);
-  const FILE_NAME = '상담키워드 파일';
+  const [isFileUploadError, setIsFileUploadError] = useState(false);
+  const FILE_NAME = '파일명길어지는경우파일명길어지는경우파일명길어지는경우';
   const FILE_SIZE_UNIT = '10KB';
   
 
@@ -222,18 +235,18 @@ const KMS = ({ children }) => {
   const handleHideExelTemplateUploadModal = () => {
     setIsExelTemplateUploadModal(false);
   };
-  const handleUploadAdviseKeyword = () => {
+  const handleUploadKMS = () => {
     setIsExelTemplateUploadModal(false);
     setIsExelTemplateUploadConfirmModal(true);
     setIsFileSelected(false);
-    setIsDimUploadAdviseKeywordExelTemplateButton(true);
+    setIsDimUploadKMSExelTemplateButton(true);
     console.log('엑셀 템플릿 업로드 버튼 클릭 -> 컨펌 모달');
   }
-  const handleUploadAdviseKeywordFromExelTemplateFile = () => {
+  const handleUploadKMSFromExelTemplateFile = () => {
     setIsExelTemplateUploadConfirmModal(false);
-    console.log('엑셀 템플릿 파일 -> 상담 키워드 업로드');
+    console.log('엑셀 템플릿 파일 -> KMS 업로드');
   }
-  const handleCancleConfirmModal = () => {
+  const handleCancleAboveKMSConfirmModal = () => {
     setIsExelTemplateUploadConfirmModal(false);
   }
   const handleClickExelTemplateFileDownload = () => {
@@ -242,12 +255,12 @@ const KMS = ({ children }) => {
   const handleClickExelTemplateFileSelect = () => {
     console.log('엑셀 템플릿 파일 선택하기');
     setIsFileSelected(true);
-    setIsDimUploadAdviseKeywordExelTemplateButton(false);
+    setIsDimUploadKMSExelTemplateButton(false);
   };
   const handleDeleteAttachments = () => {
     console.log('엑셀 템플릿 파일 삭제');
     setIsFileSelected(false);
-    setIsDimUploadAdviseKeywordExelTemplateButton(true);
+    setIsDimUploadKMSExelTemplateButton(true);
   };
 
   /* 1-2-1-1. 엑셀 업로드 모달 컴포넌트 */
@@ -264,7 +277,7 @@ const KMS = ({ children }) => {
               </p>
               <p className="add_file_template_text">
                 <span className={`add_file_template_unit ${isFileUploadError ? "" : "show"}`}>{FILE_SIZE_UNIT}</span>
-                <span className={`add_file_template_error_text ${isFileUploadError ? "show" : ""}`}>동일한 상담 키워드가 존재해요.</span>
+                <span className={`add_file_template_error_text ${isFileUploadError ? "show" : ""}`}>동일한 KMS가 존재해요.</span>
               </p>
               <p className="add_file_template_text">Excel 스프레드시트</p>
             </div>
@@ -292,13 +305,13 @@ const KMS = ({ children }) => {
         <div className="upload_KMS_modal_container">
           <div className="upload_KMS_modal_head">
             <div className="upload_KMS_modal_title_box">
-              <h3 className="upload_KMS_modal_title">상담 키워드 업로드하기</h3>
+              <h3 className="upload_KMS_modal_title">KMS 지식 업로드하기</h3>
             </div>
           </div>
           <div className="upload_KMS_exel_template_download_button_box">
             <p className="exel_template_download_button_description">
-            대량의 상담 키워드를 한번에 업로드할 수 있어요.<br />
-            아래의 엑셀 템플릿을 다운로드 받고, 템플릿에 상담 키워드를 작성해서 업로드해주세요.
+            대량의 KMS 지식을 한번에 업로드할 수 있어요.<br />
+            아래의 엑셀 템플릿을 다운로드 받고, 템플릿에 KMS 지식을 작성해서 업로드해주세요.
             </p>
             <OutlineButton handleClick={handleClickExelTemplateFileDownload}>
               <IconExelTemplate />
@@ -314,14 +327,13 @@ const KMS = ({ children }) => {
             </div>
             <div className="upload_KMS_warning_descriptions">
               <h4 className='warning_title'>주의사항</h4>
-              <p className="warning_emphasis">상담 키워드 업로드 시, 기존에 등록된 상담 키워드는 삭제되므로 주의해 주세요.</p>
-              <p>엑셀 파일(.xls .xlsx)만 업로드할 수 있습니다.</p>
-              <p>파일 내에 동일한 상담 키워드가 있으면, 업로드되지 않습니다.</p>
+              <p className="warning_emphasis">KMS 업로드 시, 기존에 등록된 KMS는 삭제되므로 주의해 주세요.</p>
+              <p>엑셀 파일(.xls .xlsx)만 업로드할 수 있어요.</p>
             </div>
           </div>
           <div className="basic_confirm_modal_buttons_box">
             <OutlineButton handleClick={handleHideExelTemplateUploadModal}>취소</OutlineButton>
-            <SolidButton handleClick={handleUploadAdviseKeyword} isDim={isDimUploadAdviseKeywordExelTemplateButton}>업로드</SolidButton>
+            <SolidButton handleClick={handleUploadKMS} isDim={isDimUploadKMSExelTemplateButton}>업로드</SolidButton>
           </div>
         </div>
       </FullScreenDim>
@@ -364,8 +376,9 @@ const KMS = ({ children }) => {
 
   /* 2. 테이블 메인 섹션 */
   /* 2-1. 테이블 - 헤드 */
-  const [isShowTableHeadAdivseKeywordDropdown, setIsShowTableHeadAdivseKeywordDropdown] = useState(false);
-  const [isShowTableHeadAutoComplateSentenceDropdown, setIsShowTableHeadAutoComplateSentenceDropdown] = useState(false);
+  const [isShowTableHeadKMSCategoryDropdown, setIsShowTableHeadKMSCategoryDropdown] = useState(false);
+  const [isShowTableHeadKMSTitleDropdown, setIsShowTableHeadAutoComplateSentenceDropdown] = useState(false);
+  const [isShowTableHeadKMSContentsDropdown, setIsShowTableHeadKMSContentsDropdown] = useState(false);
   const [isShowTableHeadLastUpdateDropdown, setIsShowTableHeadLastUpdateDropdown] = useState(false);
   
   const handleSortingRowData = () => {
@@ -453,27 +466,30 @@ const KMS = ({ children }) => {
   ]);
   
   const handleToggleEditDropdownMenu = idx => {
-    const currentAdviseKeywordData = [...KMSKnowledgeData];
-    currentAdviseKeywordData.map(item => item.isSettingButtonSelected = false);
-    currentAdviseKeywordData[idx].isSettingButtonSelected = true;
-    setKMSKnowledgeData(currentAdviseKeywordData);
+    const currentKMSData = [...KMSKnowledgeData];
+    currentKMSData.map(item => item.isSettingButtonSelected = false);
+    currentKMSData[idx].isSettingButtonSelected = true;
+    setKMSKnowledgeData(currentKMSData);
   };
   
   const ROW_DATA_COUNT = 5;
-  const displayAdviseKeywordRowData = () => {
-    /* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
+  const displayKMSRowData = () => {
+    /* 2-2-1. KMS 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
       return (
         <tr className="KMS_no_data_found">
           <td data-table className="KMS_no_data_found_box">
-            <NoDataFound>상담 키워드를 만들어 주세요.</NoDataFound>
-            {/* <NoDataFound>앗! 검색 결과가 없어요.</NoDataFound> */}
+            {/* <NoDataFound>KMS 지식을 만들어 주세요.</NoDataFound> */}
+            <NoDataFound>
+              앗! 검색 결과가 없어요. <br />
+              다른 검색어를 입력해 주세요.
+            </NoDataFound>
           </td>
         </tr>
       );
     }
 
-    /* 2-2-2. 상담 키워드 로우 데이터 */
+    /* 2-2-2. KMS 로우 데이터 */
     return (
       KMSKnowledgeData.map((item, idx) => {
         return (
@@ -484,7 +500,7 @@ const KMS = ({ children }) => {
             </td>
             <td data-table>
               <span>{item.KMSTitle}</span>
-              <button type='button' className="row_edit_button" onClick={() => handleShowEditAdviseKeywordModal(idx)}>
+              <button type='button' className="row_edit_button" onClick={() => handleShowEditKMSModal(idx)}>
                 <IconEdit />
                 수정
               </button>
@@ -508,22 +524,22 @@ const KMS = ({ children }) => {
   };
 
   /* 2-2-2-1. 로우 데이터 수정 버튼 - 드롭다운 */
-  /* 상담 키워드 편집하기 모달 */
-  const [isShowEditAdviseKeywordModal, setIsShowEditAdviseKeywordModal] = useState(false);
-  const handleShowEditAdviseKeywordModal = idx => {
-    setIsShowEditAdviseKeywordModal(true);
+  /* KMS 편집하기 모달 */
+  const [isShowEditKMSModal, setIsShowEditKMSModal] = useState(false);
+  const handleShowEditKMSModal = idx => {
+    setIsShowEditKMSModal(true);
   }
-  const handleHideEditAdviseKeywordModal = () => {
-    setIsShowEditAdviseKeywordModal(false);
+  const handleHideEditKMSModal = () => {
+    setIsShowEditKMSModal(false);
   }
-  const handleEditAdviseKeyword = () => {
-    console.log('상담 키워드 편집하기!');
-    handleHideEditAdviseKeywordModal();
-    setToastMessageData({ ...toastMessageData, isShow: true, message: '상담 키워드 편집을 완료했어요.' });
+  const handleEditKMS = () => {
+    console.log('KMS 편집하기!');
+    handleHideEditKMSModal();
+    setToastMessageData({ ...toastMessageData, isShow: true, message: 'KMS 편집을 완료했어요.' });
     setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
   };
   
-  /* 상담 키워드 삭제하기 확인 모달 */
+  /* KMS 삭제하기 확인 모달 */
   const [isShowRowDataDeleteConfirmModal, setIsShowRowDataDeleteConfirmModal] = useState(false);
   const handleShowDeleteRowDataConfirmModal = e => {
     setIsShowRowDataDeleteConfirmModal(true);
@@ -539,63 +555,47 @@ const KMS = ({ children }) => {
   };
   
   const rowDataSettingButtonData = [
-    { value: '수정', isSelect: false, handleClick: handleShowEditAdviseKeywordModal},
+    { value: '수정', isSelect: false, handleClick: handleShowEditKMSModal},
     { value: '삭제', isSelect: false, handleClick: handleShowDeleteRowDataConfirmModal}
   ];
 
-  // const displayEditAdviseKeywordModal = () => {
-  //   return (
-  //     <FullScreenDim>
-  //       <div className="make_KMS_modal_container">
-  //         <div className="make_KMS_modal_head">
-  //           <div className="make_KMS_modal_title_box">
-  //             <h3 className="make_KMS_modal_title">상담 키워드 편집하기</h3>
-  //           </div>
-  //         </div>
-  //         <div className="make_KMS_text_field_box">
-  //           <h4 className="make_KMS_modal_subtitle">상담 키워드</h4>
-  //           <div className="KMS_text_field_box">
-  //             <div className="KMS_text_field">
-  //               <ValidationTextField
-  //               placeholderText="상담 키워드를 작성해 주세요.(공백 불가 10자 이하)"
-  //               validationErrorText="글자, 숫자, 하이픈( - ) 및 언더바 ( _ )만 입력할 수 있습니다."
-  //               ref={refMakeAdviseKeywordTextField}
-  //               />
-  //             </div>
-  //             <div className="KMS_make_shortcut_dropdown">
-  //               <DropdownToggle isOpenDropdown={isShowAdviseKeywordDropdown} setIsOpenDropdown={setIsShowAdviseKeywordDropdown}>
-  //                 단축키
-  //               </DropdownToggle>
-  //               <div className={`dropdown_menu ${isShowAdviseKeywordDropdown ? 'show' : ''}`}>
-  //                 <ul className="dropdown_lists">
-  //                   {adviseKeywordShortcutDropdownData.map(item => {
-  //                     return (
-  //                       <li className="dropdown_list" key={item.value}>
-  //                         <button type="button" className="dropdown_button" onClick={item.handleClick}>
-  //                           <KeyboardShortcutChip>{item.value}</KeyboardShortcutChip>
-  //                         </button>
-  //                       </li>
-  //                     );
-  //                   })}
-  //                 </ul>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //         <div className="make_KMS_text_editor_box">
-  //           <h4 className="make_KMS_modal_subtitle">자동 완성 문장</h4>
-  //           <BasicTextEditor placeholderText="상담 키워드를 작성해 주세요. (공백 포함 1,500자 이하)" />
-  //           {/* 아래 문구 MacOS 에서만 표시 */}
-  //           <p className="mac_os_keyboard_shortcut_infomation">MacOS에서는 단축키 사용 시, ‘Ctrl’ key 대신 ‘Command’ key를 사용하세요.</p>
-  //         </div>
-  //         <div className="basic_confirm_modal_buttons_box">
-  //           <OutlineButton handleClick={handleHideEditAdviseKeywordModal}>취소</OutlineButton>
-  //           <SolidButton handleClick={handleEditAdviseKeyword}>편집하기</SolidButton>
-  //         </div>
-  //       </div>
-  //     </FullScreenDim>
-  //   );
-  // };
+  const displayEditKMSModal = () => {
+    return (
+      <FullScreenDim>
+        <div className="make_KMS_modal_container">
+          <div className="make_KMS_modal_head">
+            <div className="make_KMS_modal_title_box">
+              <h3 className="make_KMS_modal_title">KMS 지식 편집하기</h3>
+            </div>
+          </div>
+          <div className="make_KMS_category_box">
+            <h4 className="make_KMS_modal_subtitle">카테고리</h4>
+            {displayAddKMSCategory()}
+          </div>
+          <div className="make_KMS_title_text_field_box">
+            <h4 className="make_KMS_modal_subtitle">제목</h4>
+            <div className="KMS_title_text_field_box">
+              <div className="KMS_title_text_field">
+                <ValidationTextField
+                placeholderText="제목을 작성해 주세요. (공백 포함 20자 이하)"
+                validationErrorText=""
+                ref={refMakeKMSTitleTextField}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="make_KMS_text_editor_box">
+            <h4 className="make_KMS_modal_subtitle">내용</h4>
+            <BasicTextEditor placeholderText="내용을 작성해 주세요. (공백 포함 1,500자 이하)" />
+          </div>
+          <div className="basic_confirm_modal_buttons_box">
+            <OutlineButton handleClick={handleHideEditKMSModal}>취소</OutlineButton>
+            <SolidButton handleClick={handleEditKMS}>편집하기</SolidButton>
+          </div>
+        </div>
+      </FullScreenDim>
+    );
+  };
 
 
   return (
@@ -605,11 +605,18 @@ const KMS = ({ children }) => {
           {/* 1. 테이블 탑 섹션 */}
           <section className="KMS_table_top_section">
             <div className="KMS_table_top_buttons_box">
-              {/* 1-1. 상담 키워드 만들기 버튼 | 모달 */}
+              {/* 1-1. KMS 만들기 버튼 | 모달 */}
               <div className="make_KMS_button_box">
-                <SolidButton buttonClassName="small" handleClick={handleShowMakeAdviseKeywordModal}>KMS 지식 만들기</SolidButton>
-                {/* 1-1-2. 상담 키워드 만들기 모달 컴포넌트 */}
-                {isShowMakeAdviseKeywordModal ? displayMakeKMSModal() : ''}
+                <SolidButton buttonClassName="small" handleClick={handleShowMakeKMSModal}>KMS 지식 만들기</SolidButton>
+                {/* 1-1-2. KMS 만들기 모달 컴포넌트 */}
+                {isShowMakeKMSModal ? displayMakeKMSModal() : ''}
+                {/* 1-1-3. KMS 만들기 초과 확인 모달 */}
+                <BasicConfirmModal
+                  showModal={isShowMakeAboveKMSConfirmModal ? 'show' : ""}
+                  titleText="KMS 지식을 더 이상 만들 수 없어요."
+                  handleAction={handleCancleMakeAboveKMSConfirmModal}
+                >최대 1,000개까지 만들기 가능합니다.
+                </BasicConfirmModal>
               </div>
               {/* 1-2. 엑셀 템플릿 드롭다운 | 모달 */}
               <div className="exel_template_dropdown_container">
@@ -623,8 +630,8 @@ const KMS = ({ children }) => {
                   showModal={isExelTemplateUploadConfirmModal ? 'show' : ""}
                   titleText="KMS 지식을 업로드할까요?"
                   actionButtonText="업로드"
-                  handleAction={handleUploadAdviseKeywordFromExelTemplateFile}
-                  handleClose={handleCancleConfirmModal}
+                  handleAction={handleUploadKMSFromExelTemplateFile}
+                  handleClose={handleCancleAboveKMSConfirmModal}
                 >{'업로드 시 현재에 등록되어 있는 KMS 지식은 모두 사라지고\n 엑셀에 등록된 내용으로 덮어씌워집니다.'}
                 </BasicConfirmModal>
               </div>
@@ -658,16 +665,16 @@ const KMS = ({ children }) => {
                   <tr className="table_row">
                     <th className="table_header" data-type="numeric">NO</th>
                     <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadAdivseKeywordDropdown} setIsOpenDropdown={setIsShowTableHeadAdivseKeywordDropdown}>카테고리</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadAdivseKeywordDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                      <DropdownToggle isOpenDropdown={isShowTableHeadKMSCategoryDropdown} setIsOpenDropdown={setIsShowTableHeadKMSCategoryDropdown}>카테고리</DropdownToggle>
+                      <DropdownMenu showDropdownMenu={isShowTableHeadKMSCategoryDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header dropdown" data-type="text-long">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadAutoComplateSentenceDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>제목</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadAutoComplateSentenceDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                      <DropdownToggle isOpenDropdown={isShowTableHeadKMSTitleDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>제목</DropdownToggle>
+                      <DropdownMenu showDropdownMenu={isShowTableHeadKMSTitleDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>내용</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                      <DropdownToggle isOpenDropdown={isShowTableHeadKMSContentsDropdown} setIsOpenDropdown={setIsShowTableHeadKMSContentsDropdown}>내용</DropdownToggle>
+                      <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header dropdown" data-type="text-short">
                       <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 수정 날짜</DropdownToggle>
@@ -678,10 +685,10 @@ const KMS = ({ children }) => {
                 </thead>
                 {/* 2-2. 테이블 - 바디 */}
                 <tbody className="table_body">
-                  {displayAdviseKeywordRowData()}
+                  {displayKMSRowData()}
                 </tbody>
               </table>
-              {/* {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''} */}
+              {isShowEditKMSModal ? displayEditKMSModal() : ''}
               <BasicConfirmModal
                 showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
                 titleText="KMS 지식을 삭제할까요?"

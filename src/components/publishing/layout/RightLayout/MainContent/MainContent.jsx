@@ -13,11 +13,11 @@ const MainContent = () => {
     <div className="main_content_wrap">
       <Routes>
         <Route path="/" element={<ThirdDepthSample />} />
-        <Route path="/chatAdvise" element={<ChatAdvise />} />
-        <Route path="/chatbotAdvise" element={<ChatbotAdvise />} />
-        <Route path="/adviseKeyword" element={<AdviseKeyword />} />
-        <Route path="/KMS" element={<KMS />} />
-        <Route path="/textEditor" element={<TextEditorTestPage />} />
+        <Route path="/brick-office/chatAdvise" element={<ChatAdvise />} />
+        <Route path="/brick-office/chatbotAdvise" element={<ChatbotAdvise />} />
+        <Route path="/brick-office/adviseKeyword" element={<AdviseKeyword />} />
+        <Route path="/brick-office/KMS" element={<KMS />} />
+        <Route path="/brick-office/textEditor" element={<TextEditorTestPage />} />
       </Routes>
     </div>
   );
