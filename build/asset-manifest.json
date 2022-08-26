@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/brick-office/static/css/main.90d55b35.css",
-    "main.js": "/brick-office/static/js/main.d107b9cb.js",
+    "main.css": "/brick-office/static/css/main.6c6ed383.css",
+    "main.js": "/brick-office/static/js/main.cd67090d.js",
     "static/media/Inter-Bold.otf": "/brick-office/static/media/Inter-Bold.29a77b7e0aa49b534323.otf",
     "static/media/Inter-SemiBold.otf": "/brick-office/static/media/Inter-SemiBold.3aa40e610d938943736b.otf",
     "static/media/Inter-Medium.otf": "/brick-office/static/media/Inter-Medium.16eda82a3c37a6edda09.otf",
@@ -73,11 +73,11 @@
     "static/media/icon_dropdown_arrow.svg": "/brick-office/static/media/icon_dropdown_arrow.2d7a60773aa33a63d7f2da5814ebbc2e.svg",
     "static/media/icon_ellipsis.svg": "/brick-office/static/media/icon_ellipsis.32201520f4e52c672710d366b09a999b.svg",
     "static/media/icon_file_play.svg": "/brick-office/static/media/icon_file_play.72060c771c31782bb1d8507330e2ee8d.svg",
-    "main.90d55b35.css.map": "/brick-office/static/css/main.90d55b35.css.map",
-    "main.d107b9cb.js.map": "/brick-office/static/js/main.d107b9cb.js.map"
+    "main.6c6ed383.css.map": "/brick-office/static/css/main.6c6ed383.css.map",
+    "main.cd67090d.js.map": "/brick-office/static/js/main.cd67090d.js.map"
   },
   "entrypoints": [
-    "static/css/main.90d55b35.css",
-    "static/js/main.d107b9cb.js"
+    "static/css/main.6c6ed383.css",
+    "static/js/main.cd67090d.js"
   ]
 }
