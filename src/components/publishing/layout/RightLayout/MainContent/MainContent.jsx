@@ -12,12 +12,18 @@ const MainContent = () => {
   return (
     <div className="main_content_wrap">
       <Routes>
-        <Route path="/" element={<ThirdDepthSample />} />
-        <Route path="/brick-office/chatAdvise" element={<ChatAdvise />} />
-        <Route path="/brick-office/chatbotAdvise" element={<ChatbotAdvise />} />
-        <Route path="/brick-office/adviseKeyword" element={<AdviseKeyword />} />
-        <Route path="/brick-office/KMS" element={<KMS />} />
-        <Route path="/brick-office/textEditor" element={<TextEditorTestPage />} />
+        <Route path="/home" element={<ThirdDepthSample />} />
+        <Route path="/dashboard" element={<ThirdDepthSample />} />
+        <Route path="/chatAdvise" element={<ChatAdvise />} />
+        <Route path="/chatbotAdvise" element={<ChatbotAdvise />} />
+        <Route path="/chatbotBuilder" element={<ThirdDepthSample />} />
+        <Route path="/adviseKeyword" element={<AdviseKeyword />} />
+        <Route path="/KMS" element={<KMS />} />
+        <Route path="/customer" element={<ThirdDepthSample />} />
+        <Route path="/setting" element={<ThirdDepthSample />} />
+        <Route path="/subscribe" element={<ThirdDepthSample />} />
+        <Route path="/textEditor" element={<TextEditorTestPage />} />
+        <Route path="*" element={<ThirdDepthSample />} />
       </Routes>
     </div>
   );
