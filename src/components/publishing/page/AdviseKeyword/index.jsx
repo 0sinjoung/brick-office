@@ -379,7 +379,7 @@ const AdviseKeyword = ({ children }) => {
     setAdviseKeywordData(currentAdviseKeywordData);
   };
   
-  const ROW_DATA_COUNT = 0;
+  const ROW_DATA_COUNT = 5;
   const displayAdviseKeywordRowData = () => {
     /* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
@@ -406,7 +406,7 @@ const AdviseKeyword = ({ children }) => {
               <span>{item.adviseKeywordText}</span>
               <button type='button' className="row_edit_button" onClick={() => handleShowEditAdviseKeywordModal(idx)}>
                 <IconEdit />
-                수정
+                편집
               </button>
             </td>
             <td data-table data-type="ellipsis">{item.autoComplateText}</td>
@@ -461,7 +461,7 @@ const AdviseKeyword = ({ children }) => {
   };
   
   const rowDataSettingButtonData = [
-    { value: '수정', isSelect: false, handleClick: handleShowEditAdviseKeywordModal},
+    { value: '편집', isSelect: false, handleClick: handleShowEditAdviseKeywordModal},
     { value: '삭제', isSelect: false, handleClick: handleShowDeleteRowDataConfirmModal}
   ];
 
@@ -589,7 +589,7 @@ const AdviseKeyword = ({ children }) => {
                     </th>
                     <th className="table_header" data-type="text-short">단축키</th>
                     <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 수정 날짜</DropdownToggle>
+                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 편집 날짜</DropdownToggle>
                       <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header" data-type="button" />

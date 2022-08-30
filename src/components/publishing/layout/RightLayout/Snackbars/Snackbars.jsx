@@ -9,7 +9,7 @@ const Snackbars = () => {
       <div className="snackbars_wrap">
         {/* 파일 업로드 스낵바 */}
         <FileUploadSnackbar isFileUpload={false} fileState="loading" fileExtension="xlsx" fileName="KMS 지식" />
-        <FileUploadSnackbar isFileUpload={false} fileState="complate" fileExtension="xlsx" fileName="KMS 지식" />
+        <FileUploadSnackbar isFileUpload={false} fileState="complete" fileExtension="xlsx" fileName="KMS 지식" />
         <FileUploadSnackbar isFileUpload={false} fileState="error" fileExtension="xlsx" fileName="파일명길어지는경우파일명길어지는경우파일명길어지는경우" />
         {/* 채팅상담 스낵바 */}
         {/* <BasicSnackbar snackbarTitle="알림 타이틀1" showBrickIcon="">

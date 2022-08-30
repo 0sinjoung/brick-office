@@ -57,9 +57,9 @@ const Header = () => {
             <img className="header_avatar_image" src={MY_PROFILE_AVATAR_IMG_URL} alt="header avatar" />
           </div>
           <div className="header_user_name_box">
-            <p className="header_user_greetings">안녕하세요. </p>
+            <p className="header_user_greetings">안녕하세요, </p>
             <div className="header_user_name">{MY_PROFILE_NICNAME !== '' ? MY_PROFILE_NICNAME : MY_PROFILE_NAME}</div>
-            <span className="header_user_name_sir">님</span>
+            <span className="header_user_name_sir"> 님</span>
           </div>
           <OutlineTag>{IS_ADMIN ? '관리자' : '멤버'}</OutlineTag>
           <div className="header_setting_icon_button_box">

@@ -49,6 +49,12 @@
     color: $grey100;
   }
 
+  .header_user_greetings {
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  .header_user_greetings, 
   .header_user_name_sir {
     display: inline-block;
     margin-left: 2px;

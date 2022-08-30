@@ -126,7 +126,8 @@ const KMS = ({ children }) => {
   };
   
   const handleAddKMSCategory = () => {
-    console.log('KMS 카테고리 추가'); 
+    console.log('KMS 카테고리 추가후 드롭다운 메뉴로 변경');
+    setIsShowAddKMSCategoryTextField(false);
   };
   const handleCancleAddCategory = () => {
     setIsShowAddKMSCategoryTextField(false);
@@ -502,7 +503,7 @@ const KMS = ({ children }) => {
               <span>{item.KMSTitle}</span>
               <button type='button' className="row_edit_button" onClick={() => handleShowEditKMSModal(idx)}>
                 <IconEdit />
-                수정
+                편집
               </button>
             </td>
             <td data-table data-type="ellipsis">{item.KMSContents}
@@ -555,7 +556,7 @@ const KMS = ({ children }) => {
   };
   
   const rowDataSettingButtonData = [
-    { value: '수정', isSelect: false, handleClick: handleShowEditKMSModal},
+    { value: '편집', isSelect: false, handleClick: handleShowEditKMSModal},
     { value: '삭제', isSelect: false, handleClick: handleShowDeleteRowDataConfirmModal}
   ];
 
@@ -677,7 +678,7 @@ const KMS = ({ children }) => {
                       <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 수정 날짜</DropdownToggle>
+                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 편집 날짜</DropdownToggle>
                       <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                     </th>
                     <th className="table_header" data-type="button" />

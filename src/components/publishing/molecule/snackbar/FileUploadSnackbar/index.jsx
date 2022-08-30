@@ -10,7 +10,7 @@ import './style.scss';
 /** 파일 업로드 스낵바
  * @fileName : 파일명 text
  * @isFileUpload : true || false: download
- * @fileState : 'loading' || 'complate' || 'error'
+ * @fileState : 'loading' || 'complete' || 'error'
  * @fileExtension : 'xlsx' 이후 상황 추가 ...
  */
 const FileUploadSnackbar = ({ fileName, isFileUpload, fileExtension, fileState }) => {
@@ -28,7 +28,7 @@ const FileUploadSnackbar = ({ fileName, isFileUpload, fileExtension, fileState }
   };
   const displaySnackbarTitle = () => {
     if (fileState === 'loading') snackbarTitleText=' 중입니다.';
-    if (fileState === 'complate') snackbarTitleText='를 완료했어요.';
+    if (fileState === 'complete') snackbarTitleText='를 완료했어요.';
     if (fileState === 'error') snackbarTitleText='에 실패했어요.';
 
     return (
@@ -43,7 +43,7 @@ const FileUploadSnackbar = ({ fileName, isFileUpload, fileExtension, fileState }
         <div className="snackbar_upload_spinner show" />
       )
     }
-    if (fileState === 'complate') {
+    if (fileState === 'complete') {
       return (
         <IconFileUploadConfirmCircle />
       )
@@ -66,7 +66,7 @@ const FileUploadSnackbar = ({ fileName, isFileUpload, fileExtension, fileState }
         </div>
       </div>
       <div className="file_upload_snackbar_contents">
-        <div className={`file_upload_snackbar_extension_icon_box ${fileState === 'loading' ? 'loading' : ''}`}>{displayExtensionIcon()}</div>
+        <div className={`file_upload_snackbar_extension_icon_box ${fileState === 'complete' ? 'complete' : ''}`}>{displayExtensionIcon()}</div>
         <div className="file_upload_snackbar_file_name">{fileName}.{fileExtension}</div>
         <div className="file_upload_snackbar_state_icon_box">
           {displayUploadingIcon()}
