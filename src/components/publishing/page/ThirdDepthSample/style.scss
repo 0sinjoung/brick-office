@@ -28,3 +28,27 @@
   font-weight: $semi-bold;
   font-size: 24px;
 }
+
+
+
+
+
+.third_depth_lists {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.third_depth_menu {
+  font-size: 16px;
+  font-weight: $semi-bold;
+  line-height: 1;
+  color: $grey040;
+  position: relative;
+
+  &.breadscrumb {
+    color: $grey080;
+    @include tabUnderbarStyle();
+  }
+}

@@ -122,10 +122,10 @@
       }
     }
   }
-  [data-menu-text='챗봇 만들기'] {
+  [data-menu-text='챗봇 빌더'] {
     &:hover {
       &::after {
-        content: '챗봇 만들기';
+        content: '챗봇 빌더';
       }
     }
   }
@@ -202,6 +202,10 @@
 
     .LNB_menu_link {
       &:hover {
+        background-color: $grey010;
+      }
+      
+      &.active {
         background-color: $grey010;
       }
     }
@@ -294,8 +298,8 @@
   height: 40px;
   padding: 9px 12px;
   border-radius: 10px;
+  transition: backgroundColor .3s;
 
-  @include hoverTransition();
   &:hover {
     background-color: $grey005;
     
@@ -381,6 +385,7 @@
   width: 100%;
   height: 40px;
   border-radius: 10px;
+  transition: backgroundColor .3s;
 
   &:hover {
     background-color: $grey005;
@@ -395,5 +400,13 @@
     .LNB_link_text {
       color: $grey100;
     }
+  }
+}
+
+.LNB_current_subscribe_plan_box {
+  .color_tag {
+    background-color: #1F71F91A;
+    color: #1F71F9;
+    font-size: 12px;
   }
 }

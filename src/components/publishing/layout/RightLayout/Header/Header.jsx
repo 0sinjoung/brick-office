@@ -19,6 +19,18 @@ const Header = () => {
           return "상담 키워드";
       case "/KMS":
           return "KMS";
+      case "/setting/channel":
+          return "채널 운영 설정";
+      case "/setting/advice":
+          return "상담 운영 설정";
+      case "/setting/messenger":
+          return "메신저 설정";
+      case "/setting/search":
+          return "상품 검색 설정";
+      case "/setting/connect":
+          return "외부 채널 연동";
+      case "/setting/install":
+          return "설치";
       default:
           return "Sample"
     }
