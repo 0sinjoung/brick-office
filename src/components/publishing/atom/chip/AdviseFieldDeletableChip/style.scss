@@ -1,0 +1,36 @@
+@import "/src/styles/_variables.scss";
+
+.advise_field_color_deletable_chip {
+  display: none;
+  width: fit-content;
+  height: 22px;
+  padding: 4px 0 4px 6px;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 17px;
+  font-weight: $medium;
+  color: $grey080;
+  
+  &.show {
+    @include flexCenter();
+  }
+}
+
+.advise_field_color_deletable_chip_text {
+  @include stopTextDrag();
+}
+
+.advise_field_color_deletable_chip_button {
+  @include flexCenter();
+  width: 20px;
+  height: 20px;
+  margin-left: -2px;
+  margin-top: 2px;
+
+
+  .icon_cross_small {
+    fill: $grey040;
+    stroke: $grey040;
+    stroke-width: 0.2px;
+  }
+}

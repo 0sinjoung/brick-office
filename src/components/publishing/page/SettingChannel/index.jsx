@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
 import ChannelMember from 'components/publishing/page/SettingChannel/ChannelMember';
+import ChannelJoin from 'components/publishing/page/SettingChannel/ChannelJoin';
 import './style.scss';
 
 /** 채널 운영 설정 페이지
@@ -15,6 +16,20 @@ const SettingChannel = ({ children }) => {
     setThirdDepthMenu(currentThirdMenuText);
     console.log(currentThirdMenuText);
   };
+  const displaySettingChannelPage = () => {
+    if (thirdDepthMenu === '멤버 관리') {
+      return <ChannelMember />
+    }
+    if (thirdDepthMenu === '가입 관리') {
+      return <ChannelJoin />
+    }
+    if (thirdDepthMenu === '메뉴 접근 설정') {
+      return <ChannelMember />
+    }
+    if (thirdDepthMenu === '채널 정보') {
+      return <ChannelMember />
+    }
+  }
 
   return (
     <>
@@ -34,7 +49,7 @@ const SettingChannel = ({ children }) => {
           </li>
         </ul>
       </div>
-      <ChannelMember />
+      {displaySettingChannelPage()}
     </>
   );
 };

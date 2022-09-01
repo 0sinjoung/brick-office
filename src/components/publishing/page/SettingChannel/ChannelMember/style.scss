@@ -93,10 +93,10 @@
   border: $grey020-border;
   box-shadow: $shadow-basic;
   background-color: $white;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 .edit_member_advise_fields_modal_head {
   margin-bottom: 10px;
@@ -108,11 +108,103 @@
   color: $grey080;
   margin-bottom: 30px;
 }
-.edit_member_name_box {
+.edit_member_advise_fields_name_box {
+  font-size: 14px;
+  font-weight: $medium;
+  color: $grey080;
+  @include flexStart();
+
+  .edit_member_advise_fields_name {
+    max-width: 116px;
+    @include ellipsisOneLine();
+  }
+}
+
+/* 상담 분야 설정 드롭다운 */
+.edit_member_advise_fields_dropdown_box {
+  width: 100%;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 100;
+}
+.advise_fields_dropdown_toggle {
+  width: 100%;
+  border-radius: 8px;
+  border: $grey020-border;
+  background-color: $white;
+}
+.advise_fields_dropdown_toggle_button {
+  padding: 5px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: $grey005;
+  }
+}
+.advise_fields_lists {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
   font-size: 14px;
   font-weight: $medium;
   color: $grey080;
 }
+
+.advise_fields_toggle_arrow {
+  @include flexCenter();
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+.advise_fields_combo_dropdown_menu {
+  display: none;
+  width: 100%;
+  padding: 4px;
+  background-color: $white;
+  border-radius: 8px;
+  border: $grey020-border;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  overflow: hidden;
+  transform: translateY(100%);
+  
+  &.open {
+    display: block;
+  }
+}
+.advise_fields_combo_dropdown_menu_scroll_area {
+  width: 100%;
+  height: 176px;
+  @include scrollStyle();
+}
+.advise_fields_combo_dropdown_menu_list {
+  @include flexStart();
+  gap: 6px;
+  width: 98%;
+  height: 28px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $grey005; 
+  }
+}
+
+
 
 .edit_member_advise_fields_button_box {
   @include flexEnd();
@@ -501,7 +593,7 @@
 
 
 /* 3. 테이블 바텀 섹션 */
-.KMS_bottom_section {
+.channel_member_bottom_section {
   flex-shrink: 0;
   @include flexCenter();
   width: 100%;

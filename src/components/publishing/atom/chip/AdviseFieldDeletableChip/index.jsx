@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ReactComponent as IconCrossSmall } from 'assets/svg/icon/icon_cross_small.svg';
 import './style.scss';
 
-/** 상담 분류 chip
+/** 상담 분류 chip - 삭제 가능
  * @children : chip text
  */
-const AdviseFieldChip = ({ children }) => {
+const AdviseFieldDeletableChip = ({ children, isChecked, handleDelete}) => {
   let chipStyle;
+  const [isShowChip, setIsShowChip] = useState(isChecked);
+  const handleClickDeleteButton = () => {
+    handleDelete(children);
+    setIsShowChip(false);
+  };
 
-  if (children === '전체') chipStyle = { backgroundColor: '#ECEDEF' };
   if (children === 'A/S') chipStyle = { backgroundColor: '#ECEDEF' };
   if (children === '결제') chipStyle = { backgroundColor: '#FCEBDB' };
   if (children === '고객 관리') chipStyle = { backgroundColor: '#D9E7FF' };
@@ -22,20 +27,21 @@ const AdviseFieldChip = ({ children }) => {
   if (children === '회원') chipStyle = { backgroundColor: '#FFECC9' };
 
   return (
-    <div className="advise_field_color_chip" style={chipStyle}>
-      {
-        children === '전체' ? '전체' : `#${children}`
-      }
+    <div className={`advise_field_color_deletable_chip ${isShowChip ? 'show' : ''}`} style={chipStyle}>
+      <span className="advise_field_color_deletable_chip_text">#{children}</span>
+      <button type="button" className="advise_field_color_deletable_chip_button" onClick={handleClickDeleteButton}>
+        <IconCrossSmall />
+      </button>
     </div>
   );
 };
 
-AdviseFieldChip.propTypes = {
+AdviseFieldDeletableChip.propTypes = {
   children: PropTypes.any,
 };
 
-AdviseFieldChip.defaultProps = {
+AdviseFieldDeletableChip.defaultProps = {
   children: '',
 };
 
-export default AdviseFieldChip;
+export default AdviseFieldDeletableChip;

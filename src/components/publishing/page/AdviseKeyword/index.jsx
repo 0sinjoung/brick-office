@@ -114,7 +114,8 @@ const AdviseKeyword = ({ children }) => {
           <div className="make_advise_keyword_text_editor_box">
             <h4 className="make_advise_keyword_modal_subtitle">자동 완성 문장</h4>
             <BasicTextEditor placeholderText="상담 키워드를 작성해 주세요. (공백 포함 1,500자 이하)" />
-            <p className="mac_os_keyboard_shortcut_infomation">MacOS에서는 단축키 사용 시, ‘Ctrl’ key 대신 ‘Command’ key를 사용하세요.(임시)</p>
+            {/* 아래 문구 MAC OS 에서만 표시 */}
+            <p className="mac_os_keyboard_shortcut_infomation">MacOS에서는 단축키 사용 시, ‘Ctrl’ key 대신 ‘Command’ key를 사용하세요.</p>
           </div>
           <div className="basic_confirm_modal_buttons_box">
             <OutlineButton handleClick={handleHideMakeAdviseKeywordModal}>취소</OutlineButton>

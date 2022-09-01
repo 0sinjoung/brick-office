@@ -1,31 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as IconLink } from 'assets/svg/icon/icon_link.svg'
-import { ReactComponent as IconCaution } from 'assets/svg/icon/icon_caution.svg'
-import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg'
-import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg'
-import { ReactComponent as IconExelTemplate } from 'assets/svg/icon/fileUpload/icon_exel_template.svg'
-import { ReactComponent as IconFileAdd } from 'assets/svg/icon/fileUpload/icon_file_add.svg'
-import { ReactComponent as IconTriangleWarning } from 'assets/svg/icon/icon_triangle_warning.svg'
-import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
+import { ReactComponent as IconLink } from 'assets/svg/icon/icon_link.svg';
+import { ReactComponent as IconCaution } from 'assets/svg/icon/icon_caution.svg';
+import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg';
+import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import NewNotificationBadge from 'components/publishing/atom/notificationBadge/NewNotificationBadge';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
+import AdviseFieldDeletableChip from 'components/publishing/atom/chip/AdviseFieldDeletableChip';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
+import Checkbox from 'components/publishing/atom/Checkbox';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
-import DeleteCircleButton from 'components/publishing/atom/button/DeleteCircleButton';
-import BasicTextEditor from 'components/publishing/molecule/textEditor/BasicTextEditor';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
 import NoDataFound from 'components/publishing/atom/NoDataFound';
 import Pagination from 'components/publishing/atom/Pagination';
 import DropdownToggle from 'components/publishing/molecule/dropdown/DropdownToggle';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
-import BasicConfirmModal from 'components/publishing/molecule/modal/BasicConfirmModal';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
-import OutlineTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineTextField';
-import ValidationTextField from 'components/publishing/atom/textFields/inlineTextField/ValidationTextField';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import './style.scss';
 
@@ -100,7 +93,34 @@ const ChannelMember = ({ children }) => {
     // setToastMessageData({ ...toastMessageData, isShow: true, message: 'KMS 편집을 완료했어요.' });
     // setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
   };
-  const ADVISER_NAME = "김다이김다이김다이김다이";
+  const ADVISER_NAME = "김다이김다이김다이김다이김다이김다이";
+  // const [ isCheckedZeroAdviseFields, setIsCheckedZeroAdviseFields ] = useState(false);
+  const [ isOpenedDropdownMenu, setIsOpenedDropdownMenu ] = useState(false);
+  const [ adviseFieldsDeletableChipData, setAdviseFieldsDeletableChipData ] = useState(
+    {
+      adviseField: [
+        {value: '전체', isChecked: false},
+        {value: 'A/S', isChecked: true},
+        {value: '결제', isChecked: true},
+        {value: '고객 관리', isChecked: true},
+        {value: '교환 반품 환불', isChecked: false},
+        {value: '배송', isChecked: false},
+        {value: '상품', isChecked: false},
+        {value: '시스템', isChecked: false},
+        {value: '주문', isChecked: false},
+        {value: '프로모션', isChecked: false},
+        {value: '회원', isChecked: false},
+        {value: '기타', isChecked: false},
+      ],
+    }
+  );
+  const handleAdviseFieldsDelete = value => {
+    console.log('필드 지우기 함수 실행', value);
+  };
+  const handleShowAdviseFieldsDropdownMenu = () => {
+    console.log('드롭다운 메뉴 열기');
+    setIsOpenedDropdownMenu(!isOpenedDropdownMenu);
+  };
   const displayEditMemberAdviseFieldsModal = () => {
     return (
       <FullScreenDim>
@@ -108,15 +128,45 @@ const ChannelMember = ({ children }) => {
           <div className="edit_member_advise_fields_modal_head">
             <div className="edit_member_advise_fields_modal_title_box">
               <h3 className="edit_member_advise_fields_modal_title">상담 분야 설정하기</h3>
-              <div className="edit_member_name_box">{ADVISER_NAME} 담당 상담 분야</div>
+              <div className="edit_member_advise_fields_name_box">
+                <div className="edit_member_advise_fields_name">{ADVISER_NAME}</div> 
+                <div className="edit_member_advise_fields_name_text">담당 상담 분야</div>
+              </div>
             </div>
           </div>
           <div className="edit_member_advise_fields_dropdown_box">
-            <div className="advise_fields_dropdown_toggle_button">
-              <div className=""></div>
+            <div className="advise_fields_dropdown_toggle">
+              <div className="advise_fields_dropdown_toggle_button" onClick={() => handleShowAdviseFieldsDropdownMenu()}>
+                <div className="advise_fields_lists">
+                  {/* {isCheckedZeroAdviseFields ? '상담 분야' : ''} */}
+                  {
+                    adviseFieldsDeletableChipData.adviseField.map(field => {
+                      return (
+                        <AdviseFieldDeletableChip key={field.value} isChecked={field.isChecked} handleDelete={handleAdviseFieldsDelete}>{field.value}</AdviseFieldDeletableChip>
+                      );
+                    })
+                  }
+                </div>
+                  <div className={`advise_fields_toggle_arrow ${isOpenedDropdownMenu ? 'open' : ''}`}>
+                    <IconDropdownArrow />
+                  </div>
+              </div>
             </div>
-            <div className="advise_fields_combo_dropdown_menu">
-              <div className=""></div>
+            <div className={`advise_fields_combo_dropdown_menu ${isOpenedDropdownMenu ? 'open' : ''}`}>
+              <div className="advise_fields_combo_dropdown_menu_scroll_area">
+                <ul className="advise_fields_combo_dropdown_menu_lists">
+                  {
+                    adviseFieldsDeletableChipData.adviseField.map(field => {
+                      return (
+                        <li className="advise_fields_combo_dropdown_menu_list">
+                          <Checkbox />
+                          <AdviseFieldChip>{field.value}</AdviseFieldChip>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              </div>
             </div>
           </div>
           <div className="edit_member_advise_fields_button_box">
@@ -193,20 +243,58 @@ const ChannelMember = ({ children }) => {
 
   /* 2. 테이블 메인 섹션 */
   /* 2-1. 테이블 - 헤드 */
-  const [isShowTableHeadKMSCategoryDropdown, setIsShowTableHeadKMSCategoryDropdown] = useState(false);
-  const [isShowTableHeadKMSTitleDropdown, setIsShowTableHeadAutoComplateSentenceDropdown] = useState(false);
-  const [isShowTableHeadKMSContentsDropdown, setIsShowTableHeadKMSContentsDropdown] = useState(false);
-  const [isShowTableHeadLastUpdateDropdown, setIsShowTableHeadLastUpdateDropdown] = useState(false);
+  /* 2-1-1. 테이블 - 헤드 - 기본 */
+  const [isShownTableHeadNameDropdown, setIsShownTableHeadNameDropdown] = useState(false);
+  const [isShownTableHeadNicknameDropdown, setIsShownTableHeadNicknameDropdown] = useState(false);
+  const [isShownTableHeadEmailDropdown, setIsShownTableHeadEmailDropdown] = useState(false);
+  const [isShownTableHeadDateDropdown, setIsShownTableHeadDateDropdown] = useState(false);
   
   const handleSortingRowData = () => {
     console.log('row data sorting!');
   };
-
+  
   const tableHeadDropdownData = [
     { value: '오름차순 정렬', isSelect: false, handleClick: handleSortingRowData},
     { value: '내림차순 정렬', isSelect: false, handleClick: handleSortingRowData}
   ];
   
+  /* 2-1-2. 테이블 - 헤드 - 커스텀 */
+  /* (1) 상담 분야 */
+  const [isShownTableHeadAdviseFieldsDropdown, setIsShownTableHeadAdviseFieldsDropdown] = useState(false);
+  
+  const tableHeadDropdownAdviseFieldsData = [
+    { value: '전체', isSelect: false, handleClick: handleSortingRowData},
+    { value: 'A/S', isSelect: false, handleClick: handleSortingRowData},
+    { value: '결제', isSelect: false, handleClick: handleSortingRowData},
+    { value: '고객 관리', isSelect: false, handleClick: handleSortingRowData},
+    { value: '교환 반품 환불', isSelect: false, handleClick: handleSortingRowData},
+    { value: '기타', isSelect: false, handleClick: handleSortingRowData},
+    { value: '배송', isSelect: false, handleClick: handleSortingRowData},
+    { value: '상품', isSelect: false, handleClick: handleSortingRowData},
+    { value: '시스템', isSelect: false, handleClick: handleSortingRowData},
+    { value: '주문', isSelect: false, handleClick: handleSortingRowData},
+    { value: '프로모션', isSelect: false, handleClick: handleSortingRowData},
+    { value: '회원', isSelect: false, handleClick: handleSortingRowData},
+  ];
+  /* (2) 상담 상태 */
+  const [isShownTableHeadAdviseStateDropdown, setIsShownTableHeadAdviseStateDropdown] = useState(false);
+  
+  const tableHeadDropdownAdviseStateData = [
+    { value: '전체', isSelect: false, handleClick: handleSortingRowData},
+    { value: '업무 시작', isSelect: false, handleClick: handleSortingRowData},
+    { value: '업무 종료', isSelect: false, handleClick: handleSortingRowData}
+  ];
+  /* (3) 권한 */
+  const [isShownTableHeadAdminDropdown, setIsShownTableHeadAdminDropdown] = useState(false);
+  
+  const tableHeadDropdownAdminData = [
+    { value: '전체', isSelect: false, handleClick: handleSortingRowData},
+    { value: '멤버', isSelect: false, handleClick: handleSortingRowData},
+    { value: '관리자', isSelect: false, handleClick: handleSortingRowData},
+  ];
+  
+
+
   /* 2-2. 테이블 - 바디 */
   /* 테이블 데이터 */
   const [settingChannelMemberData, setSettingChannelMemberData] = useState([
@@ -219,7 +307,7 @@ const ChannelMember = ({ children }) => {
       channelMemberEmail: 'testtesttest1111@gmail.com',
       channelMemberAdviseField: ['고객 관리', '교환 반품 환불', '프로모션', 'A/S', '주문'],
       channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: true,
+      channelMemberIsAdmin: false,
       channelMemberJoinDate: '2023.01.20',
       isEditButtonSelected: false,
     },
@@ -237,7 +325,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 3,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -250,7 +338,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 4,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -263,7 +351,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 5,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -276,7 +364,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 6,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -289,7 +377,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 7,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -302,7 +390,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 8,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -315,7 +403,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 9,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -328,7 +416,7 @@ const ChannelMember = ({ children }) => {
       isEditButtonSelected: false,
     },
     {
-      channelMemberId: 2,
+      channelMemberId: 10,
       channelMemberIsNewMember: false,
       channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
       channelMemberName: '김다이',
@@ -336,7 +424,7 @@ const ChannelMember = ({ children }) => {
       channelMemberEmail: 'testtesttest1111@gmail.com',
       channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
       channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
+      channelMemberIsAdmin: true,
       channelMemberJoinDate: '2023.01.20',
       isEditButtonSelected: false,
     },
@@ -413,15 +501,45 @@ const ChannelMember = ({ children }) => {
     currentKMSData[idx].isEditButtonSelected = true;
     setSettingChannelMemberData(currentKMSData);
   };
+
+  /* (4) 로우 데이터 편집 */
+  // const IS_CURRENT_USER_CHANNEL_ADMIN = false;
+  // const handleToggleEditDropdownMenu = idx => {
+  //   if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
+  //     return;
+  //   }
+  //   const currentSettingChannelJoinData = [...settingChannelJoinData];
+  //   currentSettingChannelJoinData.map(item => item.isEditButtonSelected = false);
+  //   currentSettingChannelJoinData[idx].isEditButtonSelected = true;
+  //   setSettingChannelJoinData(currentSettingChannelJoinData);
+  // };
+
+  /* 데이터 편집 종류 */
+  const rowDataEditButtonData = [
+    { value: '상담 분야 설정하기', isSelect: false, handleClick: handleShowEditMemberAdviseFieldModal},
+    { value: '강제 탈퇴시키기', isSelect: false, handleClick: handleShowResignModal}
+  ];
+  // const displayAdminEditTableCell = (item, idx) => {
+  //   return (
+  //     <div className={`row_data_edit_icon_button_box channel_join_edit_cell ${IS_CURRENT_USER_CHANNEL_ADMIN ? '' : 'member'}`}>
+  //       <IconButton buttonClassName="small" handleClick={() => handleToggleEditDropdownMenu(idx)}>
+  //         <IconSetting />
+  //       </IconButton>
+  //       <DropdownMenu showDropdownMenu={item.isEditButtonSelected ? "show" : ""} dropdownMenuData={rowDataEditButtonData} />
+  //     </div>
+  //   );
+  // };
+
+
   
-  const ROW_DATA_COUNT = 5;
+   /* 로우 데이터 */
+  const ROW_SEARCH_DATA_COUNT = 5;
   const displayChannelMemberRowData = () => {
     /* 채널 멤버 로우 데이터 - 없음 */
-    if (ROW_DATA_COUNT === 0) {
+    if (ROW_SEARCH_DATA_COUNT === 0) {
       return (
         <tr className="channel_member_no_data_found">
           <td data-table className="channel_member_no_data_found_box">
-            {/* <NoDataFound>KMS 지식을 만들어 주세요.</NoDataFound> */}
             <NoDataFound>
               앗! 검색 결과가 없어요. <br />
               다른 검색어를 입력해 주세요.
@@ -458,18 +576,6 @@ const ChannelMember = ({ children }) => {
       })
     );
   };
-
-  
-
-  
-  
-  /* 데이터 편집 버튼 */
-  const rowDataEditButtonData = [
-    { value: '상담 분야 설정하기', isSelect: false, handleClick: handleShowEditMemberAdviseFieldModal},
-    { value: '강제 탈퇴시키기', isSelect: false, handleClick: handleShowResignModal}
-  ];
-
-
 
   return (
     <>
@@ -511,33 +617,33 @@ const ChannelMember = ({ children }) => {
                   {/* 2-1. 테이블 - 헤드 */}
                   <thead className="table_head">
                     <tr className="table_row">
-                      <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadKMSCategoryDropdown} setIsOpenDropdown={setIsShowTableHeadKMSCategoryDropdown}>이름</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadKMSCategoryDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="name">
+                        <DropdownToggle isOpenDropdown={isShownTableHeadNameDropdown} setIsOpenDropdown={setIsShownTableHeadNameDropdown}>이름</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadNameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
                       <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadKMSTitleDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>닉네임</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadKMSTitleDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                        <DropdownToggle isOpenDropdown={isShownTableHeadNicknameDropdown} setIsOpenDropdown={setIsShownTableHeadNicknameDropdown}>닉네임</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadNicknameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
                       <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadKMSContentsDropdown} setIsOpenDropdown={setIsShowTableHeadKMSContentsDropdown}>이메일</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                        <DropdownToggle isOpenDropdown={isShownTableHeadEmailDropdown} setIsOpenDropdown={setIsShownTableHeadEmailDropdown}>이메일</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadEmailDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
                       <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadKMSContentsDropdown} setIsOpenDropdown={setIsShowTableHeadKMSContentsDropdown}>상담 분야</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                        <DropdownToggle isOpenDropdown={isShownTableHeadAdviseFieldsDropdown} setIsOpenDropdown={setIsShownTableHeadAdviseFieldsDropdown}>상담 분야</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadAdviseFieldsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdviseFieldsData} />
                       </th>
                       <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadKMSContentsDropdown} setIsOpenDropdown={setIsShowTableHeadKMSContentsDropdown}>상담 상태</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                        <DropdownToggle isOpenDropdown={isShownTableHeadAdviseStateDropdown} setIsOpenDropdown={setIsShownTableHeadAdviseStateDropdown}>상담 상태</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadAdviseStateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdviseStateData} />
                       </th>
                       <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadKMSContentsDropdown} setIsOpenDropdown={setIsShowTableHeadKMSContentsDropdown}>권한</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                        <DropdownToggle isOpenDropdown={isShownTableHeadAdminDropdown} setIsOpenDropdown={setIsShownTableHeadAdminDropdown}>권한</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadAdminDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdminData} />
                       </th>
                       <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>채널 가입일</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
+                        <DropdownToggle isOpenDropdown={isShownTableHeadDateDropdown} setIsOpenDropdown={setIsShownTableHeadDateDropdown}>채널 가입일</DropdownToggle>
+                        <DropdownMenu showDropdownMenu={isShownTableHeadDateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
                       <th className="table_header" data-type="button" />
                     </tr>
@@ -547,18 +653,10 @@ const ChannelMember = ({ children }) => {
                     {displayChannelMemberRowData()}
                   </tbody>
                 </table>
-                {/* <BasicConfirmModal
-                  showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
-                  titleText="KMS 지식을 삭제할까요?"
-                  actionButtonText="삭제하기"
-                  handleAction={handleDeleteRowData}
-                  handleClose={handleCloseDeleteRowDataConfirmModal}
-                >삭제한 KMS 지식은 복원되지 않습니다.
-                </BasicConfirmModal> */}
               </div>
             </section>
             {/* 3. 테이블 바텀 섹션 */}
-            <section className="KMS_bottom_section">
+            <section className="channel_member_bottom_section">
               <Pagination pageNumber={1} />
             </section>
             {/* 모달 */}
