@@ -25,6 +25,7 @@ import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicText
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import './style.scss';
 import OnOffToggleButton from 'components/publishing/atom/button/OnOffToggleButton';
+import ColorTag from 'components/publishing/atom/tag/ColorTag';
 
 /** 채널 운영 설정 - (3) 메뉴 접근 설정
  * @children : children
@@ -149,10 +150,36 @@ const ChannelAccess = ({ children }) => {
                   </div>
                 </div>
                 <div className="channel_menu_access_pannel">
-                  <div className="channel_menu_access_bar">
+                  <div className="channel_menu_access_sub_bar">
                     <div className="channel_menu_access_section_text">
-                      <h3 className="channel_menu_access_section_title">설정</h3>
-                      <p className="channel_menu_access_section_description">브릭을 설치하고 채널 운영 환경을 설정할 수 있어요.</p>
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">고객 관리</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">고객을 비슷한 성향과 특성별로 그룹화하여 분류하고 관리할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar disable">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">캠페인 관리</h4>
+                        <ColorTag>출시 예정</ColorTag>
+                      </div>
+                      <p className="channel_menu_access_section_description">캠페인 진행 내역을 관리할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar disable">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">메시지 보내기</h4>
+                        <ColorTag>출시 예정</ColorTag>
+                      </div>
+                      <p className="channel_menu_access_section_description">캠페인 메시지를 만들고 전송할 수 있어요.</p>
                     </div>
                     <div className="channel_menu_access_toggle_button">
                       <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
@@ -175,7 +202,74 @@ const ChannelAccess = ({ children }) => {
                     </IconButton>
                   </div>
                 </div>
-                <div className="channel_menu_access_pannel">패널</div>
+                <div className="channel_menu_access_pannel">
+                  <div className="channel_menu_access_sub_bar">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">채널 운영 설정</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">채널 멤버를 관리하고 메뉴별 멤버 접근 가능 여부를 설정할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">상담 운영 설정</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">챗봇과 채팅 상담 진행에 필요한 환경을 설정할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">메신저 설정</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">메신저 운영 여부와 인트로, 메신저의 디자인을 설정할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">상품 검색 설정</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">상품 검색 사용 여부를 설정하고 상품 정보를 최신으로 업데이트할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">연동 설정</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">외부 상담 채널을 연동할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                  <div className="channel_menu_access_sub_bar">
+                    <div className="channel_menu_access_section_text">
+                      <div className="channel_menu_access_section_title_box">
+                        <h4 className="channel_menu_access_section_title">설치</h4>
+                      </div>
+                      <p className="channel_menu_access_section_description">메신저를 홈페이지에 설치할 수 있어요.</p>
+                    </div>
+                    <div className="channel_menu_access_toggle_button">
+                      <OnOffToggleButton isChecked={true} checkboxName="dashboard_toggle" />
+                    </div>
+                  </div>
+                </div>
               </section>
               <section className="channel_menu_access_section subscribe">
                 <div className="channel_menu_access_bar">

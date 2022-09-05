@@ -54,11 +54,13 @@
   
   &.customer,
   &.setting {
-    cursor: pointer;
-    
-    @include hoverTransition();
-    &:hover {
-      background-color: $grey005;
+    .channel_menu_access_bar {
+      cursor: pointer;
+      
+      @include hoverTransition();
+      &:hover {
+        background-color: $grey005;
+      }
     }
   }
 }
@@ -69,6 +71,46 @@
   width: 100%;
   padding: 20px 30px;
   border-radius: 10px;
+}
+
+.channel_menu_access_sub_bar {
+  @include flexSpace();
+  width: 100%;
+  gap: 10px;
+  padding: 17px 20px;
+  border-radius: 10px;
+  border: $grey020-border;
+  background-color: $white;
+
+  .channel_menu_access_section_title_box {
+    @include flexSpace();
+    width: 150px;
+
+    .color_tag {
+      flex-shrink: 0;
+      color: $brickblue090;
+      background-color: #D9E7FF;
+    }
+  }
+  .channel_menu_access_section_title {
+    width: fit-content;
+    font-size: 16px;
+    font-weight: $bold;
+    line-height: 1;
+    color: $grey080;
+  }
+  
+  &.disable {
+    background-color: $grey005 ;
+    .channel_menu_access_section_title {
+      width: fit-content;
+      color: $grey040;
+    }
+    
+    .channel_menu_access_section_description {
+      color: $grey040;
+    }
+  }
 }
 
 .channel_menu_access_section_icon_box {
@@ -88,7 +130,7 @@
 .channel_menu_access_section_text {
   flex-grow: 1;
   @include flexStart();
-  gap: 70px;
+  gap: 10px;
   
 }
 .channel_menu_access_section_title {
@@ -138,6 +180,7 @@
   // gap: 18px;
   display: flex;
   flex-direction: column;
+  gap: 8px;
   width: 100%;
   padding: 20px 30px;
   border-top: $grey020-border;
@@ -150,3 +193,4 @@
     overflow: hidden;
   }
 }
+
