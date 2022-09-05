@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg'
 import { ReactComponent as IconEdit } from 'assets/svg/icon/icon_edit.svg'
 import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg'
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg'
@@ -14,21 +13,151 @@ import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import DeleteCircleButton from 'components/publishing/atom/button/DeleteCircleButton';
 import BasicTextEditor from 'components/publishing/molecule/textEditor/BasicTextEditor';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
-import NoDataFound from 'components/publishing/atom/NoDataFound';
 import Pagination from 'components/publishing/atom/Pagination';
 import DropdownToggle from 'components/publishing/molecule/dropdown/DropdownToggle';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import BasicConfirmModal from 'components/publishing/molecule/modal/BasicConfirmModal';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
-import OutlineTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineTextField';
 import ValidationTextField from 'components/publishing/atom/textFields/inlineTextField/ValidationTextField';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import GridTable from 'components/publishing/molecule/gridComponents/GridTable';
+import GridTableHead from 'components/publishing/molecule/gridComponents/GridTableHead';
+import GridTableBody from 'components/publishing/molecule/gridComponents/GridTableBody';
+import GridTableRow from 'components/publishing/molecule/gridComponents/GridTableRow';
+import GridTableData from 'components/publishing/molecule/gridComponents/GridTableData';
+import GridTableNoDataFound from 'components/publishing/molecule/gridComponents/GridTableNoDataFound';
 import './style.scss';
 
 /** 상담 키워드 페이지
  * @children : children
  */
+
+const adviseKeywordColumnData = [
+  {
+    value: 'NO', 
+    isDropdown: false, 
+  },
+  {
+    value: '상담 키워드', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '자동 완성 문장', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '단축키', 
+    isDropdown: false,
+  },
+  {
+    value: '마지막 편집 날짜', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '', 
+    isDropdown: false, 
+  },
+];
+
+const adviseKeywordMockUpRowData = [
+  {
+    id: 1,
+    adviseKeywordText: '/일이삼사오육칠팔구십',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+    
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/상담키워드는',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '1',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/열글자까지',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '2',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/띄어쓰기불가',
+    autoComplateText: '온라인 주문 시 신용카드 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '3',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/샘플1',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '4',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/샘플2',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '5',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/샘플3',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '6',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/샘플4',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '7',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/샘플5',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '8',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    id: 1,
+    adviseKeywordText: '/샘플6',
+    autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    adviseKeywordShorcutKey: '9',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+];
 
 const AdviseKeyword = ({ children }) => {
   /* 0. 공통 - 토스트 메시지 */
@@ -135,7 +264,6 @@ const AdviseKeyword = ({ children }) => {
   const [isFileUploadError, setIsFileUploadError] = useState(true);
   const FILE_NAME = '상담키워드 파일 파일명 길게 오는 경우 확인 파일명 길게 오는 경우 확인';
   const FILE_SIZE_UNIT = '10KB';
-  
 
   const handleShowExelTemplateUploadModal = () => {
     setIsExelTemplateUploadModal(true);
@@ -266,7 +394,7 @@ const AdviseKeyword = ({ children }) => {
 
   /* 1-3. 검색 결과 */
   // 0건이면 아예 표시하지 않음(공통UI 참조, SEARCH_RESULT_COUNT=0이면 사라짐)
-  const SEARCH_RESULT_COUNT = 0; 
+  const SEARCH_RESULT_COUNT = 4; 
 
   /* 1-4. 검색 드롭다운 | 텍스트 필드 */
   /* 1-4-1. 검색 드롭다운 */
@@ -284,94 +412,8 @@ const AdviseKeyword = ({ children }) => {
   ];
 
   /* 2. 테이블 메인 섹션 */
-  /* 2-1. 테이블 - 헤드 */
-  const [isShowTableHeadAdivseKeywordDropdown, setIsShowTableHeadAdivseKeywordDropdown] = useState(false);
-  const [isShowTableHeadAutoComplateSentenceDropdown, setIsShowTableHeadAutoComplateSentenceDropdown] = useState(false);
-  const [isShowTableHeadLastUpdateDropdown, setIsShowTableHeadLastUpdateDropdown] = useState(false);
-  
-  const handleSortingRowData = () => {
-    console.log('row data sorting!');
-  };
-
-  const tableHeadDropdownData = [
-    { value: '오름차순 정렬', isSelect: false, handleClick: handleSortingRowData},
-    { value: '내림차순 정렬', isSelect: false, handleClick: handleSortingRowData}
-  ];
-  
   /* 2-2. 테이블 - 바디 */
-  const [adviseKeywordData, setAdviseKeywordData] = useState([
-    {
-      adviseKeywordText: '/일이삼사오육칠팔구십',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-      
-    },
-    {
-      adviseKeywordText: '/상담키워드는',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '1',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/열글자까지',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '2',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/띄어쓰기불가',
-      autoComplateText: '온라인 주문 시 신용카드 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '3',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/샘플1',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '4',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/샘플2',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '5',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/샘플3',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '6',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/샘플4',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '7',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/샘플5',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '8',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      adviseKeywordText: '/샘플6',
-      autoComplateText: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      adviseKeywordShorcutKey: '9',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-  ]);
+  const [adviseKeywordData, setAdviseKeywordData] = useState([...adviseKeywordMockUpRowData]);
   
   const handleToggleEditDropdownMenu = idx => {
     const currentAdviseKeywordData = [...adviseKeywordData];
@@ -380,51 +422,46 @@ const AdviseKeyword = ({ children }) => {
     setAdviseKeywordData(currentAdviseKeywordData);
   };
   
+  /* ROW_DATA_COUNT = 0 이면 데이터 없는 화면 출력됨 */
   const ROW_DATA_COUNT = 5;
+  /* No_Data_Found 문구 2types : 상담 키워드를 만들어 주세요. */
+  let NO_DATA_FOUND_STRING = '앗! 검색 결과가 없어요.\n다른 검색어를 입력해 주세요.';
   const displayAdviseKeywordRowData = () => {
     /* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
       return (
-        <tr className="advise_keyword_no_data_found">
-          <td data-table className="advise_keyword_no_data_found_box">
-            <NoDataFound>상담 키워드를 만들어 주세요.</NoDataFound>
-              {/* <NoDataFound>
-              앗! 검색 결과가 없어요. <br />
-              다른 검색어를 입력해 주세요.
-              </NoDataFound> */}
-          </td>
-        </tr>
+        <GridTableNoDataFound>{NO_DATA_FOUND_STRING}</GridTableNoDataFound>
       );
     }
 
     /* 2-2-2. 상담 키워드 로우 데이터 */
     return (
-      adviseKeywordData.map((item, idx) => {
+      adviseKeywordData.map((row, idx) => {
         return (
-          <tr className="table_row" key={item.adviseKeywordText}>
-            <td data-table>{idx + 1}</td>
-            <td data-table>
-              <span>{item.adviseKeywordText}</span>
+          <GridTableRow key={`${row.id}_${idx}`}>
+            <GridTableData>{idx+1}</GridTableData>
+            <GridTableData>
+              <span>{row.adviseKeywordText}</span>
               <button type='button' className="row_edit_button" onClick={() => handleShowEditAdviseKeywordModal(idx)}>
                 <IconEdit />
                 편집
               </button>
-            </td>
-            <td data-table data-type="ellipsis">{item.autoComplateText}</td>
-            <td data-table>
-              <KeyboardShortcutChip>{item.adviseKeywordShorcutKey}</KeyboardShortcutChip>
-            </td>
-            <td data-table>{item.lastUpdateDate}</td>
-            <td data-table data-type="edit">
+            </GridTableData>
+            <GridTableData dataType="ellipsis">{row.autoComplateText}</GridTableData>
+            <GridTableData>
+              <KeyboardShortcutChip>{row.adviseKeywordShorcutKey}</KeyboardShortcutChip>
+            </GridTableData>
+            <GridTableData>{row.lastUpdateDate}</GridTableData>
+            <GridTableData dataType="edit">
               <div className="row_data_edit_icon_button_box">
                 <IconButton buttonClassName="small" handleClick={() => handleToggleEditDropdownMenu(idx)}>
                   <IconSetting />
                 </IconButton>
                 {/* 2-2-2-1. 로우 데이터 수정 버튼 - 드롭다운 */}
-                <DropdownMenu showDropdownMenu={item.isSettingButtonSelected ? "show" : ""} dropdownMenuData={rowDataSettingButtonData} />
+                <DropdownMenu showDropdownMenu={row.isSettingButtonSelected ? "show" : ""} dropdownMenuData={rowDataSettingButtonData} />
               </div>
-            </td>
-          </tr>
+            </GridTableData>
+          </GridTableRow>
         );
       })
     );
@@ -531,25 +568,12 @@ const AdviseKeyword = ({ children }) => {
               {/* 1-1. 상담 키워드 만들기 버튼 | 모달 */}
               <div className="make_advise_keyword_button_box">
                 <SolidButton buttonClassName="small" handleClick={handleShowMakeAdviseKeywordModal}>상담 키워드 만들기</SolidButton>
-                {/* 1-1-2. 상담 키워드 만들기 모달 컴포넌트 */}
-                {isShowMakeAdviseKeywordModal ? displayMakeAdviseKeywordModal() : ''}
               </div>
-              {/* 1-2. 엑셀 템플릿 드롭다운 | 모달 */}
+              {/* 1-2. 엑셀 템플릿 드롭다운 */}
               <div className="exel_template_dropdown_container">
                 <DropdownToggle isOpenDropdown={isShowExelTemplateDropdown} setIsOpenDropdown={setIsShowExelTemplateDropdown}>
                   <IconExelTemplate />엑셀 템플릿</DropdownToggle>
                 <DropdownMenu showDropdownMenu={isShowExelTemplateDropdown ? "show" : ""} dropdownMenuData={exelTemplateData} />
-                {/* 1-2-1. 엑셀 업로드 */}
-                {/* 1-2-1-1. 엑셀 업로드 모달 컴포넌트 */}
-                {isExelTemplateUploadModal ? displayExelTemplateUploadModal() : ''}
-                <BasicConfirmModal
-                  showModal={isExelTemplateUploadConfirmModal ? 'show' : ""}
-                  titleText="상담 키워드를 업로드할까요?"
-                  actionButtonText="업로드"
-                  handleAction={handleUploadAdviseKeywordFromExelTemplateFile}
-                  handleClose={handleCancleConfirmModal}
-                >{'업로드 시 현재에 등록되어 있는 상담 키워드는 \n 모두 사라지고 엑셀에 등록된 내용으로 덮어씌워집니다.'}
-                </BasicConfirmModal>
               </div>
             </div>
             <div className="advise_keyword_table_top_search_box">
@@ -574,48 +598,43 @@ const AdviseKeyword = ({ children }) => {
           </section>
           {/* 2. 테이블 메인 섹션 */}
           <section className="advise_keyword_table_section">
-            <div className="advise_keyword_table_wrap">
-              <table className="table_container">
-                {/* 2-1. 테이블 - 헤드 */}
-                <thead className="table_head">
-                  <tr className="table_row">
-                    <th className="table_header" data-type="numeric">NO</th>
-                    <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadAdivseKeywordDropdown} setIsOpenDropdown={setIsShowTableHeadAdivseKeywordDropdown}>상담 키워드</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadAdivseKeywordDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header dropdown" data-type="text-long">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadAutoComplateSentenceDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>자동 완성 문장</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadAutoComplateSentenceDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header" data-type="text-short">단축키</th>
-                    <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 편집 날짜</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header" data-type="button" />
-                  </tr>
-                </thead>
-                {/* 2-2. 테이블 - 바디 */}
-                <tbody className="table_body">
-                  {displayAdviseKeywordRowData()}
-                </tbody>
-              </table>
-              {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''}
-              <BasicConfirmModal
-                showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
-                titleText="상담 키워드를 삭제할까요?"
-                actionButtonText="삭제하기"
-                handleAction={handleDeleteRowData}
-                handleClose={handleCloseDeleteRowDataConfirmModal}
-              >삭제한 상담 키워드는 복원되지 않습니다.
-              </BasicConfirmModal>
-            </div>
+            <GridTable gridClassName="advise_keyword_table">
+              {/* 2-1. 테이블 - 헤드 */}
+              <GridTableHead gridColumnData={adviseKeywordColumnData} />
+              {/* 2-2. 테이블 - 바디 */}
+              <GridTableBody>
+                {displayAdviseKeywordRowData()}
+              </GridTableBody>
+            </GridTable>
           </section>
           {/* 3. 테이블 바텀 섹션 */}
           <section className="advise_keyword_bottom_section">
             <Pagination pageNumber={1} />
           </section>
+          {/* 모달 | 토스트 메시지*/}
+          {/* (1) 상담 키워드 만들기 모달 */}
+          {isShowMakeAdviseKeywordModal ? displayMakeAdviseKeywordModal() : ''}
+          {/* (2) 상담 키워드 편집하기 모달 */}
+          {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''}
+          {/* (3) 엑셀 업로드 모달 | 확인 모달 */}
+          {isExelTemplateUploadModal ? displayExelTemplateUploadModal() : ''}
+          <BasicConfirmModal
+            showModal={isExelTemplateUploadConfirmModal ? 'show' : ""}
+            titleText="상담 키워드를 업로드할까요?"
+            actionButtonText="업로드"
+            handleAction={handleUploadAdviseKeywordFromExelTemplateFile}
+            handleClose={handleCancleConfirmModal}
+          >{'업로드 시 현재에 등록되어 있는 상담 키워드는 \n 모두 사라지고 엑셀에 등록된 내용으로 덮어씌워집니다.'}
+          </BasicConfirmModal>
+          {/* (4) 상담 키워드 삭제 확인 모달 */}
+          <BasicConfirmModal
+            showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
+            titleText="상담 키워드를 삭제할까요?"
+            actionButtonText="삭제하기"
+            handleAction={handleDeleteRowData}
+            handleClose={handleCloseDeleteRowDataConfirmModal}
+          >삭제한 상담 키워드는 복원되지 않습니다.
+          </BasicConfirmModal>
           <ToastMessage showToast={toastMessageData.isShow ? 'show' : ''} iconStyle={toastMessageData.icon}>
             {toastMessageData.message}
           </ToastMessage>

@@ -32,7 +32,7 @@ import './style.scss';
 /** KMS 페이지
  * @children : children
  */
-const kmsMockUpColumnData = [
+const kmsColumnData = [
   {
     value: 'NO', 
     isDropdown: false, 
@@ -695,7 +695,7 @@ const KMS = ({ children }) => {
           <section className="KMS_table_section">
             <GridTable gridClassName="KMS_table">
               {/* 2-1. 테이블 - 헤드 */}
-              <GridTableHead gridColumnData={kmsMockUpColumnData} />
+              <GridTableHead gridColumnData={kmsColumnData} />
               {/* 2-2. 테이블 - 바디 */}
               <GridTableBody>
                 {displayKMSRowData()}

@@ -506,9 +506,17 @@
   min-height: 552px;
   position: relative;
 }
+
 .KMS_table {
   .table_container {
     grid-template-columns: 79px 200px 400px 612px 200px 86px;
+  }
+
+  .no_data_found {
+    grid-row-start: 2;
+    grid-row-end: 12;
+    grid-column-start: 1;
+    grid-column-end: 7;
   }
 
   [data-type='edit'] {
@@ -520,35 +528,9 @@
       }
     }
   }
-  .no_data_found {
-    grid-row-start: 2;
-    grid-row-end: 12;
-    grid-column-start: 1;
-    grid-column-end: 7;
-  }
+  
 }
 
-/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-// .KMS_no_data_found {
-//   flex-grow: 1;
-//   @include flexCenter();
-//   grid-row-start: 2;
-//   grid-row-end: 12;
-//   grid-column-start: 1;
-//   grid-column-end: 7;
-
-//   .KMS_no_data_found_box {
-//     position: absolute;
-//     top: 52%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//   }
-
-//   [data-table] {
-//     border-bottom: 0;
-//   }
-
-// }
 .row_data_edit_icon_button_box {
   position: relative;
 
@@ -602,7 +584,7 @@
   }
 }
 
-/* 2-2-2. 상담 키워드 로우 데이터 */
+/* 2-2-2. KMS 로우 데이터 */
 .row_edit_button {
   display: none;
   width: fit-content;
@@ -624,16 +606,6 @@
     fill: $grey080;
   }
 }
-
-/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-.detail_customer_order_no_data_found_box {
-  flex-grow: 1;
-  @include flexCenter();
-  margin: 0 24px 24px;
-  border-radius: 8px;
-  border: $grey020-border;
-}
-
 
 /* 3. 테이블 바텀 섹션 */
 .KMS_bottom_section {

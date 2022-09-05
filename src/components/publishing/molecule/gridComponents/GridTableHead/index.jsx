@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
-import DropdownToggle from 'components/publishing/molecule/dropdown/DropdownToggle';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import './style.scss';
 

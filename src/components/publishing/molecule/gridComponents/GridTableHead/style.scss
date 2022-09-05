@@ -27,10 +27,11 @@
       background-color: $grey010;
     }
   }
-
+  
   .dropdown_toggle {
     padding: 0 16px;
     border: none;
+    border-radius: 0;
     background-color: inherit;
     z-index: 3;
     

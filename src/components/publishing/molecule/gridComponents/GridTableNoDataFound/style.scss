@@ -3,6 +3,7 @@
 .no_data_found {
   flex-grow: 1;
   @include flexCenter();
+  border-bottom: 0;
   // grid-row-start: 2;
   // grid-row-end: 12;
   // grid-column-start: 1;
@@ -17,5 +18,6 @@
 }
 
 [data-type='no_data_found'] {
+  border-right: 0;
   border-bottom: 0;
 }
