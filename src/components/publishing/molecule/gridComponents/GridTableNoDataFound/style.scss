@@ -1,0 +1,21 @@
+@import "/src/styles/_variables.scss";
+
+.no_data_found {
+  flex-grow: 1;
+  @include flexCenter();
+  // grid-row-start: 2;
+  // grid-row-end: 12;
+  // grid-column-start: 1;
+  // grid-column-end: 7;
+
+  .no_data_found_box {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+[data-type='no_data_found'] {
+  border-bottom: 0;
+}

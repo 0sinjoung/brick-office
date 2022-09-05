@@ -7,6 +7,7 @@ import './style.scss';
  * @handleClick : 버튼 클릭 이벤트
  * @buttonClassName : disable | dim | size - big(50) | large(42) | small(32) | tiny(28)
  * @buttonStyle : inline style로 버튼 스타일 변경
+ * @isDim : boolean
  */
 const SolidButton = ({ children, handleClick, buttonClassName, buttonStyle, isDim }) => {
   const handleButtonClick = () => {

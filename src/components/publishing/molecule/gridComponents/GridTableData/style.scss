@@ -1,0 +1,31 @@
+@import "/src/styles/_variables.scss";
+
+.table_data {
+  @include flexSpace();
+  @include hoverTransition();
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: $regular;
+  color: $grey080;
+  border-bottom: $grey010-border;
+  border-right: $grey010-border;
+  background-color: transparent;
+  &:last-child {
+    border-right: 0;
+  }
+}
+[data-type='ellipsis'] {
+  @include ellipsisOneLine();
+  line-height: 50px;
+}
+[data-type='edit'] {
+  @include flexCenter();
+  .icon_button {
+    background-color: transparent;
+    transform: rotate(90deg);
+    
+    &:hover {
+      background-color: $grey005;
+    }
+  }
+}

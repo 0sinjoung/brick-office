@@ -1,0 +1,60 @@
+@import "/src/styles/_variables.scss";
+
+/* 2-1. 테이블 - 헤드 */
+.table_head {
+  height: 44px;
+}
+.table_head_column {
+  @include flexStart();
+  font-size: 14px;
+  font-weight: $regular;
+  line-height: 1;
+  color: $grey040;
+  background-color: $grey005;
+  border-right: $grey010-border;
+  padding: 0 16px;
+  position: relative;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  &.dropdown {
+    padding: 0;
+    cursor: pointer;
+    @include hoverTransition();
+    &:hover {
+      background-color: $grey010;
+    }
+  }
+
+  .dropdown_toggle {
+    padding: 0 16px;
+    border: none;
+    background-color: inherit;
+    z-index: 3;
+    
+    .dropdown_toggle_text {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+    }
+  }
+
+  .dropdown_menu {
+    width: 200px;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    bottom: -4px;
+    transform: translateY(100%);
+    
+    .dropdown_lists {
+      padding: 4px;
+
+      .dropdown_button {
+        padding: 5px 6px 6px;
+      }
+    }
+  }
+}

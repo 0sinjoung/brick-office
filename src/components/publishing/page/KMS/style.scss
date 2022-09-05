@@ -506,19 +506,7 @@
   min-height: 552px;
   position: relative;
 }
-.KMS_table_wrap {
-  width: 100%;
-  max-height: 552px;
-  margin-top: 16px;
-  overflow-y: hidden;
-  overflow-x: auto;
-  overflow-x: overlay;
-  scrollbar-width: thin;
-  scrollbar-color: $grey030;
-  background-color: $white;
-  border: $grey020-border;
-  border-radius: 10px;
-  
+.KMS_table {
   .table_container {
     grid-template-columns: 79px 200px 400px 612px 200px 86px;
   }
@@ -531,208 +519,36 @@
         }
       }
     }
-  }  
-
-  &::-webkit-scrollbar {
-    height: 10px;
-    background-color: transparent;
   }
-  &::-webkit-scrollbar-thumb {
-    background: $grey030;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-    border-radius: 5px;
-  }
-}
-
-.table_container {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-auto-rows: 50px;
-  border-collapse: collapse;
-  position: relative;
-  
-  .table_head,
-  .table_body,
-  .table_row {
-    display: contents;
-  }
-}
-
-/* 2-1. 테이블 - 헤드 */
-.table_head {
-  height: 44px;
-}
-.table_header {
-  @include flexStart();
-  font-size: 14px;
-  font-weight: $regular;
-  line-height: 1;
-  color: $grey040;
-  background-color: $grey005;
-  border-right: $grey010-border;
-  padding: 0 16px;
-  position: relative;
-
-  &:last-child {
-    border-right: 0;
-  }
-
-  &.dropdown {
-    padding: 0;
-    cursor: pointer;
-    @include hoverTransition();
-    &:hover {
-      background-color: $grey010;
-    }
-  }
-
-  .dropdown_toggle {
-    padding: 0 16px;
-    border: none;
-    background-color: inherit;
-    z-index: 3;
-    
-    .dropdown_toggle_text {
-      font-size: inherit;
-      font-weight: inherit;
-      color: inherit;
-    }
-  }
-
-  .dropdown_menu {
-    width: 200px;
-    position: absolute;
-    z-index: 10;
-    left: 0;
-    bottom: -4px;
-    transform: translateY(100%);
-    
-    .dropdown_lists {
-      padding: 4px;
-
-      .dropdown_button {
-        padding: 5px 6px;
-      }
-    }
-  }
-}
-
-/* 2-2. 테이블 - 바디 */
-.table_body {
-  .table_row {
-    cursor: pointer;
-
-    &:hover {
-      td {
-        background-color: $grey000;
-      }
-      .row_edit_button {
-        @include flexCenter()
-      }
-    }
-    &:nth-child(10) {
-      td {
-        border-bottom: 0;
-      }
-    }
-    &:last-child {
-      .dropdown_menu {
-        top: unset;
-        bottom: 0;
-        transform: translateY(0);
-      }
-      td {
-        border-bottom: 0;
-      }
-    }
-  }
-}
-[data-table] {
-  @include flexSpace();
-  @include hoverTransition();
-  padding: 0 16px;
-  font-size: 14px;
-  font-weight: $regular;
-  color: $grey080;
-  border-bottom: $grey010-border;
-  border-right: $grey010-border;
-  background-color: transparent;
-  &:last-child {
-    border-right: 0;
-  }
-}
-[data-type='ellipsis'] {
-  @include ellipsisOneLine();
-  line-height: 50px;
-}
-[data-type='edit'] {
-  @include flexCenter();
-  .icon_button {
-    background-color: transparent;
-    transform: rotate(90deg);
-    
-    &:hover {
-      background-color: $grey005;
-    }
+  .no_data_found {
+    grid-row-start: 2;
+    grid-row-end: 12;
+    grid-column-start: 1;
+    grid-column-end: 7;
   }
 }
 
 /* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-.KMS_no_data_found {
-  flex-grow: 1;
-  @include flexCenter();
-  grid-row-start: 2;
-  grid-row-end: 12;
-  grid-column-start: 1;
-  grid-column-end: 7;
+// .KMS_no_data_found {
+//   flex-grow: 1;
+//   @include flexCenter();
+//   grid-row-start: 2;
+//   grid-row-end: 12;
+//   grid-column-start: 1;
+//   grid-column-end: 7;
 
-  .KMS_no_data_found_box {
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+//   .KMS_no_data_found_box {
+//     position: absolute;
+//     top: 52%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//   }
 
-  [data-table] {
-    border-bottom: 0;
-  }
-}
+//   [data-table] {
+//     border-bottom: 0;
+//   }
 
-/* 2-2-2. 상담 키워드 로우 데이터 */
-.row_edit_button {
-  display: none;
-  width: fit-content;
-  height: 24px;
-  font-size: 14px;
-  font-weight: $medium;
-  line-height: 1;
-  color: $grey080;
-  border-radius: 5px;
-  padding: 0 6px 0 2px;
-  background-color: $grey005;
-  @include hoverTransition();
-  &:hover {
-    background-color: $grey020;
-  }
-
-  .icon_edit {
-    stroke: $grey080;
-    fill: $grey080;
-  }
-}
-
-/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-.detail_customer_order_no_data_found_box {
-  flex-grow: 1;
-  @include flexCenter();
-  margin: 0 24px 24px;
-  border-radius: 8px;
-  border: $grey020-border;
-}
-
-/* 2-2-2-1. 로우 데이터 수정 버튼 - 드롭다운 */
+// }
 .row_data_edit_icon_button_box {
   position: relative;
 
@@ -784,6 +600,38 @@
       }
     }
   }
+}
+
+/* 2-2-2. 상담 키워드 로우 데이터 */
+.row_edit_button {
+  display: none;
+  width: fit-content;
+  height: 24px;
+  font-size: 14px;
+  font-weight: $medium;
+  line-height: 1;
+  color: $grey080;
+  border-radius: 5px;
+  padding: 0 6px 0 2px;
+  background-color: $grey005;
+  @include hoverTransition();
+  &:hover {
+    background-color: $grey020;
+  }
+
+  .icon_edit {
+    stroke: $grey080;
+    fill: $grey080;
+  }
+}
+
+/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
+.detail_customer_order_no_data_found_box {
+  flex-grow: 1;
+  @include flexCenter();
+  margin: 0 24px 24px;
+  border-radius: 8px;
+  border: $grey020-border;
 }
 
 

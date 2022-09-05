@@ -1,0 +1,43 @@
+@import "/src/styles/_variables.scss";
+
+/* 토글 버튼 */
+[data-onoff-toggle] {
+  display: none;
+
+  &:checked {
+    + [data-onoff-toggle-label] {
+      background-color: $green100;
+
+      &::before {
+        border: 1px solid $green100;
+        top: 1px;
+        left: 23px;
+      }
+    }
+  }
+}
+
+[data-onoff-toggle-label] {
+  display: inline-block;
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: 14px;
+  background-color: $grey020;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 1px;
+    left: 1px;
+    background-color: $white;
+    border-radius: 50%;
+    border: $grey020-border;
+    box-shadow: 0 0 6px #0000000F;
+    transition: left 0.3s;
+  }
+}

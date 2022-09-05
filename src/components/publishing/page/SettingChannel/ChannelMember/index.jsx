@@ -90,27 +90,27 @@ const ChannelMember = ({ children }) => {
   const handleSaveAdivseFields = () => {
     console.log('상담 분야 편집 저장!');
     handleHideEditMemberAdviseFieldModal();
-    // setToastMessageData({ ...toastMessageData, isShow: true, message: 'KMS 편집을 완료했어요.' });
-    // setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
+    setToastMessageData({ ...toastMessageData, isShow: true, message: '설정을 저장했어요.' });
+    setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
   };
   const ADVISER_NAME = "김다이김다이김다이김다이김다이김다이";
-  // const [ isCheckedZeroAdviseFields, setIsCheckedZeroAdviseFields ] = useState(false);
+  const [ isCheckedZeroAdviseFields, setIsCheckedZeroAdviseFields ] = useState(true);
   const [ isOpenedDropdownMenu, setIsOpenedDropdownMenu ] = useState(false);
   const [ adviseFieldsDeletableChipData, setAdviseFieldsDeletableChipData ] = useState(
     {
       adviseField: [
-        {value: '전체', isChecked: false},
+        {value: '전체', isChecked: true},
         {value: 'A/S', isChecked: true},
         {value: '결제', isChecked: true},
         {value: '고객 관리', isChecked: true},
-        {value: '교환 반품 환불', isChecked: false},
-        {value: '배송', isChecked: false},
-        {value: '상품', isChecked: false},
-        {value: '시스템', isChecked: false},
-        {value: '주문', isChecked: false},
-        {value: '프로모션', isChecked: false},
-        {value: '회원', isChecked: false},
-        {value: '기타', isChecked: false},
+        {value: '교환 반품 환불', isChecked: true},
+        {value: '배송', isChecked: true},
+        {value: '상품', isChecked: true},
+        {value: '시스템', isChecked: true},
+        {value: '주문', isChecked: true},
+        {value: '프로모션', isChecked: true},
+        {value: '회원', isChecked: true},
+        {value: '기타', isChecked: true},
       ],
     }
   );
@@ -135,21 +135,26 @@ const ChannelMember = ({ children }) => {
             </div>
           </div>
           <div className="edit_member_advise_fields_dropdown_box">
-            <div className="advise_fields_dropdown_toggle">
-              <div className="advise_fields_dropdown_toggle_button" onClick={() => handleShowAdviseFieldsDropdownMenu()}>
-                <div className="advise_fields_lists">
-                  {/* {isCheckedZeroAdviseFields ? '상담 분야' : ''} */}
-                  {
-                    adviseFieldsDeletableChipData.adviseField.map(field => {
-                      return (
-                        <AdviseFieldDeletableChip key={field.value} isChecked={field.isChecked} handleDelete={handleAdviseFieldsDelete}>{field.value}</AdviseFieldDeletableChip>
-                      );
-                    })
-                  }
-                </div>
+            <div className={`advise_fields_dropdown_toggle_outline_style_box ${isOpenedDropdownMenu ? 'focus' : ''}`}>
+              <div className="advise_fields_dropdown_toggle">
+                <div className="advise_fields_dropdown_toggle_button" onClick={() => handleShowAdviseFieldsDropdownMenu()}>
+                  <div className="advise_fields_lists">
+                    {isCheckedZeroAdviseFields ? '상담 분야' : ''}
+                    {/* {
+                      adviseFieldsDeletableChipData.adviseField.map(field => {
+                        if (field.value === '전체') {
+                          return;
+                        }
+                        return (
+                          <AdviseFieldDeletableChip key={field.value} isChecked={field.isChecked} handleDelete={handleAdviseFieldsDelete}>{field.value}</AdviseFieldDeletableChip>
+                        );
+                      })
+                    } */}
+                  </div>
                   <div className={`advise_fields_toggle_arrow ${isOpenedDropdownMenu ? 'open' : ''}`}>
                     <IconDropdownArrow />
                   </div>
+                </div>
               </div>
             </div>
             <div className={`advise_fields_combo_dropdown_menu ${isOpenedDropdownMenu ? 'open' : ''}`}>
@@ -158,8 +163,8 @@ const ChannelMember = ({ children }) => {
                   {
                     adviseFieldsDeletableChipData.adviseField.map(field => {
                       return (
-                        <li className="advise_fields_combo_dropdown_menu_list">
-                          <Checkbox />
+                        <li className="advise_fields_combo_dropdown_menu_list" key={field.value}>
+                          <Checkbox isChecked={field.isChecked} checkboxName="checkbox" />
                           <AdviseFieldChip>{field.value}</AdviseFieldChip>
                         </li>
                       );
@@ -171,7 +176,7 @@ const ChannelMember = ({ children }) => {
           </div>
           <div className="edit_member_advise_fields_button_box">
             <OutlineButton handleClick={handleHideEditMemberAdviseFieldModal}>취소</OutlineButton>
-            <SolidButton handleClick={handleSaveAdivseFields}>저장하기</SolidButton>
+            <SolidButton handleClick={handleSaveAdivseFields} isDim={true}>저장하기</SolidButton>
           </div>
         </div>
       </FullScreenDim>
@@ -190,8 +195,8 @@ const ChannelMember = ({ children }) => {
   const handleResignMember = () => {
     console.log('강제 탈퇴시키기!');
     handleHideResignModal();
-    // setToastMessageData({ ...toastMessageData, isShow: true, message: 'KMS 편집을 완료했어요.' });
-    // setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
+    setToastMessageData({ ...toastMessageData, isShow: true, message: '탈퇴 처리를 완료했어요.' });
+    setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
   };
   const displayResignMemberModal = () => {
     return (
@@ -224,7 +229,7 @@ const ChannelMember = ({ children }) => {
   /* 1. 테이블 탑 섹션 */
   /* 1-2. 검색 결과 */
   // 0건이면 아예 표시하지 않음(공통UI 참조, SEARCH_RESULT_COUNT=0이면 사라짐)
-  const SEARCH_RESULT_COUNT = 8; 
+  const SEARCH_RESULT_COUNT = 0; 
 
   /* 1-3. 검색 드롭다운 | 텍스트 필드 */
   const handleClickDropdownMenuItem = menuItem => {
@@ -305,8 +310,8 @@ const ChannelMember = ({ children }) => {
       channelMemberName: '김다이김다이김다이김다이김다이김다이',
       channelMemberNickname: '닉네임아홉글자까지',
       channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['고객 관리', '교환 반품 환불', '프로모션', 'A/S', '주문'],
-      channelMemberAdviseState: '업무 종료',
+      channelMemberAdviseField: ['고객 관리', '교환 반품 환불', '프로모션', '회원'],
+      channelMemberAdviseState: '업무 시작',
       channelMemberIsAdmin: false,
       channelMemberJoinDate: '2023.01.20',
       isEditButtonSelected: false,
@@ -319,7 +324,7 @@ const ChannelMember = ({ children }) => {
       channelMemberNickname: '아홉글자가최대',
       channelMemberEmail: 'testtesttest1111@gmail.com',
       channelMemberAdviseField: ['A/S'],
-      channelMemberAdviseState: '업무 종료',
+      channelMemberAdviseState: '업무 시작',
       channelMemberIsAdmin: false,
       channelMemberJoinDate: '2023.01.20',
       isEditButtonSelected: false,
@@ -331,7 +336,7 @@ const ChannelMember = ({ children }) => {
       channelMemberName: '김다이',
       channelMemberNickname: '아홉글자가최대',
       channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타', '배송', '상품', '시스템', '주문', '프로모션', '회원'],
+      channelMemberAdviseField: ['교환 반품 환불', '기타', '배송'],
       channelMemberAdviseState: '업무 종료',
       channelMemberIsAdmin: false,
       channelMemberJoinDate: '2023.01.20',
@@ -344,7 +349,7 @@ const ChannelMember = ({ children }) => {
       channelMemberName: '김다이',
       channelMemberNickname: '아홉글자가최대',
       channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+      channelMemberAdviseField: ['결제', '고객 관리'],
       channelMemberAdviseState: '업무 종료',
       channelMemberIsAdmin: false,
       channelMemberJoinDate: '2023.01.20',
@@ -357,7 +362,7 @@ const ChannelMember = ({ children }) => {
       channelMemberName: '김다이',
       channelMemberNickname: '아홉글자가최대',
       channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '프로모션'],
       channelMemberAdviseState: '업무 종료',
       channelMemberIsAdmin: false,
       channelMemberJoinDate: '2023.01.20',
@@ -461,7 +466,7 @@ const ChannelMember = ({ children }) => {
             {
               adviseFields.map(field => {
                 return (
-                  <AdviseFieldChip>{field}</AdviseFieldChip>
+                  <AdviseFieldChip key={field}>{field}</AdviseFieldChip>
                 );
               })
             }
@@ -476,7 +481,7 @@ const ChannelMember = ({ children }) => {
         {
           item.channelMemberAdviseField.map(field => {
             return (
-              <AdviseFieldChip>{field}</AdviseFieldChip>
+              <AdviseFieldChip key={field}>{field}</AdviseFieldChip>
             );
           })
         }
@@ -495,40 +500,34 @@ const ChannelMember = ({ children }) => {
     );
   };
   
-  const handleToggleEditDropdownMenu = idx => {
-    const currentKMSData = [...settingChannelMemberData];
-    currentKMSData.map(item => item.isEditButtonSelected = false);
-    currentKMSData[idx].isEditButtonSelected = true;
-    setSettingChannelMemberData(currentKMSData);
-  };
 
   /* (4) 로우 데이터 편집 */
-  // const IS_CURRENT_USER_CHANNEL_ADMIN = false;
-  // const handleToggleEditDropdownMenu = idx => {
-  //   if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
-  //     return;
-  //   }
-  //   const currentSettingChannelJoinData = [...settingChannelJoinData];
-  //   currentSettingChannelJoinData.map(item => item.isEditButtonSelected = false);
-  //   currentSettingChannelJoinData[idx].isEditButtonSelected = true;
-  //   setSettingChannelJoinData(currentSettingChannelJoinData);
-  // };
+  const IS_CURRENT_USER_CHANNEL_ADMIN = true;
+  const handleToggleEditDropdownMenu = idx => {
+    if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
+      return;
+    }
+    const currentSettingChannelMemberData = [...settingChannelMemberData];
+    currentSettingChannelMemberData.map(item => item.isEditButtonSelected = false);
+    currentSettingChannelMemberData[idx].isEditButtonSelected = true;
+    setSettingChannelMemberData(currentSettingChannelMemberData);
+  };
 
   /* 데이터 편집 종류 */
   const rowDataEditButtonData = [
     { value: '상담 분야 설정하기', isSelect: false, handleClick: handleShowEditMemberAdviseFieldModal},
     { value: '강제 탈퇴시키기', isSelect: false, handleClick: handleShowResignModal}
   ];
-  // const displayAdminEditTableCell = (item, idx) => {
-  //   return (
-  //     <div className={`row_data_edit_icon_button_box channel_join_edit_cell ${IS_CURRENT_USER_CHANNEL_ADMIN ? '' : 'member'}`}>
-  //       <IconButton buttonClassName="small" handleClick={() => handleToggleEditDropdownMenu(idx)}>
-  //         <IconSetting />
-  //       </IconButton>
-  //       <DropdownMenu showDropdownMenu={item.isEditButtonSelected ? "show" : ""} dropdownMenuData={rowDataEditButtonData} />
-  //     </div>
-  //   );
-  // };
+  const displayAdminEditTableCell = (item, idx) => {
+    return (
+      <div className={`row_data_edit_icon_button_box channel_member_edit_cell ${IS_CURRENT_USER_CHANNEL_ADMIN ? '' : 'member'}`}>
+        <IconButton buttonClassName="small" handleClick={() => handleToggleEditDropdownMenu(idx)}>
+          <IconSetting />
+        </IconButton>
+        <DropdownMenu showDropdownMenu={item.isEditButtonSelected ? "show" : ""} dropdownMenuData={rowDataEditButtonData} />
+      </div>
+    );
+  };
 
 
   
@@ -563,13 +562,7 @@ const ChannelMember = ({ children }) => {
             <td data-table>{displayChannelMemberAdminTableCell(item)}</td>
             <td data-table>{item.channelMemberJoinDate}</td>
             <td data-table data-type="edit">
-              <div className="row_data_edit_icon_button_box">
-                <IconButton buttonClassName="small" handleClick={() => handleToggleEditDropdownMenu(idx)}>
-                  <IconSetting />
-                </IconButton>
-                {/* 2-2-2-1. 로우 데이터 수정 버튼 - 드롭다운 */}
-                <DropdownMenu showDropdownMenu={item.isEditButtonSelected ? "show" : ""} dropdownMenuData={rowDataEditButtonData} />
-              </div>
+              {displayAdminEditTableCell(item, idx)}
             </td>
           </tr>
         );
@@ -579,7 +572,7 @@ const ChannelMember = ({ children }) => {
 
   return (
     <>
-      <div className="contents_wrap">
+      <div className="contents_wrap scroll">
         <main className="page_wrap full">
           <div className="channel_member_section_wrap">
             {/* 1. 테이블 탑 섹션 */}
@@ -621,27 +614,27 @@ const ChannelMember = ({ children }) => {
                         <DropdownToggle isOpenDropdown={isShownTableHeadNameDropdown} setIsOpenDropdown={setIsShownTableHeadNameDropdown}>이름</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadNameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
-                      <th className="table_header dropdown" data-type="text-short">
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="nickname">
                         <DropdownToggle isOpenDropdown={isShownTableHeadNicknameDropdown} setIsOpenDropdown={setIsShownTableHeadNicknameDropdown}>닉네임</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadNicknameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
-                      <th className="table_header dropdown" data-type="text-short">
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="email">
                         <DropdownToggle isOpenDropdown={isShownTableHeadEmailDropdown} setIsOpenDropdown={setIsShownTableHeadEmailDropdown}>이메일</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadEmailDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>
-                      <th className="table_header dropdown" data-type="text-short">
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="advise_field">
                         <DropdownToggle isOpenDropdown={isShownTableHeadAdviseFieldsDropdown} setIsOpenDropdown={setIsShownTableHeadAdviseFieldsDropdown}>상담 분야</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadAdviseFieldsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdviseFieldsData} />
                       </th>
-                      <th className="table_header dropdown" data-type="text-short">
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="advise_status">
                         <DropdownToggle isOpenDropdown={isShownTableHeadAdviseStateDropdown} setIsOpenDropdown={setIsShownTableHeadAdviseStateDropdown}>상담 상태</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadAdviseStateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdviseStateData} />
                       </th>
-                      <th className="table_header dropdown" data-type="text-short">
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="admin">
                         <DropdownToggle isOpenDropdown={isShownTableHeadAdminDropdown} setIsOpenDropdown={setIsShownTableHeadAdminDropdown}>권한</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadAdminDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdminData} />
                       </th>
-                      <th className="table_header dropdown" data-type="text-short">
+                      <th className="table_header dropdown" data-type="text-short" data-head-name="join_date">
                         <DropdownToggle isOpenDropdown={isShownTableHeadDateDropdown} setIsOpenDropdown={setIsShownTableHeadDateDropdown}>채널 가입일</DropdownToggle>
                         <DropdownMenu showDropdownMenu={isShownTableHeadDateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
                       </th>

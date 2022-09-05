@@ -9,12 +9,10 @@ import './style.scss';
  * @setIsOpenDropdown : 드롭다운 메뉴 오픈 상태 변경 함수
  */
 
-const DropdownToggle = ({ children, isOpenDropdown, setIsOpenDropdown }) => {  
-
+const DropdownToggle = ({ children, isOpenDropdown, setIsOpenDropdown }) => {
   const handleToggleDropdown = () => {
-    setIsOpenDropdown(!isOpenDropdown)
+    setIsOpenDropdown(!isOpenDropdown);
   };
-  
   return (
     <div role="button" tabIndex={0} className="dropdown_toggle" onClick={handleToggleDropdown} onKeyUp={handleToggleDropdown}>
       <div className="dropdown_toggle_text">{children}</div>

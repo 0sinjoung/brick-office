@@ -127,11 +127,42 @@
   position: relative;
   z-index: 100;
 }
+.advise_fields_dropdown_toggle_outline_style_box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+
+  &.focus {
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: -3px;
+      bottom: -3px;
+      left: -3px;
+      right: -3px;
+      border-radius: 9px;
+      background-color: #1F71F933;
+    }
+
+    .advise_fields_dropdown_toggle {
+      border: 1px solid $brickblue090;
+    }
+  }
+}
+
 .advise_fields_dropdown_toggle {
   width: 100%;
   border-radius: 8px;
   border: $grey020-border;
   background-color: $white;
+  position: relative;
+  z-index: 3;
+  &:hover {
+    background-color: $grey005;
+  }
 }
 .advise_fields_dropdown_toggle_button {
   padding: 5px 6px;
@@ -140,9 +171,6 @@
   align-items: flex-start;
   cursor: pointer;
   
-  &:hover {
-    background-color: $grey005;
-  }
 }
 .advise_fields_lists {
   flex-grow: 1;
@@ -169,12 +197,13 @@
 .advise_fields_combo_dropdown_menu {
   display: none;
   width: 100%;
+  height: 176px;
   padding: 4px;
   background-color: $white;
   border-radius: 8px;
   border: $grey020-border;
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
   right: 0;
   z-index: 200;
@@ -187,7 +216,7 @@
 }
 .advise_fields_combo_dropdown_menu_scroll_area {
   width: 100%;
-  height: 176px;
+  height: 100%;
   @include scrollStyle();
 }
 .advise_fields_combo_dropdown_menu_list {
@@ -285,7 +314,7 @@
   @include flexSpace();
   width: 100%;
   height: 32px;
-  margin-top: 8vh;
+  margin-top: 6.4vh;
 }
 
 .channel_member_table_top_buttons_box {
@@ -363,7 +392,7 @@
   border-radius: 10px;
   
   .table_container {
-    grid-template-columns: 210px 150px 250px 310px 154px 154px 198px 86px;
+    grid-template-columns: 210px 150px 250px 310px 154px 154px 200px 89px;
   }
 
   [data-type='edit'] {
@@ -373,6 +402,26 @@
           color: $red100;
         }
       }
+    }
+  }  
+  [data-head-name='advise_field'] {
+    .dropdown_menu {
+      padding: 4px;
+    }
+    .dropdown_lists {
+      height: 170px;
+      padding: 0;
+      @include scrollStyle();
+      
+      .dropdown_list {
+        width: 96%;
+      }
+    }
+  }  
+  [data-head-name='advise_status'],
+  [data-head-name='admin'] {
+    .dropdown_menu {
+      width: 155px;
     }
   }  
 
@@ -388,7 +437,52 @@
   }
 
   /* 편집 버튼 */
-  .row_data_edit_icon_button_box {
+  .channel_member_edit_cell {
+    &.member {
+      position: relative;
+
+      &::before {
+        content: '';
+        display: none;
+        width: 0;
+        height: 0;
+        border-bottom: 8px solid transparent;
+        border-left: 12px solid $grey100;
+        border-top: 8px solid transparent;
+        border-right: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        left: -16px;
+        transform: translate(0, -50%);
+      }
+      &::after {
+        content: '채널 관리자만 멤버 정보를 편집할 수 있어요.';
+        word-break: keep-all;
+        display: none;
+        width: 164px;
+        height: 54px;
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: $medium;
+        color: $white;
+        background-color: $grey100;
+        border-radius: 6px;
+        position: absolute;
+        top: 50%;
+        left: -10px;
+        transform: translate(-100%, -50%);
+        z-index: 300;
+      }
+      &:hover {
+        &::before {
+          display: block;
+        }
+        &::after {
+          display: block;
+        }
+      }
+    }
+
     .dropdown_menu {
       width: 136px;
 
@@ -485,7 +579,7 @@
 
 
 /* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-.KMS_no_data_found {
+.channel_member_no_data_found {
   flex-grow: 1;
   @include flexCenter();
   grid-row-start: 2;
@@ -493,7 +587,7 @@
   grid-column-start: 1;
   grid-column-end: 7;
 
-  .KMS_no_data_found_box {
+  .channel_member_no_data_found_box {
     position: absolute;
     top: 52%;
     left: 50%;
@@ -598,4 +692,5 @@
   @include flexCenter();
   width: 100%;
   margin-top: 7vh;
+  padding-bottom: 3vh;
 }

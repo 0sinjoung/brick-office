@@ -1,22 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as IconCheckbox } from 'assets/svg/icon/icon_checkbox.svg';
 import './style.scss';
 
-/** 체크박스
- * @handleClick : 버튼 클릭 이벤트
- * @buttonClassName : 'small' 32x32 || 'tiny' 24x24
- * @buttonStyle : inline style로 버튼 스타일 변경
+/** Checkbox
+ * @isChecked : 체크 상태
+ * @checkboxName : input checkbox name
  */
-const Checkbox = ({ children, handleClick, buttonClassName, buttonStyle }) => {
+const Checkbox = ({ isChecked, checkboxName }) => {
   const refCheckbox = useRef(null);
+  const [isCurrentChecked, setIsCurrentChecked] = useState(isChecked);
   const handleClickCheckbox = () => {
-    console.log(refCheckbox.current.checked);
+    setIsCurrentChecked(refCheckbox.current.checked);
   };
 
   return (
     <div className="checkbox">
-      <input type="checkbox" id="brick_checkbox" className="checkbox_input" onClick={handleClickCheckbox} ref={refCheckbox} />
+      <input type="checkbox" id="brick_checkbox" name={checkboxName} className="checkbox_input" onChange={() => handleClickCheckbox()} ref={refCheckbox} checked={isCurrentChecked}/>
       <label htmlFor="brick_checkbox" className="checkbox_label">
         <IconCheckbox />
       </label>
@@ -25,17 +25,13 @@ const Checkbox = ({ children, handleClick, buttonClassName, buttonStyle }) => {
 };
 
 Checkbox.propTypes = {
-  children: PropTypes.any,
-  handleClick: PropTypes.func,
-  buttonClassName: PropTypes.string,
-  buttonStyle: PropTypes.object,
+  isChecked: PropTypes.bool,
+  checkboxName: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
-  children: '',
-  handleClick: () => {},
-  buttonClassName: '',
-  buttonStyle: {},
+  isChecked: true,
+  checkboxName: '',
 };
 
 export default Checkbox;

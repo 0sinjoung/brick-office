@@ -37,15 +37,22 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 24px;
+  gap: 8px;
 }
 
 .third_depth_menu {
+  width: fit-content;
+  padding: 8px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: $semi-bold;
   line-height: 1;
   color: $grey040;
   position: relative;
+  
+  &:hover {
+    background-color: $grey005;
+  }
 
   &.breadscrumb {
     color: $grey080;

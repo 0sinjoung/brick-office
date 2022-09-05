@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg'
 import { ReactComponent as IconEdit } from 'assets/svg/icon/icon_edit.svg'
 import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg'
 import { ReactComponent as IconFileExtensionXlsx } from 'assets/svg/icon/fileUpload/icon_file_extension_xlsx.svg'
@@ -9,27 +8,150 @@ import { ReactComponent as IconFileAdd } from 'assets/svg/icon/fileUpload/icon_f
 import { ReactComponent as IconTriangleWarning } from 'assets/svg/icon/icon_triangle_warning.svg'
 import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
 import IconButton from 'components/publishing/atom/button/IconButton';
-import KeyboardShortcutChip from 'components/publishing/atom/chip/KeyboardShortcutChip';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import DeleteCircleButton from 'components/publishing/atom/button/DeleteCircleButton';
 import BasicTextEditor from 'components/publishing/molecule/textEditor/BasicTextEditor';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
-import NoDataFound from 'components/publishing/atom/NoDataFound';
 import Pagination from 'components/publishing/atom/Pagination';
 import DropdownToggle from 'components/publishing/molecule/dropdown/DropdownToggle';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import BasicConfirmModal from 'components/publishing/molecule/modal/BasicConfirmModal';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
-import OutlineTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineTextField';
 import ValidationTextField from 'components/publishing/atom/textFields/inlineTextField/ValidationTextField';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import GridTable from 'components/publishing/molecule/gridComponents/GridTable';
+import GridTableHead from 'components/publishing/molecule/gridComponents/GridTableHead';
+import GridTableBody from 'components/publishing/molecule/gridComponents/GridTableBody';
+import GridTableRow from 'components/publishing/molecule/gridComponents/GridTableRow';
+import GridTableData from 'components/publishing/molecule/gridComponents/GridTableData';
+import GridTableNoDataFound from 'components/publishing/molecule/gridComponents/GridTableNoDataFound';
 import './style.scss';
 
 /** KMS 페이지
  * @children : children
  */
+const kmsMockUpColumnData = [
+  {
+    value: 'NO', 
+    isDropdown: false, 
+  },
+  {
+    value: '카테고리', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '제목', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '내용', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '마지막 편집 날짜', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '', 
+    isDropdown: false, 
+  },
+];
+
+const kmsMockUpRowData = [
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+    
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '회원정보',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+  {
+    KMSCategoryText: '',
+    KMSTitle: '탈퇴는 어떻게 하나요?',
+    KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
+    lastUpdateDate: '2022.08.02',
+    isSettingButtonSelected: false,
+  },
+];
 
 const KMS = ({ children }) => {
   /* 0. 공통 - 토스트 메시지 */
@@ -377,148 +499,60 @@ const KMS = ({ children }) => {
 
   /* 2. 테이블 메인 섹션 */
   /* 2-1. 테이블 - 헤드 */
-  const [isShowTableHeadKMSCategoryDropdown, setIsShowTableHeadKMSCategoryDropdown] = useState(false);
-  const [isShowTableHeadKMSTitleDropdown, setIsShowTableHeadAutoComplateSentenceDropdown] = useState(false);
-  const [isShowTableHeadKMSContentsDropdown, setIsShowTableHeadKMSContentsDropdown] = useState(false);
-  const [isShowTableHeadLastUpdateDropdown, setIsShowTableHeadLastUpdateDropdown] = useState(false);
-  
   const handleSortingRowData = () => {
     console.log('row data sorting!');
   };
 
-  const tableHeadDropdownData = [
-    { value: '오름차순 정렬', isSelect: false, handleClick: handleSortingRowData},
-    { value: '내림차순 정렬', isSelect: false, handleClick: handleSortingRowData}
-  ];
-  
   /* 2-2. 테이블 - 바디 */
-  const [KMSKnowledgeData, setKMSKnowledgeData] = useState([
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-      
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '회원정보',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능 온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-    {
-      KMSCategoryText: '',
-      KMSTitle: '탈퇴는 어떻게 하나요?',
-      KMSContents: '온라인 주문 시 신용카드 및 체크카드 결제 외에 네이버페이 결제 가능',
-      lastUpdateDate: '2022.08.02',
-      isSettingButtonSelected: false,
-    },
-  ]);
+  const [kmsRowData, setKmsRowData] = useState([...kmsMockUpRowData]);
   
   const handleToggleEditDropdownMenu = idx => {
-    const currentKMSData = [...KMSKnowledgeData];
+    const currentKMSData = [...kmsRowData];
     currentKMSData.map(item => item.isSettingButtonSelected = false);
     currentKMSData[idx].isSettingButtonSelected = true;
-    setKMSKnowledgeData(currentKMSData);
+    setKmsRowData(currentKMSData);
   };
   
-  const ROW_DATA_COUNT = 5;
+  /* COUNT 0일 경우 테이블 view 다름 */
+  const ROW_DATA_COUNT = 3;
+  /* No_Data_Found 문구 2types : KMS 지식을 만들어 주세요. */
+  let NO_DATA_FOUND_STRING = '앗! 검색 결과가 없어요.\n다른 검색어를 입력해 주세요.';
   const displayKMSRowData = () => {
     /* 2-2-1. KMS 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
       return (
-        <tr className="KMS_no_data_found">
-          <td data-table className="KMS_no_data_found_box">
-            {/* <NoDataFound>KMS 지식을 만들어 주세요.</NoDataFound> */}
-            <NoDataFound>
-              앗! 검색 결과가 없어요. <br />
-              다른 검색어를 입력해 주세요.
-            </NoDataFound>
-          </td>
-        </tr>
+        <GridTableNoDataFound>
+          { NO_DATA_FOUND_STRING }
+        </GridTableNoDataFound>
       );
     }
 
     /* 2-2-2. KMS 로우 데이터 */
     return (
-      KMSKnowledgeData.map((item, idx) => {
+      kmsRowData.map((row, idx) => {
         return (
-          <tr className="table_row" key={`${item.KMSCategoryText}_${idx}`}>
-            <td data-table>{idx + 1}</td>
-            <td data-table>
-              {item.KMSCategoryText === '' ? '-' : item.KMSCategoryText}
-            </td>
-            <td data-table>
-              <span>{item.KMSTitle}</span>
+          <GridTableRow key={`${row.id}_${idx}`}>
+            <GridTableData>{idx+1}</GridTableData>
+            <GridTableData>{row.KMSCategoryText === '' ? '-' : row.KMSCategoryText}</GridTableData>
+            <GridTableData>
+              <span>{row.KMSTitle}</span>
               <button type='button' className="row_edit_button" onClick={() => handleShowEditKMSModal(idx)}>
                 <IconEdit />
                 편집
               </button>
-            </td>
-            <td data-table data-type="ellipsis">{item.KMSContents}
-            </td>
-            <td data-table>{item.lastUpdateDate}</td>
-            <td data-table data-type="edit">
+            </GridTableData>
+            <GridTableData dataType="ellipsis">{row.KMSContents}</GridTableData>
+            <GridTableData>{row.lastUpdateDate}</GridTableData>
+            <GridTableData dataType="edit">
               <div className="row_data_edit_icon_button_box">
                 <IconButton buttonClassName="small" handleClick={() => handleToggleEditDropdownMenu(idx)}>
                   <IconSetting />
                 </IconButton>
                 {/* 2-2-2-1. 로우 데이터 수정 버튼 - 드롭다운 */}
-                <DropdownMenu showDropdownMenu={item.isSettingButtonSelected ? "show" : ""} dropdownMenuData={rowDataSettingButtonData} />
+                <DropdownMenu showDropdownMenu={row.isSettingButtonSelected ? "show" : ""} dropdownMenuData={rowDataSettingButtonData} />
               </div>
-            </td>
-          </tr>
+            </GridTableData>
+          </GridTableRow>
         );
       })
     );
@@ -659,51 +693,29 @@ const KMS = ({ children }) => {
           </section>
           {/* 2. 테이블 메인 섹션 */}
           <section className="KMS_table_section">
-            <div className="KMS_table_wrap">
-              <table className="table_container">
-                {/* 2-1. 테이블 - 헤드 */}
-                <thead className="table_head">
-                  <tr className="table_row">
-                    <th className="table_header" data-type="numeric">NO</th>
-                    <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadKMSCategoryDropdown} setIsOpenDropdown={setIsShowTableHeadKMSCategoryDropdown}>카테고리</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadKMSCategoryDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header dropdown" data-type="text-long">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadKMSTitleDropdown} setIsOpenDropdown={setIsShowTableHeadAutoComplateSentenceDropdown}>제목</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadKMSTitleDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadKMSContentsDropdown} setIsOpenDropdown={setIsShowTableHeadKMSContentsDropdown}>내용</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadKMSContentsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header dropdown" data-type="text-short">
-                      <DropdownToggle isOpenDropdown={isShowTableHeadLastUpdateDropdown} setIsOpenDropdown={setIsShowTableHeadLastUpdateDropdown}>마지막 편집 날짜</DropdownToggle>
-                      <DropdownMenu showDropdownMenu={isShowTableHeadLastUpdateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                    </th>
-                    <th className="table_header" data-type="button" />
-                  </tr>
-                </thead>
-                {/* 2-2. 테이블 - 바디 */}
-                <tbody className="table_body">
-                  {displayKMSRowData()}
-                </tbody>
-              </table>
-              {isShowEditKMSModal ? displayEditKMSModal() : ''}
-              <BasicConfirmModal
-                showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
-                titleText="KMS 지식을 삭제할까요?"
-                actionButtonText="삭제하기"
-                handleAction={handleDeleteRowData}
-                handleClose={handleCloseDeleteRowDataConfirmModal}
-              >삭제한 KMS 지식은 복원되지 않습니다.
-              </BasicConfirmModal>
-            </div>
+            <GridTable gridClassName="KMS_table">
+              {/* 2-1. 테이블 - 헤드 */}
+              <GridTableHead gridColumnData={kmsMockUpColumnData} />
+              {/* 2-2. 테이블 - 바디 */}
+              <GridTableBody>
+                {displayKMSRowData()}
+              </GridTableBody>
+            </GridTable>
           </section>
           {/* 3. 테이블 바텀 섹션 */}
           <section className="KMS_bottom_section">
             <Pagination pageNumber={1} />
           </section>
+          {/* 모달 */}
+          {isShowEditKMSModal ? displayEditKMSModal() : ''}
+          <BasicConfirmModal
+            showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
+            titleText="KMS 지식을 삭제할까요?"
+            actionButtonText="삭제하기"
+            handleAction={handleDeleteRowData}
+            handleClose={handleCloseDeleteRowDataConfirmModal}
+            >삭제한 KMS 지식은 복원되지 않습니다.
+          </BasicConfirmModal>
           <ToastMessage showToast={toastMessageData.isShow ? 'show' : ''} iconStyle={toastMessageData.icon}>
             {toastMessageData.message}
           </ToastMessage>

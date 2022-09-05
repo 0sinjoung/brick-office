@@ -23,6 +23,10 @@
   flex: 1 1 auto;
   background-color: $white;
   border-top: $grey010-border;
+
+  &.scroll {
+    @include scrollStyle();
+  }
 }
 
 .page_wrap {

@@ -7,6 +7,7 @@ import KMS from 'components/publishing/page/KMS';
 import SettingChannel from 'components/publishing/page/SettingChannel';
 import TextEditorTestPage from 'components/publishing/page/TextEditorTestPage/TextEditorTestPage';
 import ThirdDepthSample from 'components/publishing/page/ThirdDepthSample';
+import GridSamplePage from 'components/publishing/page/GridSamplePage';
 import './MainContent.scss';
 
 const MainContent = () => {
@@ -29,6 +30,7 @@ const MainContent = () => {
         <Route path="/setting/install" element={<TextEditorTestPage />} />
         <Route path="/subscribe" element={<ThirdDepthSample />} />
         <Route path="/textEditor" element={<TextEditorTestPage />} />
+        <Route path="/gridSample" element={<GridSamplePage />} />
         <Route path="*" element={<ThirdDepthSample />} />
       </Routes>
     </div>

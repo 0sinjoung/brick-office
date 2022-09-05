@@ -236,7 +236,7 @@ const ChannelJoin = ({ children }) => {
 
 
   /* 로우 데이터 */
-  const ROW_DATA_COUNT = 5;
+  const ROW_DATA_COUNT = 3;
   const displayChannelJoinMemberRowData = () => {
     /* 가입 관리 멤버 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
@@ -274,7 +274,7 @@ const ChannelJoin = ({ children }) => {
 
   return (
     <>
-      <div className="contents_wrap">
+      <div className="contents_wrap scroll">
         <main className="page_wrap full">
           <div className="channel_join_section_wrap">
             {/* 1. 테이블 탑 섹션 */}

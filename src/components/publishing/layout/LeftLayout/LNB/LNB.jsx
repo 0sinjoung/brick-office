@@ -40,7 +40,7 @@ const LNB = () => {
     { name: '구독', link: '/subscribe', icon: <IconLnbSubscribe />, ariaLabel: '구독 메뉴 링크 아이콘' },
   ];
   const LNBSiteLinkListData = [
-    { name: '브릭 채널', link: '/brick-office', icon: <IconLnbBackChannelList />, ariaLabel: '브릭 채널 메뉴 링크 아이콘' },
+    { name: '브릭 채널', link: '/gridSample', icon: <IconLnbBackChannelList />, ariaLabel: '브릭 채널 메뉴 링크 아이콘' },
     { name: '브릭 사이트 가기', link: '/brick-office', icon: <IconLnbBrickBrandHomepage />, ariaLabel: '브릭 사이트 가기 메뉴 링크 아이콘' },
   ];
   const LNBSecondDepthData = {

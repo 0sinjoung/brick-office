@@ -1,0 +1,31 @@
+@import "/src/styles/_variables.scss";
+
+.table_body {
+  .table_row {
+    cursor: pointer;
+
+    &:hover {
+      td {
+        background-color: $grey000;
+      }
+      .row_edit_button {
+        @include flexCenter()
+      }
+    }
+    &:nth-child(10) {
+      td {
+        border-bottom: 0;
+      }
+    }
+    &:last-child {
+      .dropdown_menu {
+        top: unset;
+        bottom: 0;
+        transform: translateY(0);
+      }
+      td {
+        border-bottom: 0;
+      }
+    }
+  }
+}

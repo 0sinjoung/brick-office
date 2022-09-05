@@ -1,0 +1,92 @@
+@import "/src/styles/_variables.scss";
+
+.channel_menu_access_wrap {
+  width: 100%;
+  height: 100%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+}
+
+/* 주의사항 안내 */
+.channel_menu_access_caution_box {
+  @include flexStart();
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  padding: 14px;
+  margin-top: 40px;
+  border-radius: 8px;
+  border: 1px solid #F6C71D29;
+  background-color: #FFFBF2;
+  margin-bottom: 22px;
+
+  .caution_icon_box {
+    @include flexCenter();
+  }
+
+  .caution_text {
+    font-size: 14px;
+    font-weight: $medium;
+    color: $grey080;
+  }
+}
+
+
+
+/* 메뉴 접근 설정 섹션 */
+.channel_menu_access_sections_wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.channel_menu_access_section {
+  @include flexSpace();
+  gap: 18px;
+  width: 100%;
+  // height: ;
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: $grey020-border;
+  background-color: $white;
+  box-shadow: $shadow-thick;
+}
+
+.channel_menu_access_section_icon_box {
+  flex-shrink: 0;
+  @include flexCenter();
+  width: 40px;
+  height: 40px;
+  background-color: #07B4191A;
+  border-radius: 8px;
+
+  svg {
+    fill: $green050;
+    stroke: $green050;
+  }
+}
+
+.channel_menu_access_section_text {
+  flex-grow: 1;
+  @include flexStart();
+  gap: 70px;
+  
+}
+.channel_menu_access_section_title {
+  font-size: 18px;
+  font-weight: $bold;
+  line-height: 1;
+  color: $grey080;
+}
+.channel_menu_access_section_description {
+  font-size: 16px;
+  font-weight: $regular;
+  color: $grey060;
+}
+
+.channel_menu_access_toggle_button {
+  flex-shrink: 0;
+
+}
