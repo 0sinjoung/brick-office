@@ -161,7 +161,7 @@ const GridSamplePage = ({ children }) => {
                     </GridTableData>
                     <GridTableData dataType="ellipsis">{row.KMSContents}</GridTableData>
                     <GridTableData>{row.lastUpdateDate}</GridTableData>
-                    <GridTableData>edit button</GridTableData>
+                    <GridTableData dataType="edit">edit button</GridTableData>
                   </GridTableRow>
                 );
               })

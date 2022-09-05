@@ -30,7 +30,7 @@ const GridTableHead = ({ children, gridColumnData }) => {
           gridHeadData.map((item, idx) => {
             if(item.isDropdown) {
               return (
-                <th className="table_head_column dropdown" key={`${item.value}_${idx}`}>
+                <th className="table_head_column dropdown" key={`${item.value}_${idx}`} data-column={item.value}>
                   <div role="button" tabIndex={0} className="dropdown_toggle" onClick={() => handleShowDropdownMenu(idx)} onKeyUp={() => handleShowDropdownMenu(idx)}>
                     <div className="dropdown_toggle_text">{item.value}</div>
                     <div className={`dropdown_toggle_arrow ${item.isShownDropdownMenu ? 'open' : ''}`}>
@@ -42,7 +42,7 @@ const GridTableHead = ({ children, gridColumnData }) => {
               );
             }
             return (
-              <th className="table_head_column" key={item.value}>{item.value}</th>
+              <th className="table_head_column" key={item.value} data-column={item.value}>{item.value}</th>
             );
           })
         )}

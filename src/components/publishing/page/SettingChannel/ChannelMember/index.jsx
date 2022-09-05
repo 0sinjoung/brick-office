@@ -20,11 +20,82 @@ import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import GridTable from 'components/publishing/molecule/gridComponents/GridTable';
+import GridTableHead from 'components/publishing/molecule/gridComponents/GridTableHead';
+import GridTableBody from 'components/publishing/molecule/gridComponents/GridTableBody';
+import GridTableRow from 'components/publishing/molecule/gridComponents/GridTableRow';
+import GridTableData from 'components/publishing/molecule/gridComponents/GridTableData';
+import GridTableNoDataFound from 'components/publishing/molecule/gridComponents/GridTableNoDataFound';
 import './style.scss';
 
 /** 채널 운영 설정 - (1) 멤버 관리 
  * @children : children
  */
+
+const channelMemberColumnData = [
+  {
+    value: '이름', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '닉네임', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '이메일', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '상담 분야', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '상담 분야', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '단축키', 
+    isDropdown: false,
+  },
+  {
+    value: '마지막 편집 날짜', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '', 
+    isDropdown: false, 
+  },
+];
 
 const ChannelMember = ({ children }) => {
   /* 공통 - 토스트 메시지 */
@@ -229,7 +300,7 @@ const ChannelMember = ({ children }) => {
   /* 1. 테이블 탑 섹션 */
   /* 1-2. 검색 결과 */
   // 0건이면 아예 표시하지 않음(공통UI 참조, SEARCH_RESULT_COUNT=0이면 사라짐)
-  const SEARCH_RESULT_COUNT = 0; 
+  const SEARCH_RESULT_COUNT = 5; 
 
   /* 1-3. 검색 드롭다운 | 텍스트 필드 */
   const handleClickDropdownMenuItem = menuItem => {
@@ -605,6 +676,14 @@ const ChannelMember = ({ children }) => {
             </section>
             {/* 2. 테이블 메인 섹션 */}
             <section className="channel_member_table_section">
+              <GridTable gridClassName="channel_member_table">
+                {/* 2-1. 테이블 - 헤드 */}
+                {/* <GridTableHead gridColumnData={adviseKeywordColumnData} /> */}
+                {/* 2-2. 테이블 - 바디 */}
+                <GridTableBody>
+                  {displayChannelMemberRowData()}
+                </GridTableBody>
+              </GridTable>
               <div className="channel_member_table_wrap">
                 <table className="table_container">
                   {/* 2-1. 테이블 - 헤드 */}

@@ -480,7 +480,7 @@ const KMS = ({ children }) => {
 
   /* 1-3. 검색 결과 */
   // 0건이면 아예 표시하지 않음(공통UI 참조, SEARCH_RESULT_COUNT=0이면 사라짐)
-  const SEARCH_RESULT_COUNT = 5; 
+  const SEARCH_RESULT_COUNT = 0; 
 
   /* 1-4. 검색 드롭다운 | 텍스트 필드 */
   /* 1-4-1. 검색 드롭다운 */
@@ -509,7 +509,7 @@ const KMS = ({ children }) => {
   };
   
   /* COUNT 0일 경우 테이블 view 다름 */
-  const ROW_DATA_COUNT = 3;
+  const ROW_DATA_COUNT = 0;
   /* No_Data_Found 문구 2types : KMS 지식을 만들어 주세요. */
   let NO_DATA_FOUND_STRING = '앗! 검색 결과가 없어요.\n다른 검색어를 입력해 주세요.';
   const displayKMSRowData = () => {
