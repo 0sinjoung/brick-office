@@ -9,7 +9,7 @@
         background-color: $grey000;
       }
       .row_edit_button {
-        @include flexCenter()
+        @include flexCenter();
       }
     }
     &:nth-child(10) {
@@ -29,3 +29,4 @@
     }
   }
 }
+

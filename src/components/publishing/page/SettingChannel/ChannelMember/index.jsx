@@ -65,25 +65,42 @@ const channelMemberColumnData = [
     isDropdown: true,
     isShownDropdownMenu: false, 
     dropdownMenu: [
-      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
-      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+      {value: '전체', onClick: () => console.log('상담분야선택')},
+      {value: 'A/S', onClick: () => console.log('상담분야선택')},
+      {value: '결제', onClick: () => console.log('상담분야선택')},
+      {value: '고객 관리', onClick: () => console.log('상담분야선택')},
+      {value: '교환 반품 환불', onClick: () => console.log('상담분야선택')},
+      {value: '기타', onClick: () => console.log('상담분야선택')},
+      {value: '배송', onClick: () => console.log('상담분야선택')},
+      {value: '상품', onClick: () => console.log('상담분야선택')},
+      {value: '시스템', onClick: () => console.log('상담분야선택')},
+      {value: '주문', onClick: () => console.log('상담분야선택')},
+      {value: '프로모션', onClick: () => console.log('상담분야선택')},
+      {value: '회원', onClick: () => console.log('상담분야선택')},
     ],
   },
   {
-    value: '상담 분야', 
+    value: '상담 상태', 
     isDropdown: true,
     isShownDropdownMenu: false, 
     dropdownMenu: [
-      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
-      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+      {value: '전체', onClick: () => console.log('전체')},
+      {value: '업무 시작', onClick: () => console.log('업무 시작')},
+      {value: '업무 종료', onClick: () => console.log('업무 종ㄹㅛ')},
     ],
   },
   {
-    value: '단축키', 
-    isDropdown: false,
+    value: '권한', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '전체', onClick: () => console.log('전체')},
+      {value: '멤버', onClick: () => console.log('멤버')},
+      {value: '관리자', onClick: () => console.log('관리자')},
+    ],
   },
   {
-    value: '마지막 편집 날짜', 
+    value: '채널 가입일', 
     isDropdown: true,
     isShownDropdownMenu: false, 
     dropdownMenu: [
@@ -94,6 +111,139 @@ const channelMemberColumnData = [
   {
     value: '', 
     isDropdown: false, 
+  },
+];
+
+const channelMemberMockUpData = [
+  {
+    channelMemberId: 1,
+    channelMemberIsNewMember: true,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이김다이김다이김다이김다이김다이',
+    channelMemberNickname: '닉네임아홉글자까지',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['고객 관리', '교환 반품 환불', '프로모션', '회원'],
+    channelMemberAdviseState: '업무 시작',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 2,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S'],
+    channelMemberAdviseState: '업무 시작',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 3,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['교환 반품 환불', '기타', '배송'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 4,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['결제', '고객 관리'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 5,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '프로모션'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 6,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 7,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 8,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 9,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: false,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 10,
+    channelMemberIsNewMember: false,
+    channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
+    channelMemberName: '김다이',
+    channelMemberNickname: '아홉글자가최대',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
+    channelMemberAdviseState: '업무 종료',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
   },
 ];
 
@@ -318,193 +468,8 @@ const ChannelMember = ({ children }) => {
   ];
 
   /* 2. 테이블 메인 섹션 */
-  /* 2-1. 테이블 - 헤드 */
-  /* 2-1-1. 테이블 - 헤드 - 기본 */
-  const [isShownTableHeadNameDropdown, setIsShownTableHeadNameDropdown] = useState(false);
-  const [isShownTableHeadNicknameDropdown, setIsShownTableHeadNicknameDropdown] = useState(false);
-  const [isShownTableHeadEmailDropdown, setIsShownTableHeadEmailDropdown] = useState(false);
-  const [isShownTableHeadDateDropdown, setIsShownTableHeadDateDropdown] = useState(false);
-  
-  const handleSortingRowData = () => {
-    console.log('row data sorting!');
-  };
-  
-  const tableHeadDropdownData = [
-    { value: '오름차순 정렬', isSelect: false, handleClick: handleSortingRowData},
-    { value: '내림차순 정렬', isSelect: false, handleClick: handleSortingRowData}
-  ];
-  
-  /* 2-1-2. 테이블 - 헤드 - 커스텀 */
-  /* (1) 상담 분야 */
-  const [isShownTableHeadAdviseFieldsDropdown, setIsShownTableHeadAdviseFieldsDropdown] = useState(false);
-  
-  const tableHeadDropdownAdviseFieldsData = [
-    { value: '전체', isSelect: false, handleClick: handleSortingRowData},
-    { value: 'A/S', isSelect: false, handleClick: handleSortingRowData},
-    { value: '결제', isSelect: false, handleClick: handleSortingRowData},
-    { value: '고객 관리', isSelect: false, handleClick: handleSortingRowData},
-    { value: '교환 반품 환불', isSelect: false, handleClick: handleSortingRowData},
-    { value: '기타', isSelect: false, handleClick: handleSortingRowData},
-    { value: '배송', isSelect: false, handleClick: handleSortingRowData},
-    { value: '상품', isSelect: false, handleClick: handleSortingRowData},
-    { value: '시스템', isSelect: false, handleClick: handleSortingRowData},
-    { value: '주문', isSelect: false, handleClick: handleSortingRowData},
-    { value: '프로모션', isSelect: false, handleClick: handleSortingRowData},
-    { value: '회원', isSelect: false, handleClick: handleSortingRowData},
-  ];
-  /* (2) 상담 상태 */
-  const [isShownTableHeadAdviseStateDropdown, setIsShownTableHeadAdviseStateDropdown] = useState(false);
-  
-  const tableHeadDropdownAdviseStateData = [
-    { value: '전체', isSelect: false, handleClick: handleSortingRowData},
-    { value: '업무 시작', isSelect: false, handleClick: handleSortingRowData},
-    { value: '업무 종료', isSelect: false, handleClick: handleSortingRowData}
-  ];
-  /* (3) 권한 */
-  const [isShownTableHeadAdminDropdown, setIsShownTableHeadAdminDropdown] = useState(false);
-  
-  const tableHeadDropdownAdminData = [
-    { value: '전체', isSelect: false, handleClick: handleSortingRowData},
-    { value: '멤버', isSelect: false, handleClick: handleSortingRowData},
-    { value: '관리자', isSelect: false, handleClick: handleSortingRowData},
-  ];
-  
-
-
-  /* 2-2. 테이블 - 바디 */
   /* 테이블 데이터 */
-  const [settingChannelMemberData, setSettingChannelMemberData] = useState([
-    {
-      channelMemberId: 1,
-      channelMemberIsNewMember: true,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이김다이김다이김다이김다이김다이',
-      channelMemberNickname: '닉네임아홉글자까지',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['고객 관리', '교환 반품 환불', '프로모션', '회원'],
-      channelMemberAdviseState: '업무 시작',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 2,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S'],
-      channelMemberAdviseState: '업무 시작',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 3,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['교환 반품 환불', '기타', '배송'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 4,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['결제', '고객 관리'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 5,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '프로모션'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 6,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 7,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 8,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 9,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: false,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 10,
-      channelMemberIsNewMember: false,
-      channelMemberProfileImage: 'https://cdn.brickchat.dev/assets/img/sample_adviser_profile.png',
-      channelMemberName: '김다이',
-      channelMemberNickname: '아홉글자가최대',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타'],
-      channelMemberAdviseState: '업무 종료',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-  ]);
+  const [settingChannelMemberData, setSettingChannelMemberData] = useState([...channelMemberMockUpData]);
 
   /* 테이블 셀 컴포넌트 */
   /* (1) 이름 */
@@ -604,38 +569,29 @@ const ChannelMember = ({ children }) => {
   
    /* 로우 데이터 */
   const ROW_SEARCH_DATA_COUNT = 5;
+  let NO_DATA_FOUND_STRING = '앗! 검색 결과가 없어요.\n다른 검색어를 입력해 주세요.';
   const displayChannelMemberRowData = () => {
     /* 채널 멤버 로우 데이터 - 없음 */
     if (ROW_SEARCH_DATA_COUNT === 0) {
       return (
-        <tr className="channel_member_no_data_found">
-          <td data-table className="channel_member_no_data_found_box">
-            <NoDataFound>
-              앗! 검색 결과가 없어요. <br />
-              다른 검색어를 입력해 주세요.
-            </NoDataFound>
-          </td>
-        </tr>
+        <GridTableNoDataFound>{NO_DATA_FOUND_STRING}</GridTableNoDataFound>
       );
     }
 
     /* 채널 멤버 로우 데이터 */
     return (
-      settingChannelMemberData.map((item, idx) => {
+      settingChannelMemberData.map((row, idx) => {
         return (
-          <tr className="table_row" key={item.channelMemberId}>
-            <td data-table>{displayChannelMemberNameTableCell(item)}</td>
-            <td data-table>{item.channelMemberNickname}</td>
-            <td data-table data-type="ellipsis">{item.channelMemberEmail}
-            </td>
-            <td data-table>{displayChannelMemberAdviseFieldTableCell(item)}</td>
-            <td data-table>{item.channelMemberAdviseState}</td>
-            <td data-table>{displayChannelMemberAdminTableCell(item)}</td>
-            <td data-table>{item.channelMemberJoinDate}</td>
-            <td data-table data-type="edit">
-              {displayAdminEditTableCell(item, idx)}
-            </td>
-          </tr>
+          <GridTableRow key={`${row.id}_${idx}`}>
+            <GridTableData>{displayChannelMemberNameTableCell(row)}</GridTableData>
+            <GridTableData>{row.channelMemberNickname}</GridTableData>
+            <GridTableData dataType="ellipsis">{row.channelMemberEmail}</GridTableData>
+            <GridTableData>{displayChannelMemberAdviseFieldTableCell(row)}</GridTableData>
+            <GridTableData>{row.channelMemberAdviseState}</GridTableData>
+            <GridTableData>{displayChannelMemberAdminTableCell(row)}</GridTableData>
+            <GridTableData>{row.channelMemberJoinDate}</GridTableData>
+            <GridTableData dataType="edit">{displayAdminEditTableCell(row, idx)}</GridTableData>
+          </GridTableRow>
         );
       })
     );
@@ -678,54 +634,12 @@ const ChannelMember = ({ children }) => {
             <section className="channel_member_table_section">
               <GridTable gridClassName="channel_member_table">
                 {/* 2-1. 테이블 - 헤드 */}
-                {/* <GridTableHead gridColumnData={adviseKeywordColumnData} /> */}
+                <GridTableHead gridColumnData={channelMemberColumnData} />
                 {/* 2-2. 테이블 - 바디 */}
                 <GridTableBody>
                   {displayChannelMemberRowData()}
                 </GridTableBody>
               </GridTable>
-              <div className="channel_member_table_wrap">
-                <table className="table_container">
-                  {/* 2-1. 테이블 - 헤드 */}
-                  <thead className="table_head">
-                    <tr className="table_row">
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="name">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadNameDropdown} setIsOpenDropdown={setIsShownTableHeadNameDropdown}>이름</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadNameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="nickname">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadNicknameDropdown} setIsOpenDropdown={setIsShownTableHeadNicknameDropdown}>닉네임</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadNicknameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="email">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadEmailDropdown} setIsOpenDropdown={setIsShownTableHeadEmailDropdown}>이메일</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadEmailDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="advise_field">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadAdviseFieldsDropdown} setIsOpenDropdown={setIsShownTableHeadAdviseFieldsDropdown}>상담 분야</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadAdviseFieldsDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdviseFieldsData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="advise_status">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadAdviseStateDropdown} setIsOpenDropdown={setIsShownTableHeadAdviseStateDropdown}>상담 상태</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadAdviseStateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdviseStateData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="admin">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadAdminDropdown} setIsOpenDropdown={setIsShownTableHeadAdminDropdown}>권한</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadAdminDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownAdminData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short" data-head-name="join_date">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadDateDropdown} setIsOpenDropdown={setIsShownTableHeadDateDropdown}>채널 가입일</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadDateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header" data-type="button" />
-                    </tr>
-                  </thead>
-                  {/* 2-2. 테이블 - 바디 */}
-                  <tbody className="table_body">
-                    {displayChannelMemberRowData()}
-                  </tbody>
-                </table>
-              </div>
             </section>
             {/* 3. 테이블 바텀 섹션 */}
             <section className="channel_member_bottom_section">

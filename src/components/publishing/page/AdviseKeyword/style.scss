@@ -540,83 +540,83 @@
       }
     }
   }
-}
 
-.row_data_edit_icon_button_box {
-  position: relative;
-
-  .dropdown_menu {
-    width: 100px;
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    .dropdown_lists {
-      padding: 4px;
-
-      .dropdown_list {
-        height: 28px;
-
-        .dropdown_button {
-          padding: 5px 6px;
-        }
-        &:first-child {
-          .dropdown_value {
-            &::before {
-              content: '\e900';
-              display: inline-block;
-              font-family: 'icomoon';
-              font-size: 12px;
-              // font-weight: $semi-bold;
-              width: 12px;
-              height: 12px;
-              margin-right: 4px;
+  .row_data_edit_icon_button_box {
+    position: relative;
+  
+    .dropdown_menu {
+      width: 100px;
+      position: absolute;
+      z-index: 10;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+  
+      .dropdown_lists {
+        padding: 4px;
+  
+        .dropdown_list {
+          height: 28px;
+  
+          .dropdown_button {
+            padding: 5px 6px;
+          }
+          &:first-child {
+            .dropdown_value {
+              &::before {
+                content: '\e900';
+                display: inline-block;
+                font-family: 'icomoon';
+                font-size: 12px;
+                // font-weight: $semi-bold;
+                width: 12px;
+                height: 12px;
+                margin-right: 4px;
+              }
             }
           }
-        }
-        &:nth-child(2) {
-          .dropdown_value {
-            &::before {
-              content: '\e902';
-              display: inline-block;
-              font-family: 'icomoon';
-              font-size: 12px;
-              // font-weight: $semi-bold;
-              width: 12px;
-              height: 12px;
-              margin-right: 4px;
+          &:nth-child(2) {
+            .dropdown_value {
+              &::before {
+                content: '\e902';
+                display: inline-block;
+                font-family: 'icomoon';
+                font-size: 12px;
+                // font-weight: $semi-bold;
+                width: 12px;
+                height: 12px;
+                margin-right: 4px;
+              }
             }
           }
         }
       }
     }
   }
+  
+  .row_edit_button {
+    display: none;
+    width: fit-content;
+    height: 24px;
+    font-size: 14px;
+    font-weight: $medium;
+    line-height: 1;
+    color: $grey080;
+    border-radius: 5px;
+    padding: 0 6px 0 2px;
+    background-color: $grey005;
+    @include hoverTransition();
+    &:hover {
+      background-color: $grey020;
+    }
+  
+    .icon_edit {
+      stroke: $grey080;
+      fill: $grey080;
+    }
+  }
 }
 
-/* 2-2-2. 상담 키워드 로우 데이터 */
-.row_edit_button {
-  display: none;
-  width: fit-content;
-  height: 24px;
-  font-size: 14px;
-  font-weight: $medium;
-  line-height: 1;
-  color: $grey080;
-  border-radius: 5px;
-  padding: 0 6px 0 2px;
-  background-color: $grey005;
-  @include hoverTransition();
-  &:hover {
-    background-color: $grey020;
-  }
-
-  .icon_edit {
-    stroke: $grey080;
-    fill: $grey080;
-  }
-}
 
 /* 3. 테이블 바텀 섹션 */
 .advise_keyword_bottom_section {

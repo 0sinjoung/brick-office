@@ -303,11 +303,6 @@
   gap: 6px;
 }
 
-
-
-
-
-
 /* 1. 테이블 탑 섹션 */
 .channel_member_table_top_section {
   flex-shrink: 0;
@@ -378,33 +373,19 @@
   min-height: 552px;
   position: relative;
 }
-.channel_member_table_wrap {
-  width: 100%;
-  max-height: 552px;
-  margin-top: 16px;
-  overflow-y: hidden;
-  overflow-x: auto;
-  overflow-x: overlay;
-  scrollbar-width: thin;
-  scrollbar-color: $grey030;
-  background-color: $white;
-  border: $grey020-border;
-  border-radius: 10px;
-  
+.channel_member_table {
   .table_container {
     grid-template-columns: 210px 150px 250px 310px 154px 154px 200px 89px;
   }
 
-  [data-type='edit'] {
-    .dropdown_list {
-      &:last-child {
-        .dropdown_value {
-          color: $red100;
-        }
-      }
-    }
-  }  
-  [data-head-name='advise_field'] {
+  .no_data_found {
+    grid-row-start: 2;
+    grid-row-end: 12;
+    grid-column-start: 1;
+    grid-column-end: 7;
+  }
+
+  [data-column='상담 분야'] {
     .dropdown_menu {
       padding: 4px;
     }
@@ -418,25 +399,38 @@
       }
     }
   }  
-  [data-head-name='advise_status'],
-  [data-head-name='admin'] {
+  [data-column='상담 상태'],
+  [data-column='권한'] {
     .dropdown_menu {
       width: 155px;
     }
   }  
 
-  &::-webkit-scrollbar {
-    height: 10px;
-    background-color: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $grey030;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-    border-radius: 5px;
-  }
-
   /* 편집 버튼 */
+  .row_data_edit_icon_button_box {
+    position: relative;
+  
+    .dropdown_menu {
+      width: 100px;
+      position: absolute;
+      z-index: 10;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+  
+      .dropdown_lists {
+        padding: 4px;
+  
+        .dropdown_list {
+          height: 28px;
+  
+          .dropdown_button {
+            padding: 5px 6px;
+          }
+        }
+      }
+    }
+  }
   .channel_member_edit_cell {
     &.member {
       position: relative;
@@ -576,115 +570,6 @@
   right: -10px;
   transform: translate(100%, -50%);
 }
-
-
-/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-.channel_member_no_data_found {
-  flex-grow: 1;
-  @include flexCenter();
-  grid-row-start: 2;
-  grid-row-end: 12;
-  grid-column-start: 1;
-  grid-column-end: 7;
-
-  .channel_member_no_data_found_box {
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  [data-table] {
-    border-bottom: 0;
-  }
-}
-
-/* 2-2-2. 상담 키워드 로우 데이터 */
-.row_edit_button {
-  display: none;
-  width: fit-content;
-  height: 24px;
-  font-size: 14px;
-  font-weight: $medium;
-  line-height: 1;
-  color: $grey080;
-  border-radius: 5px;
-  padding: 0 6px 0 2px;
-  background-color: $grey005;
-  @include hoverTransition();
-  &:hover {
-    background-color: $grey020;
-  }
-
-  .icon_edit {
-    stroke: $grey080;
-    fill: $grey080;
-  }
-}
-
-/* 2-2-1. 상담 키워드 로우 데이터 - 없음 */
-.detail_customer_order_no_data_found_box {
-  flex-grow: 1;
-  @include flexCenter();
-  margin: 0 24px 24px;
-  border-radius: 8px;
-  border: $grey020-border;
-}
-
-/* 2-2-2-1. 로우 데이터 수정 버튼 - 드롭다운 */
-.row_data_edit_icon_button_box {
-  position: relative;
-
-  .dropdown_menu {
-    width: 100px;
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    .dropdown_lists {
-      padding: 4px;
-
-      .dropdown_list {
-        height: 28px;
-
-        .dropdown_button {
-          padding: 5px 6px;
-        }
-        &:first-child {
-          .dropdown_value {
-            &::before {
-              content: '\e900';
-              display: inline-block;
-              font-family: 'icomoon';
-              font-size: 12px;
-              // font-weight: $semi-bold;
-              width: 12px;
-              height: 12px;
-              margin-right: 4px;
-            }
-          }
-        }
-        &:nth-child(2) {
-          .dropdown_value {
-            &::before {
-              content: '\e902';
-              display: inline-block;
-              font-family: 'icomoon';
-              font-size: 12px;
-              // font-weight: $semi-bold;
-              width: 12px;
-              height: 12px;
-              margin-right: 4px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 
 /* 3. 테이블 바텀 섹션 */
 .channel_member_bottom_section {

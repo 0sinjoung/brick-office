@@ -6,18 +6,139 @@ import IconButton from 'components/publishing/atom/button/IconButton';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
-import NoDataFound from 'components/publishing/atom/NoDataFound';
 import Pagination from 'components/publishing/atom/Pagination';
-import DropdownToggle from 'components/publishing/molecule/dropdown/DropdownToggle';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';
 import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
+import GridTable from 'components/publishing/molecule/gridComponents/GridTable';
+import GridTableHead from 'components/publishing/molecule/gridComponents/GridTableHead';
+import GridTableBody from 'components/publishing/molecule/gridComponents/GridTableBody';
+import GridTableRow from 'components/publishing/molecule/gridComponents/GridTableRow';
+import GridTableData from 'components/publishing/molecule/gridComponents/GridTableData';
+import GridTableNoDataFound from 'components/publishing/molecule/gridComponents/GridTableNoDataFound';
 import './style.scss';
 
 /** 채널 운영 설정 - (2) 가입 관리 
  * @children : children
  */
+
+const channelJoinColumnData = [
+  {
+    value: '이름', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '이메일', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '가입 신청일', 
+    isDropdown: true,
+    isShownDropdownMenu: false, 
+    dropdownMenu: [
+      {value: '오름차순 정렬', onClick: () => console.log('오름차순 정렬')},
+      {value: '내림차순 정렬', onClick: () => console.log('내림차순 정렬')},
+    ],
+  },
+  {
+    value: '가입 신청 수락', 
+    isDropdown: false, 
+  },
+];
+
+const channelJoinMockUpData = [
+  {
+    channelMemberId: 1,
+    channelMemberName: '김다이김다이김다이김다이김다이김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 2,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 3,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 4,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 5,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 6,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 7,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 8,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 9,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+  {
+    channelMemberId: 10,
+    channelMemberName: '김다이',
+    channelMemberEmail: 'testtesttest1111@gmail.com',
+    channelMemberIsAdmin: true,
+    channelMemberJoinDate: '2023.01.20',
+    isEditButtonSelected: false,
+  },
+];
 
 const ChannelJoin = ({ children }) => {
   /* 공통 - 토스트 메시지 */
@@ -76,7 +197,7 @@ const ChannelJoin = ({ children }) => {
   /* 1. 테이블 탑 섹션 */
   /* 1-2. 검색 결과 */
   // 0건이면 아예 표시하지 않음(공통UI 참조, SEARCH_RESULT_COUNT=0이면 사라짐)
-  const SEARCH_RESULT_COUNT = 0; 
+  const SEARCH_RESULT_COUNT = 5; 
 
   /* 1-3. 검색 드롭다운 | 텍스트 필드 */
   const handleClickDropdownMenuItem = menuItem => {
@@ -93,109 +214,13 @@ const ChannelJoin = ({ children }) => {
   ];
 
   /* 2. 테이블 메인 섹션 */
-  /* 2-1. 테이블 - 헤드 */
-  const [isShownTableHeadNameDropdown, setIsShownTableHeadNameDropdown] = useState(false);
-  const [isShownTableHeadEmailDropdown, setIsShownTableHeadEmailDropdown] = useState(false);
-  const [isShownTableHeadDateDropdown, setIsShownTableHeadDateDropdown] = useState(false);
-  
-  const handleSortingRowData = () => {
-    console.log('row data sorting!');
-  };
-
-  const tableHeadDropdownData = [
-    { value: '오름차순 정렬', isSelect: false, handleClick: handleSortingRowData},
-    { value: '내림차순 정렬', isSelect: false, handleClick: handleSortingRowData}
-  ];
-  
-  /* 2-2. 테이블 - 바디 */
   /* 테이블 데이터 */
-  const [settingChannelJoinData, setSettingChannelJoinData] = useState([
-    {
-      channelMemberId: 1,
-      channelMemberName: '김다이김다이김다이김다이김다이김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 2,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 3,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 4,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 5,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 6,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 7,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 8,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 9,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-    {
-      channelMemberId: 10,
-      channelMemberName: '김다이',
-      channelMemberEmail: 'testtesttest1111@gmail.com',
-      channelMemberIsAdmin: true,
-      channelMemberJoinDate: '2023.01.20',
-      isEditButtonSelected: false,
-    },
-  ]);
+  const [settingChannelJoinData, setSettingChannelJoinData] = useState([...channelJoinMockUpData]);
 
   
   /* 테이블 셀 컴포넌트 */
   /* (1) 가입 신청 수락 편집 */
-  const IS_CURRENT_USER_CHANNEL_ADMIN = false;
+  const IS_CURRENT_USER_CHANNEL_ADMIN = true;
   const handleToggleEditDropdownMenu = idx => {
     if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
       return;
@@ -237,41 +262,30 @@ const ChannelJoin = ({ children }) => {
 
   /* 로우 데이터 */
   const ROW_DATA_COUNT = 3;
+  let NO_DATA_FOUND_STRING = '앗! 검색 결과가 없어요.\n다른 검색어를 입력해 주세요.';
   const displayChannelJoinMemberRowData = () => {
     /* 가입 관리 멤버 로우 데이터 - 없음 */
     if (ROW_DATA_COUNT === 0) {
       return (
-        <tr className="channel_join_no_data_found">
-          <td data-table className="channel_join_no_data_found_box">
-            <NoDataFound>함께 채널을 운영할 멤버를 초대해 보세요.</NoDataFound>
-            {/* <NoDataFound>
-              앗! 검색 결과가 없어요. <br />
-              다른 검색어를 입력해 주세요.
-            </NoDataFound> */}
-          </td>
-        </tr>
+        <GridTableNoDataFound>{NO_DATA_FOUND_STRING}</GridTableNoDataFound>
       );
     }
 
     /* 가입 관리 멤버 로우 데이터 */
     return (
-      settingChannelJoinData.map((item, idx) => {
+      settingChannelJoinData.map((row, idx) => {
         return (
-          <tr className="table_row" key={item.channelMemberId}>
-            <td data-table data-type="ellipsis">{item.channelMemberName}</td>
-            <td data-table>{item.channelMemberEmail}</td>
-            <td data-table>{item.channelMemberJoinDate}</td>
-            <td data-table data-type="edit">{displayAdminEditTableCell(item, idx)}
-            </td>
-          </tr>
+          <GridTableRow key={`${row.id}_${idx}`}>
+            <GridTableData dataType="ellipsis">{row.channelMemberName}</GridTableData>
+            <GridTableData>{row.channelMemberEmail}</GridTableData>
+            <GridTableData>{row.channelMemberJoinDate}</GridTableData>
+            <GridTableData dataType="edit">{displayAdminEditTableCell(row, idx)}</GridTableData>
+          </GridTableRow>
         );
       })
     );
   };
   
-  
-
-
   return (
     <>
       <div className="contents_wrap scroll">
@@ -307,32 +321,14 @@ const ChannelJoin = ({ children }) => {
             </section>
             {/* 2. 테이블 메인 섹션 */}
             <section className="channel_join_table_section">
-              <div className="channel_join_table_wrap">
-                <table className="table_container">
-                  {/* 2-1. 테이블 - 헤드 */}
-                  <thead className="table_head">
-                    <tr className="table_row">
-                      <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadNameDropdown} setIsOpenDropdown={setIsShownTableHeadNameDropdown}>이름</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadNameDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadEmailDropdown} setIsOpenDropdown={setIsShownTableHeadEmailDropdown}>이메일</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadEmailDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header dropdown" data-type="text-short">
-                        <DropdownToggle isOpenDropdown={isShownTableHeadDateDropdown} setIsOpenDropdown={setIsShownTableHeadDateDropdown}>가입 신청일</DropdownToggle>
-                        <DropdownMenu showDropdownMenu={isShownTableHeadDateDropdown ? "show" : ""} dropdownMenuData={tableHeadDropdownData} />
-                      </th>
-                      <th className="table_header" data-type="button">가입 신청 수락</th>
-                    </tr>
-                  </thead>
-                  {/* 2-2. 테이블 - 바디 */}
-                  <tbody className="table_body">
-                    {displayChannelJoinMemberRowData()}
-                  </tbody>
-                </table>
-              </div>
+              <GridTable gridClassName="channel_join_table">
+                {/* 2-1. 테이블 - 헤드 */}
+                <GridTableHead gridColumnData={channelJoinColumnData} />
+                {/* 2-2. 테이블 - 바디 */}
+                <GridTableBody>
+                  {displayChannelJoinMemberRowData()}
+                </GridTableBody>
+              </GridTable>
             </section>
             {/* 3. 테이블 바텀 섹션 */}
             <section className="channel_join_bottom_section">
