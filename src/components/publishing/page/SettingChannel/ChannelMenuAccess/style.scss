@@ -40,18 +40,35 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  padding-bottom: 84px; 
 }
 
 .channel_menu_access_section {
-  @include flexSpace();
-  gap: 18px;
   width: 100%;
-  // height: ;
-  padding: 20px 30px;
   border-radius: 10px;
   border: $grey020-border;
   background-color: $white;
   box-shadow: $shadow-thick;
+  overflow: hidden;
+  
+  &.customer,
+  &.setting {
+    cursor: pointer;
+    
+    @include hoverTransition();
+    &:hover {
+      background-color: $grey005;
+    }
+  }
+}
+
+.channel_menu_access_bar {
+  @include flexSpace();
+  gap: 18px;
+  width: 100%;
+  padding: 20px 30px;
+  border-radius: 10px;
 }
 
 .channel_menu_access_section_icon_box {
@@ -61,7 +78,7 @@
   height: 40px;
   background-color: #07B4191A;
   border-radius: 8px;
-
+  
   svg {
     fill: $green050;
     stroke: $green050;
@@ -75,12 +92,15 @@
   
 }
 .channel_menu_access_section_title {
+  flex-shrink: 0;
+  width: 112px;
   font-size: 18px;
   font-weight: $bold;
   line-height: 1;
   color: $grey080;
 }
 .channel_menu_access_section_description {
+  flex-grow: 1;
   font-size: 16px;
   font-weight: $regular;
   color: $grey060;
@@ -88,5 +108,45 @@
 
 .channel_menu_access_toggle_button {
   flex-shrink: 0;
+}
 
+.channel_menu_access_accordion_button {
+  flex-shrink: 0;
+  
+  .icon_button {
+    background-color: transparent;
+    transition: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  
+  .icon_arrow_up_small {
+    stroke: $grey050;
+  }
+
+  &.open {
+    .icon_button {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.channel_menu_access_pannel {
+  // @include flexSpace();
+  // gap: 18px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 30px;
+  border-top: $grey020-border;
+
+  .channel_menu_access_bar {
+    width: 100%;
+    border-radius: 10px;
+    border: $grey020-border;
+    background-color: $white;
+    overflow: hidden;
+  }
 }
