@@ -9,13 +9,14 @@ import './style.scss';
  * @titleText : 모달 title text
  * @children : 모달 description text
  * @showModal : className으로 'show' || ''
+ * @className : className 추가
  * @actionButtonText : 모달 action button text || '확인'
  * @handleAction : 확인시 실행할 비즈니스 로직 함수
  * @handleClose : 모달 닫는 함수
  */
-const BasicConfirmModal = ({ titleText, children, showModal, actionButtonText, handleAction, handleClose }) => {
+const BasicConfirmModal = ({ children, showModal, className, titleText, actionButtonText, handleAction, handleClose }) => {
   return (
-    <div className={`basic_confirm_modal_wrap ${showModal}`}>
+    <div className={`basic_confirm_modal_wrap ${showModal} ${className}`}>
       <FullScreenDim>
         <div className="basic_confirm_modal_container">
           <div className="basic_confirm_modal_contents_box">
@@ -33,18 +34,20 @@ const BasicConfirmModal = ({ titleText, children, showModal, actionButtonText, h
 };
 
 BasicConfirmModal.propTypes = {
-  showModal: PropTypes.string,
-  titleText: PropTypes.string,
   children: PropTypes.string,
+  showModal: PropTypes.string,
+  className: PropTypes.string,
+  titleText: PropTypes.string,
   actionButtonText: PropTypes.string,
   handleClose: PropTypes.func,
   handleAction: PropTypes.func,
 };
 
 BasicConfirmModal.defaultProps = {
-  showModal: '',
-  titleText: '',
   children: '',
+  showModal: '',
+  className: '',
+  titleText: '',
   actionButtonText: '',
   handleClose: () => {},
   handleAction: () => {},

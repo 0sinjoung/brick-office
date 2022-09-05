@@ -169,6 +169,34 @@ const AdviseKeyword = ({ children }) => {
 
   /* 1. 테이블 탑 섹션 */
   /* 1-1. 상담 키워드 만들기 버튼 | 모달 */
+  /* 1-1-3. 상담 키워드 만들기 초과 확인 모달 */
+  const [isShowMakeAboveAdviseKeywordConfirmModal, setIShowMakeAboveAdviseKeywordConfirmModal] = useState(false);
+  const handleCancleMakeAboveAdviseKeywordConfirmModal = () => {
+    setIShowMakeAboveAdviseKeywordConfirmModal(false);
+  };
+  
+  /* CURRENT_ROW_DATA_COUNT = 100; 으로 초과 모달 확인 가능 */
+  const CURRENT_ROW_DATA_COUNT = 99;
+  const handleShowMakeAdviseKeywordModal = () => {
+    console.log('상담 키워드 만들기 모달 show');
+    if (CURRENT_ROW_DATA_COUNT >= 100) {
+      setIShowMakeAboveAdviseKeywordConfirmModal(true);
+      setIsShowMakeAdviseKeywordModal(false);
+      return;
+    }
+    setIsShowMakeAdviseKeywordModal(true);
+  };
+
+  const handleHideMakeAdviseKeywordModal = () => {
+    console.log('상담 키워드 만들기 모달 hide');
+    setIsShowMakeAdviseKeywordModal(false);
+  };
+  const handleMakeAdviseKeyword = () => {
+    console.log('상담 키워드 만들기!');
+    handleHideMakeAdviseKeywordModal();
+  }
+  
+  /* 1-1-2. 상담 키워드 만들기 모달 컴포넌트 */
   const refMakeAdviseKeywordTextField = useRef(null);
   const [isShowMakeAdviseKeywordModal, setIsShowMakeAdviseKeywordModal] = useState(false);
   const [isDimMakeAdviseKeywordButton, setIsDimMakeAdviseKeywordButton] = useState(true);
@@ -186,21 +214,7 @@ const AdviseKeyword = ({ children }) => {
     { value: '9', isSelect: false },
     { value: '단축키 없음', isSelect: false },
   ];
-
-  const handleShowMakeAdviseKeywordModal = () => {
-    console.log('상담 키워드 만들기 모달 show');
-    setIsShowMakeAdviseKeywordModal(true);
-  };
-  const handleHideMakeAdviseKeywordModal = () => {
-    console.log('상담 키워드 만들기 모달 hide');
-    setIsShowMakeAdviseKeywordModal(false);
-  };
-  const handleMakeAdviseKeyword = () => {
-    console.log('상담 키워드 만들기!');
-    handleHideMakeAdviseKeywordModal();
-  }
   
-  /* 1-1-2. 상담 키워드 만들기 모달 컴포넌트 */
   const displayMakeAdviseKeywordModal = () => {
     return (
       <FullScreenDim>
@@ -255,6 +269,7 @@ const AdviseKeyword = ({ children }) => {
     );
   };
 
+  
   /* 1-2. 엑셀 템플릿 드롭다운 | 모달  */
   /* 1-2-1. 엑셀 업로드 */
   const [isExelTemplateUploadModal, setIsExelTemplateUploadModal] = useState(false);
@@ -611,9 +626,18 @@ const AdviseKeyword = ({ children }) => {
           <section className="advise_keyword_bottom_section">
             <Pagination pageNumber={1} />
           </section>
-          {/* 모달 | 토스트 메시지*/}
+
+          {/* 모달 | 토스트 메시지 */}
           {/* (1) 상담 키워드 만들기 모달 */}
           {isShowMakeAdviseKeywordModal ? displayMakeAdviseKeywordModal() : ''}
+          {/* (1)-1. 상담 키워드 만들기 초과 - 확인 모달 */}
+          <BasicConfirmModal
+            className="confirm_only"
+            showModal={isShowMakeAboveAdviseKeywordConfirmModal ? 'show' : ""}
+            titleText="상담 키워드를 더 이상 만들 수 없어요."
+            handleAction={handleCancleMakeAboveAdviseKeywordConfirmModal}
+            >최대 100개까지 만들기 가능합니다.
+          </BasicConfirmModal>
           {/* (2) 상담 키워드 편집하기 모달 */}
           {isShowEditAdviseKeywordModal ? displayEditAdviseKeywordModal() : ''}
           {/* (3) 엑셀 업로드 모달 | 확인 모달 */}
@@ -635,6 +659,7 @@ const AdviseKeyword = ({ children }) => {
             handleClose={handleCloseDeleteRowDataConfirmModal}
           >삭제한 상담 키워드는 복원되지 않습니다.
           </BasicConfirmModal>
+          {/* 토스트 메시지 */}
           <ToastMessage showToast={toastMessageData.isShow ? 'show' : ''} iconStyle={toastMessageData.icon}>
             {toastMessageData.message}
           </ToastMessage>

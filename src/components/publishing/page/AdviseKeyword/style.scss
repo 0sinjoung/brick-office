@@ -625,3 +625,13 @@
   width: 100%;
   margin-top: 7vh;
 }
+
+
+/* 상담 키워드 만들기 초과 확인 모달  */
+.confirm_only {
+  .basic_confirm_modal_buttons_box {
+    .outline_button {
+      display: none;
+    }
+  }
+}

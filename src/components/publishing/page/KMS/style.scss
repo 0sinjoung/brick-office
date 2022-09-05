@@ -123,8 +123,9 @@
 /* 1-1. KMS 지식 만들기 버튼 | 모달  */
 .make_KMS_button_box {
   flex-shrink: 0;
-  
-  /* 1-1-3. KMS 만들기 초과 확인 모달  */
+}
+/* KMS 만들기 초과 확인 모달  */
+.confirm_only {
   .basic_confirm_modal_buttons_box {
     .outline_button {
       display: none;

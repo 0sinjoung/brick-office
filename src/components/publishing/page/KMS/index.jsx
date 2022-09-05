@@ -184,6 +184,7 @@ const KMS = ({ children }) => {
     setIsShowAddKMSCategoryTextField(true);
   }
 
+  /* CURRENT_ROW_DATA_COUNT = 100; 으로 초과 모달 확인 가능 */
   const CURRENT_ROW_DATA_COUNT = 100;
   const handleShowMakeKMSModal = () => {
     console.log('KMS 만들기 모달 show');
@@ -498,12 +499,6 @@ const KMS = ({ children }) => {
   ];
 
   /* 2. 테이블 메인 섹션 */
-  /* 2-1. 테이블 - 헤드 */
-  const handleSortingRowData = () => {
-    console.log('row data sorting!');
-  };
-
-  /* 2-2. 테이블 - 바디 */
   const [kmsRowData, setKmsRowData] = useState([...kmsMockUpRowData]);
   
   const handleToggleEditDropdownMenu = idx => {
@@ -643,15 +638,7 @@ const KMS = ({ children }) => {
               {/* 1-1. KMS 만들기 버튼 | 모달 */}
               <div className="make_KMS_button_box">
                 <SolidButton buttonClassName="small" handleClick={handleShowMakeKMSModal}>KMS 지식 만들기</SolidButton>
-                {/* 1-1-2. KMS 만들기 모달 컴포넌트 */}
-                {isShowMakeKMSModal ? displayMakeKMSModal() : ''}
-                {/* 1-1-3. KMS 만들기 초과 확인 모달 */}
-                <BasicConfirmModal
-                  showModal={isShowMakeAboveKMSConfirmModal ? 'show' : ""}
-                  titleText="KMS 지식을 더 이상 만들 수 없어요."
-                  handleAction={handleCancleMakeAboveKMSConfirmModal}
-                >최대 1,000개까지 만들기 가능합니다.
-                </BasicConfirmModal>
+                
               </div>
               {/* 1-2. 엑셀 템플릿 드롭다운 | 모달 */}
               <div className="exel_template_dropdown_container">
@@ -706,8 +693,21 @@ const KMS = ({ children }) => {
           <section className="KMS_bottom_section">
             <Pagination pageNumber={1} />
           </section>
-          {/* 모달 */}
+
+          {/* 모달 | 토스트 메시지 */}
+          {/* (1) KMS 만들기 모달 */}
+          {isShowMakeKMSModal ? displayMakeKMSModal() : ''}
+          {/* (1)-1. KMS 만들기 - 개수 초과 : 확인 모달 */}
+          <BasicConfirmModal
+            className="confirm_only"
+            showModal={isShowMakeAboveKMSConfirmModal ? 'show' : ""}
+            titleText="KMS 지식을 더 이상 만들 수 없어요."
+            handleAction={handleCancleMakeAboveKMSConfirmModal}
+            >최대 1,000개까지 만들기 가능합니다.
+          </BasicConfirmModal>
+          {/* (2) KMS 편집하기 모달 */}
           {isShowEditKMSModal ? displayEditKMSModal() : ''}
+          {/* (3) KMS 삭제 확인 모달 */}
           <BasicConfirmModal
             showModal={isShowRowDataDeleteConfirmModal ? 'show' : ""}
             titleText="KMS 지식을 삭제할까요?"
@@ -716,6 +716,7 @@ const KMS = ({ children }) => {
             handleClose={handleCloseDeleteRowDataConfirmModal}
             >삭제한 KMS 지식은 복원되지 않습니다.
           </BasicConfirmModal>
+          {/* 토스트 메시지 */}
           <ToastMessage showToast={toastMessageData.isShow ? 'show' : ''} iconStyle={toastMessageData.icon}>
             {toastMessageData.message}
           </ToastMessage>
