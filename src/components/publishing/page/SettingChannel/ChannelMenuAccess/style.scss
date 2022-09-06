@@ -63,6 +63,22 @@
       }
     }
   }
+
+  &.open {
+    .channel_menu_access_bar {
+      border-radius: 0;
+    }
+    .channel_menu_access_pannel {
+      border-top: $grey020-border;
+      max-height: 1000px;
+      transition: max-height 1s ease-in-out;
+    }
+    .channel_menu_access_accordion_button {
+      .icon_button {
+        transform: rotate(0);
+      }
+    }
+  }
 }
 
 .channel_menu_access_bar {
@@ -77,10 +93,11 @@
   @include flexSpace();
   width: 100%;
   gap: 10px;
-  padding: 17px 20px;
+  padding: 16px 20px;
   border-radius: 10px;
   border: $grey020-border;
   background-color: $white;
+  position: relative;
 
   .channel_menu_access_section_title_box {
     @include flexSpace();
@@ -88,6 +105,8 @@
 
     .color_tag {
       flex-shrink: 0;
+      font-size: 12px;
+      font-weight: $semi-bold;
       color: $brickblue090;
       background-color: #D9E7FF;
     }
@@ -101,14 +120,28 @@
   }
   
   &.disable {
+    cursor: not-allowed;
     background-color: $grey005 ;
+
     .channel_menu_access_section_title {
       width: fit-content;
-      color: $grey040;
+      color: $grey030;
     }
     
     .channel_menu_access_section_description {
-      color: $grey040;
+      color: $grey030;
+    }
+    &::after {
+      content: '';
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 10px;
     }
   }
 }
@@ -158,6 +191,7 @@
   .icon_button {
     background-color: transparent;
     transition: none;
+    transform: rotate(180deg);
 
     &:hover {
       background-color: transparent;
@@ -167,23 +201,21 @@
   .icon_arrow_up_small {
     stroke: $grey050;
   }
-
-  &.open {
-    .icon_button {
-      transform: rotate(180deg);
-    }
-  }
 }
 
 .channel_menu_access_pannel {
-  // @include flexSpace();
-  // gap: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
   width: 100%;
-  padding: 20px 30px;
-  border-top: $grey020-border;
+  
+  .channel_menu_access_sub_bars_box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 20px 30px;
+  }
 
   .channel_menu_access_bar {
     width: 100%;

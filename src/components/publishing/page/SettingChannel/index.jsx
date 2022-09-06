@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ChannelMember from 'components/publishing/page/SettingChannel/ChannelMember';
 import ChannelJoin from 'components/publishing/page/SettingChannel/ChannelJoin';
 import ChannelMenuAccess from 'components/publishing/page/SettingChannel/ChannelMenuAccess';
+import ChannelInformation from 'components/publishing/page/SettingChannel/ChannelInformation';
 import './style.scss';
 
 /** 채널 운영 설정 페이지
@@ -27,7 +28,7 @@ const SettingChannel = ({ children }) => {
       return <ChannelMenuAccess />
     }
     if (thirdDepthMenu === '채널 정보') {
-      return <ChannelMember />
+      return <ChannelInformation />
     }
   }
 

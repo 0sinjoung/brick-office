@@ -220,7 +220,7 @@ const ChannelJoin = ({ children }) => {
   
   /* 테이블 셀 컴포넌트 */
   /* (1) 가입 신청 수락 편집 */
-  const IS_CURRENT_USER_CHANNEL_ADMIN = true;
+  const IS_CURRENT_USER_CHANNEL_ADMIN = false;
   const handleToggleEditDropdownMenu = idx => {
     if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
       return;

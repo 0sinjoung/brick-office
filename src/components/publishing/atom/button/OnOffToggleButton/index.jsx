@@ -3,42 +3,46 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 /** On Off Toggle Button
- * @isChecked : 체크 상태
- * @checkboxName : input checkbox name
+ * @defaultChecked : 체크 상태
+ * @toggleId : input checkbox id - id 중복 불가!!!
+ * @onClick : param => bool, click시 실행 함수. 
  */
 
-
-const OnOffToggleButton = ({ isChecked, inputName }) => {
+const OnOffToggleButton = ({ defaultChecked, toggleId, onClick }) => {
   const refCheckbox = useRef(null);
-  const [isCurrentChecked, setIsCurrentChecked] = useState(isChecked);
+  const [isCurrentChecked, setIsCurrentChecked] = useState(defaultChecked);
   const handleClickCheckbox = () => {
-    setIsCurrentChecked(refCheckbox.current.checked);
-    console.log(isCurrentChecked);
+    const currentChecked = refCheckbox.current.checked;
+    setIsCurrentChecked(currentChecked);
+    onClick(currentChecked);
   };
   return (
     <div className="on_off_toggle">
       <input
         type="checkbox"
         data-onoff-toggle
-        name={inputName}
+        name={toggleId}
+        id={toggleId}
         className="on_off_toggle_checkbox-input"
         onChange={() => handleClickCheckbox()}
         ref={refCheckbox}
         checked={isCurrentChecked}
       />
-      <label data-onoff-toggle-label className="on_off_toggle_label" />
+      <label data-onoff-toggle-label className="on_off_toggle_label" for={toggleId} />
     </div>
   );
 };
 
 OnOffToggleButton.propTypes = {
-  isChecked: PropTypes.bool,
-  checkboxName: PropTypes.string,
+  defaultChecked: PropTypes.bool,
+  toggleId: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 OnOffToggleButton.defaultProps = {
-  isChecked: true,
-  checkboxName: '',
+  defaultChecked: true,
+  toggleId: '',
+  onClick: () => {},
 };
 
 export default OnOffToggleButton;

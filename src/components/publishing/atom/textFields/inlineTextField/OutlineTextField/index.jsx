@@ -5,8 +5,11 @@ import './style.scss';
 
 /** Outline Text Field - text field | small cancle button
  * @placeholderText : placeholder text
+ * @defaultValue : default value
+ * @isDimed : boolean
+ * @onChange : text field value change 감지 
  */
-const OutlineTextField = React.forwardRef(({ placeholderText }, ref) => {
+const OutlineTextField = React.forwardRef(({ placeholderText, defaultValue, isDimed, onChange }, ref) => {
   const [outlineStyle, setOutlineStyle] = useState('');
   const [showTextFieldDeleteButton, setShowTextFieldDeleteButton] = useState('');
 
@@ -39,9 +42,13 @@ const OutlineTextField = React.forwardRef(({ placeholderText }, ref) => {
     setShowTextFieldDeleteButton('');
     setOutlineStyle('');
   };
+  
+  const handleChange = () => {
+    onChange(ref.current.value);
+  };
 
   return (
-    <div className={`outline_text_field_border_box ${outlineStyle}`}>
+    <div className={`outline_text_field_border_box ${outlineStyle} ${isDimed ? 'dim' : ''}`}>
       <div className="outline_text_field_box">
         <input
           type="text"
@@ -54,6 +61,8 @@ const OutlineTextField = React.forwardRef(({ placeholderText }, ref) => {
           onBlur={handleBlurTextField}
           spellCheck="false"
           autoComplete="off"
+          defaultValue={defaultValue}
+          onChange={handleChange}
         />
         <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
           <IconCrossTiny />
@@ -65,10 +74,16 @@ const OutlineTextField = React.forwardRef(({ placeholderText }, ref) => {
 
 OutlineTextField.propTypes = {
   placeholderText: PropTypes.string,
+  defaultValue: PropTypes.string,
+  isDimed: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 OutlineTextField.defaultProps = {
   placeholderText: '',
+  defaultValue: '',
+  isDimed: false,
+  onChange: () => {},
 };
 
 export default OutlineTextField;

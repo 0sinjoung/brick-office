@@ -7,9 +7,13 @@ import './style.scss';
 /** Validation Text Field - text field | small cancle button
  * @placeholderText : placeholder text
  * @validationErrorText : validation error text // outlineStyle = "error"
- * @handleValidation : validation f
+ * @defaultValue : default value
+ * @isDimed : boolean
+ * @onChange : text field value change 감지
+ * @isValid : boolean
  */
-const ValidationTextField = React.forwardRef(({ placeholderText,validationErrorText, handleValidation }, ref) => {
+
+const ValidationTextField = React.forwardRef(({ placeholderText,validationErrorText, defaultValue, isDimed, onChange, isValid }, ref) => {
   const [outlineStyle, setOutlineStyle] = useState('');
   const [showTextFieldDeleteButton, setShowTextFieldDeleteButton] = useState('');
 
@@ -43,9 +47,13 @@ const ValidationTextField = React.forwardRef(({ placeholderText,validationErrorT
     setOutlineStyle('');
   };
 
+  const handleChange = () => {
+    onChange(ref.current.value);
+  };
+
   return (
     <>
-      <div className={`validation_text_field_border_box ${outlineStyle}`}>
+      <div className={`validation_text_field_border_box ${outlineStyle} ${isValid ? '' : 'error'} ${isDimed ? 'dim' : ''}`}>
         <div className="validation_text_field_box">
           <input
             type="text"
@@ -58,17 +66,16 @@ const ValidationTextField = React.forwardRef(({ placeholderText,validationErrorT
             onBlur={handleBlurTextField}
             spellCheck="false"
             autoComplete="off"
+            defaultValue={defaultValue}
+            onChange={handleChange}
           />
           <button type="button" className={`text_field_delete_button ${showTextFieldDeleteButton}`} onClick={handleClickDeleteTextField}>
             <IconCrossTiny />
           </button>
         </div>
       </div>
-      <div className={`validation_error_text_box ${outlineStyle}`}>
-        <div className="icon_error_circle_box">
-          <IconExclamation />
-        </div>
-        <p className="validation_error_text">{validationErrorText}</p>
+      <div className={`validation_error_text_box ${isValid ? '' : 'show'}`}>
+        <div className="validation_error_text">{validationErrorText}</div>
       </div>
     </>
   );
@@ -76,10 +83,16 @@ const ValidationTextField = React.forwardRef(({ placeholderText,validationErrorT
 
 ValidationTextField.propTypes = {
   placeholderText: PropTypes.string,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
+  isValid: PropTypes.bool
 };
 
 ValidationTextField.defaultProps = {
   placeholderText: '',
+  defaultValue: '',
+  onChange: () => {},
+  isValid: true,
 };
 
 export default ValidationTextField;

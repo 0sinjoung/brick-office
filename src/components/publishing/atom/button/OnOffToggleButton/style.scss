@@ -1,6 +1,9 @@
 @import "/src/styles/_variables.scss";
 
-/* 토글 버튼 */
+.on_off_toggle {
+  @include flexCenter();
+}
+
 [data-onoff-toggle] {
   display: none;
 

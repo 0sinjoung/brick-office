@@ -538,7 +538,7 @@ const ChannelMember = ({ children }) => {
   
 
   /* (4) 로우 데이터 편집 */
-  const IS_CURRENT_USER_CHANNEL_ADMIN = true;
+  const IS_CURRENT_USER_CHANNEL_ADMIN = false;
   const handleToggleEditDropdownMenu = idx => {
     if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
       return;
