@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import GridTable from 'components/publishing/molecule/gridComponents/GridTable';
 import GridTableHead from 'components/publishing/molecule/gridComponents/GridTableHead';

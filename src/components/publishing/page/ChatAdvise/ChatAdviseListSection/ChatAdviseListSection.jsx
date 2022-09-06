@@ -7,9 +7,7 @@ import { ReactComponent as IconDetailSearch } from 'assets/svg/icon/icon_detail_
 import { ReactComponent as IconRefreshAction } from 'assets/svg/icon/icon_refresh_action.svg';
 import { ReactComponent as IconSorting } from 'assets/svg/icon/icon_sorting.svg';
 import { ReactComponent as IconBookmark } from 'assets/svg/icon/icon_bookmark.svg';
-import { ReactComponent as IconLnbChatAdvise } from 'assets/svg/icon/lnb/icon_lnb_chat_advise.svg';
 import NumberNotificationBadge from 'components/publishing/atom/notificationBadge/NumberNotificationBadge';
-import NewNotificationBadge from 'components/publishing/atom/notificationBadge/NewNotificationBadge';
 import OnairAvatarIcon from 'components/publishing/atom/avatarIcon/OnairAvatarIcon';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import IconButton from 'components/publishing/atom/button/IconButton';

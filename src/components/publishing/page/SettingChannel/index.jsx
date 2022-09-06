@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ChannelMember from 'components/publishing/page/SettingChannel/ChannelMember';
 import ChannelJoin from 'components/publishing/page/SettingChannel/ChannelJoin';

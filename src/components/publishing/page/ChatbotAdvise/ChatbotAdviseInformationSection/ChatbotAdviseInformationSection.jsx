@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { ReactComponent as IconEllipsis } from 'assets/svg/icon/icon_ellipsis.svg';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';
 import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';

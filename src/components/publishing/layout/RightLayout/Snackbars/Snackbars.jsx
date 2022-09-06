@@ -1,6 +1,4 @@
 import React from 'react';
-import BasicSnackbar from 'components/publishing/molecule/snackbar/BasicSnackbar';
-import FileUploadSnackbar from 'components/publishing/molecule/snackbar/FileUploadSnackbar';
 import './Snackbars.scss';
 
 const Snackbars = () => {

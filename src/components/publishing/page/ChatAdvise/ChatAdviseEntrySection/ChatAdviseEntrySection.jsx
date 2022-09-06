@@ -1,13 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { ReactComponent as IconLnbChatAdvise } from 'assets/svg/icon/lnb/icon_lnb_chat_advise.svg';
-import { ReactComponent as IconEllipsis } from 'assets/svg/icon/icon_ellipsis.svg';
-import { ReactComponent as IconDropdownArrow } from 'assets/svg/icon/icon_dropdown_arrow.svg';
-import { ReactComponent as IconCross } from 'assets/svg/icon/icon_cross.svg';
 import ColorTag from 'components/publishing/atom/tag/ColorTag';
-import OutlineButton from 'components/publishing/atom/button/OutlineButton';
-import SolidButton from 'components/publishing/atom/button/SolidButton';
-import AdviseFieldChip from 'components/publishing/atom/chip/AdviseFieldChip';
-import OutlineSearchTextField from 'components/publishing/atom/textFields/inlineTextField/OutlineSearchTextField';
 import './ChatAdviseEntrySection.scss';
 
 /** 채팅 상담 진입시 화면 섹션

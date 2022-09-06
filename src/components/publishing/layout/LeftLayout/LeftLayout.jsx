@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import LNB from 'components/publishing/layout/LeftLayout/LNB/LNB';
 import './LeftLayout.scss';
 

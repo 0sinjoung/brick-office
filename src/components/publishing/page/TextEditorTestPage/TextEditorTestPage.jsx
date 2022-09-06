@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BasicTextEditor from 'components/publishing/molecule/textEditor/BasicTextEditor';
-import ChatAdviseTextEditor from 'components/publishing/molecule/textEditor/ChatAdviseTextEditor';
 import './TextEditorTestPage.scss';
 
 const TextEditorTestPage = ({ children }) => {

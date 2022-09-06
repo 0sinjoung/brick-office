@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';

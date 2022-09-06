@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import TopNotificationBar from 'components/publishing/topLayout/TopNotificationBar/TopNotificationBar';
 import './TopNotificationBar.scss';
 
 const TopNotificationBar = () => {

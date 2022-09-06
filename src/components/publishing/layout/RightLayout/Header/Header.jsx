@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg';
 import IconButton from 'components/publishing/atom/button/IconButton';
 import OutlineTag from 'components/publishing/atom/tag/OutlineTag';

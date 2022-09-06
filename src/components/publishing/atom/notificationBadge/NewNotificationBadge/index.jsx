@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './style.scss';
 
 /* New notification badge - N 텍스트만 출력, 고정 스타일 */

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as IconLink } from 'assets/svg/icon/icon_link.svg';
 import { ReactComponent as IconCaution } from 'assets/svg/icon/icon_caution.svg';
@@ -13,9 +13,7 @@ import Checkbox from 'components/publishing/atom/Checkbox';
 import SolidButton from 'components/publishing/atom/button/SolidButton';
 import OutlineButton from 'components/publishing/atom/button/OutlineButton';
 import FullScreenDim from 'components/publishing/atom/dim/FullScreenDim';
-import NoDataFound from 'components/publishing/atom/NoDataFound';
 import Pagination from 'components/publishing/atom/Pagination';
-import DropdownToggle from 'components/publishing/molecule/dropdown/DropdownToggle';
 import DropdownMenu from 'components/publishing/molecule/dropdown/DropdownMenu';
 import ToastMessage from 'components/publishing/atom/ToastMessage';
 import BasicTextDropdown from 'components/publishing/molecule/dropdown/BasicTextDropdown';

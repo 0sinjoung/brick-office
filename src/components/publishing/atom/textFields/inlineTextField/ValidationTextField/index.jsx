@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as IconCrossTiny } from 'assets/svg/icon/icon_cross_tiny.svg';
-import { ReactComponent as IconExclamation } from 'assets/svg/icon/icon_exclamation.svg';
 import './style.scss';
 
 /** Validation Text Field - text field | small cancle button

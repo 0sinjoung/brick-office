@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as IconEdit } from 'assets/svg/icon/icon_edit.svg'
 import { ReactComponent as IconSetting } from 'assets/svg/icon/icon_setting.svg'
