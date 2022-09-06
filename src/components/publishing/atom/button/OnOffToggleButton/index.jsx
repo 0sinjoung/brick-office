@@ -23,7 +23,7 @@ const OnOffToggleButton = ({ defaultChecked, toggleId, onClick }) => {
         data-onoff-toggle
         name={toggleId}
         id={toggleId}
-        className="on_off_toggle_checkbox-input"
+        className="on_off_toggle_checkbox_input"
         onChange={() => handleClickCheckbox()}
         ref={refCheckbox}
         checked={isCurrentChecked}

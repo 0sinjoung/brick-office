@@ -4,20 +4,32 @@ import { ReactComponent as IconCheckbox } from 'assets/svg/icon/icon_checkbox.sv
 import './style.scss';
 
 /** Checkbox
- * @isChecked : 체크 상태
- * @checkboxName : input checkbox name
+ * @defaultChecked : 체크 상태
+ * @checkboxId : input checkbox id - id 중복 불가!!!
+ * @onClick : param => bool, click시 실행 함수. 
  */
-const Checkbox = ({ isChecked, checkboxName }) => {
+const Checkbox = ({ defaultChecked, checkboxId, onClick }) => {
   const refCheckbox = useRef(null);
-  const [isCurrentChecked, setIsCurrentChecked] = useState(isChecked);
+  const [isCurrentChecked, setIsCurrentChecked] = useState(defaultChecked);
   const handleClickCheckbox = () => {
-    setIsCurrentChecked(refCheckbox.current.checked);
+    const currentChecked = refCheckbox.current.checked;
+    setIsCurrentChecked(currentChecked);
+    onClick(currentChecked);
   };
 
   return (
     <div className="checkbox">
-      <input type="checkbox" id="brick_checkbox" name={checkboxName} className="checkbox_input" onChange={() => handleClickCheckbox()} ref={refCheckbox} checked={isCurrentChecked}/>
-      <label htmlFor="brick_checkbox" className="checkbox_label">
+      <input 
+        type="checkbox"
+        data-checkbox-toggle
+        id={checkboxId} 
+        name={checkboxId} 
+        className="checkbox_input" 
+        onChange={() => handleClickCheckbox()} 
+        ref={refCheckbox} 
+        checked={isCurrentChecked}
+      />
+      <label data-checkbox-toggle-label htmlFor={checkboxId} className="checkbox_label">
         <IconCheckbox />
       </label>
     </div>
@@ -25,13 +37,13 @@ const Checkbox = ({ isChecked, checkboxName }) => {
 };
 
 Checkbox.propTypes = {
-  isChecked: PropTypes.bool,
-  checkboxName: PropTypes.string,
+  defaultChecked: PropTypes.bool,
+  checkboxId: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
-  isChecked: true,
-  checkboxName: '',
+  defaultChecked: true,
+  checkboxId: '',
 };
 
 export default Checkbox;

@@ -86,7 +86,7 @@ const channelMemberColumnData = [
     dropdownMenu: [
       {value: '전체', onClick: () => console.log('전체')},
       {value: '업무 시작', onClick: () => console.log('업무 시작')},
-      {value: '업무 종료', onClick: () => console.log('업무 종ㄹㅛ')},
+      {value: '업무 종료', onClick: () => console.log('업무 종료')},
     ],
   },
   {
@@ -315,9 +315,23 @@ const ChannelMember = ({ children }) => {
     setTimeout(() => setToastMessageData({ isShow: false, icon: '', message: '' }), 3000);
   };
   const ADVISER_NAME = "김다이김다이김다이김다이김다이김다이";
-  const [ isCheckedZeroAdviseFields, setIsCheckedZeroAdviseFields ] = useState(true);
-  const [ isOpenedDropdownMenu, setIsOpenedDropdownMenu ] = useState(false);
-  const [ adviseFieldsDeletableChipData, setAdviseFieldsDeletableChipData ] = useState(
+  const [isCheckedZeroAdviseFields, setIsCheckedZeroAdviseFields] = useState(false);
+  const [isOpenedDropdownMenu, setIsOpenedDropdownMenu] = useState(false);
+  const [selectedMemberAdviseFields, setSelectedMemberAdviseFields] = useState([
+    {value: '전체', isChecked: false},
+    {value: 'A/S', isChecked: false},
+    {value: '결제', isChecked: true},
+    {value: '고객 관리', isChecked: true},
+    {value: '교환 반품 환불', isChecked: true},
+    {value: '배송', isChecked: false},
+    {value: '상품', isChecked: false},
+    {value: '시스템', isChecked: false},
+    {value: '주문', isChecked: false},
+    {value: '프로모션', isChecked: false},
+    {value: '회원', isChecked: false},
+    {value: '기타', isChecked: false},
+  ])
+  const [adviseFieldsDeletableChipData, setAdviseFieldsDeletableChipData] = useState(
     {
       adviseField: [
         {value: '전체', isChecked: true},
@@ -335,12 +349,21 @@ const ChannelMember = ({ children }) => {
       ],
     }
   );
-  const handleAdviseFieldsDelete = value => {
-    console.log('필드 지우기 함수 실행', value);
+  const handleShowAdviseFieldsDropdownMenu = e => {
+    const currentTarget = e.target.className;
+    console.log(currentTarget);
+    switch (currentTarget) {
+      case 'advise_field_color_deletable_chip':
+      case 'advise_field_color_deletable_chip_text':
+      case 'advise_field_color_deletable_chip_button':
+      case 'icon_cross_small':
+        break;
+      default:
+        setIsOpenedDropdownMenu(!isOpenedDropdownMenu);
+    }
   };
-  const handleShowAdviseFieldsDropdownMenu = () => {
-    console.log('드롭다운 메뉴 열기');
-    setIsOpenedDropdownMenu(!isOpenedDropdownMenu);
+  const handleAdviseFieldsDelete = value => {
+    console.log(value, '상담 분야 삭제');
   };
   const displayEditMemberAdviseFieldsModal = () => {
     return (
@@ -358,11 +381,11 @@ const ChannelMember = ({ children }) => {
           <div className="edit_member_advise_fields_dropdown_box">
             <div className={`advise_fields_dropdown_toggle_outline_style_box ${isOpenedDropdownMenu ? 'focus' : ''}`}>
               <div className="advise_fields_dropdown_toggle">
-                <div className="advise_fields_dropdown_toggle_button" onClick={() => handleShowAdviseFieldsDropdownMenu()}>
+                <div className="advise_fields_dropdown_toggle_button" onClick={e => handleShowAdviseFieldsDropdownMenu(e)}>
                   <div className="advise_fields_lists">
                     {isCheckedZeroAdviseFields ? '상담 분야' : ''}
-                    {/* {
-                      adviseFieldsDeletableChipData.adviseField.map(field => {
+                    {
+                      selectedMemberAdviseFields.map(field => {
                         if (field.value === '전체') {
                           return;
                         }
@@ -370,7 +393,7 @@ const ChannelMember = ({ children }) => {
                           <AdviseFieldDeletableChip key={field.value} isChecked={field.isChecked} handleDelete={handleAdviseFieldsDelete}>{field.value}</AdviseFieldDeletableChip>
                         );
                       })
-                    } */}
+                    }
                   </div>
                   <div className={`advise_fields_toggle_arrow ${isOpenedDropdownMenu ? 'open' : ''}`}>
                     <IconDropdownArrow />
@@ -382,10 +405,10 @@ const ChannelMember = ({ children }) => {
               <div className="advise_fields_combo_dropdown_menu_scroll_area">
                 <ul className="advise_fields_combo_dropdown_menu_lists">
                   {
-                    adviseFieldsDeletableChipData.adviseField.map(field => {
+                    selectedMemberAdviseFields.map(field => {
                       return (
                         <li className="advise_fields_combo_dropdown_menu_list" key={field.value}>
-                          <Checkbox isChecked={field.isChecked} checkboxName="checkbox" />
+                          <Checkbox defaultChecked={field.isChecked} checkboxId={`channel_member_dropdown_${field.value}_checkbox`} />
                           <AdviseFieldChip>{field.value}</AdviseFieldChip>
                         </li>
                       );
@@ -538,7 +561,7 @@ const ChannelMember = ({ children }) => {
   
 
   /* (4) 로우 데이터 편집 */
-  const IS_CURRENT_USER_CHANNEL_ADMIN = false;
+  const IS_CURRENT_USER_CHANNEL_ADMIN = true;
   const handleToggleEditDropdownMenu = idx => {
     if (!IS_CURRENT_USER_CHANNEL_ADMIN) {
       return;
