@@ -172,7 +172,7 @@ const channelMemberMockUpData = [
     channelMemberName: '김다이',
     channelMemberNickname: '아홉글자가최대',
     channelMemberEmail: 'testtesttest1111@gmail.com',
-    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '배송', '상품', '시스템', '프로모션'],
+    channelMemberAdviseField: ['A/S', '결제', '고객 관리', '교환 반품 환불', '기타', '배송', '상품', '시스템', '주문', '프로모션', '회원'],
     channelMemberAdviseState: '업무 종료',
     channelMemberIsAdmin: false,
     channelMemberJoinDate: '2023.01.20',
