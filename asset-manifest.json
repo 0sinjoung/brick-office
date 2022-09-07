@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/brick-office/static/css/main.1dc32c35.css",
-    "main.js": "/brick-office/static/js/main.b042b08f.js",
+    "main.css": "/brick-office/static/css/main.32417f7d.css",
+    "main.js": "/brick-office/static/js/main.39075773.js",
     "static/media/Inter-Bold.otf": "/brick-office/static/media/Inter-Bold.29a77b7e0aa49b534323.otf",
     "static/media/Inter-SemiBold.otf": "/brick-office/static/media/Inter-SemiBold.3aa40e610d938943736b.otf",
     "static/media/Inter-Medium.otf": "/brick-office/static/media/Inter-Medium.16eda82a3c37a6edda09.otf",
@@ -15,6 +15,7 @@
     "static/media/Inter-SemiBold.woff2": "/brick-office/static/media/Inter-SemiBold.b5f0f109bc88052d4000.woff2",
     "static/media/Inter-Regular.woff2": "/brick-office/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
     "static/media/icomoon.svg?z8plse": "/brick-office/static/media/icomoon.fea3dde7b9c72c0e3629.svg",
+    "static/media/icon_cafe24.svg": "/brick-office/static/media/icon_cafe24.8692fe8aa483a17a7a7677f52e6679cd.svg",
     "static/media/icon_file_extension_xlsx.svg": "/brick-office/static/media/icon_file_extension_xlsx.0a673a69abc981138b324e39b95fa5c9.svg",
     "static/media/icon_file_unavailable_bg_grey.svg": "/brick-office/static/media/icon_file_unavailable_bg_grey.9ff9974563ad5a2ace7879e57399a198.svg",
     "static/media/icon_lnb_setting.svg": "/brick-office/static/media/icon_lnb_setting.f23fb6572da190cb610c78c14a21405b.svg",
@@ -27,6 +28,7 @@
     "static/media/icon_lnb_kms.svg": "/brick-office/static/media/icon_lnb_kms.90539badba151b2411377633a99130f2.svg",
     "static/media/icon_lnb_back_channel_list.svg": "/brick-office/static/media/icon_lnb_back_channel_list.9d0ad099c12f7a0ff1f21ec836aec81d.svg",
     "static/media/icon_file_upload.svg": "/brick-office/static/media/icon_file_upload.c6358d7712140314c0524a01e236aed4.svg",
+    "static/media/icon_link.svg": "/brick-office/static/media/icon_link.6d6e6577e0e52dc855f3efe0ac1719a3.svg",
     "static/media/icon_lnb_chat_advise.svg": "/brick-office/static/media/icon_lnb_chat_advise.2d1e49409f25bfe6447c9a849a3b70c6.svg",
     "static/media/icon_calendar.svg": "/brick-office/static/media/icon_calendar.03ce3336f40a57574e3ac0ed02d106ba.svg",
     "static/media/icon_lnb_dashboard.svg": "/brick-office/static/media/icon_lnb_dashboard.ad24de8722fba3befa40de32d85eba49.svg",
@@ -37,12 +39,10 @@
     "static/media/icon_lnb_chatbot_advise.svg": "/brick-office/static/media/icon_lnb_chatbot_advise.e54892f8236399b3e408b759612c41c1.svg",
     "static/media/icon_file_add.svg": "/brick-office/static/media/icon_file_add.4d0588dfc92ae8d449d1c216f524ac11.svg",
     "static/media/icon_cross.svg": "/brick-office/static/media/icon_cross.77d50d6cf2c3293c42d5b27c7c8ddf90.svg",
-    "static/media/icon_file_upload_confirm_circle.svg": "/brick-office/static/media/icon_file_upload_confirm_circle.3c3186b6f9407959e980557555c342b1.svg",
     "static/media/icon_file_download.svg": "/brick-office/static/media/icon_file_download.71e0785070e27ff54d1dc9b6347fb0b6.svg",
     "static/media/icon_edit.svg": "/brick-office/static/media/icon_edit.4e1826654429bcdc955da0d655886673.svg",
     "static/media/icon_lnb_customer.svg": "/brick-office/static/media/icon_lnb_customer.4d32f536246ac537f58f83e06cd38733.svg",
     "static/media/icon_detail_search.svg": "/brick-office/static/media/icon_detail_search.a01689dba9374553084ba446659ee3cc.svg",
-    "static/media/icon_file_upload_error_circle.svg": "/brick-office/static/media/icon_file_upload_error_circle.1cc72f5b7d3a99988796705f5c156a6e.svg",
     "static/media/icon_toast_checking.svg": "/brick-office/static/media/icon_toast_checking.c5a089b9f07092601d16821f8750b304.svg",
     "static/media/icon_sorting.svg": "/brick-office/static/media/icon_sorting.59ab49da4430d728eaa277961d7c5bb5.svg",
     "static/media/icon_exel_template.svg": "/brick-office/static/media/icon_exel_template.771b04324cc944aa843f28aa294c1085.svg",
@@ -63,21 +63,21 @@
     "static/media/icon_toast_warning.svg": "/brick-office/static/media/icon_toast_warning.f8b51b6aa9879c4a4cbd992f8f2375de.svg",
     "static/media/icon_text_italic.svg": "/brick-office/static/media/icon_text_italic.38b1163e6bef13d776065bb3949a4e98.svg",
     "static/media/icon_cross_tiny.svg": "/brick-office/static/media/icon_cross_tiny.c96c58a7a7dead41bea576badc3e93a5.svg",
-    "static/media/icon_file_extension_xlsx_tiny.svg": "/brick-office/static/media/icon_file_extension_xlsx_tiny.cdda865f156a8c17f659786029bd9fe4.svg",
+    "static/media/icon_checkbox.svg": "/brick-office/static/media/icon_checkbox.8040ec06721f905132ebdc33a187b512.svg",
     "static/media/icon_cross_small.svg": "/brick-office/static/media/icon_cross_small.11711cf4f82f65af9af299aeb3d6ae6d.svg",
     "static/media/icon_triangle_warning.svg": "/brick-office/static/media/icon_triangle_warning.5dd6e9f408a24cf8ec3a589ec1e5809f.svg",
+    "static/media/icon_caution.svg": "/brick-office/static/media/icon_caution.c26245057324fa149ccdf02d01b2cff5.svg",
     "static/media/icon_refresh_action.svg": "/brick-office/static/media/icon_refresh_action.061998602829308fade32c45529566c2.svg",
-    "static/media/icon_exclamation.svg": "/brick-office/static/media/icon_exclamation.7163a9382ba47625fde38ad58ac40495.svg",
     "static/media/icon_arrow_up_small.svg": "/brick-office/static/media/icon_arrow_up_small.fa82bf782e5a66ffa7479646c2839d24.svg",
     "static/media/icon_pagination_prev.svg": "/brick-office/static/media/icon_pagination_prev.dfe61238f42f3c1570c357f35a39753a.svg",
     "static/media/icon_dropdown_arrow.svg": "/brick-office/static/media/icon_dropdown_arrow.2d7a60773aa33a63d7f2da5814ebbc2e.svg",
     "static/media/icon_ellipsis.svg": "/brick-office/static/media/icon_ellipsis.32201520f4e52c672710d366b09a999b.svg",
     "static/media/icon_file_play.svg": "/brick-office/static/media/icon_file_play.72060c771c31782bb1d8507330e2ee8d.svg",
-    "main.1dc32c35.css.map": "/brick-office/static/css/main.1dc32c35.css.map",
-    "main.b042b08f.js.map": "/brick-office/static/js/main.b042b08f.js.map"
+    "main.32417f7d.css.map": "/brick-office/static/css/main.32417f7d.css.map",
+    "main.39075773.js.map": "/brick-office/static/js/main.39075773.js.map"
   },
   "entrypoints": [
-    "static/css/main.1dc32c35.css",
-    "static/js/main.b042b08f.js"
+    "static/css/main.32417f7d.css",
+    "static/js/main.39075773.js"
   ]
 }
