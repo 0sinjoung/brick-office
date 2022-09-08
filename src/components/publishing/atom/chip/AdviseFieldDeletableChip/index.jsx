@@ -9,7 +9,8 @@ import './style.scss';
 const AdviseFieldDeletableChip = ({ children, isChecked, handleDelete}) => {
   let chipStyle;
   const [isShowChip, setIsShowChip] = useState(isChecked);
-  const handleClickDeleteButton = () => {
+  const handleClickDeleteButton = e => {
+    e.stopPropagation();
     handleDelete(children);
     setIsShowChip(false);
   };
@@ -29,7 +30,7 @@ const AdviseFieldDeletableChip = ({ children, isChecked, handleDelete}) => {
   return (
     <div className={`advise_field_color_deletable_chip ${isShowChip ? 'show' : ''}`} style={chipStyle}>
       <span className="advise_field_color_deletable_chip_text">#{children}</span>
-      <button type="button" className="advise_field_color_deletable_chip_button" onClick={handleClickDeleteButton}>
+      <button type="button" className="advise_field_color_deletable_chip_button" onClick={e => handleClickDeleteButton(e)}>
         <IconCrossSmall />
       </button>
     </div>

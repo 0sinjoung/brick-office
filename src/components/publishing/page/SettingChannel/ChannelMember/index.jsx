@@ -348,17 +348,7 @@ const ChannelMember = ({ children }) => {
     }
   );
   const handleShowAdviseFieldsDropdownMenu = e => {
-    const currentTarget = e.target.className;
-    console.log(currentTarget);
-    switch (currentTarget) {
-      case 'advise_field_color_deletable_chip':
-      case 'advise_field_color_deletable_chip_text':
-      case 'advise_field_color_deletable_chip_button':
-      case 'icon_cross_small':
-        break;
-      default:
-        setIsOpenedDropdownMenu(!isOpenedDropdownMenu);
-    }
+    setIsOpenedDropdownMenu(!isOpenedDropdownMenu);
   };
   const handleAdviseFieldsDelete = value => {
     console.log(value, '상담 분야 삭제');
